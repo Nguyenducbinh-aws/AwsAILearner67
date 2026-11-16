@@ -1,17 +1,21 @@
 ---
 title: "Các Events đã tham gia"
-date: 2024-01-01
+date: 2026-11-15
 weight: 4
 chapter: false
 pre: " <b> 4. </b> "
 ---
 
-Phần này liệt kê các sự kiện bạn đã tham gia trong quá trình thực tập.
+Phần này liệt kê các sự kiện tôi đã tham gia trong quá trình thực tập tại Công ty TNHH Amazon Web Services Viet Nam.
 
-### [Sự kiện 1 - Tiêu đề](4.1-Event1/)
+### [Sự kiện 1 – Buildrathon Kickoff: Code the Future with CMC Global](4.1-Event1/)
+09:00 – 12:00, ngày 26/09/2026
 
-[Mô tả ngắn về Sự kiện 1.]
+### [Sự kiện 2 – AWS Cloud and AI Day Hanoi](4.2-Event2/)
+08:30 – 17:00, ngày 02/10/2026
 
-### [Sự kiện 2 - Tiêu đề](4.2-Event2/)
+### [Sự kiện 3 – First Cloud AI Journey – Meet Up](4.3-Event3/)
+09:00 – 12:00, ngày 24/10/2026
 
-[Mô tả ngắn về Sự kiện 2.]
+### [Sự kiện 4 – Cloud Mastery FPT](4.4-Event4/)
+09:00 – 12:00, ngày 14/11/2026

@@ -1,6 +1,6 @@
 ---
 title: "Báo cáo thực tập"
-date: 2024-01-01
+date: 2026-11-15
 weight: 1
 chapter: false
 ---
@@ -8,23 +8,23 @@ chapter: false
 # Báo cáo thực tập
 
 ### Thông tin sinh viên:
-&emsp; **Họ và tên:** 
+&emsp; **Họ và tên:** Nguyễn Đức Bình
 
-&emsp; **Số điện thoại:** 
+&emsp; **Số điện thoại:** 0961101526
 
-&emsp; **Email:** 
+&emsp; **Email:** binhndse182383@fpt.edu.vn
 
-&emsp; **Trường:** 
+&emsp; **Trường:** FPT University
 
-&emsp; **Ngành:** 
+&emsp; **Ngành:** Information Assurance
 
-&emsp; **Lớp:** 
+&emsp; **Lớp:** FCAJ-FPT-S4
 
 &emsp; **Công ty thực tập:** Công ty TNHH Amazon Web Services Viet Nam
 
-&emsp; **Vị trí thực tập:** Workforce Bootcamp - First Cloud AI Journey
+&emsp; **Vị trí thực tập:** Cyber Security Intern - First Cloud AI Journey
 
-&emsp; **Thời gian thực tập:** Từ ngày  đến ngày 
+&emsp; **Thời gian thực tập:** Từ ngày 11/09/2026 đến ngày 14/12/2026
 
 ![Ảnh đại diện của bạn](/images/avatar.png)
 

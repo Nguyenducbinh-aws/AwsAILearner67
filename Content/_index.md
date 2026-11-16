@@ -1,6 +1,6 @@
 ---
 title: "Internship Report"
-date: 2024-01-01
+date: 2026-11-15
 weight: 1
 chapter: false
 ---
@@ -8,23 +8,23 @@ chapter: false
 # Internship Report
 
 ### Student Information:
-&emsp; **Full Name:** 
+&emsp; **Full Name:** Nguyen Duc Binh
 
-&emsp; **Phone Number:** 
+&emsp; **Phone Number:** 0961101526
 
-&emsp; **Email:** 
+&emsp; **Email:** binhndse182383@fpt.edu.vn
 
-&emsp; **University:** 
+&emsp; **University:** FPT University
 
-&emsp; **Major:** 
+&emsp; **Major:** Information Assurance
 
-&emsp; **Class:** 
+&emsp; **Class:** FCAJ-FPT-S4
 
 &emsp; **Internship Company:** Amazon Web Services Viet Nam Company Limited
 
-&emsp; **Internship Position:** Workforce Bootcamp - First Cloud AI Journey
+&emsp; **Internship Position:** Cyber Security Intern - First Cloud AI Journey
 
-&emsp; **Internship Duration:** From  to 
+&emsp; **Internship Duration:** From 11/09/2026 to 14/12/2026
 
 ![Your profile picture](/images/avatar.png)
 
