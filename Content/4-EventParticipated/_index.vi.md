@@ -14,7 +14,7 @@ Phần này liệt kê các sự kiện tôi đã tham gia trong quá trình th�
 ### [Sự kiện 2 – AWS Cloud and AI Day Hanoi](4.2-Event2/)
 08:30 – 17:00, ngày 02/10/2026
 
-### [Sự kiện 3 – First Cloud AI Journey – Meet Up](4.3-Event3/)
+### [Sự kiện 3 – Buổi Meet Up Đầy Năng Lượng: First Cloud AI Journey](4.3-Event3/)
 09:00 – 12:00, ngày 24/10/2026
 
 ### [Sự kiện 4 – Cloud Mastery FPT](4.4-Event4/)

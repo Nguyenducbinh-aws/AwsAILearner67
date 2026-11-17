@@ -1,22 +1,33 @@
 ---
-title: "Worklog"
-date: 2024-01-01
+title: "Nhật ký công việc"
+date: 2026-09-07
 weight: 1
 chapter: false
 pre: " <b> 1. </b> "
 ---
 
-### Worklog
+Bắt đầu thực tập từ **07/09/2026**. Tuần 1–3 chủ yếu dành cho việc học: làm quen chương trình, nền tảng AWS, xem video bootcamp và các workshop về vận hành/container. Nội dung từng tuần như sau:
 
-1. [Tuần 1](1.1-Week1/)
-2. [Tuần 2](1.2-Week2/)
-3. [Tuần 3](1.3-Week3/)
-4. [Tuần 4](1.4-Week4/)
-5. [Tuần 5](1.5-Week5/)
-6. [Tuần 6](1.6-Week6/)
-7. [Tuần 7](1.7-Week7/)
-8. [Tuần 8](1.8-Week8/)
-9. [Tuần 9](1.9-Week9/)
-10. [Tuần 10](1.10-Week10/)
-11. [Tuần 11](1.11-Week11/)
-12. [Tuần 12](1.12-Week12/)
+**Tuần 1:** [Làm quen FCAJ, tài khoản AWS, Budgets, Support, IAM và AWS CLI](1.1-week1/)
+
+**Tuần 2:** [Xem series video FCAJ Workforce Bootcamp – 2026](1.2-week2/)
+
+**Tuần 3:** [EC2 Auto Scaling, CloudWatch, Docker, Amazon ECS và Fargate](1.3-week3/)
+
+**Tuần 4:** [Làm công việc A...](1.4-week4/)
+
+**Tuần 5:** [Làm công việc B...](1.5-week5/)
+
+**Tuần 6:** [Làm công việc C...](1.6-week6/)
+
+**Tuần 7:** [Làm công việc D...](1.7-week7/)
+
+**Tuần 8:** [Làm công việc E...](1.8-week8/)
+
+**Tuần 9:** [Làm công việc F...](1.9-week9/)
+
+**Tuần 10:** [Làm công việc G...](1.10-week10/)
+
+**Tuần 11:** [Làm công việc H...](1.11-week11/)
+
+**Tuần 12:** [Làm công việc I...](1.12-week12/)
