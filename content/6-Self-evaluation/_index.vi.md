@@ -6,11 +6,11 @@ chapter: false
 pre: " <b> 6. </b> "
 ---
 
-Trong quá trình thực tập tại **Công ty TNHH Amazon Web Services Viet Nam** từ ngày **11/09/2026** đến ngày **14/12/2026** ở vị trí **Cyber Security Intern**, tôi đã có cơ hội học hỏi, thực hành và áp dụng kiến thức học tại trường vào môi trường làm việc thực tế.
+Trong quá trình thực tập tại **Công ty TNHH Amazon Web Services Viet Nam** từ ngày **11/09/2026** đến ngày **14/12/2026** ở vị trí **Cyber Security Intern**, mình đã có cơ hội học hỏi, thực hành và áp dụng kiến thức học tại trường vào môi trường làm việc thực tế.
 
 Tôi đã tham gia vào **xây dựng workshop về quản lý và bảo mật Windows workload trên AWS, sử dụng EC2 Image Builder, Systems Manager và CloudWatch**, qua đó cải thiện kỹ năng **bảo mật cloud**.
 
-Về thái độ làm việc, tôi luôn cố gắng hoàn thành tốt nhiệm vụ, tuân thủ nội quy nơi làm việc và tích cực phối hợp với đồng nghiệp để nâng cao hiệu quả công việc.
+Về thái độ làm việc, mình luôn cố gắng hoàn thành tốt nhiệm vụ, tuân thủ nội quy nơi làm việc và tích cực phối hợp với đồng nghiệp để nâng cao hiệu quả công việc.
 
 | STT | Tiêu chí                            | Mô tả                                                                                            | Tốt | Khá | Trung bình |
 | --- | ----------------------------------- | ------------------------------------------------------------------------------------------------ | --- | --- | ---------- |
@@ -31,3 +31,4 @@ Về thái độ làm việc, tôi luôn cố gắng hoàn thành tốt nhiệm 
 
 * Nâng cao tư duy giải quyết vấn đề, đặc biệt khi đối mặt với các tình huống kỹ thuật chưa quen.
 * Vận dụng nhiều hơn các dịch vụ AWS để xử lý tốt hơn các tác vụ doanh nghiệp thực tế.
+

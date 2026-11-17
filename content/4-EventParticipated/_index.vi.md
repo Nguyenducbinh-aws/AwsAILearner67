@@ -6,7 +6,7 @@ chapter: false
 pre: " <b> 4. </b> "
 ---
 
-Phần này liệt kê các sự kiện tôi đã tham gia trong quá trình thực tập tại Công ty TNHH Amazon Web Services Viet Nam.
+Phần này liệt kê các sự kiện mình đã tham gia trong quá trình thực tập tại Công ty TNHH Amazon Web Services Viet Nam.
 
 ### [Sự kiện 1 – Buildrathon Kickoff: Code the Future with CMC Global](4.1-Event1/)
 09:00 – 12:00, ngày 26/09/2026
@@ -19,3 +19,4 @@ Phần này liệt kê các sự kiện tôi đã tham gia trong quá trình th�
 
 ### [Sự kiện 4 – Cloud Mastery FPT](4.4-Event4/)
 09:00 – 12:00, ngày 14/11/2026
+

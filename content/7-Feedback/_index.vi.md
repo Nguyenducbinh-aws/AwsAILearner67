@@ -6,32 +6,32 @@ chapter: false
 pre: " <b> 7. </b> "
 ---
 
-> Đây là những chia sẻ cá nhân của tôi về trải nghiệm tham gia chương trình First Cloud AI Journey, mong rằng sẽ giúp đội FCAJ tiếp tục cải thiện và phát triển chương trình.
+> Đây là những chia sẻ cá nhân của mình về trải nghiệm tham gia chương trình First Cloud AI Journey, mong rằng sẽ giúp đội FCAJ tiếp tục cải thiện và phát triển chương trình.
 
 ### Đánh giá tổng thể
 
 **1. Môi trường làm việc**
 
-Môi trường làm việc rất thân thiện, cởi mở và hỗ trợ lẫn nhau. Không gian làm việc chuyên nghiệp và thoải mái, giúp tôi tập trung và làm việc hiệu quả hơn. Các thành viên trong nhóm luôn sẵn sàng giúp đỡ nhau, tạo nên bầu không khí tích cực trong suốt quá trình thực tập.
+Môi trường làm việc rất thân thiện, cởi mở và hỗ trợ lẫn nhau. Không gian làm việc chuyên nghiệp và thoải mái, giúp mình tập trung và làm việc hiệu quả hơn. Các thành viên trong nhóm luôn sẵn sàng giúp đỡ nhau, tạo nên bầu không khí tích cực trong suốt quá trình thực tập.
 
 **2. Sự hỗ trợ từ Mentor / Admin**
 
-Mentor hướng dẫn rất chi tiết và giải đáp thắc mắc một cách tận tình. Đội admin tạo điều kiện làm việc tốt và khuyến khích tôi tự tìm hiểu, tự giải quyết vấn đề thay vì chỉ đưa ra đáp án trực tiếp — điều này giúp tôi phát triển nhanh hơn rất nhiều.
+Mentor hướng dẫn rất chi tiết và giải đáp thắc mắc một cách tận tình. Đội admin tạo điều kiện làm việc tốt và khuyến khích mình tự tìm hiểu, tự giải quyết vấn đề thay vì chỉ đưa ra đáp án trực tiếp — điều này giúp mình phát triển nhanh hơn rất nhiều.
 
 **3. Mức độ liên quan của công việc đến ngành học**
 
-Công việc được giao vượt ra ngoài những gì tôi học ở trường, giúp tôi tiếp cận kiến thức mới và các thực hành cloud thực tế mà chương trình học thuật chưa đề cập. Điều này giúp tôi mở rộng góc nhìn và tích lũy kỹ năng thực tiễn trực tiếp áp dụng được trong ngành.
+Công việc được giao vượt ra ngoài những gì mình học ở trường, giúp mình tiếp cận kiến thức mới và các thực hành cloud thực tế mà chương trình học thuật chưa đề cập. Điều này giúp mình mở rộng góc nhìn và tích lũy kỹ năng thực tiễn trực tiếp áp dụng được trong ngành.
 
 **4. Cơ hội học hỏi & phát triển kỹ năng**
 
-Trong quá trình thực tập, tôi đã học và cải thiện được nhiều kỹ năng mới, bao gồm:
+Trong quá trình thực tập, mình đã học và cải thiện được nhiều kỹ năng mới, bao gồm:
 - Sử dụng các công cụ và dịch vụ AWS (EC2 Image Builder, Systems Manager, CloudWatch)
 - Thực hành bảo mật cloud
 - Làm việc nhóm và hợp tác chuyên nghiệp
 
 **5. Văn hóa công ty & Tinh thần đồng đội**
 
-Văn hóa công ty rất tích cực. Mọi người tôn trọng nhau, tích cực xây dựng và giúp đỡ nhau. Tinh thần hợp tác khiến tôi cảm thấy thực sự là một phần của nhóm, dù chỉ là thực tập sinh.
+Văn hóa công ty rất tích cực. Mọi người tôn trọng nhau, tích cực xây dựng và giúp đỡ nhau. Tinh thần hợp tác khiến mình cảm thấy thực sự là một phần của nhóm, dù chỉ là thực tập sinh.
 
 **6. Chính sách thực tập / Quyền lợi**
 
@@ -57,4 +57,5 @@ Giờ làm việc linh hoạt và các quyền lợi đáp ứng đủ cho quá 
 
 ### Góp ý & Kỳ vọng
 
-Hiện tại tôi không có ý kiến gì thêm vì mọi thứ đã được tổ chức tốt và đáp ứng được kỳ vọng của tôi. Mong chương trình tiếp tục phát triển và giúp đỡ được nhiều sinh viên hơn trong tương lai.
+Hiện tại mình không có ý kiến gì thêm vì mọi thứ đã được tổ chức tốt và đáp ứng được kỳ vọng của mình. Mong chương trình tiếp tục phát triển và giúp đỡ được nhiều sinh viên hơn trong tương lai.
+

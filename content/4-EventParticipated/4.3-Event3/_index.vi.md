@@ -111,11 +111,11 @@ Tôi tham gia trực tiếp buổi **BUỔI MEET UP ĐẦY NĂNG LƯỢNG: FIRST
 
 **Học hỏi từ diễn giả**
 
-Anh Kiệt Trần (Reai) giải thích rõ các kiến trúc Voice AI và vì sao độ trễ là yếu tố quyết định trải nghiệm. Phần về Guardrails giúp tôi hiểu rằng một trợ lý AI cần được kiểm soát nội dung trước khi nói với người dùng.
+Anh Kiệt Trần (Reai) giải thích rõ các kiến trúc Voice AI và vì sao độ trễ là yếu tố quyết định trải nghiệm. Phần về Guardrails giúp mình hiểu rằng một trợ lý AI cần được kiểm soát nội dung trước khi nói với người dùng.
 
 **Trải nghiệm demo thực tế**
 
-Được xem trực tiếp trợ lý tuyển dụng "Mai" gọi điện sơ tuyển ứng viên và nhìn thấy kết quả được ghi lại, chấm điểm sơ bộ. Phần thảo luận kỹ thuật giúp tôi biết các vấn đề thực tế khi xây dựng Voice AI như chi phí, quản lý trạng thái hội thoại và kết nối hệ thống backend.
+Được xem trực tiếp trợ lý tuyển dụng "Mai" gọi điện sơ tuyển ứng viên và nhìn thấy kết quả được ghi lại, chấm điểm sơ bộ. Phần thảo luận kỹ thuật giúp mình biết các vấn đề thực tế khi xây dựng Voice AI như chi phí, quản lý trạng thái hội thoại và kết nối hệ thống backend.
 
 **Kết nối và trao đổi**
 
@@ -131,3 +131,4 @@ Phần hỏi đáp và mini-game cuối buổi giúp ôn lại kiến thức v�
 ### Một Số Hình Ảnh Khi Tham Gia Sự Kiện
 
 ![Ảnh check-in tại sự kiện](/images/4-EventParticipated/4.3-Event3/checkin.jpg)
+
