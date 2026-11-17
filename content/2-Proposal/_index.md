@@ -11,78 +11,75 @@ pre: " <b> 2. </b> "
 
 ### 1. Executive Summary
 
-Cost Guard is a serverless protection system designed for students and small teams running Windows lab machines on AWS Free Plan accounts. A Windows EC2 instance is billed by the hour, so a single forgotten session can drain a $20 credit budget within days. Cost Guard addresses this through three automated layers: a scheduled stop/start rule, a near-real-time cost meter built on Lambda and DynamoDB, and an AWS Budgets backstop. Together, they keep total spending under the $20 limit without requiring manual monitoring. All orchestration uses EventBridge, Lambda, SNS, and Systems Manager Parameter Store — services that fall within AWS Free Tier limits.
+Cost Guard is a serverless automation system built for students and small teams running Windows lab machines on AWS Free Plan accounts. Because Windows EC2 instances are billed by the hour, a forgotten session can drain a limited credit budget in a matter of days. This project addresses that problem through three automated protection layers — a scheduled stop rule, a near-real-time cost meter, and an AWS Budgets backstop — using only services available within the AWS Free Tier.
 
 ### 2. Problem Statement
 
 #### What's the Problem?
 
-AWS Free Plan credits are finite. A Windows EC2 instance costs roughly $0.02–$0.05 per hour depending on instance type and region, so a machine left running over a weekend can consume $1–$3 — a material fraction of a $20 budget. AWS Budgets does provide cost alerts, but its billing data refreshes at most three times per day (every 8–12 hours), making it too slow to act as a real-time circuit breaker.
+AWS Free Plan credits are limited. A Windows EC2 instance left running unattended can consume a significant portion of a small budget over just a few days. While AWS Budgets provides cost alerts, its billing data only refreshes a few times per day, making it too slow to serve as a real-time safeguard.
 
 #### The Solution
 
-Cost Guard uses three complementary layers:
+Cost Guard uses three complementary layers of protection:
 
-- **Layer 1 — Schedule Guard:** An EventBridge Scheduler rule stops the Windows instance outside lab hours and optionally restarts it on demand. This requires no billing data at all and is the most reliable layer.
-- **Layer 2 — Cost Meter (original contribution):** A Lambda function (`CostMeter`) runs every 15 minutes. It reads the per-hour price from Systems Manager Parameter Store, multiplies by the accumulated running time recorded in DynamoDB, and compares the result against an internal threshold (set at ~70% of the $20 budget). If the threshold is crossed, it stops the instance and publishes an SNS alert. This layer operates near-real-time without waiting for billing data.
-- **Layer 3 — Budget Backstop:** An AWS Budgets alarm covers the full account at $20. When triggered, it publishes to an SNS topic, which invokes a Lambda function (`BudgetBackstop`) to stop the instance and send a final email alert. This layer uses actual billing figures and serves as a last resort.
+- **Layer 1 — Schedule Guard:** An EventBridge Scheduler rule automatically stops the Windows instance outside of designated lab hours. This layer does not depend on billing data and is the most reliable.
+- **Layer 2 — Cost Meter (original contribution):** A Lambda function runs periodically to estimate the current session cost based on instance running time and a configured price per hour. If the estimate exceeds an internal threshold, the instance is stopped and an alert is sent via SNS.
+- **Layer 3 — Budget Backstop:** An AWS Budgets alarm monitors actual account spend. When the budget limit is approached, it triggers a Lambda function via SNS to stop the instance as a final safety net.
 
 ### Benefits and Return on Investment
 
-- Prevents unplanned credit loss from forgotten instances.
-- Layer 2 provides cost visibility within 15 minutes of a machine starting — compared to 8–12 hours with Budgets alone.
-- Estimated monthly infrastructure cost: **~$0.10–$0.30/month** (see Budget Estimation section); the Windows instance itself is the dominant cost and is controlled by the system.
-- Over 12 months, the system cost is approximately **$1.20–$3.60**, while protecting a $20 budget that would otherwise be exhausted in days if unguarded.
-- Reusable across any lab account; the per-hour price and threshold are stored as parameters, not hardcoded.
+- Prevents unplanned credit loss from forgotten or idle instances.
+- Layer 2 provides cost awareness within minutes of a machine starting, without waiting for billing data to refresh.
+- All supporting services (Lambda, EventBridge, DynamoDB, SNS, Parameter Store) remain within Free Tier limits under normal lab usage.
+- The price per hour and cost threshold are stored in Parameter Store rather than hardcoded, making the system reusable across different instance types or accounts.
 
 ### 3. Solution Architecture
 
-The architecture spans one AWS Region and uses only serverless or low-cost managed services. EventBridge Scheduler drives Layer 1 on a cron schedule. A separate EventBridge rule triggers `CostMeter` every 15 minutes. AWS Budgets monitors actual billing and triggers Layer 3 via SNS when the account total approaches $20. All Lambda functions log to CloudWatch Logs; a CloudWatch Alarm on Lambda errors publishes to a separate SNS topic for operational alerts. IAM roles follow least privilege: each Lambda has permissions scoped to exactly the resources it needs.
+The system runs within a single AWS Region and relies entirely on serverless or managed services. EventBridge drives scheduling and periodic invocations. Lambda functions handle the stop/start logic and cost estimation. DynamoDB records session activity. SNS delivers notifications. Parameter Store holds configuration values. IAM roles are scoped to the minimum permissions each function needs.
 
 ![Architecture Diagram](/images/2-Proposal/architecture.png)
 
-*Diagram to be drawn using draw.io with official AWS architecture icons. See Section 4 for component detail.*
-
 ### AWS Services Used
 
-- **Amazon EC2 (Windows, t3.micro or t2.micro)**: The protected lab machine; stopped automatically by all three layers.
-- **Amazon EventBridge Scheduler**: Triggers scheduled stop/start actions (Layer 1) and periodic CostMeter invocations (Layer 2).
-- **AWS Lambda**: Three functions — `ScheduleHandler` (Layer 1), `CostMeter` (Layer 2), `BudgetBackstop` (Layer 3).
-- **Amazon DynamoDB**: Stores instance start/stop events and running cost estimates per session.
-- **Amazon SNS**: Delivers email alerts for cost threshold breaches and Lambda errors.
-- **AWS Budgets**: Monitors actual account spend and triggers Layer 3 when the $20 limit is approached.
-- **AWS Systems Manager Parameter Store**: Holds the per-hour instance price and internal cost threshold — no hardcoded values in Lambda code.
-- **Amazon CloudWatch (Logs + Alarms)**: Collects Lambda execution logs; raises alarms on function errors.
+- **Amazon EC2 (Windows)**: The lab machine being protected; stopped automatically by all three layers.
+- **Amazon EventBridge**: Triggers scheduled stop/start actions and periodic cost meter runs.
+- **AWS Lambda**: Implements the logic for each protection layer.
+- **Amazon DynamoDB**: Stores instance activity logs and cost estimates.
+- **Amazon SNS**: Sends email alerts when thresholds are crossed or errors occur.
+- **AWS Budgets**: Monitors actual account spend and activates the final protection layer.
+- **AWS Systems Manager Parameter Store**: Stores the hourly price and cost threshold without hardcoding them in Lambda code.
+- **Amazon CloudWatch**: Collects Lambda logs and raises alarms on function errors.
 - **AWS IAM**: Provides least-privilege execution roles for each Lambda function.
-- **AWS CloudFormation (optional)**: Packages the full stack as infrastructure-as-code for repeatable deployment and clean teardown.
+- **AWS CloudFormation**: Packages the full stack for repeatable deployment and clean teardown (optional).
 
 ### Component Design
 
-- **Scheduler Layer**: EventBridge Scheduler cron rule → `ScheduleHandler` Lambda → `ec2:StopInstances` / `ec2:StartInstances` on the target instance ID.
-- **Cost Meter**: EventBridge rule (rate 15 minutes) → `CostMeter` Lambda → reads `price_per_hour` and `cost_threshold` from Parameter Store → reads last start timestamp from DynamoDB → calculates estimated cost → writes record to DynamoDB → if cost ≥ threshold: stops instance + publishes to SNS alert topic.
-- **Budget Backstop**: AWS Budgets alarm → SNS topic → `BudgetBackstop` Lambda → stops instance → publishes confirmation to SNS email topic.
-- **Notification**: One SNS topic for user-facing email alerts; one SNS topic for operational (Lambda error) alerts.
-- **Data (DynamoDB)**: Table `CostGuardLog` with partition key `instanceId` and sort key `timestamp`; attributes: `action` (start/stop/meter), `estimatedCostUSD`, `runningMinutes`.
-- **Security (IAM)**: Three Lambda execution roles. `ScheduleHandler` role: `ec2:StopInstances`, `ec2:StartInstances`, `ec2:DescribeInstances` scoped to the target instance ARN; `logs:CreateLogGroup`, `logs:PutLogEvents`. `CostMeter` role: adds `dynamodb:PutItem`, `dynamodb:GetItem` on the `CostGuardLog` table and `ssm:GetParameter` on the two parameter paths. `BudgetBackstop` role: `ec2:StopInstances` on the target instance and `sns:Publish` on the alert topic.
+- **Scheduler Layer**: EventBridge Scheduler → `ScheduleHandler` Lambda → stop or start the EC2 instance on a fixed schedule.
+- **Cost Meter**: EventBridge rule (periodic) → `CostMeter` Lambda → reads price and threshold from Parameter Store → calculates estimated cost from session data in DynamoDB → if threshold exceeded: stops instance and publishes SNS alert.
+- **Budget Backstop**: AWS Budgets alarm → SNS topic → `BudgetBackstop` Lambda → stops instance → sends confirmation email.
+- **Notifications**: One SNS topic for user-facing cost alerts; one for operational errors.
+- **Data**: DynamoDB table logging instance start/stop events and periodic cost estimates per session.
+- **Security**: Each Lambda has its own IAM role with permissions limited to only the resources it touches.
 
 ### 4. Technical Implementation
 
 **Implementation Phases**
 
-- **Phase 1 — Pricing and design (Day 1):** Determine the exact instance type and region; use AWS Pricing Calculator to get the on-demand per-hour price; set the $20 budget split; create IAM roles, SNS topics, DynamoDB table, and Parameter Store entries.
-- **Phase 2 — Layer 1 (Day 2):** Launch the Windows EC2 instance; write and deploy `ScheduleHandler`; configure EventBridge Scheduler; verify stop/start by manual trigger.
-- **Phase 3 — Layer 2 (Day 3):** Write and deploy `CostMeter`; configure 15-minute EventBridge rule; test threshold logic with a simulated high cost value in DynamoDB; verify SNS email and instance stop.
-- **Phase 4 — Layer 3 + observability (Day 4):** Configure AWS Budgets alarm; write and deploy `BudgetBackstop`; add CloudWatch Alarms on Lambda error metrics; end-to-end test with all three layers active.
-- **Phase 5 — Demo, cleanup, and documentation (Days 5–7):** Record demo video while resources are live; run `terraform destroy` or delete CloudFormation stack; capture Cost Explorer screenshot; write workshop content and Proposal.
+- **Phase 1 — Foundation:** Set up base infrastructure — IAM roles, SNS topics, DynamoDB table, Parameter Store entries, and an AWS Budget. Determine instance type and region; use AWS Pricing Calculator to get the actual hourly price.
+- **Phase 2 — Layer 1:** Launch the Windows EC2 instance, deploy `ScheduleHandler`, configure the EventBridge Scheduler rule, and verify that stop/start works correctly.
+- **Phase 3 — Layer 2:** Deploy `CostMeter`, set up the periodic EventBridge rule, and test the threshold logic using simulated cost data.
+- **Phase 4 — Layer 3 + Observability:** Configure the Budgets alarm, deploy `BudgetBackstop`, add CloudWatch Alarms on Lambda errors, and run an end-to-end test of all three layers.
+- **Phase 5 — Demo and documentation:** Record a demo video while resources are live, clean up, capture a Cost Explorer screenshot, then write the workshop content.
 
 **Technical Requirements**
 
-- AWS account with Free Plan or remaining credits ≥ $5 at the start.
-- AWS CLI v2 configured with an IAM user (least-privilege, no root keys).
-- Python 3.12 runtime for Lambda; `boto3` available in the managed runtime (no extra layer needed).
-- Working knowledge of: Lambda, EventBridge, SNS, DynamoDB, Parameter Store, IAM policy syntax.
-- draw.io (desktop or web) for the architecture diagram.
-- Hugo installed locally to preview the workshop site before pushing.
+- AWS account with Free Plan or sufficient remaining credits.
+- AWS CLI configured with a least-privilege IAM user (no root keys).
+- Python runtime for Lambda with `boto3` (available in the managed runtime).
+- Familiarity with Lambda, EventBridge, SNS, DynamoDB, Parameter Store, and IAM.
+- draw.io for the architecture diagram.
+- Hugo for local site preview before publishing.
 
 ### 5. Timeline & Milestones
 
@@ -90,80 +87,77 @@ The architecture spans one AWS Region and uses only serverless or low-cost manag
 
 | Day | Work | Deliverable |
 |-----|------|-------------|
-| 1 | Finalise instance type and region; run AWS Pricing Calculator; create IAM roles, SNS, DynamoDB, Parameter Store | Cost table, baseline infrastructure |
-| 2 | Launch Windows EC2; deploy `ScheduleHandler`; configure EventBridge Scheduler; test | Layer 1 operational |
-| 3 | Deploy `CostMeter`; configure 15-min rule; simulate threshold breach; verify SNS + stop | Layer 2 operational |
-| 4 | Configure Budgets alarm; deploy `BudgetBackstop`; set up CloudWatch Alarms; full end-to-end test | Layer 3 operational, full observability |
-| 5 | Record demo video (instance running); clean up all resources; capture Cost Explorer | Video, cleanup screenshots |
-| 6 | Draw architecture diagram in draw.io; write workshop sections 5.1–5.8 (Vietnamese) | Draft workshop content |
-| 7 | Write Proposal (this document); translate to English; run `hugo server`; push to repo; verify links | Complete site |
+| 1 | Confirm instance type and region; run Pricing Calculator; create IAM, SNS, DynamoDB, Parameter Store, Budget | Base infrastructure ready |
+| 2 | Launch Windows EC2; deploy Layer 1; test scheduled stop/start | Layer 1 working |
+| 3 | Deploy CostMeter; test threshold and SNS alert | Layer 2 working |
+| 4 | Deploy BudgetBackstop; add CloudWatch Alarms; full end-to-end test | All layers working |
+| 5 | Record demo video; clean up all resources; capture Cost Explorer | Demo video + cleanup proof |
+| 6 | Draw architecture diagram; write workshop sections 5.1–5.8 | Draft workshop content |
+| 7 | Write Proposal; translate to English; preview with Hugo; push and verify | Complete site published |
 
 ### 6. Budget Estimation
 
-Pricing is based on AWS Pricing Calculator estimates for **ap-southeast-1 (Singapore)** using on-demand pricing. The Windows instance is kept stopped outside lab hours by Layer 1, limiting billable hours.
+Cost estimates are based on AWS Pricing Calculator for the chosen region, using on-demand pricing. The Windows instance is the dominant cost; all other services fall within Free Tier limits under normal usage.
 
-[AWS Pricing Calculator Estimate](https://calculator.aws/pricing/2/savedsettings) *(link to be updated with the exported share URL after completing the estimate)*
+[AWS Pricing Calculator Estimate](#) *(to be updated with the actual share link)*
 
 A PDF export of the estimate is available at: [`/attachments/budget_estimation.pdf`](/attachments/budget_estimation.pdf)
 
 ### Infrastructure Costs
 
-| Service | Assumption | Monthly Cost |
-|---------|-----------|-------------|
-| EC2 Windows t3.micro (ap-southeast-1) | 2 hours/day × 30 days = 60 hours | ~$3.00 |
-| EBS gp3 30 GB (root volume) | 30 GB × $0.096/GB | ~$0.29 |
-| DynamoDB | < 25 GB storage, < 25 WCU/RCU (Free Tier) | $0.00 |
-| Lambda | < 1M requests/month (Free Tier) | $0.00 |
-| SNS | < 1,000 email notifications (Free Tier) | $0.00 |
-| EventBridge Scheduler | < 14M invocations (Free Tier) | $0.00 |
-| CloudWatch Logs | < 5 GB ingestion (Free Tier) | $0.00 |
+| Service | Assumption | Estimated Monthly Cost |
+|---------|------------|----------------------|
+| EC2 Windows (small instance) | Limited to lab hours only | To be confirmed via Pricing Calculator |
+| EBS root volume | Standard size, gp3 | To be confirmed via Pricing Calculator |
+| DynamoDB | Within Free Tier limits | $0.00 |
+| Lambda | Within Free Tier limits | $0.00 |
+| SNS | Within Free Tier limits | $0.00 |
+| EventBridge | Within Free Tier limits | $0.00 |
+| CloudWatch Logs | Within Free Tier limits | $0.00 |
 | AWS Budgets | First 2 budgets free | $0.00 |
-| Systems Manager Parameter Store | Standard parameters, free | $0.00 |
-| **Total** | | **~$3.29/month** |
-| **12-month projection** | | **~$39.48** |
+| Systems Manager Parameter Store | Standard parameters | $0.00 |
+| **Total** | | **To be confirmed; target under $20** |
 
-> **Note:** The $20 project budget covers approximately 6–7 hours of Windows EC2 running time at the rates above (before Free Tier credits). Layer 1 and Layer 2 together enforce a hard cap well below this limit. The internal cost threshold in Layer 2 is set at $14 (~70% of $20) to leave headroom for billing lag in Layer 3. All other services stay within Free Tier limits under normal lab usage.
+> The internal cost threshold in Layer 2 is set below the total budget (around 70%) to leave room for the billing lag inherent in Layer 3.
 
 ### 7. Risk Assessment
 
 #### Risk Matrix
 
-| Risk | Impact | Probability | Layer affected |
-|------|--------|-------------|---------------|
-| Forget to stop Windows instance manually | High | Medium | All layers mitigate |
-| AWS Budgets alert delayed 8–12 hours | High | High (by design) | Layer 3 is last resort; Layers 1–2 act first |
-| `CostMeter` estimated cost diverges from billing | Medium | Medium | Noted; reconciled with Cost Explorer in report |
-| Lambda IAM permission error stops wrong instance | High | Low | Scope role to exact instance ARN |
-| Windows instance type blocked on Free Plan | Medium | Low | Test on Day 1; switch to smaller type if needed |
-| Credentials or Account ID exposed in screenshots | Medium | Low | Redact before saving/committing |
-| Project runs behind schedule (1-week deadline) | Medium | Medium | Layers 1 and 2 have priority; Layer 3 is optional |
+| Risk | Impact | Probability |
+|------|--------|-------------|
+| Forgetting to stop the instance manually | High | Medium |
+| AWS Budgets alert arriving too late | High | High (by design) |
+| Cost estimate in Layer 2 diverging from actual billing | Medium | Medium |
+| Lambda stopping the wrong instance due to misconfigured IAM | High | Low |
+| Chosen Windows instance type unavailable on Free Plan | Medium | Low |
+| Credentials or account ID exposed in screenshots | Medium | Low |
+| Falling behind schedule in a one-week window | Medium | Medium |
 
 #### Mitigation Strategies
 
-- **Forgotten instance:** EventBridge Scheduler stops the instance every day at the lab end time regardless of cost data.
-- **Budgets delay:** Layer 2 (`CostMeter`) measures cost from first principles (running hours × price/hour) and acts within 15 minutes, independent of billing pipeline.
-- **Cost estimate drift:** Internal threshold set 30% below total budget ($14 vs $20). Post-project reconciliation against Cost Explorer is a required section of the report.
-- **Wrong-instance stop:** Each Lambda role's `ec2:StopInstances` resource ARN is restricted to the single target instance ID. Tested against a stopped instance before enabling production schedule.
-- **Instance type blocked:** Day 1 task is to attempt to launch the chosen instance type; if Console shows a restriction, switch to `t2.micro` or `t2.small` before proceeding.
+- **Forgotten instance:** Layer 1 stops the instance on a fixed schedule regardless of cost data.
+- **Budgets delay:** Layer 2 acts within minutes based on running time and a configured price, without waiting for billing to refresh.
+- **Cost estimate drift:** The internal threshold is set conservatively below the total budget. Actual vs. estimated cost is reconciled using Cost Explorer at the end of the project.
+- **Wrong instance:** Each Lambda role's stop permission is scoped to the specific target instance ARN.
+- **Instance type unavailable:** Instance selection is validated on Day 1; an alternative smaller type is used if needed.
 
 #### Contingency Plans
 
-- If all Lambda layers fail: stop the instance manually from the AWS Console and disable the EventBridge rules.
-- If credit runs out mid-project: use CloudFormation stack deletion or `aws ec2 terminate-instances` to remove the Windows instance immediately, then continue the workshop write-up using screenshots already captured.
-- If the $20 budget is insufficient: reduce lab hours or switch to a smaller instance type; update the Pricing Calculator estimate accordingly.
+- If Lambda layers fail: stop the instance manually from the AWS Console and disable the EventBridge rules.
+- If credits run out mid-project: terminate the Windows instance immediately, then continue documentation using screenshots already captured.
+- If the $20 budget is insufficient: reduce daily lab hours or switch to a smaller instance type and update the estimate accordingly.
 
 ### 8. Expected Outcomes
 
 #### Technical Improvements
 
-- The Windows EC2 instance stops automatically at the end of every lab session — no manual action required.
-- Total project spend stays under $20, verified by Cost Explorer after cleanup.
-- `CostMeter` provides a running cost estimate updated every 15 minutes, compared against a configurable threshold stored in Parameter Store.
-- CloudWatch Alarms and SNS notifications provide immediate visibility into Lambda errors.
-- All infrastructure can be torn down with a single CloudFormation stack delete, leaving no orphaned resources.
+- The Windows EC2 instance stops automatically when lab hours end or when the cost estimate crosses the configured threshold — no manual intervention needed.
+- Total project spend stays within the $20 budget, confirmed by Cost Explorer after cleanup.
+- All three layers are observable through CloudWatch Logs, SNS email alerts, and the DynamoDB activity log.
 
 #### Long-term Value
 
-The system is parameterised (instance ID, price, threshold all in Parameter Store) and can be reused for any Windows lab account without code changes. It scales to multiple instances by adding records to the schedule and adjusting the DynamoDB schema. The three-layer pattern — schedule, near-real-time meter, billing backstop — is applicable to any AWS account where cost control matters and billing data latency is a constraint.
+Because the instance ID, hourly price, and threshold are all stored in Parameter Store, the system can be reused for any Windows lab account without changing code. The three-layer pattern — fixed schedule, near-real-time cost meter, billing backstop — applies to any AWS environment where cost control matters and billing data latency is a limitation.
 
-> **Original contribution:** The core innovation in this project is the near-real-time cost estimation mechanism in Layer 2 (`CostMeter`). Rather than relying on AWS billing data, it derives a cost estimate from first principles using instance running time and a manually configured price. The three-layer protection design and the integration of these layers via EventBridge, Lambda, DynamoDB, and Parameter Store were designed independently for this project and are not derived from any AWS workshop template.
+> **Original contribution:** The core contribution of this project is the near-real-time cost estimation mechanism in Layer 2. Instead of relying on AWS billing data, it derives a cost estimate from instance running time and a manually configured price, allowing automated action within minutes rather than hours. The three-layer protection design was developed independently for this project.

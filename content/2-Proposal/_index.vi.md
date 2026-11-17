@@ -11,77 +11,75 @@ pre: " <b> 2. </b> "
 
 ### 1. Executive Summary
 
-Cost Guard là hệ thống bảo vệ serverless dành cho sinh viên và đội nhỏ chạy máy lab Windows trên tài khoản AWS Free Plan. Máy Windows EC2 tính phí theo giờ, chỉ cần quên tắt vài ngày là hết toàn bộ credit $20. Cost Guard giải quyết vấn đề này bằng ba lớp tự động: lịch dừng/bật theo giờ, bộ đo chi phí gần thời gian thực xây dựng trên Lambda và DynamoDB, và một lớp dự phòng dùng AWS Budgets. Tất cả dịch vụ điều phối đều nằm trong Free Tier của AWS.
+Cost Guard là hệ thống tự động hóa serverless dành cho sinh viên và đội nhỏ chạy máy lab Windows trên tài khoản AWS Free Plan. Vì máy Windows EC2 tính phí theo giờ, chỉ cần quên tắt vài ngày là có thể hết toàn bộ credit. Dự án giải quyết vấn đề này bằng ba lớp bảo vệ tự động: lịch dừng theo giờ, bộ đo chi phí gần thời gian thực, và một lớp dự phòng dùng AWS Budgets — tất cả đều dùng dịch vụ nằm trong AWS Free Tier.
 
 ### 2. Vấn đề cần giải quyết
 
 #### Vấn đề là gì?
 
-Credit AWS Free Plan có giới hạn. Một máy Windows EC2 chạy liên tục có thể tiêu tốn $1–$3 chỉ trong một cuối tuần — chiếm phần đáng kể trong ngân sách $20. AWS Budgets có cảnh báo chi phí nhưng **dữ liệu billing chỉ cập nhật tối đa 3 lần/ngày**, cách nhau 8–12 giờ, nên không thể dùng làm cơ chế ngắt thời gian thực.
+Credit AWS Free Plan có giới hạn. Một máy Windows EC2 chạy không có người giám sát có thể tiêu tốn phần lớn ngân sách chỉ trong vài ngày. AWS Budgets có cảnh báo chi phí nhưng dữ liệu billing chỉ cập nhật vài lần mỗi ngày, nên không đủ nhanh để làm cơ chế bảo vệ thời gian thực.
 
 #### Giải pháp
 
 Cost Guard dùng ba lớp bảo vệ bổ sung cho nhau:
 
-- **Lớp 1 — Lịch dừng/bật:** EventBridge Scheduler tự dừng máy ngoài giờ lab và bật lại khi cần. Lớp này không phụ thuộc vào dữ liệu billing, chắc chắn nhất.
-- **Lớp 2 — Tự đo chi phí (đóng góp riêng):** Lambda `CostMeter` chạy mỗi 15 phút, đọc đơn giá/giờ từ Parameter Store, nhân với số giờ máy đã chạy (ghi trong DynamoDB), so với ngưỡng nội bộ (~70% ngân sách $20). Nếu vượt ngưỡng: dừng máy + gửi SNS. Lớp này gần thời gian thực, không chờ billing.
-- **Lớp 3 — Budget dự phòng:** AWS Budgets theo dõi chi tiêu thực của toàn tài khoản ở mức $20. Khi kích hoạt, Budgets gửi đến SNS topic → Lambda `BudgetBackstop` dừng máy và gửi email. Lớp này dùng số liệu billing thật nhưng có độ trễ, chỉ là lưới an toàn cuối cùng.
+- **Lớp 1 — Lịch dừng/bật:** EventBridge Scheduler tự dừng máy ngoài giờ lab. Lớp này không phụ thuộc vào dữ liệu billing và đáng tin cậy nhất.
+- **Lớp 2 — Tự đo chi phí (đóng góp riêng):** Lambda chạy định kỳ để ước tính chi phí phiên hiện tại dựa trên thời gian chạy và đơn giá đã cấu hình. Nếu vượt ngưỡng nội bộ, máy bị dừng và cảnh báo được gửi qua SNS.
+- **Lớp 3 — Budget dự phòng:** AWS Budgets theo dõi chi tiêu thực của tài khoản. Khi tiến gần giới hạn, nó kích hoạt Lambda qua SNS để dừng máy như lưới an toàn cuối cùng.
 
 ### Benefits and Return on Investment
 
-- Ngăn mất credit ngoài ý muốn do quên tắt máy.
-- Lớp 2 cung cấp thông tin chi phí trong vòng 15 phút kể từ khi máy khởi động — thay vì chờ 8–12 giờ nếu chỉ dùng Budgets.
-- Chi phí hạ tầng ước tính: **~$3.29/tháng** (máy Windows là phần lớn); các dịch vụ serverless nằm trong Free Tier.
-- Đơn giá và ngưỡng được lưu trong Parameter Store, không hardcode — tái sử dụng được cho bất kỳ lab nào.
+- Ngăn mất credit ngoài ý muốn do quên tắt máy hoặc máy chạy không cần thiết.
+- Lớp 2 cung cấp thông tin chi phí trong vài phút sau khi máy khởi động, không cần chờ billing cập nhật.
+- Các dịch vụ hỗ trợ (Lambda, EventBridge, DynamoDB, SNS, Parameter Store) đều nằm trong Free Tier trong điều kiện sử dụng bình thường.
+- Đơn giá và ngưỡng được lưu trong Parameter Store, không hardcode — tái sử dụng được cho các loại instance hoặc tài khoản khác.
 
 ### 3. Kiến trúc giải pháp
 
-Kiến trúc nằm trong một AWS Region, chỉ dùng dịch vụ serverless hoặc managed chi phí thấp. EventBridge Scheduler điều khiển Lớp 1 theo cron. Một EventBridge rule riêng kích hoạt `CostMeter` mỗi 15 phút. AWS Budgets giám sát billing thực và kích hoạt Lớp 3 qua SNS khi tổng chi phí tài khoản tiến gần $20. Tất cả Lambda ghi log vào CloudWatch Logs; CloudWatch Alarm theo dõi lỗi Lambda và gửi SNS thông báo vận hành. IAM role theo nguyên tắc quyền tối thiểu.
+Hệ thống chạy trong một AWS Region, dùng hoàn toàn serverless hoặc dịch vụ managed. EventBridge điều phối lịch và gọi hàm định kỳ. Lambda xử lý logic dừng/bật và tính chi phí. DynamoDB ghi lại hoạt động từng phiên. SNS gửi thông báo. Parameter Store lưu cấu hình. IAM role giới hạn quyền tối thiểu cho từng hàm.
 
 ![Sơ đồ kiến trúc](/images/2-Proposal/architecture.png)
 
-*Sơ đồ được vẽ bằng draw.io với icon AWS chính thức. Xem chi tiết từng thành phần ở mục Component Design bên dưới.*
-
 ### Các dịch vụ AWS sử dụng
 
-- **Amazon EC2 (Windows, t3.micro hoặc t2.micro)**: Máy lab được bảo vệ; bị dừng tự động bởi cả ba lớp.
-- **Amazon EventBridge Scheduler**: Kích hoạt lịch dừng/bật (Lớp 1) và gọi CostMeter định kỳ (Lớp 2).
-- **AWS Lambda**: Ba hàm — `ScheduleHandler` (Lớp 1), `CostMeter` (Lớp 2), `BudgetBackstop` (Lớp 3).
-- **Amazon DynamoDB**: Lưu sự kiện bật/tắt máy và chi phí ước tính từng phiên.
-- **Amazon SNS**: Gửi email cảnh báo khi vượt ngưỡng chi phí và khi Lambda lỗi.
-- **AWS Budgets**: Giám sát chi tiêu thực toàn tài khoản và kích hoạt Lớp 3 khi đến ngưỡng $20.
-- **AWS Systems Manager Parameter Store**: Lưu đơn giá/giờ và ngưỡng nội bộ — không có giá trị nào hardcode trong Lambda.
-- **Amazon CloudWatch (Logs + Alarms)**: Thu thập log Lambda; cảnh báo khi hàm lỗi.
-- **AWS IAM**: Role thực thi quyền tối thiểu cho từng Lambda.
-- **AWS CloudFormation (tùy chọn)**: Đóng gói toàn bộ stack thành IaC để triển khai lại và dọn dẹp sạch sẽ.
+- **Amazon EC2 (Windows)**: Máy lab được bảo vệ; bị dừng tự động bởi cả ba lớp.
+- **Amazon EventBridge**: Kích hoạt lịch dừng/bật và gọi bộ đo chi phí định kỳ.
+- **AWS Lambda**: Thực thi logic bảo vệ của từng lớp.
+- **Amazon DynamoDB**: Lưu log hoạt động và ước tính chi phí từng phiên.
+- **Amazon SNS**: Gửi email cảnh báo khi vượt ngưỡng hoặc khi có lỗi.
+- **AWS Budgets**: Theo dõi chi tiêu thực và kích hoạt lớp bảo vệ cuối cùng.
+- **AWS Systems Manager Parameter Store**: Lưu đơn giá/giờ và ngưỡng chi phí, không hardcode trong Lambda.
+- **Amazon CloudWatch**: Thu thập log Lambda và cảnh báo khi hàm lỗi.
+- **AWS IAM**: Cung cấp role quyền tối thiểu cho từng Lambda.
+- **AWS CloudFormation**: Đóng gói toàn bộ stack để triển khai lại và dọn dẹp sạch sẽ (tùy chọn).
 
 ### Component Design
 
-- **Scheduler Layer**: EventBridge Scheduler (cron) → Lambda `ScheduleHandler` → `ec2:StopInstances` / `ec2:StartInstances` trên đúng instance ID.
-- **Cost Meter**: EventBridge rule (rate 15 phút) → Lambda `CostMeter` → đọc `price_per_hour` và `cost_threshold` từ Parameter Store → đọc timestamp bật máy gần nhất từ DynamoDB → tính chi phí ước tính → ghi vào DynamoDB → nếu chi phí ≥ ngưỡng: dừng máy + gửi SNS.
-- **Budget Backstop**: AWS Budgets alarm → SNS topic → Lambda `BudgetBackstop` → dừng máy → gửi email xác nhận qua SNS.
-- **Notification**: Một SNS topic cho email cảnh báo đến người dùng; một SNS topic riêng cho cảnh báo vận hành (Lambda lỗi).
-- **Data (DynamoDB)**: Bảng `CostGuardLog`, partition key `instanceId`, sort key `timestamp`; thuộc tính: `action` (start/stop/meter), `estimatedCostUSD`, `runningMinutes`.
-- **Security (IAM)**: Ba role Lambda. Role `ScheduleHandler`: `ec2:StopInstances`, `ec2:StartInstances`, `ec2:DescribeInstances` giới hạn trên ARN instance cụ thể; `logs:CreateLogGroup`, `logs:PutLogEvents`. Role `CostMeter`: thêm `dynamodb:PutItem`, `dynamodb:GetItem` trên bảng `CostGuardLog` và `ssm:GetParameter` trên hai đường dẫn tham số. Role `BudgetBackstop`: `ec2:StopInstances` trên đúng instance và `sns:Publish` trên alert topic.
+- **Scheduler Layer**: EventBridge Scheduler → Lambda `ScheduleHandler` → dừng hoặc bật EC2 theo lịch cố định.
+- **Cost Meter**: EventBridge rule định kỳ → Lambda `CostMeter` → đọc đơn giá và ngưỡng từ Parameter Store → tính chi phí ước tính từ dữ liệu phiên trong DynamoDB → nếu vượt ngưỡng: dừng máy + gửi SNS.
+- **Budget Backstop**: AWS Budgets alarm → SNS topic → Lambda `BudgetBackstop` → dừng máy → gửi email xác nhận.
+- **Thông báo**: Một SNS topic cho cảnh báo chi phí đến người dùng; một SNS topic cho lỗi vận hành.
+- **Dữ liệu**: Bảng DynamoDB ghi sự kiện bật/tắt máy và ước tính chi phí định kỳ từng phiên.
+- **Bảo mật**: Mỗi Lambda có IAM role riêng, quyền giới hạn đúng tài nguyên nó cần dùng.
 
 ### 4. Triển khai kỹ thuật
 
 **Các giai đoạn triển khai**
 
-- **Giai đoạn 1 — Tính giá và thiết kế (Ngày 1):** Xác định loại instance và region; dùng AWS Pricing Calculator lấy đơn giá on-demand theo giờ; lập bảng phân chia ngân sách $20; tạo IAM role, SNS topic, bảng DynamoDB, tham số Parameter Store.
-- **Giai đoạn 2 — Lớp 1 (Ngày 2):** Khởi chạy Windows EC2; viết và deploy `ScheduleHandler`; cấu hình EventBridge Scheduler; kiểm tra dừng/bật bằng trigger thủ công.
-- **Giai đoạn 3 — Lớp 2 (Ngày 3):** Viết và deploy `CostMeter`; cấu hình EventBridge rule 15 phút; thử nghiệm logic ngưỡng với giá trị chi phí giả lập cao trong DynamoDB; xác minh SNS và dừng máy.
-- **Giai đoạn 4 — Lớp 3 + quan sát (Ngày 4):** Cấu hình AWS Budgets alarm; viết và deploy `BudgetBackstop`; thêm CloudWatch Alarm trên metric lỗi Lambda; kiểm tra end-to-end với cả ba lớp hoạt động.
-- **Giai đoạn 5 — Demo, dọn dẹp, tài liệu (Ngày 5–7):** Quay video demo khi tài nguyên còn sống; xóa stack CloudFormation; chụp ảnh Cost Explorer; viết nội dung workshop và Proposal.
+- **Giai đoạn 1 — Nền tảng:** Dựng hạ tầng cơ sở — IAM role, SNS topic, bảng DynamoDB, tham số Parameter Store và AWS Budget. Chọn loại instance và region; dùng AWS Pricing Calculator lấy đơn giá/giờ thực tế.
+- **Giai đoạn 2 — Lớp 1:** Khởi chạy Windows EC2, deploy `ScheduleHandler`, cấu hình EventBridge Scheduler, kiểm tra dừng/bật.
+- **Giai đoạn 3 — Lớp 2:** Deploy `CostMeter`, cấu hình EventBridge rule định kỳ, thử nghiệm logic ngưỡng với dữ liệu giả lập.
+- **Giai đoạn 4 — Lớp 3 + Quan sát:** Cấu hình Budgets alarm, deploy `BudgetBackstop`, thêm CloudWatch Alarm, kiểm tra end-to-end cả ba lớp.
+- **Giai đoạn 5 — Demo và tài liệu:** Quay video demo khi tài nguyên còn sống, dọn dẹp, chụp Cost Explorer, viết nội dung workshop.
 
 **Yêu cầu kỹ thuật**
 
-- Tài khoản AWS còn ít nhất $5 credit hoặc đang trong Free Plan.
-- AWS CLI v2 cấu hình với IAM user (không dùng root key).
-- Lambda runtime Python 3.12; `boto3` có sẵn trong managed runtime.
-- Kiến thức cần có: Lambda, EventBridge, SNS, DynamoDB, Parameter Store, cú pháp IAM policy.
-- draw.io (desktop hoặc web) để vẽ sơ đồ kiến trúc.
-- Hugo cài đặt cục bộ để xem trước workshop trước khi push.
+- Tài khoản AWS còn credit hoặc đang trong Free Plan.
+- AWS CLI cấu hình với IAM user quyền tối thiểu, không dùng root key.
+- Lambda runtime Python với `boto3` có sẵn.
+- Hiểu cơ bản về Lambda, EventBridge, SNS, DynamoDB, Parameter Store và IAM.
+- draw.io để vẽ sơ đồ kiến trúc.
+- Hugo để xem trước site trước khi push.
 
 ### 5. Lịch trình & Cột mốc
 
@@ -89,80 +87,77 @@ Kiến trúc nằm trong một AWS Region, chỉ dùng dịch vụ serverless ho
 
 | Ngày | Việc cần làm | Sản phẩm |
 |------|-------------|----------|
-| 1 | Chốt loại instance và region; chạy AWS Pricing Calculator; tạo IAM, SNS, DynamoDB, Parameter Store | Bảng Cost, hạ tầng nền |
-| 2 | Khởi chạy Windows EC2; deploy `ScheduleHandler`; cấu hình EventBridge Scheduler; test | Lớp 1 hoạt động |
-| 3 | Deploy `CostMeter`; cấu hình rule 15 phút; giả lập vượt ngưỡng; xác minh SNS + dừng | Lớp 2 hoạt động |
-| 4 | Cấu hình Budgets alarm; deploy `BudgetBackstop`; CloudWatch Alarm; test end-to-end | Lớp 3 + quan sát đầy đủ |
-| 5 | Quay video demo (máy còn sống); dọn tài nguyên; chụp Cost Explorer | Video, ảnh dọn dẹp |
-| 6 | Vẽ sơ đồ kiến trúc bằng draw.io; viết workshop 5.1–5.8 (tiếng Việt) | Bản nháp workshop |
-| 7 | Viết Proposal; dịch sang tiếng Anh; chạy `hugo server`; push; kiểm tra link | Site hoàn chỉnh |
+| 1 | Chốt instance và region; chạy Pricing Calculator; tạo IAM, SNS, DynamoDB, Parameter Store, Budget | Hạ tầng nền sẵn sàng |
+| 2 | Khởi chạy Windows EC2; deploy Lớp 1; test lịch dừng/bật | Lớp 1 hoạt động |
+| 3 | Deploy CostMeter; test ngưỡng và cảnh báo SNS | Lớp 2 hoạt động |
+| 4 | Deploy BudgetBackstop; thêm CloudWatch Alarm; test end-to-end | Cả 3 lớp hoạt động |
+| 5 | Quay video demo; dọn tài nguyên; chụp Cost Explorer | Video + ảnh dọn dẹp |
+| 6 | Vẽ sơ đồ kiến trúc; viết workshop 5.1–5.8 | Bản nháp workshop |
+| 7 | Viết Proposal; dịch sang tiếng Anh; xem trước Hugo; push và kiểm tra link | Site hoàn chỉnh |
 
 ### 6. Dự toán chi phí
 
-Dựa trên AWS Pricing Calculator cho **ap-southeast-1 (Singapore)**, giá on-demand. Máy Windows được Lớp 1 giới hạn khoảng 2 giờ/ngày trong giờ lab.
+Chi phí ước tính dựa trên AWS Pricing Calculator cho region đã chọn, giá on-demand. Máy Windows là phần chi phí chủ yếu; các dịch vụ còn lại nằm trong Free Tier trong điều kiện sử dụng bình thường.
 
-[Ước tính AWS Pricing Calculator](https://calculator.aws/pricing/2/savedsettings) *(cập nhật link sau khi export từ Calculator)*
+[Ước tính AWS Pricing Calculator](#) *(cập nhật link sau khi export)*
 
 File PDF ước tính đặt tại: [`/attachments/budget_estimation.pdf`](/attachments/budget_estimation.pdf)
 
 ### Infrastructure Costs
 
-| Dịch vụ | Giả định | Chi phí/tháng |
-|---------|---------|--------------|
-| EC2 Windows t3.micro (ap-southeast-1) | 2 giờ/ngày × 30 ngày = 60 giờ | ~$3.00 |
-| EBS gp3 30 GB (root volume) | 30 GB × $0.096/GB | ~$0.29 |
-| DynamoDB | < 25 GB, < 25 WCU/RCU (Free Tier) | $0.00 |
-| Lambda | < 1M request/tháng (Free Tier) | $0.00 |
-| SNS | < 1.000 email (Free Tier) | $0.00 |
-| EventBridge Scheduler | < 14M lần gọi (Free Tier) | $0.00 |
-| CloudWatch Logs | < 5 GB (Free Tier) | $0.00 |
+| Dịch vụ | Giả định | Chi phí ước tính |
+|---------|---------|-----------------|
+| EC2 Windows (instance nhỏ) | Giới hạn trong giờ lab | Xác nhận qua Pricing Calculator |
+| EBS root volume | Kích thước tiêu chuẩn, gp3 | Xác nhận qua Pricing Calculator |
+| DynamoDB | Trong giới hạn Free Tier | $0.00 |
+| Lambda | Trong giới hạn Free Tier | $0.00 |
+| SNS | Trong giới hạn Free Tier | $0.00 |
+| EventBridge | Trong giới hạn Free Tier | $0.00 |
+| CloudWatch Logs | Trong giới hạn Free Tier | $0.00 |
 | AWS Budgets | 2 budget đầu miễn phí | $0.00 |
-| Systems Manager Parameter Store | Standard parameter, miễn phí | $0.00 |
-| **Tổng** | | **~$3.29/tháng** |
-| **Dự báo 12 tháng** | | **~$39.48** |
+| Systems Manager Parameter Store | Standard parameter | $0.00 |
+| **Tổng** | | **Mục tiêu dưới $20** |
 
-> **Lưu ý:** Ngân sách dự án $20 đủ cho khoảng 6–7 giờ chạy máy Windows (theo đơn giá trên). Lớp 1 và Lớp 2 cộng lại giữ tổng chi tiêu dưới mức này. Ngưỡng nội bộ của Lớp 2 đặt ở $14 (~70% ngân sách) để còn dư bù cho độ trễ billing của Lớp 3. Tất cả dịch vụ serverless nằm trong Free Tier trong điều kiện sử dụng bình thường.
+> Ngưỡng nội bộ của Lớp 2 được đặt thấp hơn tổng ngân sách (khoảng 70%) để bù cho độ trễ billing của Lớp 3.
 
 ### 7. Đánh giá rủi ro
 
 #### Risk Matrix
 
-| Rủi ro | Mức ảnh hưởng | Xác suất | Lớp liên quan |
-|--------|--------------|---------|--------------|
-| Quên tắt máy Windows thủ công | Cao | Trung bình | Cả 3 lớp đều giảm thiểu |
-| AWS Budgets trễ 8–12 giờ | Cao | Chắc chắn (theo thiết kế) | Lớp 3 chỉ là dự phòng; Lớp 1–2 hành động trước |
-| Chi phí ước tính của CostMeter lệch billing thực | Trung bình | Trung bình | Ghi nhận; đối chiếu với Cost Explorer trong báo cáo |
-| Lambda lỗi quyền, dừng nhầm instance | Cao | Thấp | Giới hạn role theo ARN instance cụ thể |
-| Loại instance Windows bị chặn trên Free Plan | Trung bình | Thấp | Thử ngay ngày 1; đổi sang loại nhỏ hơn nếu cần |
-| Lộ email/Account ID trong ảnh chụp màn hình | Trung bình | Thấp | Che trước khi lưu và commit |
-| Trễ tiến độ (deadline 1 tuần) | Trung bình | Trung bình | Ưu tiên Lớp 1 và 2 trước; Lớp 3 cắt bớt nếu cần |
+| Rủi ro | Mức ảnh hưởng | Xác suất |
+|--------|--------------|---------|
+| Quên tắt máy thủ công | Cao | Trung bình |
+| Cảnh báo AWS Budgets đến quá trễ | Cao | Chắc chắn (theo thiết kế) |
+| Chi phí ước tính Lớp 2 lệch billing thực | Trung bình | Trung bình |
+| Lambda dừng nhầm instance do cấu hình IAM sai | Cao | Thấp |
+| Loại instance Windows không khả dụng trên Free Plan | Trung bình | Thấp |
+| Lộ thông tin tài khoản trong ảnh chụp màn hình | Trung bình | Thấp |
+| Trễ tiến độ trong 1 tuần | Trung bình | Trung bình |
 
 #### Mitigation Strategies
 
-- **Quên tắt máy:** EventBridge Scheduler dừng máy mỗi ngày vào cuối giờ lab, bất kể dữ liệu billing.
-- **Budgets trễ:** `CostMeter` tính chi phí từ đầu (giờ chạy × đơn giá) và hành động trong 15 phút, độc lập với pipeline billing.
-- **Chi phí ước tính lệch:** Ngưỡng nội bộ thấp hơn 30% so với ngân sách ($14 vs $20). Đối chiếu Cost Explorer là phần bắt buộc trong báo cáo cuối.
-- **Dừng nhầm máy:** ARN `ec2:StopInstances` trong mỗi Lambda role giới hạn theo đúng instance ID. Thử nghiệm trên máy đã dừng trước khi bật lịch chạy.
-- **Instance bị chặn:** Nhiệm vụ ngày 1 là thử khởi chạy loại instance đã chọn; nếu Console báo lỗi, chuyển sang `t2.micro` hoặc `t2.small`.
+- **Quên tắt máy:** Lớp 1 dừng máy theo lịch cố định, không phụ thuộc dữ liệu billing.
+- **Budgets trễ:** Lớp 2 hành động trong vài phút dựa trên thời gian chạy và đơn giá đã cấu hình, độc lập với pipeline billing.
+- **Chi phí ước tính lệch:** Ngưỡng nội bộ đặt thấp hơn tổng ngân sách. Đối chiếu chi phí thực với ước tính qua Cost Explorer là phần bắt buộc trong báo cáo cuối.
+- **Dừng nhầm instance:** Quyền stop trong IAM role của mỗi Lambda giới hạn theo ARN instance cụ thể.
+- **Instance không khả dụng:** Kiểm tra ngay ngày 1; chuyển sang loại nhỏ hơn nếu Console báo lỗi.
 
 #### Contingency Plans
 
-- Nếu tất cả lớp Lambda hỏng: dừng thủ công từ AWS Console và tắt các EventBridge rule.
-- Nếu hết credit giữa dự án: xóa stack CloudFormation hoặc chạy `aws ec2 terminate-instances` để xóa ngay máy Windows, sau đó tiếp tục viết workshop bằng ảnh đã chụp.
-- Nếu ngân sách $20 không đủ: giảm giờ lab hoặc chuyển sang instance nhỏ hơn; cập nhật lại Pricing Calculator.
+- Nếu Lambda hỏng: dừng máy thủ công từ Console và tắt các EventBridge rule.
+- Nếu hết credit giữa dự án: terminate máy Windows ngay lập tức, tiếp tục viết tài liệu bằng ảnh đã có.
+- Nếu ngân sách $20 không đủ: giảm giờ lab hoặc đổi loại instance nhỏ hơn, cập nhật lại Pricing Calculator.
 
 ### 8. Kết quả kỳ vọng
 
 #### Technical Improvements
 
-- Máy Windows EC2 tự dừng cuối mỗi phiên lab — không cần hành động thủ công.
+- Máy Windows EC2 tự dừng khi hết giờ lab hoặc khi chi phí ước tính vượt ngưỡng — không cần can thiệp thủ công.
 - Tổng chi tiêu dự án dưới $20, xác nhận qua Cost Explorer sau khi dọn dẹp.
-- `CostMeter` cung cấp ước tính chi phí cập nhật mỗi 15 phút, so với ngưỡng có thể điều chỉnh trong Parameter Store.
-- CloudWatch Alarm và SNS thông báo ngay khi Lambda lỗi.
-- Toàn bộ hạ tầng có thể xóa bằng một lệnh xóa CloudFormation stack, không để lại tài nguyên thừa.
+- Cả ba lớp bảo vệ đều có thể quan sát qua CloudWatch Logs, SNS email và log DynamoDB.
 
 #### Long-term Value
 
-Hệ thống được tham số hóa (instance ID, đơn giá, ngưỡng đều trong Parameter Store) và có thể tái sử dụng cho bất kỳ tài khoản lab nào mà không cần thay đổi code. Mở rộng sang nhiều máy chỉ cần thêm bản ghi lịch và điều chỉnh DynamoDB schema. Mô hình ba lớp — lịch cố định, đo gần thời gian thực, billing backstop — áp dụng được cho bất kỳ tài khoản AWS nào cần kiểm soát chi phí khi dữ liệu billing có độ trễ.
+Vì instance ID, đơn giá và ngưỡng đều được lưu trong Parameter Store, hệ thống có thể tái sử dụng cho bất kỳ tài khoản lab nào mà không cần thay đổi code. Mô hình ba lớp — lịch cố định, đo gần thời gian thực, billing backstop — áp dụng được cho bất kỳ môi trường AWS nào cần kiểm soát chi phí khi dữ liệu billing có độ trễ.
 
-> **Phần đóng góp riêng:** Cơ chế tự đo chi phí gần thời gian thực trong Lớp 2 (`CostMeter`) là đóng góp chính của dự án này. Thay vì chờ dữ liệu billing của AWS, hệ thống tính chi phí từ số giờ chạy thực tế và đơn giá cấu hình thủ công. Thiết kế ba lớp bảo vệ và tích hợp giữa EventBridge, Lambda, DynamoDB và Parameter Store được xây dựng độc lập và không sao chép từ bất kỳ workshop AWS nào.
+> **Phần đóng góp riêng:** Đóng góp chính của dự án là cơ chế tự đo chi phí gần thời gian thực ở Lớp 2. Thay vì chờ dữ liệu billing của AWS, hệ thống tính chi phí từ thời gian chạy thực tế và đơn giá đã cấu hình, cho phép hành động trong vài phút thay vì vài giờ. Thiết kế ba lớp bảo vệ được phát triển độc lập cho dự án này.
