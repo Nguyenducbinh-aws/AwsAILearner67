@@ -97,18 +97,14 @@ Hệ thống chạy trong một AWS Region, dùng hoàn toàn serverless hoặc 
 
 ### 6. Dự toán chi phí
 
-Chi phí ước tính dựa trên AWS Pricing Calculator cho region đã chọn, giá on-demand. Máy Windows là phần chi phí chủ yếu; các dịch vụ còn lại nằm trong Free Tier trong điều kiện sử dụng bình thường.
-
-[Ước tính AWS Pricing Calculator](#) *(cập nhật link sau khi export)*
-
-File PDF ước tính đặt tại: [`/attachments/budget_estimation.pdf`](/attachments/budget_estimation.pdf)
+Chi phí được ước tính bằng AWS Pricing Calculator cho region và loại instance đã chọn. File PDF đính kèm là bản export từ Calculator để tham khảo.
 
 ### Infrastructure Costs
 
 | Dịch vụ | Giả định | Chi phí ước tính |
 |---------|---------|-----------------|
-| EC2 Windows (instance nhỏ) | Giới hạn trong giờ lab | Xác nhận qua Pricing Calculator |
-| EBS root volume | Kích thước tiêu chuẩn, gp3 | Xác nhận qua Pricing Calculator |
+| EC2 Windows (instance nhỏ) | Giới hạn trong giờ lab | Thấp; là phần chi phí chính của dự án |
+| EBS root volume | Kích thước tiêu chuẩn, gp3 | Không đáng kể |
 | DynamoDB | Trong giới hạn Free Tier | $0.00 |
 | Lambda | Trong giới hạn Free Tier | $0.00 |
 | SNS | Trong giới hạn Free Tier | $0.00 |
@@ -116,7 +112,7 @@ File PDF ước tính đặt tại: [`/attachments/budget_estimation.pdf`](/atta
 | CloudWatch Logs | Trong giới hạn Free Tier | $0.00 |
 | AWS Budgets | 2 budget đầu miễn phí | $0.00 |
 | Systems Manager Parameter Store | Standard parameter | $0.00 |
-| **Tổng** | | **Mục tiêu dưới $20** |
+| **Tổng** | | **Dưới $20 cho toàn bộ dự án** |
 
 > Ngưỡng nội bộ của Lớp 2 được đặt thấp hơn tổng ngân sách (khoảng 70%) để bù cho độ trễ billing của Lớp 3.
 
@@ -160,4 +156,3 @@ File PDF ước tính đặt tại: [`/attachments/budget_estimation.pdf`](/atta
 
 Vì instance ID, đơn giá và ngưỡng đều được lưu trong Parameter Store, hệ thống có thể tái sử dụng cho bất kỳ tài khoản lab nào mà không cần thay đổi code. Mô hình ba lớp — lịch cố định, đo gần thời gian thực, billing backstop — áp dụng được cho bất kỳ môi trường AWS nào cần kiểm soát chi phí khi dữ liệu billing có độ trễ.
 
-> **Phần đóng góp riêng:** Đóng góp chính của dự án là cơ chế tự đo chi phí gần thời gian thực ở Lớp 2. Thay vì chờ dữ liệu billing của AWS, hệ thống tính chi phí từ thời gian chạy thực tế và đơn giá đã cấu hình, cho phép hành động trong vài phút thay vì vài giờ. Thiết kế ba lớp bảo vệ được phát triển độc lập cho dự án này.

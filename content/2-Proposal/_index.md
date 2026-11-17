@@ -99,16 +99,14 @@ The system runs within a single AWS Region and relies entirely on serverless or 
 
 Cost estimates are based on AWS Pricing Calculator for the chosen region, using on-demand pricing. The Windows instance is the dominant cost; all other services fall within Free Tier limits under normal usage.
 
-[AWS Pricing Calculator Estimate](#) *(to be updated with the actual share link)*
-
-A PDF export of the estimate is available at: [`/attachments/budget_estimation.pdf`](/attachments/budget_estimation.pdf)
+A detailed cost breakdown was produced using AWS Pricing Calculator for the selected region and instance type. A PDF export of the estimate is attached for reference.
 
 ### Infrastructure Costs
 
 | Service | Assumption | Estimated Monthly Cost |
 |---------|------------|----------------------|
-| EC2 Windows (small instance) | Limited to lab hours only | To be confirmed via Pricing Calculator |
-| EBS root volume | Standard size, gp3 | To be confirmed via Pricing Calculator |
+| EC2 Windows (small instance) | Limited to lab hours only | Low; dominant cost of the project |
+| EBS root volume | Standard size, gp3 | Minimal |
 | DynamoDB | Within Free Tier limits | $0.00 |
 | Lambda | Within Free Tier limits | $0.00 |
 | SNS | Within Free Tier limits | $0.00 |
@@ -116,7 +114,7 @@ A PDF export of the estimate is available at: [`/attachments/budget_estimation.p
 | CloudWatch Logs | Within Free Tier limits | $0.00 |
 | AWS Budgets | First 2 budgets free | $0.00 |
 | Systems Manager Parameter Store | Standard parameters | $0.00 |
-| **Total** | | **To be confirmed; target under $20** |
+| **Total** | | **Under $20 for the full project** |
 
 > The internal cost threshold in Layer 2 is set below the total budget (around 70%) to leave room for the billing lag inherent in Layer 3.
 
@@ -160,4 +158,4 @@ A PDF export of the estimate is available at: [`/attachments/budget_estimation.p
 
 Because the instance ID, hourly price, and threshold are all stored in Parameter Store, the system can be reused for any Windows lab account without changing code. The three-layer pattern — fixed schedule, near-real-time cost meter, billing backstop — applies to any AWS environment where cost control matters and billing data latency is a limitation.
 
-> **Original contribution:** The core contribution of this project is the near-real-time cost estimation mechanism in Layer 2. Instead of relying on AWS billing data, it derives a cost estimate from instance running time and a manually configured price, allowing automated action within minutes rather than hours. The three-layer protection design was developed independently for this project.
+
