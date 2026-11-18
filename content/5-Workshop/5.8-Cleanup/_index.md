@@ -1,117 +1,55 @@
 ---
 title: "Clean Up"
-date: 2024-01-01
+date: 2026-11-18
 weight: 8
 chapter: false
 pre: " <b> 5.8. </b> "
 ---
 
-## Step 6 – Clean Up Resources
+## Clean Up
 
-**Goal:** Delete all resources created in this workshop to avoid unexpected AWS charges.
+Delete everything you created so that nothing is billed after the workshop. One stack holds all resources, so one delete removes them.
 
-{{% notice warning %}}
-Always verify in **Billing → Cost Explorer** 1–2 days after cleanup to confirm no resources are still running.
-{{% /notice %}}
+### Step 1 – Delete the stack
 
----
+1. Open **CloudFormation → Stacks → CostGuard**.
+2. Choose **Delete** and confirm.
+3. Wait until the stack disappears from the list or shows **DELETE_COMPLETE**.
 
-### Cleanup Order
-
-Follow this order — some resources depend on others being deleted first.
-
-**1. Amazon Inspector**
-
-Disable resource scanning before disabling the service. If you get an error, wait a few minutes and retry:
+With the CLI:
 
 ```bash
-aws inspector2 disable --resource-types EC2 ECR LAMBDA
-aws inspector2 disable
+aws cloudformation delete-stack --region us-east-1 --stack-name CostGuard
 ```
 
-**2. AWS Config**
+The stack removes the instance and its volume, the DynamoDB table, the Parameter Store parameters, the Lambda functions, the log groups, the schedules, the Budget, the SNS topics and the alarms.
 
-Go to **AWS Config → Rules** → delete both rules (`infosec-approved-amis`, `required-tags`)  
-Then go to **Settings** → turn off the recorder.
+If you passed `ExistingInstanceId`, the stack did **not** create that instance, so it does not delete it. Terminate it yourself.
 
-**3. EventBridge Rules**
+### Step 2 – Check that nothing is left
 
-Delete the EventBridge rule created for Config notifications.
+Check each console in `us-east-1`:
 
-**4. Amazon CloudWatch**
+- [ ] **EC2 → Instances:** no instance of the lab is running or stopped.
+- [ ] **EC2 → Volumes:** no volume is left behind.
+- [ ] **EC2 → Elastic IPs:** none allocated.
+- [ ] **Lambda:** no `CostGuard-*` function.
+- [ ] **DynamoDB:** no `CostGuardSessions` table.
+- [ ] **EventBridge → Scheduler:** no `costguard-*` schedule.
+- [ ] **SNS:** no `costguard-*` topic.
+- [ ] **CloudWatch:** no `CostGuard-*` alarm and no `/aws/lambda/CostGuard-*` log group.
+- [ ] **Budgets:** no `CostGuard-Budget`.
+- [ ] **Systems Manager → Parameter Store:** no `/costguard/` parameter.
 
-```bash
-# Delete alarms
-aws cloudwatch delete-alarms --alarm-names LogonFailureAlarm
+### Step 3 – Compare the cost
 
-# Delete log groups (not removed with stack — must be done manually)
-aws logs delete-log-group --log-group-name /ssm/runcommand
-aws logs delete-log-group --log-group-name /windows/httperr
-aws logs delete-log-group --log-group-name /windows/eventlog/application
-aws logs delete-log-group --log-group-name /windows/eventlog/system
-```
+Billing data arrives with a delay, so wait one or two days.
 
-Delete the dashboard: **CloudWatch → Dashboards → `operate-windows-workshop` → Delete**
+1. Open **Billing and Cost Management → Cost Explorer**.
+2. Choose the days of the workshop, group by **Service**, and compare the real EC2, EBS and other costs with the estimate in 5.7.
+3. Check that the total is under the $20 budget.
 
-**5. Amazon SNS**
+### If a deletion fails
 
-```bash
-# Replace with your actual topic ARNs
-aws sns delete-topic --topic-arn <LogonFailureAlarm-topic-arn>
-aws sns delete-topic --topic-arn <SecureWindowsNotifications-topic-arn>
-```
-
-**6. AWS Systems Manager**
-
-```bash
-# Delete parameters
-aws ssm delete-parameter --name module2
-aws ssm delete-parameter --name AmazonCloudWatch-windows
-```
-
-Delete State Manager associations: **Systems Manager → State Manager** → select each association → **Delete**
-
-**7. EC2 Instances**
-
-Terminate all lab instances:  
-**EC2 → Instances** → select all lab instances → **Instance state → Terminate**
-
-**8. EC2 Image Builder**
-
-In order:
-- Delete **Lifecycle policies**: `my-ib-lifecycle-policy`
-- Delete **Pipelines**: `my-first-pipeline`, `Windows-STIG-Pipeline`
-- Delete **Recipes**: `my-first-recipe`, `Secure Image`
-- Delete **Infrastructure configurations**: `workshop-infra-config`
-- **Deregister AMIs**: EC2 → AMIs → select built AMIs → **Actions → Deregister AMI**
-- **Delete EBS Snapshots**: EC2 → Snapshots → delete snapshots associated with the deregistered AMIs
-
-**9. IAM Roles**
-
-Delete roles: `lab-windows-ssm-role`, `lab-imagebuilder-role`
-
-**10. Networking**
-
-```bash
-# Delete VPC endpoints, NAT Gateway (if used), release Elastic IPs
-# Then delete subnets, route tables, internet gateway, and VPC
-```
-
-Go to **VPC → Endpoints** → delete all lab endpoints  
-Go to **VPC → Your VPCs** → delete the lab VPC (this also removes subnets, route tables, and security groups)
-
----
-
-### Verify Cleanup
-
-After completing the steps above:
-
-- [ ] No running EC2 instances from the lab
-- [ ] No AMIs from Image Builder
-- [ ] No EBS snapshots from the lab
-- [ ] No NAT Gateway or Elastic IP charges
-- [ ] Inspector and Config are disabled
-- [ ] Log groups deleted
-- [ ] Check **Billing → Cost Explorer** in 1–2 days
-
-![Cost Explorer showing $0 after cleanup](/images/5-Workshop/5.8-cleanup/cost-explorer.png)
+- **The stack stays in `DELETE_FAILED`:** open the **Events** tab, find the resource that failed, delete it by hand in its console, then delete the stack again.
+- **A resource is left after the stack is gone:** delete it by hand. Resources of this workshop carry the tag `Project=CostGuard` where tags are supported.

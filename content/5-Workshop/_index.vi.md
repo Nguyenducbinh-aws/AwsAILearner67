@@ -1,42 +1,44 @@
 ---
 title: "Workshop"
-date: 2024-01-01
+date: 2026-11-18
 weight: 5
 chapter: false
 pre: " <b> 5. </b> "
 ---
 
-# Quản lý, Giám sát và Vận hành Microsoft Workload An toàn trên AWS
+# Cost Guard: Bảo vệ credit máy lab Windows trên AWS bằng ba lớp serverless
 
 #### Tổng quan
 
-Workshop này hướng dẫn cách xây dựng, quản lý, giám sát và bảo mật Windows Server workload trên AWS bằng các dịch vụ AWS thuần túy — không mở cổng RDP ra Internet.
+Máy Windows EC2 tính phí theo giờ, và một máy bị quên có thể dùng hết một ngân sách credit nhỏ chỉ trong vài ngày. Workshop này xây dựng **Cost Guard**, một hệ thống serverless ba lớp tự động dừng máy lab: lịch dừng hằng ngày, bộ đo chi phí phản ứng trong vài phút, và cảnh báo budget theo hóa đơn thật.
 
-Bạn sẽ dùng **EC2 Image Builder** để tạo golden AMI đã được hardened, **AWS Systems Manager** để quản lý fleet theo tag, **Amazon CloudWatch** để thu thập log, metric và cảnh báo, và **AWS Config + Amazon Inspector** để kiểm soát tuân thủ bảo mật.
+Bạn deploy toàn bộ hệ thống bằng một template CloudFormation, cố ý kiểm thử từng lớp, rà soát bảo mật và chi phí, rồi xóa mọi thứ ở cuối.
 
 #### Các dịch vụ AWS sử dụng
 
-| Dịch vụ | Mục đích |
-|---|---|
-| EC2 Image Builder | Tạo golden AMI với CloudWatch Agent được cài sẵn |
-| AWS Systems Manager | Fleet Manager, Run Command, State Manager, Patch Manager, Parameter Store, Session Manager |
-| Amazon CloudWatch | Metrics, Logs, Metric Filters, Alarms, Dashboards |
-| Amazon SNS | Cảnh báo email từ alarm và sự kiện Config |
-| AWS Config | Kiểm soát AMI được duyệt và tag bắt buộc |
-| Amazon Inspector | Quét lỗ hổng CVE |
-| Amazon VPC + Endpoints | Mạng riêng, không expose RDP ra ngoài |
+- **Amazon EC2 và Amazon EBS:** máy lab Windows mà Cost Guard bảo vệ.
+- **Amazon EventBridge Scheduler:** lệnh dừng hằng ngày và lần chạy 5 phút của bộ đo chi phí.
+- **AWS Lambda:** logic của ba lớp.
+- **Amazon DynamoDB:** bản ghi mọi hành động và ước tính chi phí.
+- **Amazon SNS:** email cảnh báo và đường nối giữa Budgets với Lambda.
+- **AWS Budgets:** ngân sách hằng tháng và các cảnh báo 80%, 100%.
+- **AWS Systems Manager Parameter Store:** đơn giá, ngưỡng và hạn mức ngân sách.
+- **Amazon CloudWatch:** log và alarm cho lỗi của hàm.
+- **AWS IAM:** một role quyền tối thiểu cho từng hàm.
+- **AWS CloudFormation:** toàn bộ hệ thống trong một stack.
+- **AWS Cost Explorer:** so sánh chi phí thật với dự toán sau khi dọn dẹp.
 
 #### Kiến trúc
 
-![Sơ đồ kiến trúc Workshop](/images/5-Workshop/5.1-overview/architecture.png)
+![Kiến trúc Cost Guard](../../images/2-Proposal/architecture.png)
 
 #### Nội dung
 
 1. [Tổng quan Workshop](5.1-Workshop-overview/)
-2. [Yêu cầu tiên quyết](5.2-Prerequiste/)
-3. [Dựng môi trường nền](5.3-Environment/)
-4. [EC2 Image Builder – Golden AMI](5.4-ImageBuilder/)
-5. [AWS Systems Manager](5.5-SystemsManager/)
-6. [Amazon CloudWatch](5.6-CloudWatch/)
-7. [Bảo mật – Config & Inspector](5.7-Security/)
+2. [Yêu cầu tiên quyết](5.2-Prerequisite/)
+3. [Triển khai nền tảng](5.3-Foundation/)
+4. [Lớp 1 – Schedule Guard](5.4-Layer1-Schedule/)
+5. [Lớp 2 – Cost Meter](5.5-Layer2-CostMeter/)
+6. [Lớp 3 – Budget Backstop và giám sát](5.6-Layer3-Backstop/)
+7. [Rà soát bảo mật và chi phí](5.7-Security/)
 8. [Dọn dẹp tài nguyên](5.8-Cleanup/)

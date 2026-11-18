@@ -1,117 +1,55 @@
 ---
 title: "Dọn dẹp tài nguyên"
-date: 2024-01-01
+date: 2026-11-18
 weight: 8
 chapter: false
 pre: " <b> 5.8. </b> "
 ---
 
-## Bước 6 – Dọn dẹp tài nguyên
+## Dọn dẹp tài nguyên
 
-**Mục tiêu:** Xóa toàn bộ tài nguyên đã tạo trong workshop để tránh phát sinh chi phí AWS không mong muốn.
+Xóa mọi thứ bạn đã tạo để không bị tính phí sau workshop. Một stack chứa toàn bộ tài nguyên, nên một lần xóa là đủ.
 
-{{% notice warning %}}
-Luôn kiểm tra **Billing → Cost Explorer** sau 1–2 ngày dọn dẹp để xác nhận không còn tài nguyên nào đang chạy.
-{{% /notice %}}
+### Bước 1 – Xóa stack
 
----
+1. Mở **CloudFormation → Stacks → CostGuard**.
+2. Chọn **Delete** và xác nhận.
+3. Chờ đến khi stack biến mất khỏi danh sách hoặc hiện **DELETE_COMPLETE**.
 
-### Thứ tự dọn dẹp
-
-Làm theo thứ tự sau — một số tài nguyên phụ thuộc vào tài nguyên khác phải xóa trước.
-
-**1. Amazon Inspector**
-
-Tắt resource scanning trước khi tắt dịch vụ. Nếu bị lỗi, đợi vài phút rồi chạy lại:
+Với CLI:
 
 ```bash
-aws inspector2 disable --resource-types EC2 ECR LAMBDA
-aws inspector2 disable
+aws cloudformation delete-stack --region us-east-1 --stack-name CostGuard
 ```
 
-**2. AWS Config**
+Stack xóa instance và ổ đĩa của nó, bảng DynamoDB, các tham số Parameter Store, các hàm Lambda, các log group, các lịch, Budget, các SNS topic và các alarm.
 
-Vào **AWS Config → Rules** → xóa cả hai rule (`infosec-approved-amis`, `required-tags`)  
-Sau đó vào **Settings** → tắt recorder.
+Nếu bạn truyền `ExistingInstanceId`, stack **không** tạo instance đó nên cũng không xóa nó. Hãy tự terminate instance.
 
-**3. EventBridge Rules**
+### Bước 2 – Kiểm tra không còn gì sót
 
-Xóa EventBridge rule đã tạo cho thông báo Config.
+Kiểm tra từng console ở `us-east-1`:
 
-**4. Amazon CloudWatch**
+- [ ] **EC2 → Instances:** không còn instance của lab, dù đang chạy hay đã dừng.
+- [ ] **EC2 → Volumes:** không còn ổ đĩa nào sót lại.
+- [ ] **EC2 → Elastic IPs:** không có địa chỉ nào được cấp phát.
+- [ ] **Lambda:** không còn hàm `CostGuard-*`.
+- [ ] **DynamoDB:** không còn bảng `CostGuardSessions`.
+- [ ] **EventBridge → Scheduler:** không còn lịch `costguard-*`.
+- [ ] **SNS:** không còn topic `costguard-*`.
+- [ ] **CloudWatch:** không còn alarm `CostGuard-*` và log group `/aws/lambda/CostGuard-*`.
+- [ ] **Budgets:** không còn `CostGuard-Budget`.
+- [ ] **Systems Manager → Parameter Store:** không còn tham số `/costguard/`.
 
-```bash
-# Xóa alarm
-aws cloudwatch delete-alarms --alarm-names LogonFailureAlarm
+### Bước 3 – So sánh chi phí
 
-# Xóa log group (không tự xóa cùng stack — phải xóa thủ công)
-aws logs delete-log-group --log-group-name /ssm/runcommand
-aws logs delete-log-group --log-group-name /windows/httperr
-aws logs delete-log-group --log-group-name /windows/eventlog/application
-aws logs delete-log-group --log-group-name /windows/eventlog/system
-```
+Dữ liệu billing đến chậm, nên hãy chờ một hoặc hai ngày.
 
-Xóa dashboard: **CloudWatch → Dashboards → `operate-windows-workshop` → Delete**
+1. Mở **Billing and Cost Management → Cost Explorer**.
+2. Chọn các ngày làm workshop, nhóm theo **Service**, và so chi phí thật của EC2, EBS và các dịch vụ khác với dự toán ở 5.7.
+3. Kiểm tra tổng nằm dưới ngân sách $20.
 
-**5. Amazon SNS**
+### Nếu việc xóa bị lỗi
 
-```bash
-# Thay bằng ARN topic thực tế của bạn
-aws sns delete-topic --topic-arn <arn-topic-LogonFailureAlarm>
-aws sns delete-topic --topic-arn <arn-topic-SecureWindowsNotifications>
-```
-
-**6. AWS Systems Manager**
-
-```bash
-# Xóa parameter
-aws ssm delete-parameter --name module2
-aws ssm delete-parameter --name AmazonCloudWatch-windows
-```
-
-Xóa State Manager associations: **Systems Manager → State Manager** → chọn từng association → **Delete**
-
-**7. EC2 Instances**
-
-Terminate tất cả instance lab:  
-**EC2 → Instances** → chọn tất cả instance lab → **Instance state → Terminate**
-
-**8. EC2 Image Builder**
-
-Theo thứ tự:
-- Xóa **Lifecycle policies**: `my-ib-lifecycle-policy`
-- Xóa **Pipelines**: `my-first-pipeline`, `Windows-STIG-Pipeline`
-- Xóa **Recipes**: `my-first-recipe`, `Secure Image`
-- Xóa **Infrastructure configurations**: `workshop-infra-config`
-- **Deregister AMIs**: EC2 → AMIs → chọn các AMI đã build → **Actions → Deregister AMI**
-- **Xóa EBS Snapshots**: EC2 → Snapshots → xóa snapshot liên quan đến các AMI đã deregister
-
-**9. IAM Roles**
-
-Xóa role: `lab-windows-ssm-role`, `lab-imagebuilder-role`
-
-**10. Mạng**
-
-```bash
-# Xóa VPC endpoint, NAT Gateway (nếu có), giải phóng Elastic IP
-# Sau đó xóa subnet, route table, internet gateway, và VPC
-```
-
-Vào **VPC → Endpoints** → xóa tất cả endpoint lab  
-Vào **VPC → Your VPCs** → xóa VPC lab (sẽ xóa cả subnet, route table, và security group)
-
----
-
-### Xác nhận đã dọn dẹp
-
-Sau khi hoàn thành các bước:
-
-- [ ] Không còn EC2 instance nào đang chạy từ lab
-- [ ] Không còn AMI nào từ Image Builder
-- [ ] Không còn EBS snapshot nào từ lab
-- [ ] Không còn NAT Gateway hoặc chi phí Elastic IP
-- [ ] Inspector và Config đã tắt
-- [ ] Log group đã xóa
-- [ ] Kiểm tra **Billing → Cost Explorer** sau 1–2 ngày
-
-![Cost Explorer sau khi dọn dẹp](/images/5-Workshop/5.8-cleanup/cost-explorer.png)
+- **Stack kẹt ở `DELETE_FAILED`:** mở tab **Events**, tìm tài nguyên bị lỗi, xóa tay trong console của nó, rồi xóa stack lại.
+- **Còn tài nguyên sau khi stack đã mất:** xóa tay. Tài nguyên của workshop có tag `Project=CostGuard` ở những loại hỗ trợ tag.

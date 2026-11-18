@@ -1,23 +1,39 @@
 ---
 title: "Blog 1"
-date: 2024-01-01
+date: 2026-11-18
 weight: 1
 chapter: false
 pre: " <b> 3.1. </b> "
 ---
 
-### Blog 1 - [Title]
+### WINDOWS SERVER FLEET GUARD: MANAGING AND SECURING A LARGE WINDOWS INFRASTRUCTURE ON AWS
 
-**Published on:** [Facebook/Medium/Dev.to link]
+**Published on:** AWS Study Group (Facebook)
 
-**Summary:**
+A company that runs hundreds of Windows Server machines on-premises and on AWS often struggles to control access, keep configuration consistent and apply patches. Relying on RDP, bastion hosts or manual work on each machine takes time and increases security risk. This post summarizes how AWS automates the whole Windows Server lifecycle with AWS IAM Identity Center, EC2 Image Builder, AWS Systems Manager and Amazon CloudWatch.
 
-[Write a summary of your blog post here.]
+![Windows Server management lifecycle on AWS: Deploy, Configure, Manage, Update, Monitor](../../images/3-BlogsPosted/3.1-Blog1/windows-server-lifecycle.png)
 
-**Key Topics Covered:**
+*Source: AWS Blog (see the references below).*
 
-- 
-- 
-- 
+**Key points:**
 
-**Link:** [URL to the blog post]
+- **Three limits of manual administration:** access that depends on RDP and bastion hosts widens the attack surface; manual configuration causes configuration drift; patching machine by machine makes it slow to fix vulnerabilities.
+- **Six main components:** IAM Identity Center and IAM (identity, SSO), EC2 Image Builder (standard AMIs), State Manager (keeps configuration with PowerShell DSC), Fleet Manager (management and Remote Desktop in the browser), Patch Manager (scan and install patches), CloudWatch (metrics, Event Logs, alerts).
+- **Reusing Group Policy:** existing GPOs can be converted to PowerShell DSC with ConvertFrom-GPO, also for servers that are not joined to a domain.
+- **Operating flow:** Image Builder creates an AMI with the SSM Agent, the CloudWatch Agent and STIG security settings → State Manager applies the configuration by Tag → engineers sign in with IAM Identity Center and open Remote Desktop through Fleet Manager, with no need to open port 3389 → Patch Manager updates on a maintenance schedule → CloudWatch monitors.
+- **Access control:** ABAC (permissions based on user and server attributes), AWS PrivateLink with VPC Endpoints (servers in a private subnet need no public Internet), Systems Manager Compliance (reports configuration and patch status).
+- **Limits to keep in mind:** old applications that use Kerberos or NTLM may still need Active Directory; a Patch Baseline can delay urgent patches; CloudWatch Logs and VPC Endpoints cost more at large scale; a wrong configuration or patch can affect many machines at once, so group them into Dev, Staging and Production.
+
+**Conclusion and thoughts:**
+
+Windows Server Fleet Guard shows how AWS combines several services to automate Windows Server administration across its lifecycle, from building images, keeping configuration and patching to access and monitoring. What stands out is that servers can be managed without depending fully on Active Directory, and that the need to open RDP ports or use bastion hosts is reduced. Still, to run safely at large scale, a company must control access closely, group servers and test before it pushes a change to Production.
+
+**References:**
+
+1. AWS Blog: An AWS perspective on securely managing Windows Server infrastructure at scale.
+2. AWS Security Blog: Enable secure seamless single sign-on to Amazon EC2 Windows instances with AWS SSO.
+3. AWS Systems Manager User Guide: State Manager, Fleet Manager and Patch Manager.
+4. AWS Systems Manager, Amazon EC2 Image Builder, Amazon CloudWatch.
+
+**Link:** [Post on AWS Study Group](https://www.facebook.com/groups/660548818043427/?multi_permalinks=2339545870143705)

@@ -1,132 +1,64 @@
 ---
-title: "Security – Config & Inspector"
-date: 2024-01-01
+title: "Security and Cost Review"
+date: 2026-11-18
 weight: 7
 chapter: false
 pre: " <b> 5.7. </b> "
 ---
 
-## Step 5 – Security (AWS Config & Amazon Inspector)
+## Security and Cost Review
 
-**Goal:** Enforce approved AMIs and required tags with AWS Config, detect CVE vulnerabilities with Amazon Inspector, and confirm secure instance access via Session Manager and IMDSv2.
+This step reviews how Cost Guard handles security, what it costs and how it fits the AWS Well-Architected pillars.
 
----
+### 1. Security
 
-### 7.1 Hardened Image with DISA STIG
+**One IAM role for each function.** The three Lambda functions have separate roles, so a mistake in one function cannot use the permissions of another. The permission to stop an instance is limited to the **ARN of the protected instance**:
 
-Create a second recipe for a STIG-hardened AMI:
-
-**EC2 Image Builder → Image recipes → Create image recipe**
-
-| Field | Value |
-|---|---|
-| Name | `Secure Image` |
-| Version | `1.0.0` |
-| Base image | Windows Server 2019 English Full Base (or 2022) |
-| Build component | Amazon managed → `stig-build-windows` |
-
-Create a pipeline named `Windows-STIG-Pipeline`, run it, then copy the resulting AMI ID from the pipeline's latest version (e.g., `1.0.0/1`).
-
-Launch a new instance from this STIG AMI, add tags:
-- `Workshop=SecureWindows`
-- `Image=STIGImage`
-
-Attach the SSM IAM profile. Do not open RDP.
-
-{{% notice warning %}}
-Using a STIG component does not guarantee passing a formal audit. State this clearly in your report.
-{{% /notice %}}
-
-![STIG pipeline result](/images/5-Workshop/5.7-security/stig-pipeline.png)
-
----
-
-### 7.2 AWS Config – Restrict to Approved AMIs
-
-**1.** Go to **AWS Config → 1-click setup → Confirm**
-
-**2.** Go to **Rules → Add rule → AWS managed rule → `approved-amis-by-id`**  
-Name: `infosec-approved-amis`  
-Trigger: keep default (EC2 Instances)  
-Parameter: enter the STIG AMI ID from the previous step.
-
-**3.** Set up notification via EventBridge:
-- Create SNS topic: `SecureWindowsNotifications` + email subscription
-- Create an EventBridge rule that catches **Config rule compliance change** events for `infosec-approved-amis`
-- Target: the SNS topic
-
-(EventBridge provides richer notification with Instance ID details, compared to Config's built-in notification.)
-
-Launch a **non-approved** instance to trigger a NON_COMPLIANT finding and confirm you receive the email.
-
-![Config NON_COMPLIANT finding](/images/5-Workshop/5.7-security/config-noncompliant.png)
-
----
-
-### 7.3 AWS Config – Enforce Required Tags
-
-Add another managed rule: **`required-tags`**
-
-Configure it to check for tag `Workshop = SecureWindows`.  
-Reuse the `SecureWindowsNotifications` SNS topic.
-
----
-
-### 7.4 Amazon Inspector
-
-**1.** Go to **Amazon Inspector → Get started → Activate Amazon Inspector**  
-(Single account; no need to delegate admin for this lab.)
-
-{{% notice tip %}}
-Inspector scans EC2 instances by using the SSM Agent. Make sure the agent is running on your instances.
-{{% /notice %}}
-
-**2.** View **Findings** to see CVE vulnerabilities detected on your instances.
-
-**3.** Use **Patch Manager** (from Step 3.5) to apply OS-level patches.  
-Note: Patch Manager updates OS patches only — it does not upgrade the major OS version.
-
-![Inspector findings](/images/5-Workshop/5.7-security/inspector-findings.png)
-
----
-
-### 7.5 Secure Instance Access
-
-**Session Manager – verify IMDSv2:**
-
-Connect to an instance via Session Manager and run:
-
-```powershell
-[string]$token = Invoke-RestMethod `
-  -Headers @{"X-aws-ec2-metadata-token-ttl-seconds"="21600"} `
-  -Method PUT `
-  -Uri http://169.254.169.254/latest/api/token
-
-Invoke-RestMethod `
-  -Headers @{"X-aws-ec2-metadata-token"=$token} `
-  -Method GET `
-  -Uri http://169.254.169.254/latest/meta-data/instance-id
+```json
+{
+  "Effect": "Allow",
+  "Action": "ec2:StopInstances",
+  "Resource": "arn:aws:ec2:us-east-1:<account-id>:instance/<instance-id>"
+}
 ```
 
-This confirms IMDSv2 is working (token-based, more secure than IMDSv1).
+`ec2:DescribeInstances` is allowed on all resources, because this action does not support resource-level restriction. The other permissions are limited to the parameters, the table and the topics that the function uses.
 
-**Fleet Manager RDP:** Connect via **EC2 → Connect → RDP client → Connect using Fleet Manager** — no port 3389 open.
+**No credentials in code.** The functions use their execution roles. The Parameter Store values are only the hourly price, the threshold, the budget limit and the instance ID.
 
-![Session Manager terminal](/images/5-Workshop/5.7-security/session-manager.png)
+**Services call each other with their own roles.** EventBridge Scheduler uses a role that can invoke only the two functions. The topic policy of `costguard-budgets` lets only the Budgets service in your own account publish.
 
-![Fleet Manager RDP](/images/5-Workshop/5.7-security/fleet-manager-rdp.png)
+**No open ports.** The template adds no inbound rule, and the lab instance uses the default security group of the default VPC.
 
----
+**To check:** open **IAM → Roles**, choose each `CostGuard` role and read its policy. The only action that touches EC2 state is `StopInstances` on one instance.
 
-### Summary – Security Measures Applied
+### 2. Cost estimation
 
-| Measure | Implementation |
-|---|---|
-| No open inbound ports | Security group has zero inbound rules |
-| No RDP exposed | Access only via Session Manager / Fleet Manager |
-| IMDSv2 enforced | Token-based metadata requests |
-| Approved AMI policy | AWS Config rule `approved-amis-by-id` |
-| Required tags | AWS Config rule `required-tags` |
-| OS vulnerabilities | Amazon Inspector (CVE scanning) + Patch Manager |
-| Hardened image | STIG build component in Image Builder |
-| Least privilege | Dedicated roles with only required policies |
+The estimate was made with the AWS Pricing Calculator for US East (N. Virginia), using on-demand prices and 120 lab hours per month. Prices are without the Free Tier.
+
+- Amazon EC2 Windows (t3.medium): 120 hours × $0.06 = **$7.20**
+- Amazon EBS (gp3, 30 GB): **$2.40**, billed for the whole month even while the instance is stopped
+- Public IPv4 address: 120 hours × $0.005 = **$0.60**
+- AWS Lambda: about **$0.02**
+- Amazon DynamoDB (on-demand): about **$0.002**
+- Amazon CloudWatch (3 alarms and logs): about **$0.31**
+- EventBridge Scheduler and Amazon SNS: under **$0.01** each
+
+The services in the Calculator (EC2, EBS, Lambda and DynamoDB) add up to about **$9.62 per month**. With the other services added, the total is about **$10.54 per month**, under the $20 budget. The same instance running 24/7 would cost about $46.22 per month, so Cost Guard avoids about $36.60 per month.
+
+### 3. Cost optimization
+
+- Limit the running hours. The scheduled stop and the manual start keep the machine near 120 hours instead of 730.
+- Use pay-per-use services in their free allowance: Lambda, DynamoDB on-demand, SNS and EventBridge Scheduler.
+- Use standard parameters in Parameter Store, which have no charge.
+- Keep the 30 GB gp3 volume and add no extra IOPS or throughput.
+- Do not attach an Elastic IP, which is billed while it is allocated.
+- Delete all resources after the workshop (see 5.8).
+
+### 4. Well-Architected pillars
+
+- **Operational Excellence:** Lambda logs, CloudWatch alarms and the session records in DynamoDB show what the system did and why.
+- **Security:** one role for each function, a stop permission limited to one instance, no credentials in code.
+- **Reliability:** three independent layers, and every action is safe to repeat.
+- **Performance Efficiency:** a t3.medium for one lab session, and Lambda functions of 128 MB that run for about a second.
+- **Cost Optimization:** limited running hours, pay-per-use services and a cleanup at the end.

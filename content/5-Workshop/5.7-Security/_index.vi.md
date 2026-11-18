@@ -1,132 +1,64 @@
 ---
-title: "Bảo mật – Config & Inspector"
-date: 2024-01-01
+title: "Rà soát bảo mật và chi phí"
+date: 2026-11-18
 weight: 7
 chapter: false
 pre: " <b> 5.7. </b> "
 ---
 
-## Bước 5 – Bảo mật (AWS Config & Amazon Inspector)
+## Rà soát bảo mật và chi phí
 
-**Mục tiêu:** Kiểm soát AMI được duyệt và tag bắt buộc bằng AWS Config, phát hiện lỗ hổng CVE bằng Amazon Inspector, và xác nhận truy cập instance an toàn qua Session Manager và IMDSv2.
+Bước này xem lại cách Cost Guard xử lý bảo mật, chi phí và mức độ phù hợp với các trụ cột AWS Well-Architected.
 
----
+### 1. Bảo mật
 
-### 7.1 Hardened Image với DISA STIG
+**Mỗi hàm một IAM role.** Ba hàm Lambda có role riêng, nên một lỗi ở hàm này không dùng được quyền của hàm khác. Quyền dừng instance bị giới hạn theo **ARN của instance được bảo vệ**:
 
-Tạo recipe thứ hai để build AMI được hardened theo STIG:
-
-**EC2 Image Builder → Image recipes → Create image recipe**
-
-| Trường | Giá trị |
-|---|---|
-| Tên | `Secure Image` |
-| Version | `1.0.0` |
-| Base image | Windows Server 2019 English Full Base (hoặc 2022) |
-| Build component | Amazon managed → `stig-build-windows` |
-
-Tạo pipeline tên `Windows-STIG-Pipeline`, chạy pipeline, rồi copy AMI ID từ version mới nhất (ví dụ `1.0.0/1`).
-
-Khởi chạy instance mới từ AMI STIG này, gắn tag:
-- `Workshop=SecureWindows`
-- `Image=STIGImage`
-
-Gắn SSM IAM profile. Không mở RDP.
-
-{{% notice warning %}}
-Dùng STIG component không đảm bảo qua được kiểm toán chính thức. Hãy ghi rõ điều này trong báo cáo.
-{{% /notice %}}
-
-![Kết quả STIG pipeline](/images/5-Workshop/5.7-security/stig-pipeline.png)
-
----
-
-### 7.2 AWS Config – Giới hạn AMI được duyệt
-
-**1.** Vào **AWS Config → 1-click setup → Confirm**
-
-**2.** Vào **Rules → Add rule → AWS managed rule → `approved-amis-by-id`**  
-Tên: `infosec-approved-amis`  
-Trigger: giữ mặc định (EC2 Instances)  
-Parameter: nhập AMI ID STIG từ bước trước.
-
-**3.** Cài đặt thông báo qua EventBridge:
-- Tạo SNS topic: `SecureWindowsNotifications` + email subscription
-- Tạo EventBridge rule bắt sự kiện **Config rule compliance change** cho `infosec-approved-amis`
-- Target: SNS topic đó
-
-(EventBridge cung cấp thông báo chi tiết hơn với Instance ID, so với thông báo mặc định của Config.)
-
-Khởi chạy một instance **không được duyệt** để kích hoạt NON_COMPLIANT và xác nhận nhận được email.
-
-![Config NON_COMPLIANT finding](/images/5-Workshop/5.7-security/config-noncompliant.png)
-
----
-
-### 7.3 AWS Config – Kiểm soát Tag bắt buộc
-
-Thêm rule managed: **`required-tags`**
-
-Cài đặt để kiểm tra tag `Workshop = SecureWindows`.  
-Dùng lại SNS topic `SecureWindowsNotifications`.
-
----
-
-### 7.4 Amazon Inspector
-
-**1.** Vào **Amazon Inspector → Get started → Activate Amazon Inspector**  
-(Tài khoản đơn; không cần delegate admin cho lab này.)
-
-{{% notice tip %}}
-Inspector quét EC2 instance thông qua SSM Agent. Hãy chắc chắn agent đang chạy trên các instance của bạn.
-{{% /notice %}}
-
-**2.** Xem **Findings** để thấy các lỗ hổng CVE được phát hiện trên instance.
-
-**3.** Dùng **Patch Manager** (từ Bước 3.5) để áp dụng patch cấp OS.  
-Lưu ý: Patch Manager chỉ cập nhật patch OS — không nâng cấp phiên bản OS lớn.
-
-![Inspector findings](/images/5-Workshop/5.7-security/inspector-findings.png)
-
----
-
-### 7.5 Truy cập Instance An toàn
-
-**Session Manager – kiểm tra IMDSv2:**
-
-Kết nối vào instance qua Session Manager và chạy:
-
-```powershell
-[string]$token = Invoke-RestMethod `
-  -Headers @{"X-aws-ec2-metadata-token-ttl-seconds"="21600"} `
-  -Method PUT `
-  -Uri http://169.254.169.254/latest/api/token
-
-Invoke-RestMethod `
-  -Headers @{"X-aws-ec2-metadata-token"=$token} `
-  -Method GET `
-  -Uri http://169.254.169.254/latest/meta-data/instance-id
+```json
+{
+  "Effect": "Allow",
+  "Action": "ec2:StopInstances",
+  "Resource": "arn:aws:ec2:us-east-1:<account-id>:instance/<instance-id>"
+}
 ```
 
-Điều này xác nhận IMDSv2 đang hoạt động (dùng token, an toàn hơn IMDSv1).
+`ec2:DescribeInstances` được cho phép trên mọi tài nguyên, vì hành động này không hỗ trợ giới hạn theo tài nguyên. Các quyền còn lại chỉ áp dụng cho tham số, bảng và topic mà hàm đó dùng.
 
-**Fleet Manager RDP:** Kết nối qua **EC2 → Connect → RDP client → Connect using Fleet Manager** — không cần mở port 3389.
+**Không có thông tin xác thực trong code.** Các hàm dùng execution role. Giá trị trong Parameter Store chỉ gồm đơn giá theo giờ, ngưỡng, hạn mức ngân sách và instance ID.
 
-![Terminal Session Manager](/images/5-Workshop/5.7-security/session-manager.png)
+**Các dịch vụ gọi nhau bằng role riêng.** EventBridge Scheduler dùng một role chỉ gọi được hai hàm. Topic policy của `costguard-budgets` chỉ cho dịch vụ Budgets của chính tài khoản bạn gửi tin.
 
-![Fleet Manager RDP](/images/5-Workshop/5.7-security/fleet-manager-rdp.png)
+**Không mở cổng nào.** Template không thêm quy tắc inbound, và máy lab dùng security group mặc định của default VPC.
 
----
+**Cách kiểm tra:** mở **IAM → Roles**, chọn từng role `CostGuard` và đọc policy. Hành động duy nhất đụng tới trạng thái EC2 là `StopInstances` trên một instance.
 
-### Tổng kết – Các biện pháp bảo mật đã áp dụng
+### 2. Dự toán chi phí
 
-| Biện pháp | Cài đặt |
-|---|---|
-| Không mở cổng inbound | Security group không có inbound rule |
-| Không expose RDP | Chỉ truy cập qua Session Manager / Fleet Manager |
-| Bắt buộc IMDSv2 | Yêu cầu token để lấy metadata |
-| Chính sách AMI được duyệt | AWS Config rule `approved-amis-by-id` |
-| Tag bắt buộc | AWS Config rule `required-tags` |
-| Lỗ hổng OS | Amazon Inspector (quét CVE) + Patch Manager |
-| Hardened image | STIG build component trong Image Builder |
-| Least privilege | Role riêng biệt chỉ gắn policy cần thiết |
+Dự toán được lập bằng AWS Pricing Calculator cho US East (N. Virginia), giá on-demand và 120 giờ lab mỗi tháng. Giá tính không có Free Tier.
+
+- Amazon EC2 Windows (t3.medium): 120 giờ × $0.06 = **$7.20**
+- Amazon EBS (gp3, 30 GB): **$2.40**, tính cả tháng kể cả khi máy tắt
+- Địa chỉ Public IPv4: 120 giờ × $0.005 = **$0.60**
+- AWS Lambda: khoảng **$0.02**
+- Amazon DynamoDB (on-demand): khoảng **$0.002**
+- Amazon CloudWatch (3 alarm và log): khoảng **$0.31**
+- EventBridge Scheduler và Amazon SNS: mỗi dịch vụ dưới **$0.01**
+
+Các dịch vụ trong Calculator (EC2, EBS, Lambda và DynamoDB) cộng lại khoảng **$9.62 mỗi tháng**. Khi thêm các dịch vụ còn lại, tổng là khoảng **$10.54 mỗi tháng**, dưới ngân sách $20. Cũng máy đó chạy 24/7 sẽ tốn khoảng $46.22 mỗi tháng, nên Cost Guard giúp tránh khoảng $36.60 mỗi tháng.
+
+### 3. Tối ưu chi phí
+
+- Giới hạn giờ chạy. Lịch dừng và việc bật máy thủ công giữ máy ở gần 120 giờ thay vì 730.
+- Dùng các dịch vụ trả theo lượt dùng và nằm trong hạn mức miễn phí: Lambda, DynamoDB on-demand, SNS và EventBridge Scheduler.
+- Dùng tham số standard của Parameter Store, không tốn phí.
+- Giữ ổ gp3 30 GB và không thêm IOPS hay throughput.
+- Không gắn Elastic IP, vì bị tính phí khi đang được cấp phát.
+- Xóa toàn bộ tài nguyên sau workshop (xem 5.8).
+
+### 4. Các trụ cột Well-Architected
+
+- **Operational Excellence:** log Lambda, CloudWatch alarm và bản ghi phiên trong DynamoDB cho thấy hệ thống đã làm gì và vì sao.
+- **Security:** mỗi hàm một role, quyền dừng giới hạn cho một instance, không có thông tin xác thực trong code.
+- **Reliability:** ba lớp độc lập, và mọi hành động đều an toàn khi lặp lại.
+- **Performance Efficiency:** t3.medium cho một phiên lab, và hàm Lambda 128 MB chạy khoảng một giây.
+- **Cost Optimization:** giới hạn giờ chạy, dịch vụ trả theo lượt dùng và dọn dẹp ở cuối.
