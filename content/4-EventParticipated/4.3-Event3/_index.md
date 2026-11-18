@@ -6,7 +6,7 @@ chapter: false
 pre: " <b> 4.3. </b> "
 ---
 
-### First Cloud AI Journey – Energetic Meet Up
+### Summary Report
 
 | | |
 |---|---|

@@ -6,7 +6,7 @@ chapter: false
 pre: " <b> 4.3. </b> "
 ---
 
-### Buổi Meet Up Đầy Năng Lượng: First Cloud AI Journey
+### Tổng Hợp Thu Hoạch
 
 | | |
 |---|---|
