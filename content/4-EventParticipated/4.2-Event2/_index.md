@@ -92,7 +92,54 @@ Through keynote sessions, talkshows, and expert deep-dives, the program covered 
 
 ---
 
-### 4. Key Takeaways
+### 4. What I Learned
+
+**Thinking About Cloud and AI**
+
+- **The role of the cloud:** It lowers the burden of managing infrastructure and also gives a base for building systems that can scale.
+- **AI must solve a specific problem:** The value of AI is the real result it delivers, not the model that is used.
+- **Agentic AI:** AI agents can work together on a complex process, instead of answering one command at a time.
+
+**Technical Knowledge**
+
+- **System architecture:** Dynamo, Nitro, Lambda and Firecracker show that good architecture design is what delivers performance, security and scalability.
+- **Spec-Driven Development:** Define the requirements and write a clear specification before working with AI.
+- **Testing and security:** They must be built in across the whole development process, not only at the end.
+- **AI governance:** It needs control over data, cost, access rights and the results that AI produces.
+
+**Personal Development**
+
+- Cloud and AI change fast, so keep learning and practicing.
+- Technical knowledge creates value when it is applied to a specific problem.
+- Stay in charge: AI helps with many tasks, but the user must evaluate, verify and take responsibility.
+
+---
+
+### 5. Application to Work
+
+- **Use AI in software development:** Use AI agents to help analyze requirements, build the project structure, write code and create test cases.
+- **Focus on Spec-Driven Development:** Describe the requirements and write a clear specification before implementing.
+- **Strengthen testing:** Write unit tests, check edge cases and verify the results produced by AI.
+- **Care about security:** Manage credentials and access rights, and protect data.
+- **Learn more about AWS:** Amazon Bedrock, AWS Lambda, Amazon S3 and the tools for building AI agents.
+
+---
+
+### 6. Event Experience
+
+Attending AWS Cloud and AI Day was a very useful learning experience. The program offered a lot of in-depth content about cloud, AI and technology trends in business.
+
+The keynote by **Dr. Werner Vogels** on Invisible Engineering left a deep impression. The stories about Dynamo, Nitro and serverless show that behind a stable service there are many continuous technical improvements.
+
+**Dr. Jens Lottner**'s talk on Agentic AI at Techcombank gave a practical view: AI does not replace people, it amplifies human capability.
+
+The case studies of Vinasoy, Agris and AMI Group made it clearer how cloud and AI are used in different fields. Each business has its own problem, and the technology choice should start from real needs.
+
+The message **"Now go build"** from Dr. Werner Vogels is a reminder not to stop at theory but to start practicing.
+
+---
+
+### 7. Key Takeaways
 
 - **Technology must deliver real value:** Cloud and AI matter when they solve specific problems and produce measurable outcomes.
 - **Quality and security cannot be skipped:** AI accelerates development speed, but testing, validation, and data protection remain mandatory.
@@ -100,7 +147,7 @@ Through keynote sessions, talkshows, and expert deep-dives, the program covered 
 
 ---
 
-### 5. Photos
+### 8. Photos
 
 ![Check-in at AWS Cloud and AI Day](/images/4-EventParticipated/4.2-Event2/checkin.jpg)
 
