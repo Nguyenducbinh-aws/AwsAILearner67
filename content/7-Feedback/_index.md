@@ -25,7 +25,8 @@ The tasks went beyond what I learned at university, introducing me to new knowle
 **4. Learning & Skill Development Opportunities**
 
 During the internship, I learned and improved several new skills including:
-- Using AWS services and tools (EC2 Image Builder, Systems Manager, CloudWatch)
+- Using AWS services and tools (EventBridge Scheduler, Lambda, DynamoDB, SNS, AWS Budgets, CloudWatch)
+- Estimating and optimizing cloud cost with the AWS Pricing Calculator
 - Cloud security practices
 - Teamwork and professional collaboration
 

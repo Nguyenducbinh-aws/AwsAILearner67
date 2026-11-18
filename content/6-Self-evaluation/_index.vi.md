@@ -6,9 +6,9 @@ chapter: false
 pre: " <b> 6. </b> "
 ---
 
-Trong quá trình thực tập tại **Công ty TNHH Amazon Web Services Viet Nam** từ ngày **11/09/2026** đến ngày **14/12/2026** ở vị trí **Cyber Security Intern**, mình đã có cơ hội học hỏi, thực hành và áp dụng kiến thức học tại trường vào môi trường làm việc thực tế.
+Trong quá trình thực tập tại **Công ty TNHH Amazon Web Services Viet Nam** từ ngày **07/09/2026** đến ngày **14/12/2026** ở vị trí **Cyber Security Intern**, mình đã có cơ hội học hỏi, thực hành và áp dụng kiến thức học tại trường vào môi trường làm việc thực tế.
 
-Tôi đã tham gia vào **xây dựng workshop về quản lý và bảo mật Windows workload trên AWS, sử dụng EC2 Image Builder, Systems Manager và CloudWatch**, qua đó cải thiện kỹ năng **bảo mật cloud**.
+Mình đã tham gia vào **xây dựng workshop Cost Guard, một hệ thống serverless ba lớp bảo vệ credit cho máy lab Windows trên AWS (lịch dừng, bộ đo chi phí và budget dự phòng), sử dụng EventBridge Scheduler, Lambda, DynamoDB, SNS, AWS Budgets và CloudWatch**, qua đó cải thiện kỹ năng **tối ưu chi phí và bảo mật cloud**.
 
 Về thái độ làm việc, mình luôn cố gắng hoàn thành tốt nhiệm vụ, tuân thủ nội quy nơi làm việc và tích cực phối hợp với đồng nghiệp để nâng cao hiệu quả công việc.
 

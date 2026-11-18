@@ -103,10 +103,9 @@ The system runs in a single AWS Region (US East, N. Virginia) and uses only serv
 
 **Project Timeline**
 
-- **Month 0 (before the internship):** Join the FCAJ program, read the internship rules and prepare the working environment.
-- **Month 1 (11/09 – 10/10/2026):** Learn the AWS foundations: account setup, MFA, IAM, Budgets, Support, Console and CLI.
-- **Month 2 (11/10 – 10/11/2026):** Study the services used by the project (Lambda, EventBridge, SNS, DynamoDB, Parameter Store, CloudWatch) and design the three layers.
-- **Month 3 (11/11 – 14/12/2026):** Build and document the solution.
+- **Month 1 (07/09 – 06/10/2026):** Join the FCAJ program, read the internship rules and prepare the working environment. Then learn the AWS foundations: account setup, MFA, IAM, Budgets, Support, Console and CLI.
+- **Month 2 (07/10 – 06/11/2026):** Study the services used by the project (Lambda, EventBridge, SNS, DynamoDB, Parameter Store, CloudWatch) and design the three layers.
+- **Month 3 (07/11 – 14/12/2026):** Build and document the solution.
   - Week 1: Foundation and Layer 1 (confirm instance type and price, create base resources, scheduled stop).
   - Week 2: Layer 2 (cost meter and threshold test) and the architecture diagram.
   - Week 3: Layer 3, CloudWatch alarms and the end-to-end test.

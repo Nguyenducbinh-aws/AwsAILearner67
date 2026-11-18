@@ -39,7 +39,7 @@ Chuẩn bị các mục dưới đây trước khi bắt đầu. Toàn bộ work
 
 ### Danh sách kiểm tra
 
-- [ ] Tôi đăng nhập được console bằng IAM user, ở `us-east-1`.
+- [ ] Mình đăng nhập được console bằng IAM user, ở `us-east-1`.
 - [ ] Đã có default VPC.
-- [ ] Tôi mở được hộp thư dùng để nhận cảnh báo.
-- [ ] Tôi đã tải `cost-guard.yaml`.
+- [ ] Mình mở được hộp thư dùng để nhận cảnh báo.
+- [ ] Mình đã tải `cost-guard.yaml`.

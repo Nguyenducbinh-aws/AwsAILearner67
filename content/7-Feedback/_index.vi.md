@@ -25,7 +25,8 @@ Công việc được giao vượt ra ngoài những gì mình học ở trườ
 **4. Cơ hội học hỏi & phát triển kỹ năng**
 
 Trong quá trình thực tập, mình đã học và cải thiện được nhiều kỹ năng mới, bao gồm:
-- Sử dụng các công cụ và dịch vụ AWS (EC2 Image Builder, Systems Manager, CloudWatch)
+- Sử dụng các công cụ và dịch vụ AWS (EventBridge Scheduler, Lambda, DynamoDB, SNS, AWS Budgets, CloudWatch)
+- Ước tính và tối ưu chi phí cloud bằng AWS Pricing Calculator
 - Thực hành bảo mật cloud
 - Làm việc nhóm và hợp tác chuyên nghiệp
 

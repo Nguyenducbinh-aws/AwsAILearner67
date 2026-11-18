@@ -19,11 +19,11 @@ pre: " <b> 4.1. </b> "
 
 ### 1. Mục Đích Của Sự Kiện
 
-Sự kiện Kickoff FCAJ Buildrathon 2026 – Season 01 được tổ chức nhằm chính thức khởi động mùa giải mới, mở đầu cho hành trình 6 tháng học hỏi, thực hành và thử sức với các bài toán liên quan đến AI và Cloud.
+Buổi Kickoff FCAJ Buildrathon 2026 – Season 01 mở màn cho mùa giải mới, bắt đầu hành trình 6 tháng học hỏi, thực hành và giải các bài toán về AI và Cloud.
 
-Bên cạnh việc giới thiệu về cuộc thi, chương trình còn tạo cơ hội để người tham gia tiếp cận những kinh nghiệm thực tế trong quá trình xây dựng và triển khai AI Agent trong doanh nghiệp thông qua talkshow **"The Thinking Behind Building The Bot"** do CMC Global phối hợp cùng VietAWS tổ chức.
+Ngoài phần giới thiệu cuộc thi, chương trình có talkshow **"The Thinking Behind Building The Bot"** do CMC Global phối hợp cùng VietAWS tổ chức. Talkshow chia sẻ kinh nghiệm thực tế khi xây dựng và triển khai AI Agent trong doanh nghiệp.
 
-Ngoài ra, sự kiện còn mang đến cơ hội trao đổi trực tiếp với các chuyên gia, cùng nhau phân tích những bài toán kỹ thuật và tìm hiểu thêm về định hướng nghề nghiệp thông qua hoạt động tư vấn, phỏng vấn 1-1 với Phòng Tuyển dụng CMC Global.
+Người tham dự cũng được trao đổi trực tiếp với các chuyên gia, cùng phân tích một số bài toán kỹ thuật, và có buổi tư vấn, phỏng vấn 1-1 với Phòng Tuyển dụng CMC Global để tìm hiểu về định hướng nghề nghiệp.
 
 ---
 
@@ -38,24 +38,24 @@ Ngoài ra, sự kiện còn mang đến cơ hội trao đổi trực tiếp vớ
 
 ### 3. Nội Dung Nổi Bật
 
-**Tư Duy AI Agent Thực Chiến & Góc Nhìn Doanh Nghiệp**
+**Cách Nghĩ Về AI Agent Trong Doanh Nghiệp**
 
-Một trong những nội dung đáng chú ý của chương trình là những chia sẻ về cách xây dựng và đưa AI Agent vào giải quyết các vấn đề thực tế trong doanh nghiệp.
+Một phần đáng chú ý là cách xây dựng AI Agent và đưa nó vào giải quyết những việc thật trong doanh nghiệp.
 
-- **Đặt nền tảng kiến trúc ngay từ đầu:** Trước khi bắt tay vào lập trình, cần xác định rõ cấu trúc hệ thống và luồng dữ liệu để quá trình phát triển được thuận lợi hơn.
-- **Nhìn nhận vấn đề từ góc độ doanh nghiệp:** Việc xây dựng AI Agent không chỉ dừng lại ở khả năng hoạt động của mô hình mà còn cần quan tâm đến hiệu năng, tính bảo mật và chi phí vận hành.
+- **Nghĩ về kiến trúc trước:** Trước khi viết code, cần xác định rõ cấu trúc hệ thống và luồng dữ liệu, để việc phát triển sau đó dễ hơn.
+- **Nhìn từ góc độ doanh nghiệp:** Một AI Agent chạy được thôi là chưa đủ. Còn phải tính đến hiệu năng, bảo mật và chi phí vận hành.
 
-**Giải Mã Thử Thách & Thực Chiến Cùng Chuyên Gia**
+**Phân Tích Bài Test Cùng Chuyên Gia**
 
-Phần trao đổi và phân tích các bài test thực tế mang đến nhiều góc nhìn hữu ích về cách xử lý những vấn đề kỹ thuật thường gặp.
+Phần phân tích các bài test thực tế cho thấy cách xử lý những vấn đề kỹ thuật hay gặp.
 
-- **Phân tích các bài test:** Tìm hiểu cách bóc tách yêu cầu, nhận diện những lỗi dễ gặp và lựa chọn hướng giải quyết phù hợp.
-- **Học hỏi từ kinh nghiệm thực tế:** Lắng nghe những chia sẻ từ các chuyên gia về khó khăn và kinh nghiệm trong quá trình triển khai dự án.
+- **Phân tích bài test:** Cách bóc tách yêu cầu, những lỗi dễ mắc và cách chọn hướng giải phù hợp.
+- **Kinh nghiệm thực tế:** Các chuyên gia kể về những khó khăn khi triển khai dự án.
 
-**Fast-track Sự Nghiệp & Tinh Thần Cộng Đồng**
+**Kết Nối Nghề Nghiệp Và Tinh Thần Cộng Đồng**
 
-- **Kết nối 1-1 cùng HR CMC Global:** Có cơ hội trao đổi trực tiếp với bộ phận tuyển dụng, tìm hiểu yêu cầu công việc và nhận góp ý về năng lực cá nhân.
-- **Lan tỏa tinh thần Pay It Forward:** Sự phối hợp giữa VietAWS và CMC Global góp phần tạo ra môi trường chia sẻ kiến thức, kinh nghiệm và kết nối những người có cùng đam mê công nghệ.
+- **Trao đổi 1-1 với HR của CMC Global:** Tìm hiểu yêu cầu công việc và nhận góp ý về năng lực của mình.
+- **Tinh thần Pay It Forward:** VietAWS và CMC Global tạo ra một môi trường chia sẻ kiến thức, kinh nghiệm và kết nối những người cùng đam mê công nghệ.
 
 ---
 
@@ -63,52 +63,52 @@ Phần trao đổi và phân tích các bài test thực tế mang đến nhiề
 
 **Tư Duy Thiết Kế**
 
-- **Architecture-first approach:** Hiểu rõ hơn tầm quan trọng của việc xác định kiến trúc và luồng xử lý tổng thể trước khi bắt đầu phát triển các tính năng của Bot.
-- **Ưu tiên giải quyết bài toán thực tế:** Một sản phẩm AI không nhất thiết phải sử dụng công nghệ mới nhất, mà quan trọng là có thể giải quyết được vấn đề cụ thể và đáp ứng nhu cầu của người dùng.
+- **Kiến trúc trước, tính năng sau:** Mình hiểu rõ hơn vì sao cần xác định kiến trúc và luồng xử lý tổng thể trước khi làm từng tính năng của Bot.
+- **Giải quyết vấn đề thật:** Một sản phẩm AI không cần dùng công nghệ mới nhất. Quan trọng là nó giải được một vấn đề cụ thể và đáp ứng nhu cầu của người dùng.
 
 **Kiến Trúc Kỹ Thuật**
 
-- **Kỹ năng chia nhỏ bài toán:** Với những yêu cầu phức tạp, cần biết cách phân tích thành các phần nhỏ để dễ triển khai, kiểm tra và điều chỉnh.
-- **Nâng cao tính ổn định:** Nhận ra cần chú ý đến việc xử lý lỗi, các trường hợp ngoại lệ và tối ưu thời gian phản hồi để AI Bot hoạt động hiệu quả hơn.
+- **Chia nhỏ bài toán:** Với yêu cầu phức tạp, nên chia thành các phần nhỏ để dễ làm, dễ kiểm tra và dễ chỉnh sửa.
+- **Chú ý đến độ ổn định:** Cần xử lý lỗi, các trường hợp ngoại lệ và tối ưu thời gian phản hồi để Bot chạy tốt hơn.
 
-**Chiến Lược Phát Triển Bản Thân**
+**Phát Triển Bản Thân**
 
-- **Hiểu rõ tiêu chuẩn tuyển dụng:** Những chia sẻ từ đại diện HR CMC Global giúp có thêm thông tin về các kỹ năng và kiến thức cần thiết khi ứng tuyển vào những vị trí liên quan đến công nghệ.
-- **Xây dựng Profile thực chiến:** Việc tham gia các dự án và thử thách thực tế là cách tốt để tích lũy kinh nghiệm, đồng thời bổ sung những sản phẩm cụ thể vào hồ sơ năng lực cá nhân.
+- **Tiêu chuẩn tuyển dụng:** Qua chia sẻ của HR CMC Global, mình biết rõ hơn những kỹ năng và kiến thức cần có khi ứng tuyển vào vị trí công nghệ.
+- **Hồ sơ từ dự án thật:** Tham gia dự án và thử thách thực tế là cách tốt để tích lũy kinh nghiệm, đồng thời có sản phẩm cụ thể để đưa vào hồ sơ năng lực.
 
 ---
 
 ### 5. Ứng Dụng Vào Công Việc
 
-- **Tái cấu trúc quy trình làm Bot:** Chú trọng hơn đến việc thiết kế kiến trúc và xác định luồng xử lý trước khi bắt đầu xây dựng một AI Bot, thay vì chỉ tập trung vào từng chức năng riêng lẻ.
-- **Chuẩn bị cho FCAJ Buildrathon 2026:** Vận dụng cách phân tích và chia nhỏ bài toán để chuẩn bị tốt hơn cho các thử thách trong cuộc thi, đồng thời cải thiện khả năng phối hợp với các thành viên trong nhóm.
-- **Tối ưu năng suất cá nhân:** Tìm hiểu và thử nghiệm thêm các công cụ AI Agent có thể hỗ trợ tự động hóa những công việc lặp lại hằng ngày, từ đó tiết kiệm thời gian và nâng cao hiệu quả công việc.
+- **Làm Bot theo thứ tự mới:** Mình sẽ thiết kế kiến trúc và xác định luồng xử lý trước, rồi mới làm từng chức năng, thay vì bắt đầu từ các chức năng rời rạc.
+- **Chuẩn bị cho FCAJ Buildrathon 2026:** Mình sẽ chia nhỏ bài toán để chuẩn bị tốt hơn cho các thử thách, và phối hợp với thành viên trong nhóm dễ hơn.
+- **Tăng năng suất cá nhân:** Mình sẽ tìm hiểu và thử các công cụ AI Agent có thể tự động hóa những việc lặp lại hằng ngày để tiết kiệm thời gian.
 
 ---
 
 ### 6. Trải Nghiệm Trong Event
 
-Tham gia sự kiện Kickoff FCAJ Buildrathon 2026 (Season 01) kết hợp talkshow giữa CMC Global và VietAWS là một trải nghiệm khá thú vị. Không khí tại sự kiện rất sôi nổi với sự góp mặt của đông đảo những người quan tâm đến AI và Cloud.
+Mình tham dự buổi Kickoff FCAJ Buildrathon 2026 (Season 01) và talkshow của CMC Global cùng VietAWS. Không khí khá sôi nổi, có nhiều người quan tâm đến AI và Cloud.
 
-**Học Hỏi Từ Các Diễn Giả Có Chuyên Môn Cao**
+**Học Từ Các Diễn Giả**
 
-Phần chia sẻ của anh Truong Bui (Tech Lead, CMC Global), anh Thien Lu và anh Phong Pham (Program Manager, FCAJ) mang đến nhiều góc nhìn khác nhau, từ khía cạnh kỹ thuật đến quá trình tổ chức và triển khai các dự án thực tế. Nội dung dễ hiểu và tập trung vào những vấn đề có thể gặp trong quá trình làm việc thực tế.
+Anh Truong Bui (Tech Lead, CMC Global), anh Thien Lu và anh Phong Pham (Program Manager, FCAJ) chia sẻ từ nhiều góc nhìn, từ kỹ thuật đến cách tổ chức và triển khai dự án thực tế. Nội dung dễ hiểu và nói về những vấn đề mình có thể gặp khi đi làm.
 
-**Trải Nghiệm Kỹ Thuật Thực Tế**
+**Phần Kỹ Thuật Thực Tế**
 
-Phần phân tích các bài test thực tế là một trong những nội dung đáng nhớ nhất. Khi theo dõi cách các chuyên gia phân tích vấn đề và đưa ra hướng giải quyết, nhận ra rằng kiến thức kỹ thuật thôi là chưa đủ — còn cần có cách tiếp cận và tư duy xử lý phù hợp.
+Phần phân tích bài test để lại cho mình ấn tượng nhất. Nhìn các chuyên gia tách vấn đề và chọn hướng giải, mình thấy chỉ có kiến thức kỹ thuật là chưa đủ. Cách tiếp cận và tư duy xử lý cũng quan trọng không kém.
 
 **Kết Nối Và Trao Đổi**
 
-Hoạt động tư vấn 1-1 của Phòng Tuyển dụng CMC Global rất có giá trị. Những cuộc trò chuyện giúp có thêm thông tin về môi trường làm việc thực tế và hiểu rõ hơn những kỹ năng mà doanh nghiệp đang tìm kiếm. Bên cạnh đó, tinh thần chia sẻ và hỗ trợ lẫn nhau từ cộng đồng VietAWS và CMC Global là một trong những giá trị ý nghĩa nhất mà sự kiện mang lại.
+Buổi tư vấn 1-1 với Phòng Tuyển dụng CMC Global rất có giá trị. Mình biết thêm về môi trường làm việc thực tế và những kỹ năng doanh nghiệp đang tìm. Tinh thần chia sẻ và giúp đỡ nhau của cộng đồng VietAWS và CMC Global cũng là điều mình thấy ý nghĩa nhất.
 
 ---
 
 ### 7. Bài Học Rút Ra
 
-- **Kiến trúc là nền tảng:** Trước khi bắt đầu xây dựng một sản phẩm, cần có cái nhìn tổng thể về cấu trúc hệ thống và cách các thành phần hoạt động cùng nhau. Một kiến trúc hợp lý sẽ giúp việc phát triển, bảo trì và mở rộng về sau dễ dàng hơn.
-- **Thực hành giúp hiểu sâu vấn đề:** Những kiến thức học được qua lý thuyết sẽ có ý nghĩa hơn khi được áp dụng vào các bài toán cụ thể. Chỉ khi trực tiếp thực hiện mới có thể nhận ra những khó khăn và thiếu sót trong quá trình giải quyết vấn đề.
-- **Chủ động kết nối để phát triển:** Việc trao đổi với các chuyên gia, đồng nghiệp và nhà tuyển dụng giúp mở rộng góc nhìn, học hỏi thêm kinh nghiệm và có thêm định hướng cho con đường phát triển nghề nghiệp.
+- **Kiến trúc là nền tảng:** Trước khi làm sản phẩm, nên nhìn tổng thể cấu trúc hệ thống và cách các thành phần phối hợp. Kiến trúc hợp lý giúp việc phát triển, bảo trì và mở rộng về sau dễ hơn.
+- **Thực hành giúp hiểu sâu:** Kiến thức lý thuyết chỉ thật sự có ý nghĩa khi áp dụng vào bài toán cụ thể. Phải tự làm mới thấy được khó khăn và chỗ mình còn thiếu.
+- **Chủ động kết nối:** Trao đổi với chuyên gia, đồng nghiệp và nhà tuyển dụng giúp mình mở rộng góc nhìn và có thêm định hướng cho nghề nghiệp.
 
 ---
 

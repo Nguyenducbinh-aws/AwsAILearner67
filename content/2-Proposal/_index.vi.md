@@ -103,10 +103,9 @@ Hệ thống chạy trong một AWS Region (US East, N. Virginia) và chỉ dùn
 
 **Lộ trình dự án**
 
-- **Tháng 0 (trước thực tập):** Tham gia chương trình FCAJ, đọc nội quy thực tập và chuẩn bị môi trường làm việc.
-- **Tháng 1 (11/09 – 10/10/2026):** Học nền tảng AWS: tạo tài khoản, MFA, IAM, Budgets, Support, Console và CLI.
-- **Tháng 2 (11/10 – 10/11/2026):** Tìm hiểu các dịch vụ dùng trong dự án (Lambda, EventBridge, SNS, DynamoDB, Parameter Store, CloudWatch) và thiết kế ba lớp bảo vệ.
-- **Tháng 3 (11/11 – 14/12/2026):** Xây dựng và viết tài liệu cho giải pháp.
+- **Tháng 1 (07/09 – 06/10/2026):** Tham gia chương trình FCAJ, đọc nội quy thực tập và chuẩn bị môi trường làm việc. Sau đó học nền tảng AWS: tạo tài khoản, MFA, IAM, Budgets, Support, Console và CLI.
+- **Tháng 2 (07/10 – 06/11/2026):** Tìm hiểu các dịch vụ dùng trong dự án (Lambda, EventBridge, SNS, DynamoDB, Parameter Store, CloudWatch) và thiết kế ba lớp bảo vệ.
+- **Tháng 3 (07/11 – 14/12/2026):** Xây dựng và viết tài liệu cho giải pháp.
   - Tuần 1: Nền tảng và Lớp 1 (chốt loại instance và đơn giá, tạo tài nguyên nền, lịch dừng).
   - Tuần 2: Lớp 2 (bộ đo chi phí và thử ngưỡng) và sơ đồ kiến trúc.
   - Tuần 3: Lớp 3, CloudWatch alarm và kiểm thử end-to-end.
