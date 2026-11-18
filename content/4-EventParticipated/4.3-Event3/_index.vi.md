@@ -27,7 +27,7 @@ Chương trình đề cập các kiến trúc xây dựng hệ thống Voice AI,
 
 ### 2. Danh Sách Diễn Giả
 
-- **Kiệt Trần** – Reai – Diễn giả chính: kiến trúc Voice AI / Contact Center, Guardrails và demo trợ lý tuyển dụng AI
+- **Kiệt Trần** – Revve AI – Diễn giả chính: kiến trúc Voice AI / Contact Center, Guardrails và demo trợ lý tuyển dụng AI
 - **Ban tổ chức AWS Study Group** – Điều phối chương trình, hỏi đáp và mini-game
 
 ---
@@ -110,7 +110,7 @@ Mình tham gia trực tiếp buổi Meet Up từ 9 giờ đến 12 giờ trưa n
 
 **Học Hỏi Từ Diễn Giả**
 
-Anh Kiệt Trần (Reai) giải thích rõ các kiến trúc Voice AI và vì sao độ trễ là yếu tố quyết định trải nghiệm. Phần về Guardrails giúp mình hiểu rằng một trợ lý AI cần được kiểm soát nội dung trước khi nói với người dùng.
+Anh Kiệt Trần (Revve AI) giải thích rõ các kiến trúc Voice AI và vì sao độ trễ là yếu tố quyết định trải nghiệm. Phần về Guardrails giúp mình hiểu rằng một trợ lý AI cần được kiểm soát nội dung trước khi nói với người dùng.
 
 **Trải Nghiệm Demo Thực Tế**
 

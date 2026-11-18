@@ -27,7 +27,7 @@ The program covered architectures for Voice AI, the latency challenge in voice i
 
 ### 2. Speakers
 
-- **Kiet Tran** – Reai – Main speaker: Voice AI / Contact Center architecture, Guardrails and the AI recruiting assistant demo
+- **Kiet Tran** – Revve AI – Main speaker: Voice AI / Contact Center architecture, Guardrails and the AI recruiting assistant demo
 - **AWS Study Group organizers** – Hosted the program, Q&A and the closing mini-game
 
 ---
@@ -110,7 +110,7 @@ I attended the Meet Up in person from 9:00 AM to 12:00 PM on October 24, 2026 at
 
 **Learning from the Speaker**
 
-Mr. Kiet Tran (Reai) clearly explained Voice AI architectures and why latency decides the user experience. The Guardrails section helped me understand that an AI assistant must have its content controlled before it speaks to users.
+Mr. Kiet Tran (Revve AI) clearly explained Voice AI architectures and why latency decides the user experience. The Guardrails section helped me understand that an AI assistant must have its content controlled before it speaks to users.
 
 **Hands-on Demo Experience**
 
