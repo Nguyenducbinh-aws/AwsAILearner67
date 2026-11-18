@@ -1,6 +1,6 @@
 ---
 title: "AWS Cloud and AI Day"
-date: 2026-11-15
+date: 2026-09-29
 weight: 2
 chapter: false
 pre: " <b> 4.2. </b> "
@@ -10,7 +10,7 @@ pre: " <b> 4.2. </b> "
 
 | | |
 |---|---|
-| **Thời gian** | 08:30 – 17:00, ngày 02/10/2026 |
+| **Thời gian** | 08:30 – 17:00, ngày 29/09/2026 |
 | **Đơn vị tổ chức** | Amazon Web Services Viet Nam Company Limited |
 | **Địa điểm** | Tầng 26, tòa nhà Bitexco, số 02 đường Hải Triều, phường Sài Gòn, thành phố Hồ Chí Minh |
 | **Vai trò** | Người tham dự |

@@ -1,6 +1,6 @@
 ---
 title: "Buildrathon Kickoff: Code the Future with CMC Global"
-date: 2026-11-15
+date: 2026-09-26
 weight: 1
 chapter: false
 pre: " <b> 4.1. </b> "

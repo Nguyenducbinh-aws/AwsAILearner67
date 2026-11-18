@@ -1,6 +1,6 @@
 ---
 title: "AWS Cloud and AI Day"
-date: 2026-11-15
+date: 2026-09-29
 weight: 2
 chapter: false
 pre: " <b> 4.2. </b> "
@@ -10,7 +10,7 @@ pre: " <b> 4.2. </b> "
 
 | | |
 |---|---|
-| **Date & Time** | 08:30 – 17:00, October 2, 2026 |
+| **Date & Time** | 08:30 – 17:00, September 29, 2026 |
 | **Organizer** | Amazon Web Services Viet Nam Company Limited |
 | **Location** | 26th Floor, Bitexco Tower, No. 02 Hai Trieu Street, Saigon Ward, Ho Chi Minh City |
 | **Role** | Attendee |
