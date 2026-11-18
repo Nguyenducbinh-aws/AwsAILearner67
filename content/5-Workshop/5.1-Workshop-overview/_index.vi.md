@@ -12,7 +12,7 @@ pre: " <b> 5.1. </b> "
 
 ### Vấn đề cần giải quyết
 
-Máy Windows EC2 tính phí theo giờ. Một máy t3.medium chạy 24/7 tốn khoảng $46.20 mỗi tháng, vượt quá ngân sách credit $20 của dự án. AWS Budgets có cảnh báo chi phí, nhưng dữ liệu billing chỉ cập nhật vài lần mỗi ngày, nên không kịp dừng một máy bị quên.
+Máy Windows EC2 tính phí theo giờ. Một máy t3.medium chạy 24/7 tốn khoảng $46.22 mỗi tháng, vượt quá ngân sách credit $20 của dự án. AWS Budgets có cảnh báo chi phí, nhưng dữ liệu billing chỉ cập nhật vài lần mỗi ngày, nên không kịp dừng một máy bị quên.
 
 Workshop này xây dựng Cost Guard, hệ thống tự động dừng máy chỉ bằng các dịch vụ serverless thuần AWS.
 
@@ -34,9 +34,9 @@ Sau khi hoàn thành workshop, bạn sẽ có:
 Các số trong sơ đồ theo đúng thứ tự luồng:
 
 1. Người dùng lab bật EC2 Windows thủ công.
-2. Lớp 1: EventBridge Scheduler gọi `ScheduleHandler` khi hết giờ lab.
-3. Lớp 2: một EventBridge rule gọi `CostMeter` mỗi 5 phút.
-4. Lớp 3: cảnh báo của AWS Budgets đi qua SNS tới `BudgetBackstop`.
+2. Lớp 1: EventBridge Scheduler gọi ScheduleHandler khi hết giờ lab.
+3. Lớp 2: một lịch EventBridge Scheduler gọi CostMeter mỗi 5 phút.
+4. Lớp 3: cảnh báo của AWS Budgets đi qua SNS tới BudgetBackstop.
 5. Các hàm Lambda đọc đơn giá và ngưỡng, đọc hoặc ghi bản ghi phiên.
 6. Một hàm Lambda dừng EC2 (hết giờ lab, chi phí vượt ngưỡng, hoặc budget chạm hạn mức).
 7. SNS gửi email cảnh báo cho người dùng.
@@ -52,7 +52,7 @@ Các số trong sơ đồ theo đúng thứ tự luồng:
   - nếu tổng đạt ngưỡng (khoảng $14, tức 70% của $20) thì dừng instance, ghi sự kiện và gửi cảnh báo
   - nếu chưa đạt thì chỉ ghi lại ước tính
 - **Bật lại sau khi Lớp 2 dừng máy:** Tổng chi phí trong tháng vẫn trên ngưỡng, nên lần chạy kế tiếp lại dừng máy. Máy bị khóa đến tháng dương lịch tiếp theo.
-- **Lớp 3:** AWS Budgets theo dõi chi tiêu thực của tài khoản và thông báo ở mức 80% và 100% của $20. Mỗi thông báo kích hoạt `BudgetBackstop`, hàm này dừng instance và gửi email xác nhận. Dữ liệu billing bị trễ nên lớp này chỉ là lưới an toàn cuối cùng.
+- **Lớp 3:** AWS Budgets theo dõi chi tiêu thực của tài khoản và thông báo ở mức 80% và 100% của $20. Mỗi thông báo kích hoạt BudgetBackstop, hàm này dừng instance và gửi email xác nhận. Dữ liệu billing bị trễ nên lớp này chỉ là lưới an toàn cuối cùng.
 - **Các lớp không xung đột:** Lớp nào cũng dừng được máy, không lớp nào bật được máy, và dừng một máy đã dừng thì không có tác dụng.
 - **Khi một lớp lỗi:** Hai lớp còn lại vẫn hoạt động. Lỗi của hàm tạo CloudWatch alarm và gửi email.
 - **Phạm vi chi phí:** Ngưỡng của Lớp 2 chỉ tính chi phí chạy EC2. Ổ EBS ($2.40 mỗi tháng) tính riêng.

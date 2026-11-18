@@ -12,7 +12,7 @@ pre: " <b> 5.1. </b> "
 
 ### Problem Statement
 
-A Windows EC2 instance is billed by the hour. A t3.medium left running 24/7 costs about $46.20 per month, more than the $20 credit budget of this project. AWS Budgets can warn about cost, but its billing data refreshes only a few times per day, so it cannot stop a forgotten machine in time.
+A Windows EC2 instance is billed by the hour. A t3.medium left running 24/7 costs about $46.22 per month, more than the $20 credit budget of this project. AWS Budgets can warn about cost, but its billing data refreshes only a few times per day, so it cannot stop a forgotten machine in time.
 
 This workshop builds Cost Guard, which stops the machine automatically using only AWS-native serverless services.
 
@@ -34,9 +34,9 @@ By the end of this workshop you will have:
 The numbers in the diagram follow the order of the flow:
 
 1. The lab user starts the Windows EC2 instance manually.
-2. Layer 1: EventBridge Scheduler invokes `ScheduleHandler` when lab hours end.
-3. Layer 2: an EventBridge rule invokes `CostMeter` every 5 minutes.
-4. Layer 3: AWS Budgets alerts go through SNS to `BudgetBackstop`.
+2. Layer 1: EventBridge Scheduler invokes ScheduleHandler when lab hours end.
+3. Layer 2: an EventBridge Scheduler schedule invokes CostMeter every 5 minutes.
+4. Layer 3: AWS Budgets alerts go through SNS to BudgetBackstop.
 5. The Lambda functions read the price and threshold and read or write session records.
 6. A Lambda function stops EC2 (schedule ended, cost over threshold, or budget reached).
 7. SNS emails the alert to the user.
@@ -52,7 +52,7 @@ The numbers in the diagram follow the order of the flow:
   - if the total reaches the threshold (about $14, 70% of $20), stop the instance, record the event and send an alert
   - otherwise, only record the estimate
 - **Restarting after a Layer 2 stop:** The monthly total is still above the threshold, so the next run stops the instance again. The machine stays locked until the next calendar month.
-- **Layer 3:** AWS Budgets tracks the actual account spend and notifies at 80% and 100% of $20. Each notification triggers `BudgetBackstop`, which stops the instance and sends a confirmation email. Billing data is delayed, so this layer is only the last safety net.
+- **Layer 3:** AWS Budgets tracks the actual account spend and notifies at 80% and 100% of $20. Each notification triggers BudgetBackstop, which stops the instance and sends a confirmation email. Billing data is delayed, so this layer is only the last safety net.
 - **No conflict between layers:** Any layer can stop the machine, none can start it, and stopping a stopped machine does nothing.
 - **Failure of one layer:** The other two layers stay active. Function errors raise a CloudWatch alarm and an email.
 - **Cost scope:** The Layer 2 threshold covers EC2 running cost only. The EBS volume ($2.40 per month) is counted separately.
