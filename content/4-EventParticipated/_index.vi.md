@@ -17,6 +17,3 @@ Phần này liệt kê các sự kiện mình đã tham gia trong quá trình th
 ### [Sự kiện 3 – Buổi Meet Up Đầy Năng Lượng: First Cloud AI Journey](4.3-Event3/)
 09:00 – 12:00, ngày 24/10/2026
 
-### [Sự kiện 4 – Cloud Mastery FPT](4.4-Event4/)
-09:00 – 12:00, ngày 14/11/2026
-

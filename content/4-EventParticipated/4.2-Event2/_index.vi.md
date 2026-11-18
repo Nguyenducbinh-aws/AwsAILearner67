@@ -1,25 +1,25 @@
 ---
-title: "AWS Cloud and AI Day Hanoi"
+title: "AWS Cloud and AI Day"
 date: 2026-11-15
 weight: 2
 chapter: false
 pre: " <b> 4.2. </b> "
 ---
 
-### AWS Cloud and AI Day Hanoi
+### AWS Cloud and AI Day
 
 | | |
 |---|---|
 | **Thời gian** | 08:30 – 17:00, ngày 02/10/2026 |
 | **Đơn vị tổ chức** | Amazon Web Services Viet Nam Company Limited |
-| **Địa điểm** | Hà Nội |
+| **Địa điểm** | Tầng 26, tòa nhà Bitexco, số 02 đường Hải Triều, phường Sài Gòn, thành phố Hồ Chí Minh |
 | **Vai trò** | Người tham dự |
 
 ---
 
 ### 1. Mục Đích Của Sự Kiện
 
-Sự kiện AWS Cloud and AI Day Hanoi được tổ chức nhằm mang đến cho người tham gia những góc nhìn mới nhất về xu hướng phát triển của Cloud Computing và Artificial Intelligence (AI), đồng thời giới thiệu những giải pháp công nghệ đang được ứng dụng trong thực tế tại Việt Nam và trên thế giới.
+Sự kiện AWS Cloud and AI Day được tổ chức nhằm mang đến cho người tham gia những góc nhìn mới nhất về xu hướng phát triển của Cloud Computing và Artificial Intelligence (AI), đồng thời giới thiệu những giải pháp công nghệ đang được ứng dụng trong thực tế tại Việt Nam và trên thế giới.
 
 Thông qua các phiên keynote, talkshow và chia sẻ chuyên sâu từ những chuyên gia trong ngành, chương trình giúp người tham gia hiểu rõ hơn về vai trò của hạ tầng số, điện toán đám mây, Generative AI và Agentic AI trong quá trình chuyển đổi số của doanh nghiệp.
 
@@ -131,7 +131,7 @@ Bên cạnh đó, sự kiện còn tập trung vào những vấn đề quan tr�
 
 ### 6. Trải Nghiệm Trong Event
 
-Tham gia sự kiện AWS Cloud and AI Day Hanoi là một trải nghiệm học hỏi rất hữu ích. Chương trình mang đến nhiều nội dung chuyên sâu về Cloud, AI và xu hướng công nghệ trong doanh nghiệp.
+Tham gia sự kiện AWS Cloud and AI Day là một trải nghiệm học hỏi rất hữu ích. Chương trình mang đến nhiều nội dung chuyên sâu về Cloud, AI và xu hướng công nghệ trong doanh nghiệp.
 
 Phần keynote của **Dr. Werner Vogels** về Invisible Engineering để lại ấn tượng sâu sắc — những câu chuyện về Dynamo, Nitro và Serverless cho thấy phía sau một dịch vụ ổn định là rất nhiều cải tiến kỹ thuật liên tục.
 
@@ -153,7 +153,7 @@ Thông điệp **"Now go build"** của Dr. Werner Vogels là lời nhắc để
 
 ### 8. Một Số Hình Ảnh Khi Tham Gia Sự Kiện
 
-![Ảnh check-in AWS Cloud and AI Day Hanoi](/images/4-EventParticipated/4.2-Event2/checkin.jpg)
+![Ảnh check-in AWS Cloud and AI Day](/images/4-EventParticipated/4.2-Event2/checkin.jpg)
 
 ![Phiên AWS Security Agent – Proactive AppSec](/images/4-EventParticipated/4.2-Event2/session-security.jpg)
 

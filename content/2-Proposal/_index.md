@@ -81,19 +81,6 @@ The system runs in a single AWS Region (US East, N. Virginia) and uses only serv
 - **Data:** A DynamoDB table that logs instance start and stop events and the periodic cost estimate of each session.
 - **Security:** Each Lambda function has its own IAM role, and its stop permission is limited to the target instance.
 
-**Business Logic**
-
-- **Starting the machine:** The lab user starts the instance manually. No layer starts it automatically, so no credit is spent while nobody is working.
-- **Layer 1 rule:** Every day at 22:00 (Asia/Ho_Chi_Minh), if the instance is running, stop it. If it is already stopped, do nothing.
-- **Layer 2 rule:** Every 5 minutes, if the instance is running, estimate the cost of the current session (running hours × hourly price) and add the estimated cost of earlier sessions in the same calendar month. If the total reaches the threshold (about $14, 70% of the $20 budget), stop the instance, record the event and send an alert. Otherwise, only record the estimate. If the instance is stopped, do nothing.
-- **Restarting after a Layer 2 stop:** The monthly total is still above the threshold, so the next run stops the instance again within 5 minutes. The machine is effectively locked until the next calendar month, when the count starts again.
-- **Layer 3 rule:** AWS Budgets tracks the actual spend of the account and sends a notification at 80% and at 100% of the $20 limit. Each notification triggers BudgetBackstop, which stops the instance and sends a confirmation email. Billing data refreshes only a few times per day, so this layer is slow by design and acts only as the last safety net.
-- **Order of protection:** Layer 1 is fixed by time, Layer 2 reacts within minutes, and Layer 3 follows actual billing. Any layer can stop the machine, none can start it, and stopping an already stopped machine does nothing, so the layers do not conflict.
-- **Notifications:** Every automatic stop sends one email through the alerts topic. Function errors raise a CloudWatch alarm and an email through the errors topic.
-- **Failure behavior:** If one layer fails, the other two stay active, so a single failure does not leave the machine unprotected.
-- **Cost scope:** The Layer 2 threshold covers the EC2 running cost only. The EBS volume ($2.40 per month) is a fixed cost counted separately in the budget.
-- **Configuration:** The hourly price, the threshold and the budget limit are values in Parameter Store. Changing them takes effect on the next run without redeploying.
-
 **Well-Architected Considerations**
 
 - **Operational Excellence:** Lambda logs, CloudWatch alarms on function errors, SNS emails and the DynamoDB session record show what the system did and why.

@@ -12,7 +12,7 @@ pre: " <b> 4.1. </b> "
 |---|---|
 | **Date & Time** | 09:00 – 12:00, September 26, 2026 |
 | **Organizer** | Amazon Web Services Viet Nam Company Limited |
-| **Location** | 26th Floor, Bitexco Tower, 02 Hai Trieu Street, Saigon Ward, Ho Chi Minh City |
+| **Location** | 26th Floor, Bitexco Tower, No. 02 Hai Trieu Street, Saigon Ward, Ho Chi Minh City |
 | **Role** | Attendee |
 
 ---

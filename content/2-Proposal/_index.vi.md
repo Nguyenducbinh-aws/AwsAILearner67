@@ -81,19 +81,6 @@ Hệ thống chạy trong một AWS Region (US East, N. Virginia) và chỉ dùn
 - **Dữ liệu:** Bảng DynamoDB ghi sự kiện bật/tắt máy và ước tính chi phí định kỳ của từng phiên.
 - **Bảo mật:** Mỗi hàm Lambda có IAM role riêng, quyền dừng máy chỉ giới hạn cho instance đích.
 
-**Business logic**
-
-- **Bật máy:** Người dùng lab bật instance thủ công. Không lớp nào tự động bật máy, nên không tốn credit khi không có ai làm việc.
-- **Quy tắc Lớp 1:** Mỗi ngày lúc 22:00 (Asia/Ho_Chi_Minh), nếu instance đang chạy thì dừng. Nếu đã dừng thì không làm gì.
-- **Quy tắc Lớp 2:** Cứ 5 phút một lần, nếu instance đang chạy thì ước tính chi phí của phiên hiện tại (số giờ chạy × đơn giá theo giờ) rồi cộng với chi phí ước tính của các phiên trước trong cùng tháng dương lịch. Nếu tổng đạt ngưỡng (khoảng $14, tức 70% của ngân sách $20) thì dừng instance, ghi sự kiện và gửi cảnh báo. Nếu chưa đạt thì chỉ ghi lại ước tính. Nếu instance đã dừng thì không làm gì.
-- **Bật lại sau khi Lớp 2 dừng máy:** Tổng chi phí trong tháng vẫn trên ngưỡng, nên lần chạy kế tiếp (trong vòng 5 phút) sẽ dừng máy lại. Máy bị khóa cho đến tháng dương lịch tiếp theo, khi bộ đếm bắt đầu lại.
-- **Quy tắc Lớp 3:** AWS Budgets theo dõi chi tiêu thực của tài khoản và gửi thông báo ở mức 80% và 100% hạn mức $20. Mỗi thông báo kích hoạt BudgetBackstop, hàm này dừng instance và gửi email xác nhận. Dữ liệu billing chỉ cập nhật vài lần mỗi ngày nên lớp này chậm theo thiết kế và chỉ làm lưới an toàn cuối cùng.
-- **Thứ tự bảo vệ:** Lớp 1 cố định theo giờ, Lớp 2 phản ứng trong vài phút, Lớp 3 theo billing thực. Lớp nào cũng dừng được máy, không lớp nào bật được máy, và dừng một máy đã dừng thì không có tác dụng, nên các lớp không xung đột với nhau.
-- **Thông báo:** Mỗi lần dừng tự động gửi một email qua topic cảnh báo. Lỗi của hàm tạo CloudWatch alarm và gửi email qua topic lỗi.
-- **Khi một lớp lỗi:** Hai lớp còn lại vẫn hoạt động, nên một lỗi đơn lẻ không để máy mất bảo vệ.
-- **Phạm vi chi phí:** Ngưỡng của Lớp 2 chỉ tính chi phí chạy EC2. Ổ EBS ($2.40 mỗi tháng) là chi phí cố định, tính riêng trong ngân sách.
-- **Cấu hình:** Đơn giá theo giờ, ngưỡng và hạn mức ngân sách là các giá trị trong Parameter Store. Đổi giá trị có hiệu lực từ lần chạy kế tiếp, không cần deploy lại.
-
 **Các cân nhắc theo Well-Architected**
 
 - **Operational Excellence:** Log Lambda, CloudWatch alarm cho lỗi hàm, email SNS và bản ghi phiên trong DynamoDB cho biết hệ thống đã làm gì và vì sao.

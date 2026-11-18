@@ -6,129 +6,130 @@ chapter: false
 pre: " <b> 4.3. </b> "
 ---
 
-# Bài thu hoạch "BUỔI MEET UP ĐẦY NĂNG LƯỢNG: FIRST CLOUD AI JOURNEY"
+### Buổi Meet Up Đầy Năng Lượng: First Cloud AI Journey
 
 | | |
 |---|---|
 | **Thời gian** | 09:00 – 12:00, ngày 24/10/2026 |
 | **Đơn vị tổ chức** | AWS Study Group |
-| **Địa điểm** | Tầng 26, Tòa nhà Bitexco, 02 Hải Triều, Phường Sài Gòn, TP. Hồ Chí Minh |
+| **Địa điểm** | Tầng 26, tòa nhà Bitexco, số 02 đường Hải Triều, phường Sài Gòn, thành phố Hồ Chí Minh |
 | **Vai trò** | Người tham dự |
 
 ---
 
-### Mục Đích Của Sự Kiện
+### 1. Mục Đích Của Sự Kiện
 
-- Tìm hiểu tiềm năng của Voice AI và các mô hình hội thoại thời gian thực (real-time Voice AI)
-- Hiểu các kiến trúc xây dựng hệ thống Voice AI và bài toán độ trễ trong giao tiếp
-- Tìm hiểu cách kiểm duyệt nội dung (Guardrails) trước khi AI trả lời bằng giọng nói
-- Xem demo trợ lý tuyển dụng AI tự động gọi điện sơ tuyển ứng viên
+Buổi Meet Up First Cloud AI Journey tìm hiểu tiềm năng của Voice AI và các mô hình hội thoại thời gian thực, cũng như cách xây dựng những hệ thống trò chuyện với con người bằng giọng nói.
+
+Chương trình đề cập các kiến trúc xây dựng hệ thống Voice AI, bài toán độ trễ trong giao tiếp, và cách kiểm duyệt nội dung (Guardrails) trước khi AI trả lời bằng giọng nói. Buổi sự kiện còn có phần demo trợ lý tuyển dụng AI tự động gọi điện sơ tuyển ứng viên.
 
 ---
 
-### Danh Sách Diễn Giả
+### 2. Danh Sách Diễn Giả
 
 - **Kiệt Trần** – Reai – Diễn giả chính: kiến trúc Voice AI / Contact Center, Guardrails và demo trợ lý tuyển dụng AI
 - **Ban tổ chức AWS Study Group** – Điều phối chương trình, hỏi đáp và mini-game
 
 ---
 
-### Nội Dung Nổi Bật
+### 3. Nội Dung Nổi Bật
 
-#### Độ trễ trong giao tiếp bằng giọng nói
+**Độ Trễ Trong Giao Tiếp Bằng Giọng Nói**
 
-- Trong hội thoại tự nhiên giữa người với người, thời gian phản hồi lý tưởng khoảng **200 ms**
-- Hệ thống Voice AI cần phản hồi đủ nhanh để người nghe không thấy khó chịu
+- Trong hội thoại tự nhiên giữa người với người, thời gian phản hồi lý tưởng khoảng **200 ms**.
+- Hệ thống Voice AI cần phản hồi đủ nhanh để người nghe không thấy khó chịu.
 
-#### 3 mô hình kiến trúc Voice AI
+**Ba Mô Hình Kiến Trúc Voice AI**
 
-- **Cascade (STT → LLM → TTS):** chuyển giọng nói thành văn bản, LLM xử lý và trả lời, rồi chuyển văn bản thành giọng nói
-  - Ưu điểm: linh hoạt, dễ thay từng module
-  - Nhược điểm: độ trễ cộng dồn qua các bước tuần tự, có thể vượt 500 ms – 1 giây
-- **Speech-to-Speech thế hệ cũ:** chuyển trực tiếp âm thanh vào thành âm thanh ra
-  - Ưu điểm: rất nhanh
-  - Nhược điểm: chỉ phù hợp tác vụ đơn giản, khó kiểm soát logic ngữ nghĩa sâu
-- **Full Speech-to-Speech thế hệ mới:** kết hợp khả năng hiểu của LLM với mô hình âm thanh đa phương thức, giảm độ trễ và giữ được cảm xúc, ngữ điệu tự nhiên
+- **Cascade (STT → LLM → TTS):** chuyển giọng nói thành văn bản, LLM xử lý và trả lời, rồi chuyển văn bản thành giọng nói.
+  - Ưu điểm: linh hoạt, dễ thay từng module.
+  - Nhược điểm: độ trễ cộng dồn qua các bước tuần tự, có thể vượt 500 ms – 1 giây.
+- **Speech-to-Speech thế hệ cũ:** chuyển trực tiếp âm thanh vào thành âm thanh ra.
+  - Ưu điểm: rất nhanh.
+  - Nhược điểm: chỉ phù hợp tác vụ đơn giản, khó kiểm soát logic ngữ nghĩa sâu.
+- **Full Speech-to-Speech thế hệ mới:** kết hợp khả năng hiểu của LLM với mô hình âm thanh đa phương thức, giảm độ trễ và giữ được cảm xúc, ngữ điệu tự nhiên.
 
-#### Tích hợp vào Contact Center
+**Tích Hợp Vào Contact Center**
 
-- Thách thức khi nối các mô hình AI với hạ tầng tổng đài sẵn có (SIP trunking, WebRTC, telephony)
+- Thách thức khi nối các mô hình AI với hạ tầng tổng đài sẵn có (SIP trunking, WebRTC, telephony).
 
-#### Guardrails trong Voice AI
+**Guardrails Trong Voice AI**
 
-- Nội dung do LLM tạo ra cần được kiểm duyệt **trước khi** chuyển thành giọng nói
-- Mục tiêu: ngăn ảo giác (hallucination), nội dung nhạy cảm, sai lệch chính sách doanh nghiệp, thông tin độc hại
-- Thiết lập nhiều tầng bảo vệ (safety layers) trên AWS để trợ lý luôn đi đúng kịch bản kinh doanh
+- Nội dung do LLM tạo ra cần được kiểm duyệt **trước khi** chuyển thành giọng nói.
+- Mục tiêu: ngăn ảo giác (hallucination), nội dung nhạy cảm, sai lệch chính sách doanh nghiệp, thông tin độc hại.
+- Thiết lập nhiều tầng bảo vệ (safety layers) trên AWS để trợ lý luôn đi đúng kịch bản kinh doanh.
 
-#### Demo trợ lý tuyển dụng AI "Mai"
+**Demo Trợ Lý Tuyển Dụng AI "Mai"**
 
-- Kịch bản: trợ lý "Mai" đại diện công ty "Mê Xanh" gọi điện sơ tuyển ứng viên vị trí **AWS Cloud Engineer**
-- Luồng xử lý: tự động quay số → nhận diện giọng nói ứng viên → LLM phân tích câu trả lời theo tiêu chí tuyển dụng → sinh câu hỏi tiếp theo theo thời gian thực → lưu kết quả vào CRM/Database
-- Trong demo, AI hỏi về kinh nghiệm với AWS (EC2, S3, IAM, Lambda) và mức độ sẵn sàng làm việc, rồi kết thúc cuộc gọi lịch sự
-- Sau cuộc gọi có log transcript, điểm đánh giá kỹ năng sơ bộ và báo cáo gửi cho đội nhân sự
+- Kịch bản: trợ lý "Mai" đại diện công ty "Mê Xanh" gọi điện sơ tuyển ứng viên vị trí **AWS Cloud Engineer**.
+- Luồng xử lý: tự động quay số → nhận diện giọng nói ứng viên → LLM phân tích câu trả lời theo tiêu chí tuyển dụng → sinh câu hỏi tiếp theo theo thời gian thực → lưu kết quả vào CRM/Database.
+- Trong demo, AI hỏi về kinh nghiệm với AWS (EC2, S3, IAM, Lambda) và mức độ sẵn sàng làm việc, rồi kết thúc cuộc gọi lịch sự.
+- Sau cuộc gọi có log transcript, điểm đánh giá kỹ năng sơ bộ và báo cáo gửi cho đội nhân sự.
 
-#### Thảo luận kỹ thuật
+**Thảo Luận Kỹ Thuật**
 
-- Lựa chọn SDK/công cụ cho luồng âm thanh thời gian thực
-- So sánh chi phí vận hành giữa các mô hình LLM và dịch vụ chuyển đổi giọng nói
-- Quản lý trạng thái hội thoại trong cuộc gọi dài, phức tạp
-- Kết nối AI agent với hệ thống backend doanh nghiệp qua Function Calling / Tool Use
+- Lựa chọn SDK/công cụ cho luồng âm thanh thời gian thực.
+- So sánh chi phí vận hành giữa các mô hình LLM và dịch vụ chuyển đổi giọng nói.
+- Quản lý trạng thái hội thoại trong cuộc gọi dài, phức tạp.
+- Kết nối AI agent với hệ thống backend doanh nghiệp qua Function Calling / Tool Use.
 
 ---
 
-### Những Gì Học Được
+### 4. Những Gì Học Được
 
 **Tư Duy Thiết Kế**
 
-- Bài toán Voice AI bắt đầu từ **độ trễ** và **trải nghiệm người nghe**, rồi mới đến lựa chọn công nghệ
-- Mỗi mô hình kiến trúc đều có đánh đổi giữa tốc độ, độ linh hoạt và khả năng kiểm soát
-- Guardrails là một tầng bắt buộc, không phải phần thêm vào sau
+- **Bắt đầu từ trải nghiệm người nghe:** Bài toán Voice AI bắt đầu từ **độ trễ** và **trải nghiệm người nghe**, rồi mới đến lựa chọn công nghệ.
+- **Đánh đổi trong mỗi kiến trúc:** Mỗi mô hình đều cân bằng giữa tốc độ, độ linh hoạt và khả năng kiểm soát.
+- **Guardrails là bắt buộc:** Đây là một tầng cần có, không phải phần thêm vào sau.
 
 **Kiến Trúc Kỹ Thuật**
 
-- Hiểu luồng STT → LLM → TTS và vì sao độ trễ cộng dồn
-- Hiểu vai trò của function calling / tool use khi AI agent cần làm việc với hệ thống thật
-- Biết các vấn đề cần tính khi đưa Voice AI vào tổng đài: telephony, quản lý trạng thái hội thoại, chi phí
+- **Độ trễ cộng dồn:** Hiểu luồng STT → LLM → TTS và vì sao độ trễ cộng dồn.
+- **Function calling / tool use:** Hiểu vai trò của nó khi AI agent cần làm việc với hệ thống thật.
+- **Vấn đề của tổng đài:** Biết các điểm cần tính khi đưa Voice AI vào tổng đài: telephony, quản lý trạng thái hội thoại và chi phí.
 
 **Ứng Dụng Thực Tế**
 
-- Thấy một quy trình nghiệp vụ (sơ tuyển ứng viên) được tự động hóa từ đầu đến cuối bằng AI agent
-- Thấy cách kết quả cuộc gọi được lưu lại và báo cáo để con người ra quyết định
+- **Tự động hóa từ đầu đến cuối:** Thấy một quy trình nghiệp vụ (sơ tuyển ứng viên) được AI agent tự động hóa trọn vẹn.
+- **Con người quyết định cuối cùng:** Thấy cách kết quả cuộc gọi được lưu lại và báo cáo để con người ra quyết định.
 
 ---
 
-### Ứng Dụng Vào Công Việc
+### 5. Ứng Dụng Vào Công Việc
 
-- Dùng tư duy **kiểm duyệt trước khi phản hồi** khi thiết kế các ứng dụng có AI: cân nhắc Guardrails ngay từ đầu
-- Khi học tiếp các dịch vụ AWS, chú ý ước tính **chi phí** của các thành phần AI (mô hình, chuyển đổi giọng nói) trước khi triển khai
-- Tìm hiểu thêm về function calling / tool use để hiểu cách AI agent kết nối với hệ thống backend
+- **Kiểm duyệt trước khi phản hồi:** Dùng tư duy này khi thiết kế các ứng dụng có AI và cân nhắc Guardrails ngay từ đầu.
+- **Ước tính chi phí sớm:** Khi học tiếp các dịch vụ AWS, chú ý ước tính **chi phí** của các thành phần AI (mô hình, chuyển đổi giọng nói) trước khi triển khai.
+- **Hiểu cách agent kết nối hệ thống:** Tìm hiểu thêm về function calling / tool use để biết cách AI agent kết nối với hệ thống backend.
 
 ---
 
-### Trải Nghiệm Trong Event
+### 6. Trải Nghiệm Trong Event
 
-Tôi tham gia trực tiếp buổi **BUỔI MEET UP ĐẦY NĂNG LƯỢNG: FIRST CLOUD AI JOURNEY** từ 9 giờ đến 12 giờ trưa ngày 24/10/2026 tại Tầng 26, tòa nhà Bitexco, do cộng đồng AWS Study Group tổ chức. Chủ đề chính của buổi là Voice AI và Agentic AI trong Contact Center.
+Mình tham gia trực tiếp buổi Meet Up từ 9 giờ đến 12 giờ trưa ngày 24/10/2026 tại Tầng 26, tòa nhà Bitexco, do cộng đồng AWS Study Group tổ chức. Chủ đề chính của buổi là Voice AI và Agentic AI trong Contact Center.
 
-**Học hỏi từ diễn giả**
+**Học Hỏi Từ Diễn Giả**
 
 Anh Kiệt Trần (Reai) giải thích rõ các kiến trúc Voice AI và vì sao độ trễ là yếu tố quyết định trải nghiệm. Phần về Guardrails giúp mình hiểu rằng một trợ lý AI cần được kiểm soát nội dung trước khi nói với người dùng.
 
-**Trải nghiệm demo thực tế**
+**Trải Nghiệm Demo Thực Tế**
 
 Được xem trực tiếp trợ lý tuyển dụng "Mai" gọi điện sơ tuyển ứng viên và nhìn thấy kết quả được ghi lại, chấm điểm sơ bộ. Phần thảo luận kỹ thuật giúp mình biết các vấn đề thực tế khi xây dựng Voice AI như chi phí, quản lý trạng thái hội thoại và kết nối hệ thống backend.
 
-**Kết nối và trao đổi**
+**Kết Nối Và Trao Đổi**
 
 Phần hỏi đáp và mini-game cuối buổi giúp ôn lại kiến thức về dịch vụ AWS, mô hình ngôn ngữ và kiến trúc hội thoại.
 
-**Bài học rút ra**
+---
 
-- AI agent chỉ hữu ích trong thực tế khi được kiểm soát (Guardrails) và nối được với hệ thống nghiệp vụ.
-- Cần cân bằng giữa độ trễ, chi phí và khả năng kiểm soát khi chọn kiến trúc Voice AI.
+### 7. Bài Học Rút Ra
+
+- **AI có kiểm soát mới hữu ích:** AI agent chỉ hữu ích trong thực tế khi được kiểm soát (Guardrails) và nối được với hệ thống nghiệp vụ.
+- **Cân bằng là một phần của thiết kế:** Cần cân bằng giữa độ trễ, chi phí và khả năng kiểm soát khi chọn kiến trúc Voice AI.
+- **Bắt đầu từ người dùng:** Lựa chọn công nghệ xuất phát từ trải nghiệm người nghe, không phải ngược lại.
 
 ---
 
-### Một Số Hình Ảnh Khi Tham Gia Sự Kiện
+### 8. Một Số Hình Ảnh Khi Tham Gia Sự Kiện
 
 ![Ảnh check-in tại sự kiện](/images/4-EventParticipated/4.3-Event3/checkin.jpg)
-

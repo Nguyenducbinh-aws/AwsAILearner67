@@ -17,5 +17,3 @@ This section lists the events I participated in during my internship at Amazon W
 ### [Event 3 – First Cloud AI Journey – Energetic Meet Up](4.3-Event3/)
 09:00 – 12:00, October 24, 2026
 
-### [Event 4 – Cloud Mastery FPT](4.4-Event4/)
-09:00 – 12:00, November 14, 2026

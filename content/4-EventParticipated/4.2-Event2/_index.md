@@ -1,25 +1,25 @@
 ---
-title: "AWS Cloud and AI Day Hanoi"
+title: "AWS Cloud and AI Day"
 date: 2026-11-15
 weight: 2
 chapter: false
 pre: " <b> 4.2. </b> "
 ---
 
-### AWS Cloud and AI Day Hanoi
+### AWS Cloud and AI Day
 
 | | |
 |---|---|
 | **Date & Time** | 08:30 – 17:00, October 2, 2026 |
 | **Organizer** | Amazon Web Services Viet Nam Company Limited |
-| **Location** | Hanoi |
+| **Location** | 26th Floor, Bitexco Tower, No. 02 Hai Trieu Street, Saigon Ward, Ho Chi Minh City |
 | **Role** | Attendee |
 
 ---
 
 ### 1. Purpose of the Event
 
-AWS Cloud and AI Day Hanoi brought together the latest perspectives on Cloud Computing and AI trends, showcasing technology solutions being applied in Vietnam and globally.
+AWS Cloud and AI Day brought together the latest perspectives on Cloud Computing and AI trends, showcasing technology solutions being applied in Vietnam and globally.
 
 Through keynote sessions, talkshows, and expert deep-dives, the program covered digital infrastructure, Generative AI, Agentic AI, security, automated testing, AI governance, and AI-driven software development methodologies.
 
@@ -102,7 +102,7 @@ Through keynote sessions, talkshows, and expert deep-dives, the program covered 
 
 ### 5. Photos
 
-![Check-in at AWS Cloud and AI Day Hanoi](/images/4-EventParticipated/4.2-Event2/checkin.jpg)
+![Check-in at AWS Cloud and AI Day](/images/4-EventParticipated/4.2-Event2/checkin.jpg)
 
 ![Session: AWS Security Agent – Proactive AppSec](/images/4-EventParticipated/4.2-Event2/session-security.jpg)
 
