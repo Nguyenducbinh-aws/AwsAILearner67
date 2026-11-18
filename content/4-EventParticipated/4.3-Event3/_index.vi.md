@@ -132,4 +132,10 @@ Phần hỏi đáp và mini-game cuối buổi giúp ôn lại kiến thức v�
 
 ### 8. Một Số Hình Ảnh Khi Tham Gia Sự Kiện
 
-![Ảnh check-in tại sự kiện](/images/4-EventParticipated/4.3-Event3/checkin.jpg)
+![Ảnh check-in tại sự kiện](../../../images/4-EventParticipated/4.3-Event3/checkin.jpg)
+
+![Phiên Hear, Think, Speak – Xây dựng contact center Voice AI tiếng Việt trên AWS](../../../images/4-EventParticipated/4.3-Event3/session.jpg)
+
+![Slide của phiên: Why contact centers, why now](../../../images/4-EventParticipated/4.3-Event3/session-contact-center.jpg)
+
+![Ảnh chụp chung của người tham dự](../../../images/4-EventParticipated/4.3-Event3/group.jpg)

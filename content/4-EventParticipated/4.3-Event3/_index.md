@@ -132,4 +132,10 @@ The Q&A and the closing mini-game reviewed AWS services, language models and con
 
 ### 8. Photos
 
-![Check-in at the event](/images/4-EventParticipated/4.3-Event3/checkin.jpg)
+![Check-in at the event](../../images/4-EventParticipated/4.3-Event3/checkin.jpg)
+
+![Session: Hear, Think, Speak – Building a Vietnamese voice-AI contact center on AWS](../../images/4-EventParticipated/4.3-Event3/session.jpg)
+
+![Session slide: Why contact centers, why now](../../images/4-EventParticipated/4.3-Event3/session-contact-center.jpg)
+
+![Group photo of the participants](../../images/4-EventParticipated/4.3-Event3/group.jpg)

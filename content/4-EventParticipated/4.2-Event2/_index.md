@@ -149,10 +149,10 @@ The message **"Now go build"** from Dr. Werner Vogels is a reminder not to stop 
 
 ### 8. Photos
 
-![Check-in at AWS Cloud and AI Day](/images/4-EventParticipated/4.2-Event2/checkin.jpg)
+![Check-in at AWS Cloud and AI Day](../../images/4-EventParticipated/4.2-Event2/checkin.jpg)
 
-![Session: AWS Security Agent – Proactive AppSec](/images/4-EventParticipated/4.2-Event2/session-security.jpg)
+![Session: AWS Security Agent – Proactive AppSec](../../images/4-EventParticipated/4.2-Event2/session-security.jpg)
 
-![Session: Adopt Agentic AI Without Losing Control](/images/4-EventParticipated/4.2-Event2/session-agentic.jpg)
+![Session: Adopt Agentic AI Without Losing Control](../../images/4-EventParticipated/4.2-Event2/session-agentic.jpg)
 
-![Session: From Sprints to AI-Native Delivery – TCBS](/images/4-EventParticipated/4.2-Event2/session-tcbs.jpg)
+![Session: From Sprints to AI-Native Delivery – TCBS](../../images/4-EventParticipated/4.2-Event2/session-tcbs.jpg)

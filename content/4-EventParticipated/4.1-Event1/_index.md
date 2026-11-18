@@ -114,8 +114,10 @@ The 1-on-1 career consulting with CMC Global's Recruitment team was genuinely va
 
 ### 8. Photos
 
-![Check-in at the event](/images/4-EventParticipated/4.1-Event1/checkin.jpg)
+![Check-in at the Kickoff](../../images/4-EventParticipated/4.1-Event1/checkin.jpg)
 
-![Event sharing session](/images/4-EventParticipated/4.1-Event1/session.jpg)
+![Session: Triage Bot – From a triage idea to production](../../images/4-EventParticipated/4.1-Event1/session.jpg)
 
+![Group photo of the participants](../../images/4-EventParticipated/4.1-Event1/group.jpg)
 
+![The audience during the program](../../images/4-EventParticipated/4.1-Event1/audience.jpg)

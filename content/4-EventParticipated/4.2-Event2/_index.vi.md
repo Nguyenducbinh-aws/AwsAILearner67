@@ -153,12 +153,12 @@ Thông điệp **"Now go build"** của Dr. Werner Vogels là lời nhắc để
 
 ### 8. Một Số Hình Ảnh Khi Tham Gia Sự Kiện
 
-![Ảnh check-in AWS Cloud and AI Day](/images/4-EventParticipated/4.2-Event2/checkin.jpg)
+![Ảnh check-in AWS Cloud and AI Day](../../../images/4-EventParticipated/4.2-Event2/checkin.jpg)
 
-![Phiên AWS Security Agent – Proactive AppSec](/images/4-EventParticipated/4.2-Event2/session-security.jpg)
+![Phiên AWS Security Agent – Proactive AppSec](../../../images/4-EventParticipated/4.2-Event2/session-security.jpg)
 
-![Phiên Adopt Agentic AI Without Losing Control](/images/4-EventParticipated/4.2-Event2/session-agentic.jpg)
+![Phiên Adopt Agentic AI Without Losing Control](../../../images/4-EventParticipated/4.2-Event2/session-agentic.jpg)
 
-![Phiên From Sprints to AI-Native Delivery – TCBS](/images/4-EventParticipated/4.2-Event2/session-tcbs.jpg)
+![Phiên From Sprints to AI-Native Delivery – TCBS](../../../images/4-EventParticipated/4.2-Event2/session-tcbs.jpg)
 
 

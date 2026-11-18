@@ -114,8 +114,10 @@ Hoạt động tư vấn 1-1 của Phòng Tuyển dụng CMC Global rất có gi
 
 ### 8. Một Số Hình Ảnh Khi Tham Gia Sự Kiện
 
-![Ảnh check-in tại sự kiện](/images/4-EventParticipated/4.1-Event1/checkin.jpg)
+![Ảnh check-in tại buổi Kickoff](../../../images/4-EventParticipated/4.1-Event1/checkin.jpg)
 
-![Phiên chia sẻ tại sự kiện](/images/4-EventParticipated/4.1-Event1/session.jpg)
+![Phiên Triage Bot – From a triage idea to production](../../../images/4-EventParticipated/4.1-Event1/session.jpg)
 
+![Ảnh chụp chung của người tham dự](../../../images/4-EventParticipated/4.1-Event1/group.jpg)
 
+![Người tham dự trong chương trình](../../../images/4-EventParticipated/4.1-Event1/audience.jpg)
