@@ -157,8 +157,6 @@ The internal threshold of Layer 2 is set at about 70% of the budget ($14). At $0
 - Budgets data arriving late or being misread, because billing data refreshes only a few times per day: high impact, high probability (by design).
 - Layer 2 estimate diverging from the actual bill: medium impact, medium probability.
 - A Lambda function stopping the wrong instance because of a misconfigured IAM role: high impact, low probability.
-- Falling behind schedule, with about four weeks left before 14/12 and the demo, workshop and blogs still to finish: medium impact, medium probability.
-- The account ID or a key being exposed in a screenshot: medium impact, low probability.
 
 **Mitigation Strategies**
 
@@ -169,13 +167,11 @@ The internal threshold of Layer 2 is set at about 70% of the budget ($14). At $0
 - Budgets delay: treat Layer 3 only as the last safety net, and rely on Layer 2 for fast reaction.
 - Estimate drift: set the threshold below the budget and compare the estimate with Cost Explorer at the end of the project.
 - Wrong instance: each Lambda role can stop only the target instance.
-- Schedule delay: write the workshop while building each layer, and build the layers in order of importance.
-- Exposed information: blur the account ID and any key in every screenshot before publishing.
 
 **Contingency Plans**
 
 - If a Lambda layer fails, stop the instance manually from the AWS Console and disable the EventBridge schedules.
-- If the credit runs out during the project, terminate the Windows instance immediately and finish the documentation with the screenshots already captured.
+- If the credit runs out during the project, terminate the Windows instance immediately.
 - If the $20 budget is not enough, reduce the daily lab hours or switch to a smaller instance type and update the estimate.
 
 ### 8. Expected Outcomes

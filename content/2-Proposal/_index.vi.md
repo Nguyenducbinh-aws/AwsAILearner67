@@ -157,8 +157,6 @@ Ngưỡng nội bộ của Lớp 2 đặt ở khoảng 70% ngân sách ($14). V�
 - Dữ liệu Budgets đến trễ hoặc bị hiểu sai, vì dữ liệu billing chỉ cập nhật vài lần mỗi ngày: tác động cao, xác suất cao (theo thiết kế).
 - Ước tính của Lớp 2 lệch so với hóa đơn thật: tác động trung bình, xác suất trung bình.
 - Một hàm Lambda dừng nhầm instance do cấu hình IAM role sai: tác động cao, xác suất thấp.
-- Trễ tiến độ, khi chỉ còn khoảng bốn tuần đến 14/12 mà còn demo, workshop và blog phải hoàn thành: tác động trung bình, xác suất trung bình.
-- Lộ account ID hoặc khóa trong ảnh chụp màn hình: tác động trung bình, xác suất thấp.
 
 **Chiến lược giảm thiểu**
 
@@ -169,13 +167,11 @@ Ngưỡng nội bộ của Lớp 2 đặt ở khoảng 70% ngân sách ($14). V�
 - Budgets trễ: chỉ coi Lớp 3 là lưới an toàn cuối, và dựa vào Lớp 2 để phản ứng nhanh.
 - Ước tính lệch: đặt ngưỡng thấp hơn ngân sách và đối chiếu ước tính với Cost Explorer cuối dự án.
 - Dừng nhầm máy: mỗi role Lambda chỉ có quyền dừng instance đích.
-- Trễ tiến độ: viết workshop song song khi xây từng lớp, và làm các lớp theo thứ tự quan trọng.
-- Lộ thông tin: che account ID và mọi khóa trong từng ảnh chụp trước khi đăng.
 
 **Kế hoạch dự phòng**
 
 - Nếu một lớp Lambda lỗi: dừng máy thủ công trên AWS Console và tắt các lịch EventBridge Scheduler.
-- Nếu hết credit giữa chừng: terminate máy Windows ngay và hoàn thành tài liệu bằng các ảnh đã chụp.
+- Nếu hết credit giữa chừng: terminate máy Windows ngay.
 - Nếu ngân sách $20 không đủ: giảm số giờ lab mỗi ngày hoặc đổi sang loại instance nhỏ hơn rồi cập nhật ước tính.
 
 ### 8. Kết quả kỳ vọng
