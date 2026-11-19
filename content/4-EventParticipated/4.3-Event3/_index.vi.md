@@ -11,7 +11,7 @@ pre: " <b> 4.3. </b> "
 | | |
 |---|---|
 | **Thời gian** | 09:00 – 12:00, ngày 24/10/2026 |
-| **Đơn vị tổ chức** | AWS Study Group |
+| **Đơn vị tổ chức** | Amazon Web Services Viet Nam Company Limited |
 | **Địa điểm** | Tầng 26, tòa nhà Bitexco, số 02 đường Hải Triều, phường Sài Gòn, thành phố Hồ Chí Minh |
 | **Vai trò** | Người tham dự |
 
@@ -34,7 +34,7 @@ Chương trình đi qua các kiến trúc Voice AI, bài toán độ trễ khi g
 - **Thịnh Nguyễn** – Styl Solution – Session 3: AWS Pentest với AWS Continuum / Security Agent
 - **Xuân An** – Leader AWS Student Builder Group HCMUTE – Session 4: Amazon Bedrock AgentCore
 - **Khoa Kiều** (Tech Lead ACB) và **Nghi Danh** (AWS Community Builder) – Session 5: Kiro Crew
-- **Ban tổ chức AWS Study Group** – Điều phối chương trình, hỏi đáp và mini-game
+- **Ban tổ chức Amazon Web Services Viet Nam** – Điều phối chương trình, hỏi đáp và mini-game
 
 ---
 
@@ -153,7 +153,7 @@ Bài toán là cho AI Agent chạy 24/7 để hỗ trợ review code và kiểm 
 
 ### 6. Trải Nghiệm Trong Event
 
-Mình tham dự trực tiếp buổi Meet Up từ 9 giờ đến 12 giờ trưa ngày 24/10/2026 tại Tầng 26, tòa nhà Bitexco, do cộng đồng AWS Study Group tổ chức. Buổi gồm 5 session, mở đầu là Voice AI và Agentic AI trong Contact Center.
+Mình tham dự trực tiếp buổi Meet Up từ 9 giờ đến 12 giờ trưa ngày 24/10/2026 tại Tầng 26, tòa nhà Bitexco, do Amazon Web Services Viet Nam Company Limited tổ chức. Buổi gồm 5 session, mở đầu là Voice AI và Agentic AI trong Contact Center.
 
 **Học Từ Diễn Giả**
 

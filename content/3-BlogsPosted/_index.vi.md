@@ -12,7 +12,7 @@ Phần này liệt kê các bài blog bạn đã đăng lên [AWS Study Group](h
 
 Cách AWS tự động hóa vòng đời Windows Server bằng IAM Identity Center, EC2 Image Builder, Systems Manager và CloudWatch, không phụ thuộc RDP hay bastion host.
 
-### [Blog 2 - Chuyển đổi hệ thống Microsoft lên AWS: Giảm 30% chi phí license và 60% phí lưu trữ](3.2-Blog2/)
+### [Blog 2 - Chuyển đổi hệ thống Microsoft lên AWS: Giảm 30% chi phí license và 70% phí lưu trữ](3.2-Blog2/)
 
 Ví dụ thực tế về việc hiện đại hóa nền tảng Microsoft của một trường đại học sang kiến trúc Cloud-Native trên AWS, và yếu tố nào giúp giảm chi phí.
 

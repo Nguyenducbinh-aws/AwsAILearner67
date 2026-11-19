@@ -11,7 +11,7 @@ pre: " <b> 4.1. </b> "
 | | |
 |---|---|
 | **Thời gian** | 09:00 – 12:00, ngày 26/09/2026 |
-| **Đơn vị tổ chức** | Công ty TNHH Amazon Web Services Viet Nam |
+| **Đơn vị tổ chức** | Amazon Web Services Viet Nam Company Limited |
 | **Địa điểm** | Tầng 26, tòa nhà Bitexco, số 02 đường Hải Triều, phường Sài Gòn, thành phố Hồ Chí Minh |
 | **Vai trò** | Người tham dự |
 

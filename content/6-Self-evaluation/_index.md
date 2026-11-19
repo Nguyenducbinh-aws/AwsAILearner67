@@ -6,9 +6,9 @@ chapter: false
 pre: " <b> 6. </b> "
 ---
 
-During my internship at **Amazon Web Services Viet Nam** from **07/09/2026** to **14/12/2026** as a **Cyber Security Intern**, I had the opportunity to learn, practice, and apply the knowledge acquired in school to a real-world working environment.
+During my internship at **Amazon Web Services Viet Nam Company Limited** from **07/09/2026** to **14/12/2026** as a **Cyber Security Intern**, I had the opportunity to learn, practice, and apply the knowledge acquired in school to a real-world working environment.
 
-I participated in **building the Cost Guard workshop, a serverless system with three protection layers (a scheduled stop, a cost meter and a budget backstop) that protects the credit of a Windows lab on AWS, using EventBridge Scheduler, Lambda, DynamoDB, SNS, AWS Budgets and CloudWatch**, through which I improved my skills in **cloud cost optimization and security**.
+I participated in **building Cost Guard, a serverless system that protects the credit of a Windows lab on AWS**, through which I improved my skills in **cloud cost optimization and security**.
 
 In terms of work ethic, I always strived to complete tasks well, complied with workplace regulations, and actively engaged with colleagues to improve work efficiency.
 

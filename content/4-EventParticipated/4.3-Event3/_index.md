@@ -11,7 +11,7 @@ pre: " <b> 4.3. </b> "
 | | |
 |---|---|
 | **Date & Time** | 09:00 – 12:00, October 24, 2026 |
-| **Organizer** | AWS Study Group |
+| **Organizer** | Amazon Web Services Viet Nam Company Limited |
 | **Location** | 26th Floor, Bitexco Tower, No. 02 Hai Trieu Street, Saigon Ward, Ho Chi Minh City |
 | **Role** | Attendee |
 
@@ -34,7 +34,7 @@ The program went through Voice AI architectures, the latency problem in voice co
 - **Thinh Nguyen** – Styl Solution – Session 3: AWS Pentest with AWS Continuum / Security Agent
 - **Xuan An** – Leader of AWS Student Builder Group HCMUTE – Session 4: Amazon Bedrock AgentCore
 - **Khoa Kieu** (Tech Lead, ACB) and **Nghi Danh** (AWS Community Builder) – Session 5: Kiro Crew
-- **AWS Study Group organizers** – Hosted the program, Q&A and the closing mini-game
+- **Amazon Web Services Viet Nam organizers** – Hosted the program, Q&A and the closing mini-game
 
 ---
 
@@ -153,7 +153,7 @@ The problem was running an AI agent 24/7 to help with code review and system che
 
 ### 6. Event Experience
 
-I attended the Meet Up in person from 9:00 AM to 12:00 PM on October 24, 2026 at the 26th Floor, Bitexco Tower, organized by the AWS Study Group community. The day had five sessions, opening with Voice AI and Agentic AI in the Contact Center.
+I attended the Meet Up in person from 9:00 AM to 12:00 PM on October 24, 2026 at the 26th Floor, Bitexco Tower, organized by Amazon Web Services Viet Nam Company Limited. The day had five sessions, opening with Voice AI and Agentic AI in the Contact Center.
 
 **Learning from the Speakers**
 
