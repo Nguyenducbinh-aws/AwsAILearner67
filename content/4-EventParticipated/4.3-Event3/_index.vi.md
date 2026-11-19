@@ -21,23 +21,32 @@ pre: " <b> 4.3. </b> "
 
 Buổi Meet Up First Cloud AI Journey nói về tiềm năng của Voice AI và các mô hình hội thoại thời gian thực, và cách xây dựng hệ thống trò chuyện với con người bằng giọng nói.
 
-Chương trình đi qua các kiến trúc Voice AI, bài toán độ trễ khi giao tiếp bằng giọng nói, và cách kiểm duyệt nội dung (Guardrails) trước khi AI trả lời. Cuối buổi có demo một trợ lý tuyển dụng AI tự động gọi điện sơ tuyển ứng viên.
+Buổi Meet Up diễn ra trong 3 giờ với 5 session: Voice AI contact center, chia sẻ tài nguyên bằng AWS Resource Access Manager, kiểm thử bảo mật bằng AWS Security Agent, Amazon Bedrock AgentCore và Kiro Crew.
+
+Chương trình đi qua các kiến trúc Voice AI, bài toán độ trễ khi giao tiếp bằng giọng nói, và cách kiểm duyệt nội dung (Guardrails) trước khi AI trả lời. Cuối session đầu có demo một trợ lý tuyển dụng AI tự động gọi điện sơ tuyển ứng viên. Các session sau chuyển sang quản trị nhiều tài khoản, đánh giá an toàn hạ tầng và đưa AI Agent lên production.
 
 ---
 
 ### 2. Danh Sách Diễn Giả
 
-- **Kiệt Trần** – Revve AI – Diễn giả chính: kiến trúc Voice AI / Contact Center, Guardrails và demo trợ lý tuyển dụng AI
+- **Kiệt Trần** – Revve AI – Session 1: kiến trúc Voice AI / Contact Center, Guardrails và demo trợ lý tuyển dụng AI
+- **Long Huỳnh** – Styl Solution – Session 2: AWS Resource Access Manager
+- **Thịnh Nguyễn** – Styl Solution – Session 3: AWS Pentest với AWS Continuum / Security Agent
+- **Xuân An** – Leader AWS Student Builder Group HCMUTE – Session 4: Amazon Bedrock AgentCore
+- **Khoa Kiều** (Tech Lead ACB) và **Nghi Danh** (AWS Community Builder) – Session 5: Kiro Crew
 - **Ban tổ chức AWS Study Group** – Điều phối chương trình, hỏi đáp và mini-game
 
 ---
 
 ### 3. Nội Dung Nổi Bật
 
+#### Session 1: Hear, Think, Speak – Xây dựng contact center Voice AI tiếng Việt trên AWS
+
 **Độ Trễ Khi Nói Chuyện Bằng Giọng Nói**
 
 - Khi hai người nói chuyện, thời gian phản hồi lý tưởng khoảng **200 ms**.
 - Hệ thống Voice AI cần trả lời đủ nhanh để người nghe không thấy khó chịu.
+- Kiến trúc được giới thiệu đưa độ trễ xuống khoảng **1,8 giây** để cuộc trò chuyện đủ mượt.
 
 **Ba Mô Hình Kiến Trúc Voice AI**
 
@@ -73,6 +82,32 @@ Chương trình đi qua các kiến trúc Voice AI, bài toán độ trễ khi g
 - Quản lý trạng thái hội thoại trong cuộc gọi dài và phức tạp.
 - Kết nối AI agent với hệ thống backend của doanh nghiệp qua Function Calling / Tool Use.
 
+#### Session 2: AWS Resource Access Manager
+
+- Chia sẻ tài nguyên an toàn giữa các tài khoản trong cùng AWS Organization, không phải tạo bản sao ở từng tài khoản.
+- Cách làm này tiết kiệm chi phí và gom việc quản trị mạng về một chỗ.
+- Kết hợp IAM policy với SCP để không tài khoản hay người dùng nào vượt quá trần quyền hạn đã đặt.
+
+#### Session 3: AWS Pentest với AWS Continuum / Security Agent
+
+- Đánh giá an toàn hạ tầng từ sớm, ngay trong quy trình phát triển.
+- Review code Terraform và gắn trực tiếp vào Pull Request trên GitLab/GitHub để bắt lỗi trước khi merge.
+- Security Agent đóng vai người dùng thực để pentest tự động trên môi trường SIT/UAT trước khi deploy thật.
+
+#### Session 4: Amazon Bedrock AgentCore
+
+- Hai nền tảng đưa Agent lên production: **Agent Runtime** và hệ thống **Memory**.
+- Agent Runtime chạy trên MicroVM dùng EC2 Spot, giúp tiết kiệm chi phí.
+- Memory chia hai tầng: Short-term (đồng bộ) và Long-term (bất đồng bộ), để Agent hiểu sâu ngữ cảnh người dùng.
+
+#### Session 5: Kiro Crew
+
+Bài toán là cho AI Agent chạy 24/7 để hỗ trợ review code và kiểm tra hệ thống. Phần hỏi đáp kỹ thuật cuối giờ có ba nội dung đáng chú ý:
+
+- **Artifacts:** Kiro Crew tự động lấy dữ liệu việc làm thực tế và dựng biểu đồ thống kê ngay trong khung chat.
+- **Quản trị Context Window:** cơ chế Auto Compact chạy khi ngữ cảnh chạm ngưỡng 70–90%, và tính năng Break down context để xem lượng token của từng thành phần.
+- **Memory và Guardrails:** dọn memory cũ để chi phí không phình lên; đặt lớp chặn bảo mật để AI không tự ý xóa hạ tầng hay làm lộ secret/credential của máy chủ.
+
 ---
 
 ### 4. Những Gì Học Được
@@ -89,6 +124,17 @@ Chương trình đi qua các kiến trúc Voice AI, bài toán độ trễ khi g
 - **Function calling / tool use:** Mình hiểu vai trò của nó khi AI agent cần làm việc với hệ thống thật.
 - **Đưa vào tổng đài:** Mình biết cần tính đến telephony, quản lý trạng thái hội thoại và chi phí khi đưa Voice AI vào tổng đài.
 
+**Quản Trị Và Bảo Mật**
+
+- **Chia sẻ thay vì sao chép:** Mình hiểu AWS RAM cho phép dùng chung tài nguyên giữa các tài khoản, và SCP đặt trần quyền hạn cho cả tổ chức bên trên IAM policy.
+- **Kiểm tra bảo mật sớm:** Mình thấy lỗi hạ tầng có thể bị bắt ngay ở bước review Terraform hoặc Pull Request, thay vì sau khi đã deploy.
+
+**Agent Trên Production**
+
+- **Agent cần runtime và memory riêng:** Mình biết AgentCore tách phần chạy Agent (Runtime) khỏi phần nhớ ngữ cảnh (Memory ngắn hạn và dài hạn).
+- **Ngữ cảnh và memory tốn chi phí:** Context window và memory cũ đều làm tăng lượng token, nên cần Auto Compact và dọn dẹp định kỳ.
+- **Guardrails ở tầng hạ tầng:** Ngoài kiểm duyệt nội dung, Agent còn cần lớp chặn để không xóa hạ tầng hay làm lộ credential.
+
 **Ứng Dụng Thực Tế**
 
 - **Tự động hóa từ đầu đến cuối:** Mình thấy một quy trình nghiệp vụ (sơ tuyển ứng viên) được AI agent làm trọn vẹn.
@@ -101,16 +147,19 @@ Chương trình đi qua các kiến trúc Voice AI, bài toán độ trễ khi g
 - **Kiểm duyệt trước khi phản hồi:** Khi thiết kế ứng dụng có AI, mình sẽ cân nhắc Guardrails ngay từ đầu.
 - **Ước tính chi phí sớm:** Khi học thêm các dịch vụ AWS, mình sẽ ước tính **chi phí** của các thành phần AI (mô hình, chuyển đổi giọng nói) trước khi triển khai.
 - **Hiểu cách agent nối với hệ thống:** Mình sẽ tìm hiểu thêm về function calling / tool use để biết AI agent kết nối với hệ thống backend như thế nào.
+- **Giới hạn quyền cho từng thành phần:** Với Cost Guard, mình sẽ giữ nguyên tắc mỗi hàm Lambda một IAM role chỉ có quyền dừng đúng instance đích, giống ý tưởng đặt trần quyền hạn ở session 2 và lớp chặn không cho Agent xóa hạ tầng ở session 5.
 
 ---
 
 ### 6. Trải Nghiệm Trong Event
 
-Mình tham dự trực tiếp buổi Meet Up từ 9 giờ đến 12 giờ trưa ngày 24/10/2026 tại Tầng 26, tòa nhà Bitexco, do cộng đồng AWS Study Group tổ chức. Chủ đề chính là Voice AI và Agentic AI trong Contact Center.
+Mình tham dự trực tiếp buổi Meet Up từ 9 giờ đến 12 giờ trưa ngày 24/10/2026 tại Tầng 26, tòa nhà Bitexco, do cộng đồng AWS Study Group tổ chức. Buổi gồm 5 session, mở đầu là Voice AI và Agentic AI trong Contact Center.
 
 **Học Từ Diễn Giả**
 
 Anh Kiệt Trần (Revve AI) giải thích rõ các kiến trúc Voice AI và vì sao độ trễ quyết định trải nghiệm. Phần Guardrails giúp mình hiểu rằng một trợ lý AI cần được kiểm soát nội dung trước khi nói với người dùng.
+
+Hai anh của Styl Solution nói về chia sẻ tài nguyên và kiểm thử bảo mật, anh Xuân An giới thiệu AgentCore. Session cuối về Kiro Crew là phần mình quan tâm nhất, vì nó nói đến việc cho AI Agent chạy liên tục mà vẫn kiểm soát được chi phí và quyền hạn.
 
 **Phần Demo Thực Tế**
 
@@ -127,6 +176,7 @@ Phần hỏi đáp và mini-game cuối buổi giúp mình ôn lại kiến th�
 - **AI có kiểm soát mới hữu ích:** AI agent chỉ có ích trong thực tế khi được kiểm soát (Guardrails) và nối được với hệ thống nghiệp vụ.
 - **Cân bằng là một phần của thiết kế:** Khi chọn kiến trúc Voice AI, cần cân bằng giữa độ trễ, chi phí và khả năng kiểm soát.
 - **Bắt đầu từ người dùng:** Chọn công nghệ xuất phát từ trải nghiệm của người nghe, không phải ngược lại.
+- **Quyền hạn và chi phí cần giới hạn từ đầu:** Từ SCP ở session 2 đến Guardrails và quản lý memory ở session 5, ý chung là đặt trần cho quyền hạn và chi phí trước khi hệ thống chạy.
 
 ---
 

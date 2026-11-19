@@ -6,7 +6,7 @@ chapter: false
 pre: " <b> 3.2. </b> "
 ---
 
-### MOVING MICROSOFT SYSTEMS TO AWS: 30% LOWER LICENSE COST AND 60% LOWER STORAGE COST
+### MOVING MICROSOFT SYSTEMS TO AWS: 30% LOWER LICENSE COST AND 70% LOWER STORAGE COST
 
 **Published on:** AWS Study Group (Facebook)
 
@@ -22,11 +22,11 @@ Moving an old .NET Framework and SQL Server system to the cloud with a lift-and-
 - **.NET Framework to .NET 8:** Porting Assistant and AWS Transform for .NET, running on Linux and AWS Graviton (Arm64).
 - **Database and storage:** SQL Server moves to PostgreSQL, and Amazon FSx moves to Amazon S3.
 - **New architecture based on Well-Architected:** Amazon ECS runs Linux containers, Amazon ELB and Route 53, Amazon S3 and CloudFront, AWS WAF and Amazon Cognito, Amazon API Gateway, Amazon CloudWatch, and AWS Organizations for central management and audit logs.
-- **Two cost results:** 30% lower commercial license cost and 60% lower storage cost.
+- **Two cost results:** 30% lower commercial license cost and 70% lower storage cost.
 
 **Conclusion and thoughts:**
 
-My takeaway is that a lift-and-shift move does not solve license cost or scalability by itself. The 30% lower license cost and 60% lower storage cost came from analyzing the system first with tools such as CAST and Babelfish Compass, and then moving from .NET Framework to .NET 8 on Linux, from SQL Server to PostgreSQL and from Amazon FSx to Amazon S3. In other words, the saving is the result of restructuring the application and choosing new platforms, not only of changing where the system runs.
+My takeaway is that a lift-and-shift move does not solve license cost or scalability by itself. The 30% lower license cost and 70% lower storage cost came from analyzing the system first with tools such as CAST and Babelfish Compass, and then moving from .NET Framework to .NET 8 on Linux, from SQL Server to PostgreSQL and from Amazon FSx to Amazon S3. In other words, the saving is the result of restructuring the application and choosing new platforms, not only of changing where the system runs.
 
 **References:**
 

@@ -6,7 +6,7 @@ chapter: false
 pre: " <b> 3.2. </b> "
 ---
 
-### CHUYỂN ĐỔI HỆ THỐNG MICROSOFT LÊN AWS: GIẢM 30% CHI PHÍ LICENSE VÀ 60% PHÍ LƯU TRỮ
+### CHUYỂN ĐỔI HỆ THỐNG MICROSOFT LÊN AWS: GIẢM 30% CHI PHÍ LICENSE VÀ 70% PHÍ LƯU TRỮ
 
 **Đăng tại:** AWS Study Group (Facebook)
 
@@ -22,11 +22,11 @@ pre: " <b> 3.2. </b> "
 - **.NET Framework sang .NET 8:** kết hợp Porting Assistant và AWS Transform for .NET, chạy trên Linux và AWS Graviton (Arm64).
 - **Database và Storage:** chuyển SQL Server sang PostgreSQL và Amazon FSx sang Amazon S3.
 - **Kiến trúc mới theo Well-Architected:** Amazon ECS chạy Linux Container, Amazon ELB và Route 53, Amazon S3 và CloudFront, AWS WAF và Amazon Cognito, Amazon API Gateway, Amazon CloudWatch, và AWS Organizations để quản lý tập trung và Audit Log.
-- **Hai kết quả chi phí:** tiết kiệm 30% chi phí bản quyền thương mại và 60% chi phí lưu trữ.
+- **Hai kết quả chi phí:** tiết kiệm 30% chi phí bản quyền thương mại và 70% chi phí lưu trữ.
 
 **Kết luận và cảm nghĩ:**
 
-Mình rút ra rằng chuyển nguyên trạng lên Cloud (lift-and-shift) chưa tự giải quyết được chi phí bản quyền và khả năng mở rộng. Mức giảm 30% chi phí bản quyền và 60% chi phí lưu trữ đến từ việc phân tích hệ thống trước bằng các công cụ như CAST và Babelfish Compass, rồi mới chuyển từ .NET Framework sang .NET 8 chạy trên Linux, từ SQL Server sang PostgreSQL và từ Amazon FSx sang Amazon S3. Nói cách khác, khoản tiết kiệm là kết quả của việc tái cấu trúc ứng dụng và chọn lại nền tảng, chứ không chỉ của việc đổi nơi chạy hệ thống.
+Mình rút ra rằng chuyển nguyên trạng lên Cloud (lift-and-shift) chưa tự giải quyết được chi phí bản quyền và khả năng mở rộng. Mức giảm 30% chi phí bản quyền và 70% chi phí lưu trữ đến từ việc phân tích hệ thống trước bằng các công cụ như CAST và Babelfish Compass, rồi mới chuyển từ .NET Framework sang .NET 8 chạy trên Linux, từ SQL Server sang PostgreSQL và từ Amazon FSx sang Amazon S3. Nói cách khác, khoản tiết kiệm là kết quả của việc tái cấu trúc ứng dụng và chọn lại nền tảng, chứ không chỉ của việc đổi nơi chạy hệ thống.
 
 **Tài liệu tham khảo:**
 
