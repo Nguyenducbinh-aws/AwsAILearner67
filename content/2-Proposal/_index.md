@@ -93,11 +93,10 @@ The system runs in a single AWS Region (US East, N. Virginia) and uses only serv
 
 **Implementation Phases**
 
-1. **Foundation:** Create the IAM roles, SNS topics, DynamoDB table, Parameter Store entries and the AWS Budget. Confirm the instance type and region, and read the hourly price from the AWS Pricing Calculator.
-2. **Layer 1:** Launch the Windows EC2 instance, deploy ScheduleHandler, configure the EventBridge Scheduler rule and verify that the scheduled stop works.
-3. **Layer 2:** Deploy CostMeter, configure the 5-minute EventBridge Scheduler schedule and test the threshold logic with simulated cost data.
-4. **Layer 3 and observability:** Configure the Budgets alarm, deploy BudgetBackstop, add CloudWatch alarms on Lambda errors and run an end-to-end test of all three layers.
-5. **Demo and documentation:** Record a demo while the resources are live, clean up, compare costs in Cost Explorer and write the workshop.
+1. *Research and design the architecture*: Study the services used by the project and design the three protection layers (Month 1–2).
+2. *Estimate the cost and check feasibility*: Use the AWS Pricing Calculator to estimate the Windows instance and the supporting services, and check that the total stays under $20 (Month 2).
+3. *Adjust the design to optimize cost and logic*: Settle the Layer 2 cost rule, the threshold and the schedule, and keep the running hours to the plan of 120 hours per month (Month 2–3).
+4. *Build, test and validate*: Create the foundation (IAM roles, SNS topics, DynamoDB table, Parameter Store entries, AWS Budget), then deploy and test each layer: the scheduled stop, the threshold with simulated cost data, and the Budgets backstop with the CloudWatch alarms. Finish with an end-to-end validation and a comparison of the estimated and the actual cost in Cost Explorer (Month 3).
 
 ### 5. Timeline & Milestones
 
@@ -105,11 +104,11 @@ The system runs in a single AWS Region (US East, N. Virginia) and uses only serv
 
 - **Month 1 (07/09 – 06/10/2026):** Join the FCAJ program, read the internship rules and prepare the working environment. Then learn the AWS foundations: account setup, MFA, IAM, Budgets, Support, Console and CLI.
 - **Month 2 (07/10 – 06/11/2026):** Study the services used by the project (Lambda, EventBridge, SNS, DynamoDB, Parameter Store, CloudWatch) and design the three layers.
-- **Month 3 (07/11 – 14/12/2026):** Build and document the solution.
-  - Week 1: Foundation and Layer 1 (confirm instance type and price, create base resources, scheduled stop).
-  - Week 2: Layer 2 (cost meter and threshold test) and the architecture diagram.
-  - Week 3: Layer 3, CloudWatch alarms and the end-to-end test.
-  - Week 4: Demo recording, cleanup, Cost Explorer comparison, workshop writing and publishing the site.
+- **Month 3 (07/11 – 14/12/2026):** Build, test and validate the solution.
+  - Week 1: Foundation and Layer 1, then test that the scheduled stop works at the set hour.
+  - Week 2: Layer 2, then test the threshold with simulated cost data and check that the instance stops within 5 minutes.
+  - Week 3: Layer 3 and the CloudWatch alarms, then test the budget notification and the error alarms.
+  - Week 4: End-to-end validation of the three layers, comparison of the estimated and the actual cost in Cost Explorer, and a check that no resource is left running after cleanup.
 - **Post-deployment:** Keep the solution as a reusable template; extend it to other instance types or accounts by changing the Parameter Store values.
 
 ### 6. Budget Estimation

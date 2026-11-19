@@ -93,11 +93,10 @@ Hệ thống chạy trong một AWS Region (US East, N. Virginia) và chỉ dùn
 
 **Các giai đoạn triển khai**
 
-1. **Nền tảng:** Tạo IAM role, SNS topic, bảng DynamoDB, tham số Parameter Store và AWS Budget. Chốt loại instance và region, lấy đơn giá theo giờ từ AWS Pricing Calculator.
-2. **Lớp 1:** Khởi chạy Windows EC2, deploy ScheduleHandler, cấu hình EventBridge Scheduler và kiểm tra lịch dừng hoạt động đúng.
-3. **Lớp 2:** Deploy CostMeter, cấu hình lịch EventBridge Scheduler 5 phút và thử logic ngưỡng bằng dữ liệu chi phí giả lập.
-4. **Lớp 3 và giám sát:** Cấu hình Budgets alarm, deploy BudgetBackstop, thêm CloudWatch alarm cho lỗi Lambda và chạy thử end-to-end cả ba lớp.
-5. **Demo và tài liệu:** Quay demo khi tài nguyên còn chạy, dọn dẹp, đối chiếu chi phí bằng Cost Explorer và viết workshop.
+1. *Nghiên cứu và thiết kế kiến trúc*: Tìm hiểu các dịch vụ dùng trong dự án và thiết kế ba lớp bảo vệ (Tháng 1–2).
+2. *Ước tính chi phí và kiểm tra tính khả thi*: Dùng AWS Pricing Calculator để ước tính máy Windows và các dịch vụ hỗ trợ, và kiểm tra tổng chi phí vẫn dưới $20 (Tháng 2).
+3. *Điều chỉnh thiết kế để tối ưu chi phí và logic*: Chốt quy tắc chi phí của Lớp 2, ngưỡng và lịch, và giữ số giờ chạy theo kế hoạch 120 giờ mỗi tháng (Tháng 2–3).
+4. *Xây dựng, kiểm thử và xác thực*: Tạo nền tảng (IAM role, SNS topic, bảng DynamoDB, tham số Parameter Store, AWS Budget), sau đó triển khai và kiểm thử từng lớp: lịch dừng, ngưỡng với dữ liệu chi phí giả lập, và Budget dự phòng cùng các CloudWatch alarm. Kết thúc bằng bước xác thực end-to-end và đối chiếu chi phí ước tính với chi phí thực trong Cost Explorer (Tháng 3).
 
 ### 5. Lộ trình & Mốc triển khai
 
@@ -105,11 +104,11 @@ Hệ thống chạy trong một AWS Region (US East, N. Virginia) và chỉ dùn
 
 - **Tháng 1 (07/09 – 06/10/2026):** Tham gia chương trình FCAJ, đọc nội quy thực tập và chuẩn bị môi trường làm việc. Sau đó học nền tảng AWS: tạo tài khoản, MFA, IAM, Budgets, Support, Console và CLI.
 - **Tháng 2 (07/10 – 06/11/2026):** Tìm hiểu các dịch vụ dùng trong dự án (Lambda, EventBridge, SNS, DynamoDB, Parameter Store, CloudWatch) và thiết kế ba lớp bảo vệ.
-- **Tháng 3 (07/11 – 14/12/2026):** Xây dựng và viết tài liệu cho giải pháp.
-  - Tuần 1: Nền tảng và Lớp 1 (chốt loại instance và đơn giá, tạo tài nguyên nền, lịch dừng).
-  - Tuần 2: Lớp 2 (bộ đo chi phí và thử ngưỡng) và sơ đồ kiến trúc.
-  - Tuần 3: Lớp 3, CloudWatch alarm và kiểm thử end-to-end.
-  - Tuần 4: Quay demo, dọn dẹp, đối chiếu Cost Explorer, viết workshop và xuất bản site.
+- **Tháng 3 (07/11 – 14/12/2026):** Xây dựng, kiểm thử và xác thực giải pháp.
+  - Tuần 1: Nền tảng và Lớp 1, sau đó kiểm thử lịch dừng chạy đúng vào giờ đã đặt.
+  - Tuần 2: Lớp 2, sau đó kiểm thử ngưỡng bằng dữ liệu chi phí giả lập và kiểm tra máy dừng trong vòng 5 phút.
+  - Tuần 3: Lớp 3 và các CloudWatch alarm, sau đó kiểm thử thông báo budget và các alarm lỗi.
+  - Tuần 4: Xác thực end-to-end ba lớp, đối chiếu chi phí ước tính với chi phí thực trong Cost Explorer, và kiểm tra không còn tài nguyên nào chạy sau khi dọn dẹp.
 - **Sau triển khai:** Giữ giải pháp làm mẫu dùng lại; mở rộng cho loại instance hoặc tài khoản khác bằng cách đổi giá trị trong Parameter Store.
 
 ### 6. Ước tính ngân sách
