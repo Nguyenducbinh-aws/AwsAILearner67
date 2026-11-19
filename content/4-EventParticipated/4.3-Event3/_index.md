@@ -34,7 +34,6 @@ The program went through Voice AI architectures, the latency problem in voice co
 - **Thinh Nguyen** – Styl Solution – Session 3: AWS Pentest with AWS Continuum / Security Agent
 - **Xuan An** – Leader of AWS Student Builder Group HCMUTE – Session 4: Amazon Bedrock AgentCore
 - **Khoa Kieu** (Tech Lead, ACB) and **Nghi Danh** (AWS Community Builder) – Session 5: Kiro Crew
-- **Amazon Web Services Viet Nam organizers** – Hosted the program, Q&A and the closing mini-game
 
 ---
 

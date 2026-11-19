@@ -34,7 +34,6 @@ Chương trình đi qua các kiến trúc Voice AI, bài toán độ trễ khi g
 - **Thịnh Nguyễn** – Styl Solution – Session 3: AWS Pentest với AWS Continuum / Security Agent
 - **Xuân An** – Leader AWS Student Builder Group HCMUTE – Session 4: Amazon Bedrock AgentCore
 - **Khoa Kiều** (Tech Lead ACB) và **Nghi Danh** (AWS Community Builder) – Session 5: Kiro Crew
-- **Ban tổ chức Amazon Web Services Viet Nam** – Điều phối chương trình, hỏi đáp và mini-game
 
 ---
 
