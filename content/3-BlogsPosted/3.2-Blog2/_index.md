@@ -28,7 +28,7 @@ Moving an old .NET Framework and SQL Server system to the cloud with a lift-and-
 
 **Conclusion and thoughts:**
 
-Cloud modernization is not just moving servers to the cloud. Restructuring the application, choosing the right platforms and optimizing the new architecture are what reduce cost, improve scalability and make operations more efficient.
+My takeaway is that moving to the cloud only saves money when the system is analyzed and restructured properly, not just when the servers are moved.
 
 **References:**
 

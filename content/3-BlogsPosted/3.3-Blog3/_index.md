@@ -26,9 +26,9 @@ Deploying an application to the cloud is only the first step. The harder questio
 - **What is new:** support for OpenTelemetry and PromQL (one set of instrumentation, no lock-in to a private format); cross-account observability (a central account views the data of many accounts, linked through AWS Organizations); CloudWatch Omni, an AI-assisted observability experience that lets you ask in natural language to build queries and track the quality of AI agent responses; and monitoring of workloads outside AWS.
 - **Notes for real use:** start with the most important metrics and alarms (CPU, errors, latency) and grow from there; use composite alarms to avoid alarm fatigue; cost depends on the amount of metrics, logs and features you use, so read the pricing page and the AWS guidance on cost optimization.
 
-**Lesson:**
+**Conclusion and thoughts:**
 
-Monitoring is not just "looking at charts". The value is in connecting metrics, logs and traces into one picture, so that you detect problems early, find the cause fast and react automatically, which shortens the time to fix incidents.
+I see that good monitoring means connecting metrics, logs and alarms so problems are found early and handled in time. It is better to start with the few most important indicators to keep cost under control.
 
 **References:**
 

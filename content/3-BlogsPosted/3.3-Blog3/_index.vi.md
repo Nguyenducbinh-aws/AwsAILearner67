@@ -26,9 +26,9 @@ Triển khai ứng dụng lên Cloud mới chỉ là bước đầu. Câu hỏi 
 - **Điểm mới đáng chú ý:** hỗ trợ OpenTelemetry và PromQL (dùng chung bộ instrumentation, không bị khóa vào định dạng riêng); cross-account observability (một account trung tâm xem dữ liệu của nhiều account, liên kết qua AWS Organizations); CloudWatch Omni, trải nghiệm observability có AI hỗ trợ, cho phép hỏi bằng ngôn ngữ tự nhiên để tạo truy vấn và theo dõi chất lượng phản hồi của AI agent; theo dõi được cả workload ngoài AWS.
 - **Lưu ý khi đưa vào thực tế:** bắt đầu từ metric và alarm quan trọng nhất (CPU, lỗi, độ trễ) rồi mở rộng dần; dùng composite alarm để tránh alarm fatigue; chi phí phụ thuộc vào lượng metrics, logs và tính năng bạn dùng, nên cần xem trang giá và hướng dẫn tối ưu chi phí của AWS.
 
-**Bài học:**
+**Kết luận và cảm nghĩ:**
 
-Giám sát không chỉ là "xem biểu đồ". Giá trị nằm ở việc kết nối metrics, logs, traces thành một bức tranh để phát hiện sớm, tìm nguyên nhân nhanh và tự động phản ứng, từ đó giảm thời gian khắc phục sự cố.
+Mình thấy giám sát hiệu quả là kết nối metrics, logs và alarm để phát hiện sớm sự cố và phản ứng kịp thời. Nên bắt đầu từ vài chỉ số quan trọng nhất để kiểm soát chi phí.
 
 **Tài liệu tham khảo:**
 

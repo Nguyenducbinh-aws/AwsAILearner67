@@ -27,7 +27,7 @@ Một doanh nghiệp quản lý hàng trăm máy chủ Windows Server trên cả
 
 **Kết luận và cảm nghĩ:**
 
-Windows Server Fleet Guard cho thấy AWS kết hợp nhiều dịch vụ để tự động hóa việc quản trị Windows Server xuyên suốt vòng đời, từ xây dựng image, duy trì cấu hình, cập nhật bản vá đến truy cập và giám sát. Điểm đáng chú ý là quản trị máy chủ không phụ thuộc hoàn toàn vào Active Directory và hạn chế nhu cầu mở cổng RDP hay dùng bastion host. Tuy vậy, để vận hành an toàn ở quy mô lớn, doanh nghiệp vẫn cần kiểm soát chặt quyền truy cập, phân nhóm máy chủ và kiểm thử trước khi đưa thay đổi lên Production.
+Mình thấy AWS kết hợp nhiều dịch vụ để tự động hóa việc quản trị Windows Server từ đầu đến cuối, giúp giảm thao tác thủ công và rủi ro bảo mật. Khi áp dụng ở quy mô lớn, vẫn cần kiểm soát quyền truy cập và kiểm thử trước khi đưa thay đổi lên Production.
 
 **Tài liệu tham khảo:**
 

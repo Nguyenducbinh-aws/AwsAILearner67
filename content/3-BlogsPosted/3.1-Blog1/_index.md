@@ -27,7 +27,7 @@ A company that runs hundreds of Windows Server machines on-premises and on AWS o
 
 **Conclusion and thoughts:**
 
-Windows Server Fleet Guard shows how AWS combines several services to automate Windows Server administration across its lifecycle, from building images, keeping configuration and patching to access and monitoring. What stands out is that servers can be managed without depending fully on Active Directory, and that the need to open RDP ports or use bastion hosts is reduced. Still, to run safely at large scale, a company must control access closely, group servers and test before it pushes a change to Production.
+I see that AWS combines several services to automate Windows Server administration from start to finish, which reduces manual work and security risk. At large scale, access still needs to be controlled and changes tested before they reach Production.
 
 **References:**
 

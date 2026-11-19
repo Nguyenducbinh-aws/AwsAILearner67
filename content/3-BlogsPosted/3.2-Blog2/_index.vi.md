@@ -28,7 +28,7 @@ pre: " <b> 3.2. </b> "
 
 **Kết luận và cảm nghĩ:**
 
-Cloud Modernization không đơn thuần là di chuyển máy chủ lên Cloud. Việc tái cấu trúc ứng dụng, lựa chọn nền tảng phù hợp và tối ưu kiến trúc mới là chìa khóa giúp giảm chi phí, tăng khả năng mở rộng và cải thiện hiệu quả vận hành.
+Mình rút ra rằng chuyển lên Cloud chỉ thật sự tiết kiệm khi hệ thống được phân tích và tái cấu trúc phù hợp, chứ không phải chỉ di chuyển máy chủ.
 
 **Tài liệu tham khảo:**
 
