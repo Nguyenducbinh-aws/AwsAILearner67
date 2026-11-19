@@ -26,7 +26,7 @@ Triển khai ứng dụng lên Cloud mới chỉ là bước đầu. Câu hỏi 
 
 **Kết luận và cảm nghĩ:**
 
-Mình thấy giám sát hiệu quả là kết nối metrics, logs và alarm để phát hiện sớm sự cố và phản ứng kịp thời. Nên bắt đầu từ vài chỉ số quan trọng nhất để kiểm soát chi phí.
+Mình thấy giá trị của CloudWatch nằm ở việc nối ba loại dữ liệu: metrics cho biết hệ thống hoạt động ra sao theo thời gian (CPU, độ trễ), logs cho biết vì sao (có thể truy vấn bằng Logs Insights), còn alarm so metric với ngưỡng rồi gửi cảnh báo qua SNS hoặc kích hoạt Auto Scaling. Composite alarm gộp nhiều alarm thành một nên bạn không bị ngập trong thông báo. Vì chi phí tăng theo lượng metrics và logs, nên bắt đầu từ vài chỉ số chính như CPU, lỗi và độ trễ rồi mở rộng dần.
 
 **Tài liệu tham khảo:**
 

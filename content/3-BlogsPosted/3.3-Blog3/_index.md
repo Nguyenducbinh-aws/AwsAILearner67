@@ -26,7 +26,7 @@ Deploying an application to the cloud is only the first step. The harder questio
 
 **Conclusion and thoughts:**
 
-I see that good monitoring means connecting metrics, logs and alarms so problems are found early and handled in time. It is better to start with the few most important indicators to keep cost under control.
+I see the value of CloudWatch in connecting three kinds of data: metrics show how the system behaves over time (CPU, latency), logs show why (and can be queried with Logs Insights), and alarms compare a metric with a threshold, then send an alert through SNS or trigger Auto Scaling. A composite alarm combines several alarms into one, so you are not flooded with notifications. Since cost grows with the amount of metrics and logs, it is better to start with a few key indicators such as CPU, errors and latency, and expand from there.
 
 **References:**
 
