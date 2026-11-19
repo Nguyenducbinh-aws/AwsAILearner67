@@ -8,7 +8,7 @@ pre: " <b> 1. </b> "
 
 Bắt đầu thực tập từ **07/09/2026**. Tuần 1–3 chủ yếu dành cho việc học: làm quen chương trình, nền tảng AWS, xem video bootcamp và các workshop về vận hành/container. Nội dung từng tuần như sau:
 
-**Tuần 1:** [Làm quen FCAJ, tài khoản AWS, Budgets, Support, IAM và AWS CLI](1.1-week1/)
+**Tuần 1:** [Làm quen với AWS, nội quy của AWS và FCAJ Portal](1.1-week1/)
 
 **Tuần 2:** [Xem series video FCAJ Workforce Bootcamp – 2026](1.2-week2/)
 

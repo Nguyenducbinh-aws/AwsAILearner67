@@ -8,7 +8,7 @@ pre: " <b> 1. </b> "
 
 The internship started on **07/09/2026 (September 7, 2026)**. Weeks 1–3 are mainly for learning: getting to know the program, AWS fundamentals, the bootcamp videos and workshops on operations/containers. Weekly contents are as follows:
 
-**Week 1:** [Getting acquainted with FCAJ, AWS account, Budgets, Support, IAM and AWS CLI](1.1-week1/)
+**Week 1:** [Getting familiar with AWS, AWS rules and the FCAJ Portal](1.1-week1/)
 
 **Week 2:** [Watching the FCAJ Workforce Bootcamp – 2026 video series](1.2-week2/)
 
