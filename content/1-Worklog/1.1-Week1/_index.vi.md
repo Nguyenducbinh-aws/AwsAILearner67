@@ -30,10 +30,6 @@ pre: " <b> 1.1. </b> "
 * Nắm được nội quy, cách làm việc và lộ trình 5 module của FCAJ.
 * Phân biệt được các nhóm dịch vụ AWS chính và vai trò của từng nhóm.
 * Đã tạo tài khoản AWS và áp dụng các bước bảo vệ cơ bản (MFA cho root, dùng IAM user thay root).
-  * Ngày tạo tài khoản / region chính sử dụng: [TỰ ĐIỀN: ...]
 * Đã thiết lập AWS Budgets để cảnh báo chi phí.
-  * Ngưỡng budget đã đặt: [TỰ ĐIỀN: số tiền USD]
 * Hiểu các khái niệm cốt lõi của IAM (user, group, policy, role) và nguyên tắc least privilege.
 * Cài đặt và cấu hình được AWS CLI, thực hiện được các lệnh truy vấn cơ bản.
-  * Phiên bản AWS CLI / hệ điều hành: [TỰ ĐIỀN: ...]
-* Minh chứng (ảnh chụp màn hình): [TỰ ĐIỀN: đường dẫn ảnh trong /static/images/...]

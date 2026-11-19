@@ -30,10 +30,6 @@ pre: " <b> 1.1. </b> "
 * Understood the rules, working style and the 5-module learning path of FCAJ.
 * Able to distinguish the main AWS service groups and the role of each.
 * Created an AWS account and applied basic protections (MFA for root, IAM user instead of root).
-  * Account creation date / main region used: [TO FILL: ...]
 * Set up AWS Budgets for cost alerts.
-  * Budget threshold: [TO FILL: USD amount]
 * Understood core IAM concepts (user, group, policy, role) and least privilege.
 * Installed and configured AWS CLI and ran basic query commands.
-  * AWS CLI version / OS: [TO FILL: ...]
-* Evidence (screenshots): [TO FILL: image paths in /static/images/...]

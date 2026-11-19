@@ -32,5 +32,3 @@ pre: " <b> 1.3. </b> "
 * Wrote a Dockerfile, built and ran a container for the sample application.
 * Understood ECS concepts (cluster, task definition, task, service) and the difference between the EC2 and Fargate launch types.
 * Understood how ECS uses CloudWatch alarms to mark a deployment as FAILED and roll back automatically, the caveats involved, and how it relates to the deployment circuit breaker.
-* Cost incurred this week (from Billing): [TO FILL: USD]
-* Evidence (screenshots): [TO FILL: image paths]

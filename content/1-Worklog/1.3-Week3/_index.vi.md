@@ -32,5 +32,3 @@ pre: " <b> 1.3. </b> "
 * Viết được Dockerfile, build và chạy container cho ứng dụng mẫu.
 * Hiểu các khái niệm ECS (cluster, task definition, task, service) và khác biệt giữa launch type EC2 và Fargate.
 * Hiểu cách ECS dùng CloudWatch alarm để đánh dấu deployment FAILED và tự rollback, các giới hạn cần lưu ý và quan hệ với deployment circuit breaker.
-* Chi phí phát sinh trong tuần (xem Billing): [TỰ ĐIỀN: USD]
-* Minh chứng (ảnh chụp màn hình): [TỰ ĐIỀN: đường dẫn ảnh]
