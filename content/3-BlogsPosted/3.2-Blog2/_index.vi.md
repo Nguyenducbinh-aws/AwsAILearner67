@@ -14,8 +14,6 @@ pre: " <b> 3.2. </b> "
 
 ![Kiến trúc Cloud-Native trên AWS: Route 53, WAF, CloudFront, API Gateway, ECS, Aurora, CloudWatch](../../../images/3-BlogsPosted/3.2-Blog2/cloud-native-architecture.png)
 
-*Nguồn: AWS Blog (xem tài liệu tham khảo bên dưới).*
-
 **Các điểm chính cần nắm:**
 
 - **Phân tích hệ thống:** ứng dụng Monolith có 785.000 dòng code, 342 bảng dữ liệu và 63 Stored Procedures. Đội ngũ dùng CAST Highlight (rủi ro mã nguồn và rào cản chuyển lên Cloud), CAST Imaging (trực quan hóa luồng dữ liệu và phụ thuộc, giảm 80% thời gian phân tích) và Babelfish Compass (đánh giá khả năng chuyển từ SQL Server sang PostgreSQL).

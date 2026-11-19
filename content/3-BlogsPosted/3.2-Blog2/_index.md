@@ -14,8 +14,6 @@ Moving an old .NET Framework and SQL Server system to the cloud with a lift-and-
 
 ![Cloud-native architecture on AWS: Route 53, WAF, CloudFront, API Gateway, ECS, Aurora, CloudWatch](../../images/3-BlogsPosted/3.2-Blog2/cloud-native-architecture.png)
 
-*Source: AWS Blog (see the references below).*
-
 **Key points:**
 
 - **System analysis:** the monolith had 785,000 lines of code, 342 tables and 63 stored procedures. The team used CAST Highlight (code risks and barriers to the cloud), CAST Imaging (visualizes data flow and dependencies, cutting analysis time by 80%) and Babelfish Compass (checks how well SQL Server can move to PostgreSQL).

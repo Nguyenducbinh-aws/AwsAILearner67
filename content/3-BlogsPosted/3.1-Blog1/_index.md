@@ -14,8 +14,6 @@ A company that runs hundreds of Windows Server machines on-premises and on AWS o
 
 ![Windows Server management lifecycle on AWS: Deploy, Configure, Manage, Update, Monitor](../../images/3-BlogsPosted/3.1-Blog1/windows-server-lifecycle.png)
 
-*Source: AWS Blog (see the references below).*
-
 **Key points:**
 
 - **Three limits of manual administration:** access that depends on RDP and bastion hosts widens the attack surface; manual configuration causes configuration drift; patching machine by machine makes it slow to fix vulnerabilities.

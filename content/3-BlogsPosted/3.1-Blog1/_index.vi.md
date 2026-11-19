@@ -14,8 +14,6 @@ Một doanh nghiệp quản lý hàng trăm máy chủ Windows Server trên cả
 
 ![Vòng đời quản trị Windows Server trên AWS: Deploy, Configure, Manage, Update, Monitor](../../../images/3-BlogsPosted/3.1-Blog1/windows-server-lifecycle.png)
 
-*Nguồn: AWS Blog (xem tài liệu tham khảo bên dưới).*
-
 **Các điểm chính cần nắm:**
 
 - **Ba hạn chế của quản trị thủ công:** truy cập phụ thuộc RDP và bastion host làm tăng bề mặt tấn công; cấu hình thủ công gây configuration drift; vá từng máy riêng lẻ khiến xử lý lỗ hổng chậm.

@@ -14,8 +14,6 @@ Deploying an application to the cloud is only the first step. The harder questio
 
 ![Amazon CloudWatch: data sources (EC2, ECS, EKS, Lambda, RDS, OpenTelemetry applications) flow into CloudWatch, and the outputs are dashboards, alarms, SNS, Auto Scaling, investigations and SLOs](../../images/3-BlogsPosted/3.3-Blog3/cloudwatch-overview.png)
 
-*Illustration compiled from the official AWS documentation.*
-
 **Key points:**
 
 - **What CloudWatch is:** the monitoring and observability service of AWS. CloudWatch collects metrics, logs and traces from AWS resources and from your own applications, lets you watch them in near real time, set alarms and react automatically to abnormal behavior. Many AWS services send basic metrics to CloudWatch with no extra setup.

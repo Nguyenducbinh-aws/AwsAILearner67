@@ -14,8 +14,6 @@ Triển khai ứng dụng lên Cloud mới chỉ là bước đầu. Câu hỏi 
 
 ![Amazon CloudWatch: nguồn dữ liệu (EC2, ECS, EKS, Lambda, RDS, ứng dụng OpenTelemetry) đi vào CloudWatch, và đầu ra là dashboard, alarm, SNS, Auto Scaling, Investigations, SLO](../../../images/3-BlogsPosted/3.3-Blog3/cloudwatch-overview.png)
 
-*Hình minh họa tổng hợp từ tài liệu chính thức của AWS.*
-
 **Các điểm chính cần nắm:**
 
 - **CloudWatch là gì:** dịch vụ giám sát và observability của AWS. CloudWatch gom metrics, logs và traces từ tài nguyên AWS lẫn ứng dụng của bạn, cho phép quan sát gần thời gian thực, đặt cảnh báo và tự động phản ứng khi có bất thường. Nhiều dịch vụ AWS tự gửi metric cơ bản về CloudWatch mà không cần cấu hình thêm.
