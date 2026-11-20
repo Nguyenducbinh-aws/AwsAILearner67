@@ -6,13 +6,13 @@ chapter: false
 pre: " <b> 1. </b> "
 ---
 
-Bắt đầu thực tập từ **07/09/2026**. Tuần 1–3 chủ yếu dành cho việc học: làm quen chương trình, nền tảng AWS, xem video bootcamp và các workshop về vận hành/container. Nội dung từng tuần như sau:
+Bắt đầu thực tập từ **07/09/2026**. Tuần 1–3 chủ yếu dành cho việc học: làm quen chương trình, nền tảng AWS, xem video bootcamp và thực hành các bài lab về mạng và máy chủ. Nội dung từng tuần như sau:
 
 **Tuần 1:** [Làm quen với AWS, nội quy của AWS và FCAJ Portal](1.1-week1/)
 
 **Tuần 2:** [Tìm hiểu tối ưu chi phí và thực hiện các bài lab AWS cơ bản](1.2-week2/)
 
-**Tuần 3:** [EC2 Auto Scaling, CloudWatch, Docker, Amazon ECS và Fargate](1.3-week3/)
+**Tuần 3:** [Tìm hiểu Amazon VPC, Amazon EC2 và thực hành các bài lab](1.3-week3/)
 
 **Tuần 4:** [Làm công việc A...](1.4-week4/)
 
