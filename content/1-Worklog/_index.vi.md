@@ -12,9 +12,9 @@ Bắt đầu thực tập từ **07/09/2026**. Tuần 1–3 chủ yếu dành ch
 
 **Tuần 2:** [Tìm hiểu tối ưu chi phí và thực hiện các bài lab AWS cơ bản](1.2-week2/)
 
-**Tuần 3:** [Tìm hiểu Amazon VPC, Amazon EC2 và thực hành các bài lab](1.3-week3/)
+**Tuần 3:** [Tìm hiểu Amazon VPC, Amazon EC2 và hands-on](1.3-week3/)
 
-**Tuần 4:** [Làm công việc A...](1.4-week4/)
+**Tuần 4:** [Tìm hiểu AWS CloudShell, Amazon S3 và hands-on](1.4-week4/)
 
 **Tuần 5:** [Làm công việc B...](1.5-week5/)
 

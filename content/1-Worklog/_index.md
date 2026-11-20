@@ -12,9 +12,9 @@ The internship started on **07/09/2026 (September 7, 2026)**. Weeks 1–3 are ma
 
 **Week 2:** [Learning cost optimization and carrying out basic AWS labs](1.2-week2/)
 
-**Week 3:** [Learning Amazon VPC and Amazon EC2 and carrying out the labs](1.3-week3/)
+**Week 3:** [Learning Amazon VPC, Amazon EC2 and hands-on labs](1.3-week3/)
 
-**Week 4:** [Doing task A...](1.4-week4/)
+**Week 4:** [Learning AWS CloudShell, Amazon S3 and hands-on labs](1.4-week4/)
 
 **Week 5:** [Doing task B...](1.5-week5/)
 
