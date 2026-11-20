@@ -19,8 +19,8 @@ pre: " <b> 1.5. </b> "
 | 2 | - Come up with ideas for the proposal and the workshop together with the team | 10/05/2026 | 10/05/2026 | |
 | 3 | - Read the documentation about Amazon RDS <br>&emsp; + Supported database engines <br>&emsp; + Multi-AZ, Read Replica <br>&emsp; + Backups and snapshots <br>&emsp; + Security: encryption, VPC, IAM | 10/06/2026 | 10/06/2026 | <https://000005.awsfcaj.com/> |
 | 4 | - **Practice:** <br>&emsp; + Create a VPC, Security Groups and a DB subnet group <br>&emsp; + Create an RDS MySQL database <br>&emsp; + Launch EC2 and connect to RDS with the MySQL client <br>&emsp; + Create a database and a table and insert data <br>&emsp; + Deploy an application that connects to RDS <br>&emsp; + Create a snapshot and restore RDS <br>&emsp; + Clean up resources after the lab | 10/07/2026 | 10/07/2026 | <https://000005.awsfcaj.com/> |
-| 5 | - Read the blog about AWS Systems Manager Fleet Manager <br>&emsp; + Connect over RDP to a Windows instance right in the browser through Session Manager <br>&emsp; + No need to open the RDP port, use a public IP or run a bastion host <br>&emsp; + Use an EC2 key pair or Windows credentials, view up to 4 instances at once <br>&emsp; + Needs the SSM Agent and an instance profile with Systems Manager permissions | 10/08/2026 | 10/08/2026 | <https://aws.amazon.com/vi/blogs/mt/console-based-access-to-windows-instances-using-aws-systems-manager-fleet-manager/> |
-| 6 | - Read the blog about Amazon CloudWatch Omni <br>&emsp; + Observe AI agents with traces that record every LLM and tool call <br>&emsp; + 17 built-in evaluators to score response quality <br>&emsp; + Playground, Experiments and Prompt Management to compare prompts and configurations <br>&emsp; + Use it in VS Code, Kiro or on the web, built on open standards OpenInference and ADOT | 10/09/2026 | 10/09/2026 | <https://aws.amazon.com/vi/blogs/aws/introducing-amazon-cloudwatch-omni-ai-powered-observability-for-generative-ai-and-agentic-workloads/> |
+| 5 | - Read the blog about AWS Systems Manager Fleet Manager | 10/08/2026 | 10/08/2026 | <https://aws.amazon.com/vi/blogs/mt/console-based-access-to-windows-instances-using-aws-systems-manager-fleet-manager/> |
+| 6 | - Read the blog about Amazon CloudWatch Omni | 10/09/2026 | 10/09/2026 | <https://aws.amazon.com/vi/blogs/aws/introducing-amazon-cloudwatch-omni-ai-powered-observability-for-generative-ai-and-agentic-workloads/> |
 
 
 ### Week 5 Achievements:
@@ -36,6 +36,16 @@ pre: " <b> 1.5. </b> "
   * Deployed an application that connects to RDS
   * Created a snapshot and restored it to a new instance
 
-* Understood that Fleet Manager lets you connect over RDP to a Windows instance from the console without opening the RDP port.
+* Understood AWS Systems Manager Fleet Manager from the blog about accessing Windows instances from the console:
 
-* Understood that CloudWatch Omni is used to track traces and evaluate the quality of AI agents.
+  * Connect over RDP to a Windows instance right in the browser through Session Manager
+  * No need to open the RDP port, use a public IP or run a bastion host, which reduces the attack surface
+  * Use an EC2 key pair or Windows credentials, view up to 4 instances at once
+  * Needs the SSM Agent, an instance profile with Systems Manager permissions and access to the SSM endpoint
+
+* Understood Amazon CloudWatch Omni from the blog about observing AI agents:
+
+  * Agent behavior is non-deterministic, so traces that record every LLM and tool call are needed to find where an agent went wrong
+  * 17 built-in evaluators (such as coherence, helpfulness, faithfulness) score response quality, because latency and error rate do not show whether an answer is good
+  * Playground, Experiments and Prompt Management compare prompts and configurations and roll back to older versions
+  * Works in VS Code, Kiro or on the web, built on open standards OpenInference and ADOT, and supports frameworks such as LangChain, CrewAI and Strands
