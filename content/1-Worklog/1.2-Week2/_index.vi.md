@@ -26,12 +26,21 @@ pre: " <b> 1.2. </b> "
 ### Kết quả đạt được tuần 2:
 
 * Hiểu AWS Free Tier (credit, Free plan và Paid plan) và biết cách đăng ký tài khoản AWS.
+
 * Tạo được budget và đặt cảnh báo chi phí bằng AWS Budget:
+
   * Các loại budget: Cost, Usage, RI, Savings Plans
+
   * Ngưỡng cảnh báo
+
 * Biết cách truy cập AWS Support, các gói support và cách tạo support request.
+
 * Tạo và quản lý quyền truy cập bằng IAM:
+
   * IAM Group và IAM User
+
   * IAM Role và switch role
+
   * Nguyên tắc least privilege
+
 * Nắm được các nguyên tắc tối ưu chi phí trên AWS và biết hệ thống bài lab của Cloud Journey.

@@ -26,12 +26,21 @@ pre: " <b> 1.2. </b> "
 ### Week 2 Achievements:
 
 * Understood the AWS Free Tier (credits, Free plan and Paid plan) and how to sign up for an AWS account.
+
 * Able to create a budget and set cost alerts with AWS Budget:
+
   * Budget types: Cost, Usage, RI, Savings Plans
+
   * Alert thresholds
+
 * Know how to access AWS Support, the support plans and how to open a support request.
+
 * Able to create and manage access with IAM:
+
   * IAM Group and IAM User
+
   * IAM Role and switching roles
+
   * The least-privilege principle
+
 * Understood the principles of cost optimization on AWS and know the lab system of Cloud Journey.
