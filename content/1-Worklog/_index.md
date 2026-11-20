@@ -16,7 +16,7 @@ The internship started on **07/09/2026 (September 7, 2026)**. Weeks 1–3 are ma
 
 **Week 4:** [Learning AWS CloudShell, Amazon S3 and hands-on labs](1.4-week4/)
 
-**Week 5:** [Doing task B...](1.5-week5/)
+**Week 5:** [Planning the proposal, learning Amazon RDS and hands-on labs](1.5-week5/)
 
 **Week 6:** [Doing task C...](1.6-week6/)
 

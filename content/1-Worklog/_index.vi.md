@@ -16,7 +16,7 @@ Bắt đầu thực tập từ **07/09/2026**. Tuần 1–3 chủ yếu dành ch
 
 **Tuần 4:** [Tìm hiểu AWS CloudShell, Amazon S3 và hands-on](1.4-week4/)
 
-**Tuần 5:** [Làm công việc B...](1.5-week5/)
+**Tuần 5:** [Lên ý tưởng proposal, tìm hiểu Amazon RDS và hands-on](1.5-week5/)
 
 **Tuần 6:** [Làm công việc C...](1.6-week6/)
 
