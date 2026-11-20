@@ -26,8 +26,15 @@ pre: " <b> 1.1. </b> "
 ### Week 1 Achievements:
 
 * Understood the rules, regulations and working style at the FCAJ internship unit.
-* Got familiar with the FCAJ Portal and created an account; know how to register to work at the office and for the uniform.
-* Understood what AWS is.
-* Understood cloud computing, the pay-as-you-go model and the AWS global infrastructure (Region, AZ, Edge Location).
-* Able to tell the root user from an IAM user, and the ways to interact with AWS (Management Console, AWS CLI, AWS SDK).
-* Understood the basic concepts of Kiro: spec-driven development, Kiro IDE and Kiro CLI; installed Kiro IDE and Kiro CLI.
+* Got familiar with the FCAJ Portal and created an account; know:
+  * The ways to register to work at the office
+  * How to register for the uniform
+* Understood what AWS is and the basics:
+  * Cloud computing and the pay-as-you-go model
+  * Global infrastructure: Region, AZ, Edge Location
+  * Root user and IAM user
+  * Ways to interact with AWS: Console, CLI, SDK
+* Understood the basic concepts of Kiro:
+  * Spec-driven development
+  * Kiro IDE and Kiro CLI
+* Installed Kiro IDE and Kiro CLI.

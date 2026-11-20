@@ -10,7 +10,7 @@ Bắt đầu thực tập từ **07/09/2026**. Tuần 1–3 chủ yếu dành ch
 
 **Tuần 1:** [Làm quen với AWS, nội quy của AWS và FCAJ Portal](1.1-week1/)
 
-**Tuần 2:** [Xem series video FCAJ Workforce Bootcamp – 2026](1.2-week2/)
+**Tuần 2:** [Tìm hiểu tối ưu chi phí và thực hiện các bài lab AWS cơ bản](1.2-week2/)
 
 **Tuần 3:** [EC2 Auto Scaling, CloudWatch, Docker, Amazon ECS và Fargate](1.3-week3/)
 

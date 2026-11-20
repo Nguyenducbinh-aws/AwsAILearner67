@@ -26,8 +26,15 @@ pre: " <b> 1.1. </b> "
 ### Kết quả đạt được tuần 1:
 
 * Nắm được nội quy, quy định và cách làm việc tại đơn vị thực tập FCAJ.
-* Đã làm quen và tạo tài khoản FCAJ Portal, biết các cách đăng ký lên văn phòng và đăng ký đồng phục.
-* Hiểu được AWS là gì.
-* Hiểu khái niệm điện toán đám mây, mô hình pay-as-you-go và hạ tầng toàn cầu của AWS (Region, AZ, Edge Location).
-* Phân biệt được root user và IAM user, và các cách tương tác với AWS (Management Console, AWS CLI, AWS SDK).
-* Nắm được các khái niệm cơ bản của Kiro: spec-driven development, Kiro IDE và Kiro CLI; đã cài đặt Kiro IDE và Kiro CLI.
+* Đã làm quen và tạo tài khoản FCAJ Portal, biết:
+  * Các cách đăng ký lên văn phòng
+  * Cách đăng ký đồng phục
+* Hiểu AWS là gì và nắm được kiến thức cơ bản:
+  * Điện toán đám mây và mô hình pay-as-you-go
+  * Hạ tầng toàn cầu: Region, AZ, Edge Location
+  * Root user và IAM user
+  * Các cách tương tác với AWS: Console, CLI, SDK
+* Nắm được các khái niệm cơ bản của Kiro:
+  * Spec-driven development
+  * Kiro IDE và Kiro CLI
+* Đã cài đặt Kiro IDE và Kiro CLI.

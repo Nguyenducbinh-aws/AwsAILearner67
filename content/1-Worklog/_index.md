@@ -10,7 +10,7 @@ The internship started on **07/09/2026 (September 7, 2026)**. Weeks 1–3 are ma
 
 **Week 1:** [Getting familiar with AWS, AWS rules and the FCAJ Portal](1.1-week1/)
 
-**Week 2:** [Watching the FCAJ Workforce Bootcamp – 2026 video series](1.2-week2/)
+**Week 2:** [Learning cost optimization and carrying out basic AWS labs](1.2-week2/)
 
 **Week 3:** [EC2 Auto Scaling, CloudWatch, Docker, Amazon ECS and Fargate](1.3-week3/)
 
