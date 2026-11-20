@@ -11,17 +11,16 @@ pre: " <b> 1.11. </b> "
 
 * Triển khai workshop Cost Guard và kiểm thử.
 * Cập nhật workshop, chạy demo và viết báo cáo.
-* Kiểm tra và xử lý lỗi phát sinh trong lúc triển khai và kiểm thử.
 * Đọc về cách đưa AWS Transform vào GitHub Copilot qua MCP.
 
 ### Các công việc cần triển khai trong tuần này:
 | Thứ | Công việc | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu |
 | --- | --- | --- | --- | --- |
 | 2 | - Triển khai workshop Cost Guard | 16/11/2026 | 16/11/2026 | |
-| 3 | - Chạy kiểm thử cho workshop <br>- Kiểm tra và xử lý lỗi nếu có | 17/11/2026 | 17/11/2026 | |
+| 3 | - Chạy kiểm thử cho workshop  | 17/11/2026 | 17/11/2026 | |
 | 4 | - Cập nhật workshop sau kiểm thử <br>- Chạy demo | 18/11/2026 | 18/11/2026 | |
-| 5 | - Viết báo cáo <br>- Kiểm tra và xử lý lỗi nếu có <br>- Dọn tài nguyên sau khi demo và kiểm thử lỗi xong | 19/11/2026 | 19/11/2026 | |
-| 6 | - Đọc blog về đưa AWS Transform vào GitHub Copilot qua MCP (chỉ đọc, không thực hành) | 20/11/2026 | 20/11/2026 | <https://aws.amazon.com/vi/blogs/dotnet/bring-aws-transform-into-github-copilot-with-mcp/> |
+| 5 | - Viết báo cáo <br>- Dọn tài nguyên sau khi demo xong | 19/11/2026 | 19/11/2026 | |
+| 6 | - Đọc blog về đưa AWS Transform vào GitHub Copilot qua MCP | 20/11/2026 | 20/11/2026 | <https://aws.amazon.com/vi/blogs/dotnet/bring-aws-transform-into-github-copilot-with-mcp/> |
 
 
 ### Kết quả đạt được tuần 11:
@@ -30,11 +29,9 @@ pre: " <b> 1.11. </b> "
 
 * Cập nhật workshop sau kiểm thử và chạy demo.
 
-* Kiểm tra và xử lý các lỗi phát sinh trong lúc triển khai và kiểm thử.
-
 * Viết báo cáo.
 
-* Dọn tài nguyên sau khi demo và kiểm thử lỗi xong để lab không tiếp tục tốn tiền.
+* Dọn tài nguyên sau khi demo xong để lab không tiếp tục tốn tiền.
 
 * Học từ blog cách đưa AWS Transform vào GitHub Copilot qua MCP:
 

@@ -11,17 +11,16 @@ pre: " <b> 1.11. </b> "
 
 * Deploy the Cost Guard workshop and test it.
 * Update the workshop, run the demo and write the report.
-* Check and fix errors that appear during deployment and testing.
 * Read about bringing AWS Transform into GitHub Copilot through MCP.
 
 ### Tasks to be carried out this week:
 | Day | Task | Start Date | Completion Date | Reference Material |
 | --- | --- | --- | --- | --- |
 | 2 | - Deploy the Cost Guard workshop | 11/16/2026 | 11/16/2026 | |
-| 3 | - Run the tests for the workshop <br>- Check and fix errors if they appear | 11/17/2026 | 11/17/2026 | |
+| 3 | - Run the tests for the workshop  | 11/17/2026 | 11/17/2026 | |
 | 4 | - Update the workshop after testing <br>- Run the demo | 11/18/2026 | 11/18/2026 | |
-| 5 | - Write the report <br>- Check and fix errors if they appear <br>- Clean up resources after the demo and the error checks are done | 11/19/2026 | 11/19/2026 | |
-| 6 | - Read the blog about bringing AWS Transform into GitHub Copilot with MCP (reading only, no practice) | 11/20/2026 | 11/20/2026 | <https://aws.amazon.com/vi/blogs/dotnet/bring-aws-transform-into-github-copilot-with-mcp/> |
+| 5 | - Write the report <br>- Clean up resources after the demo is done | 11/19/2026 | 11/19/2026 | |
+| 6 | - Read the blog about bringing AWS Transform into GitHub Copilot with MCP | 11/20/2026 | 11/20/2026 | <https://aws.amazon.com/vi/blogs/dotnet/bring-aws-transform-into-github-copilot-with-mcp/> |
 
 
 ### Week 11 Achievements:
@@ -30,11 +29,9 @@ pre: " <b> 1.11. </b> "
 
 * Updated the workshop after testing and ran the demo.
 
-* Checked and handled the errors that appeared during deployment and testing.
-
 * Wrote the report.
 
-* Cleaned up the resources after the demo and the error checks were done, so the lab does not keep costing money.
+* Cleaned up the resources after the demo was done, so the lab does not keep costing money.
 
 * Learned from the blog how to bring AWS Transform into GitHub Copilot through MCP:
 
