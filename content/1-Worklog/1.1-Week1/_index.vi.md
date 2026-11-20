@@ -9,27 +9,25 @@ pre: " <b> 1.1. </b> "
 
 ### Mục tiêu tuần 1:
 
-* Làm quen với các thành viên và cách làm việc của chương trình First Cloud AI Journey (FCAJ), nắm nội quy thực tập.
-* Hiểu tổng quan về AWS và các nhóm dịch vụ chính (Compute, Storage, Networking, Database, …).
-* Tạo và bảo vệ tài khoản AWS ngay từ đầu: bật MFA, thiết lập cảnh báo chi phí bằng AWS Budgets.
-* Biết cách tìm hỗ trợ qua AWS Support và quản lý truy cập bằng IAM.
-* Làm quen với hai cách thao tác: AWS Management Console và AWS CLI.
+* Làm quen với các thành viên, nội quy và FCAJ Portal của chương trình First Cloud AI Journey (FCAJ).
+* Hiểu dịch vụ AWS cơ bản, cách dùng Console.
+* Làm quen với tài liệu học tập của FCAJ Workforce Bootcamp - 2026 và công cụ Kiro.
 
 ### Các công việc cần triển khai trong tuần này:
 | Thứ | Công việc | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu |
 | --- | --- | --- | --- | --- |
-| 2 | - Làm quen với các thành viên FCAJ <br> - Đọc và ghi chú nội quy, quy định thực tập <br> - Tìm hiểu lộ trình Cloud Journey <br>&emsp; + Cấu trúc 5 module: Explore, Migrate, Optimize, Modernize, Container <br>&emsp; + Cách mỗi module chia thành các workshop có số hiệu riêng <br> - Chuẩn bị môi trường: trình duyệt, trình soạn thảo, ghi chú cá nhân, khởi tạo repo Worklog từ fcj-workshop-template | 07/09/2026 | 07/09/2026 | <https://cloudjourney.awsfcaj.com/> |
-| 3 | - Tìm hiểu AWS và các loại dịch vụ <br>&emsp; + Compute (EC2, Lightsail, container) <br>&emsp; + Storage (S3, EBS) <br>&emsp; + Networking (VPC, Route 53, CloudFront) <br>&emsp; + Database (RDS, DynamoDB, ElastiCache) <br>&emsp; + Quản trị & giám sát (IAM, CloudWatch, Budgets) <br> - Đọc danh sách workshop của Module 1 để lên kế hoạch học 3 tuần | 08/09/2026 | 08/09/2026 | <https://cloudjourney.awsfcaj.com/1-explore/> |
-| 4 | - Tạo tài khoản AWS <br>&emsp; + Quy trình đăng ký, xác minh thanh toán/điện thoại, chọn gói Support <br>&emsp; + Bảo vệ root user: bật MFA, hạn chế dùng root cho công việc hằng ngày <br> - Tìm hiểu AWS Budgets <br>&emsp; + Các loại budget (cost, usage), ngưỡng cảnh báo, email nhận thông báo <br> - **Thực hành:** tạo tài khoản, bật MFA cho root, tạo một cost budget có cảnh báo qua email | 09/09/2026 | 09/09/2026 | <https://000001.awsfcaj.com> <br> <https://000007.awsfcaj.com> |
-| 5 | - Tìm hiểu AWS Support <br>&emsp; + Các gói Support và phạm vi hỗ trợ <br>&emsp; + Cách tạo và theo dõi support case <br> - Tìm hiểu AWS IAM <br>&emsp; + User, Group, Policy, Role <br>&emsp; + Nguyên tắc least privilege <br> - **Thực hành:** xem trang Support Center và các loại case; tạo IAM group gắn policy, tạo IAM user admin để dùng thay root, đăng nhập lại bằng IAM user | 10/09/2026 | 10/09/2026 | <https://000009.awsfcaj.com> <br> <https://000002.awsfcaj.com> |
-| 6 | - Tìm hiểu AWS CLI <br>&emsp; + So sánh thao tác qua Console và CLI <br>&emsp; + Access key, profile, region mặc định, định dạng output <br> - **Thực hành:** cài đặt và cấu hình AWS CLI (aws configure), chạy một số lệnh truy vấn cơ bản; ôn lại toàn bộ kiến thức tuần 1, kiểm tra Billing/Budgets và cập nhật Worklog | 11/09/2026 | 11/09/2026 | <https://000011.awsfcaj.com> |
+| 2 | - Làm quen với các thành viên FCAJ <br> - Đọc và lưu ý các nội quy, quy định tại đơn vị thực tập, thắc mắc với các mentor nếu có gì không hiểu hoặc chưa nắm rõ | 07/09/2026 | 07/09/2026 | <https://hcm-rules.awsfcaj.com/instructions> |
+| 3 | - Làm quen và tạo tài khoản FCAJ Portal <br> - Xem các cách đăng ký lên văn phòng <br> - Xem cách đăng ký đồng phục | 08/09/2026 | 08/09/2026 | <https://hcm-rules.awsfcaj.com/instructions/portal> |
+| 4 | - Bắt đầu xem phần bài giảng giới thiệu về tài liệu học tập của FCAJ Workforce Bootcamp - 2026 trong playlist trên kênh YouTube AWS Study Group <br> - Học clip đầu tiên của playlist: Prologue - Know before you join First Cloud AI Journey | 09/09/2026 | 09/09/2026 | <https://youtube.com/playlist?list=PLahN4TLWtox3TSYFbN1DNX7NZgTVXNj3x> <br> <https://youtu.be/Gz56QzLQ_Yo> |
+| 5 | - Xem video Module 01-01 - Introduction to AWS: khái niệm cloud và hạ tầng toàn cầu của AWS <br> - Xem video Module 01-02 - Management Console: root user, IAM user và các cách tương tác với AWS | 10/09/2026 | 10/09/2026 | <https://youtu.be/qVCF7UjYC5s> <br> <https://youtu.be/95quNuhvMT0> |
+| 6 | - Xem video Module 01-03 - Gen AI on AWS - Kiro: kiến thức cơ bản về Agentic AI và Kiro | 11/09/2026 | 11/09/2026 | <https://youtu.be/uAQCm4sm_1c> |
 
 
 ### Kết quả đạt được tuần 1:
 
-* Nắm được nội quy, cách làm việc và lộ trình 5 module của FCAJ.
-* Phân biệt được các nhóm dịch vụ AWS chính và vai trò của từng nhóm.
-* Đã tạo tài khoản AWS và áp dụng các bước bảo vệ cơ bản (MFA cho root, dùng IAM user thay root).
-* Đã thiết lập AWS Budgets để cảnh báo chi phí.
-* Hiểu các khái niệm cốt lõi của IAM (user, group, policy, role) và nguyên tắc least privilege.
-* Cài đặt và cấu hình được AWS CLI, thực hiện được các lệnh truy vấn cơ bản.
+* Nắm được nội quy, quy định và cách làm việc tại đơn vị thực tập FCAJ.
+* Đã làm quen và tạo tài khoản FCAJ Portal, biết các cách đăng ký lên văn phòng và đăng ký đồng phục.
+* Hiểu được AWS là gì.
+* Hiểu khái niệm điện toán đám mây, mô hình pay-as-you-go và hạ tầng toàn cầu của AWS (Region, AZ, Edge Location).
+* Phân biệt được root user và IAM user, và các cách tương tác với AWS (Management Console, AWS CLI, AWS SDK).
+* Nắm được các khái niệm cơ bản của Kiro: spec-driven development, Kiro IDE và Kiro CLI.

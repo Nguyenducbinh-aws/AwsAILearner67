@@ -9,27 +9,25 @@ pre: " <b> 1.1. </b> "
 
 ### Week 1 Objectives:
 
-* Get to know the First Cloud AI Journey (FCAJ) members and working style; understand the internship rules.
-* Get an overview of AWS and its main service groups (Compute, Storage, Networking, Database, …).
-* Create and secure an AWS account from day one: enable MFA, set up cost alerts with AWS Budgets.
-* Learn how to get help through AWS Support and manage access with IAM.
-* Get familiar with the two ways of working: AWS Management Console and AWS CLI.
+* Get to know the members, rules and FCAJ Portal of the First Cloud AI Journey (FCAJ) program.
+* Understand basic AWS services and how to use the Console.
+* Get familiar with the learning materials of the FCAJ Workforce Bootcamp - 2026 and the Kiro tool.
 
 ### Tasks to be carried out this week:
 | Day | Task | Start Date | Completion Date | Reference Material |
 | --- | --- | --- | --- | --- |
-| 2 | - Get to know FCAJ members <br> - Read and take notes on the internship rules and regulations <br> - Explore the Cloud Journey learning path <br>&emsp; + The 5 modules: Explore, Migrate, Optimize, Modernize, Container <br>&emsp; + How each module is split into numbered workshops <br> - Prepare the environment: browser, editor, personal notes, initialize the Worklog repo from fcj-workshop-template | 09/07/2026 | 09/07/2026 | <https://cloudjourney.awsfcaj.com/> |
-| 3 | - Learn about AWS and its service categories <br>&emsp; + Compute (EC2, Lightsail, containers) <br>&emsp; + Storage (S3, EBS) <br>&emsp; + Networking (VPC, Route 53, CloudFront) <br>&emsp; + Database (RDS, DynamoDB, ElastiCache) <br>&emsp; + Management & monitoring (IAM, CloudWatch, Budgets) <br> - Review the Module 1 workshop list to plan the next 3 weeks | 09/08/2026 | 09/08/2026 | <https://cloudjourney.awsfcaj.com/1-explore/> |
-| 4 | - Create an AWS account <br>&emsp; + Sign-up flow, payment/phone verification, choosing a Support plan <br>&emsp; + Protect the root user: enable MFA, avoid using root for daily work <br> - Learn AWS Budgets <br>&emsp; + Budget types (cost, usage), alert thresholds, notification emails <br> - **Practice:** create the account, enable MFA for root, create a cost budget with email alerts | 09/09/2026 | 09/09/2026 | <https://000001.awsfcaj.com> <br> <https://000007.awsfcaj.com> |
-| 5 | - Learn AWS Support <br>&emsp; + Support plans and their scope <br>&emsp; + How to open and track a support case <br> - Learn AWS IAM <br>&emsp; + Users, Groups, Policies, Roles <br>&emsp; + The least-privilege principle <br> - **Practice:** explore the Support Center and case types; create an IAM group with a policy, create an admin IAM user to use instead of root, sign in again with the IAM user | 09/10/2026 | 09/10/2026 | <https://000009.awsfcaj.com> <br> <https://000002.awsfcaj.com> |
-| 6 | - Learn AWS CLI <br>&emsp; + Console vs. CLI operations <br>&emsp; + Access keys, profiles, default region, output formats <br> - **Practice:** install and configure AWS CLI (aws configure), run some basic query commands; review all week-1 knowledge, check Billing/Budgets and update the Worklog | 09/11/2026 | 09/11/2026 | <https://000011.awsfcaj.com> |
+| 2 | - Get to know FCAJ members <br> - Read and note the rules and regulations at the internship unit, and ask the mentors about anything unclear or not fully understood | 09/07/2026 | 09/07/2026 | <https://hcm-rules.awsfcaj.com/instructions> |
+| 3 | - Get familiar with the FCAJ Portal and create an account <br> - Look at the ways to register to work at the office <br> - Look at how to register for the uniform | 09/08/2026 | 09/08/2026 | <https://hcm-rules.awsfcaj.com/instructions/portal> |
+| 4 | - Start watching the lectures that introduce the learning materials of the FCAJ Workforce Bootcamp - 2026, in the playlist on the AWS Study Group YouTube channel <br> - Study the first clip of the playlist: Prologue - Know before you join First Cloud AI Journey | 09/09/2026 | 09/09/2026 | <https://youtube.com/playlist?list=PLahN4TLWtox3TSYFbN1DNX7NZgTVXNj3x> <br> <https://youtu.be/Gz56QzLQ_Yo> |
+| 5 | - Watch Module 01-01 - Introduction to AWS: cloud concepts and the AWS global infrastructure <br> - Watch Module 01-02 - Management Console: root user, IAM user and the ways to interact with AWS | 09/10/2026 | 09/10/2026 | <https://youtu.be/qVCF7UjYC5s> <br> <https://youtu.be/95quNuhvMT0> |
+| 6 | - Watch Module 01-03 - Gen AI on AWS - Kiro: basics of Agentic AI and Kiro | 09/11/2026 | 09/11/2026 | <https://youtu.be/uAQCm4sm_1c> |
 
 
 ### Week 1 Achievements:
 
-* Understood the rules, working style and the 5-module learning path of FCAJ.
-* Able to distinguish the main AWS service groups and the role of each.
-* Created an AWS account and applied basic protections (MFA for root, IAM user instead of root).
-* Set up AWS Budgets for cost alerts.
-* Understood core IAM concepts (user, group, policy, role) and least privilege.
-* Installed and configured AWS CLI and ran basic query commands.
+* Understood the rules, regulations and working style at the FCAJ internship unit.
+* Got familiar with the FCAJ Portal and created an account; know how to register to work at the office and for the uniform.
+* Understood what AWS is.
+* Understood cloud computing, the pay-as-you-go model and the AWS global infrastructure (Region, AZ, Edge Location).
+* Able to tell the root user from an IAM user, and the ways to interact with AWS (Management Console, AWS CLI, AWS SDK).
+* Understood the basic concepts of Kiro: spec-driven development, Kiro IDE and Kiro CLI.
