@@ -30,23 +30,18 @@ pre: " <b> 1.1. </b> "
 * Đã làm quen và tạo tài khoản FCAJ Portal, biết:
 
   * Các cách đăng ký lên văn phòng
-
   * Cách đăng ký đồng phục
 
 * Hiểu AWS là gì và nắm được kiến thức cơ bản:
 
   * Điện toán đám mây và mô hình pay-as-you-go
-
   * Hạ tầng toàn cầu: Region, AZ, Edge Location
-
   * Root user và IAM user
-
   * Các cách tương tác với AWS: Console, CLI, SDK
 
 * Nắm được các khái niệm cơ bản của Kiro:
 
   * Spec-driven development
-
   * Kiro IDE và Kiro CLI
 
 * Đã cài đặt Kiro IDE và Kiro CLI.

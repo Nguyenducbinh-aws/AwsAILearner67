@@ -30,7 +30,6 @@ pre: " <b> 1.2. </b> "
 * Able to create a budget and set cost alerts with AWS Budget:
 
   * Budget types: Cost, Usage, RI, Savings Plans
-
   * Alert thresholds
 
 * Know how to access AWS Support, the support plans and how to open a support request.
@@ -38,9 +37,7 @@ pre: " <b> 1.2. </b> "
 * Able to create and manage access with IAM:
 
   * IAM Group and IAM User
-
   * IAM Role and switching roles
-
   * The least-privilege principle
 
 * Understood the principles of cost optimization on AWS and know the lab system of Cloud Journey.
