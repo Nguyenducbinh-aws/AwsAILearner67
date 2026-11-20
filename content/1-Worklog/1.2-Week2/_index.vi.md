@@ -27,6 +27,10 @@ pre: " <b> 1.2. </b> "
 
 * Hiểu AWS Free Tier (credit, Free plan và Paid plan) và biết cách đăng ký tài khoản AWS.
 
+* Đã tạo và cấu hình AWS Free Tier account thành công.
+
+* Làm quen với AWS Management Console và biết cách tìm, truy cập, sử dụng dịch vụ từ giao diện web.
+
 * Tạo được budget và đặt cảnh báo chi phí bằng AWS Budget:
 
   * Các loại budget: Cost, Usage, RI, Savings Plans

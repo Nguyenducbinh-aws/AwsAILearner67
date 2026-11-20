@@ -27,6 +27,10 @@ pre: " <b> 1.2. </b> "
 
 * Understood the AWS Free Tier (credits, Free plan and Paid plan) and how to sign up for an AWS account.
 
+* Created and configured an AWS Free Tier account successfully.
+
+* Got familiar with the AWS Management Console and know how to find, access and use services from the web interface.
+
 * Able to create a budget and set cost alerts with AWS Budget:
 
   * Budget types: Cost, Usage, RI, Savings Plans
