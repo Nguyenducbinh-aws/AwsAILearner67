@@ -9,25 +9,24 @@ pre: " <b> 1.2. </b> "
 
 ### Mục tiêu tuần 2:
 
-* Hoàn thành series video **FCAJ Workforce Bootcamp – 2026** (kênh AWS Study Group, 5 video, tổng khoảng 83 phút) theo đúng thứ tự.
-* Nắm định hướng chương trình First Cloud AI Journey trước khi đi sâu vào thực hành.
-* Hiểu tổng quan về AWS, cách sử dụng AWS Management Console.
-* Làm quen hướng ứng dụng Generative AI trên AWS thông qua công cụ Kiro.
-* Hiểu các nguyên tắc tối ưu chi phí trên AWS để áp dụng cho các lab sau.
+* Làm quen với tài liệu và hệ thống các bài lab của Cloud Journey.
+* Hiểu cách tối ưu chi phí trên AWS và biết quản lý chi phí bằng AWS Budget.
+* Khám phá các dịch vụ AWS cơ bản: AWS Free Tier, AWS Support và IAM.
 
 ### Các công việc cần triển khai trong tuần này:
 | Thứ | Công việc | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu |
 | --- | --- | --- | --- | --- |
-| 2 | - Xem video Prologue (~24 phút): những điều cần biết trước khi tham gia First Cloud AI Journey <br>&emsp; + Ghi chú lộ trình, cách làm việc và yêu cầu của chương trình | 14/09/2026 | 14/09/2026 | <https://www.youtube.com/watch?v=Gz56QzLQ_Yo> <br> <https://www.youtube.com/playlist?list=PLahN4TLWtox3TSYFbN1DNX7NZgTVXNj3x> |
-| 3 | - Xem video Module 01-01 (~16 phút): Introduction to AWS <br>&emsp; + Tổng quan AWS và các nhóm dịch vụ chính | 15/09/2026 | 15/09/2026 | <https://www.youtube.com/watch?v=qVCF7UjYC5s> |
-| 4 | - Xem video Module 01-02 (~10 phút): Management Console <br>&emsp; + Cách đăng nhập và điều hướng AWS Management Console <br>&emsp; + **Thực hành:** đăng nhập Console, làm quen giao diện, tìm dịch vụ, chọn Region | 16/09/2026 | 16/09/2026 | <https://www.youtube.com/watch?v=95quNuhvMT0> |
-| 5 | - Xem video Module 01-03 (~17 phút): Gen AI on AWS – Kiro <br>&emsp; + Tìm hiểu ứng dụng Generative AI trên AWS và công cụ Kiro | 17/09/2026 | 17/09/2026 | <https://www.youtube.com/watch?v=uAQCm4sm_1c> |
-| 6 | - Xem video Module 01-04 (~16 phút): Cost optimization on AWS <br>&emsp; + Các cách theo dõi và tối ưu chi phí trên AWS <br> - Ôn lại cả 5 video, tổng hợp ghi chú tuần 2 và cập nhật Worklog | 18/09/2026 | 18/09/2026 | <https://www.youtube.com/watch?v=UIw8UxGZCHA> |
+| 2 | - Xem video Module 01-04 - Cost optimization on AWS: các cách tối ưu chi phí trên AWS | 14/09/2026 | 14/09/2026 | <https://youtu.be/UIw8UxGZCHA> |
+| 3 | - Xem qua trang web Cloud Journey: hệ thống các bài lab và tài liệu làm lab | 15/09/2026 | 15/09/2026 | <https://cloudjourney.awsfcaj.com/> |
+| 4 | - Bắt đầu khám phá các dịch vụ AWS qua Module 1 - Explore trên Cloud Journey <br> - Thực hiện bài lab AWS Free Tier 2026: tìm hiểu gói Free Tier và tài khoản AWS | 16/09/2026 | 16/09/2026 | <https://cloudjourney.awsfcaj.com/1-explore/> <br> <https://000001.awsfcaj.com/> |
+| 5 | - Thực hiện bài lab Cost Management with AWS Budget: các loại budget và cách đặt cảnh báo chi phí <br> - Thực hiện bài lab AWS Support Request: các gói support và cách tạo support request | 17/09/2026 | 17/09/2026 | <https://000007.awsfcaj.com/> <br> <https://000009.awsfcaj.com/> |
+| 6 | - Thực hiện bài lab Access Management with AWS IAM: IAM Group, User, Role và switch role | 18/09/2026 | 18/09/2026 | <https://000002.awsfcaj.com/> |
 
 
 ### Kết quả đạt được tuần 2:
 
-* Xem đủ 5/5 video của series FCAJ Workforce Bootcamp – 2026 và có ghi chú cho từng video.
-* Hiểu định hướng chương trình, tổng quan AWS và cách thao tác trên Management Console.
-* Biết đến Kiro và xu hướng ứng dụng Gen AI trên AWS.
-* Nắm các nguyên tắc tối ưu chi phí để áp dụng khi làm lab ở các tuần sau.
+* Nắm được các nguyên tắc tối ưu chi phí trên AWS.
+* Biết hệ thống bài lab và tài liệu làm lab của Cloud Journey.
+* Hiểu AWS Free Tier và biết cách đặt cảnh báo chi phí bằng AWS Budget.
+* Biết các gói AWS Support và cách tạo support request.
+* Hiểu IAM Group, User, Role và nguyên tắc least privilege.

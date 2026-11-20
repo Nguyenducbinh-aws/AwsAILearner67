@@ -20,7 +20,7 @@ pre: " <b> 1.1. </b> "
 | 3 | - Làm quen và tạo tài khoản FCAJ Portal <br> - Xem các cách đăng ký lên văn phòng <br> - Xem cách đăng ký đồng phục | 08/09/2026 | 08/09/2026 | <https://hcm-rules.awsfcaj.com/instructions/portal> |
 | 4 | - Bắt đầu xem phần bài giảng giới thiệu về tài liệu học tập của FCAJ Workforce Bootcamp - 2026 trong playlist trên kênh YouTube AWS Study Group <br> - Học clip đầu tiên của playlist: Prologue - Know before you join First Cloud AI Journey | 09/09/2026 | 09/09/2026 | <https://youtube.com/playlist?list=PLahN4TLWtox3TSYFbN1DNX7NZgTVXNj3x> <br> <https://youtu.be/Gz56QzLQ_Yo> |
 | 5 | - Xem video Module 01-01 - Introduction to AWS: khái niệm cloud và hạ tầng toàn cầu của AWS <br> - Xem video Module 01-02 - Management Console: root user, IAM user và các cách tương tác với AWS | 10/09/2026 | 10/09/2026 | <https://youtu.be/qVCF7UjYC5s> <br> <https://youtu.be/95quNuhvMT0> |
-| 6 | - Xem video Module 01-03 - Gen AI on AWS - Kiro: kiến thức cơ bản về Agentic AI và Kiro | 11/09/2026 | 11/09/2026 | <https://youtu.be/uAQCm4sm_1c> |
+| 6 | - Xem video Module 01-03 - Gen AI on AWS - Kiro: kiến thức cơ bản về Agentic AI và Kiro <br> - **Thực hành:** cài đặt Kiro IDE và Kiro CLI | 11/09/2026 | 11/09/2026 | <https://youtu.be/uAQCm4sm_1c> |
 
 
 ### Kết quả đạt được tuần 1:
@@ -30,4 +30,4 @@ pre: " <b> 1.1. </b> "
 * Hiểu được AWS là gì.
 * Hiểu khái niệm điện toán đám mây, mô hình pay-as-you-go và hạ tầng toàn cầu của AWS (Region, AZ, Edge Location).
 * Phân biệt được root user và IAM user, và các cách tương tác với AWS (Management Console, AWS CLI, AWS SDK).
-* Nắm được các khái niệm cơ bản của Kiro: spec-driven development, Kiro IDE và Kiro CLI.
+* Nắm được các khái niệm cơ bản của Kiro: spec-driven development, Kiro IDE và Kiro CLI; đã cài đặt Kiro IDE và Kiro CLI.

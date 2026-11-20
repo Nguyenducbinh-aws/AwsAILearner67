@@ -9,25 +9,24 @@ pre: " <b> 1.2. </b> "
 
 ### Week 2 Objectives:
 
-* Complete the **FCAJ Workforce Bootcamp – 2026** video series (AWS Study Group channel, 5 videos, about 83 minutes in total) in order.
-* Understand the direction of the First Cloud AI Journey program before moving on to hands-on labs.
-* Get an overview of AWS and learn how to use the AWS Management Console.
-* Get familiar with Generative AI on AWS through the Kiro tool.
-* Understand cost optimization principles on AWS for use in later labs.
+* Get to know the lab system and materials of Cloud Journey.
+* Understand how to optimize cost on AWS and manage cost with AWS Budget.
+* Explore basic AWS services: AWS Free Tier, AWS Support and IAM.
 
 ### Tasks to be carried out this week:
 | Day | Task | Start Date | Completion Date | Reference Material |
 | --- | --- | --- | --- | --- |
-| 2 | - Watch the Prologue video (~24 min): what to know before joining First Cloud AI Journey <br>&emsp; + Note the roadmap, ways of working and program requirements | 09/14/2026 | 09/14/2026 | <https://www.youtube.com/watch?v=Gz56QzLQ_Yo> <br> <https://www.youtube.com/playlist?list=PLahN4TLWtox3TSYFbN1DNX7NZgTVXNj3x> |
-| 3 | - Watch Module 01-01 (~16 min): Introduction to AWS <br>&emsp; + Overview of AWS and its main service groups | 09/15/2026 | 09/15/2026 | <https://www.youtube.com/watch?v=qVCF7UjYC5s> |
-| 4 | - Watch Module 01-02 (~10 min): Management Console <br>&emsp; + How to sign in and navigate the AWS Management Console <br>&emsp; + **Practice:** sign in to the Console, explore the interface, search for services, choose a Region | 09/16/2026 | 09/16/2026 | <https://www.youtube.com/watch?v=95quNuhvMT0> |
-| 5 | - Watch Module 01-03 (~17 min): Gen AI on AWS – Kiro <br>&emsp; + Learn about Generative AI on AWS and the Kiro tool | 09/17/2026 | 09/17/2026 | <https://www.youtube.com/watch?v=uAQCm4sm_1c> |
-| 6 | - Watch Module 01-04 (~16 min): Cost optimization on AWS <br>&emsp; + Ways to monitor and optimize costs on AWS <br> - Review all 5 videos, consolidate week 2 notes and update the Worklog | 09/18/2026 | 09/18/2026 | <https://www.youtube.com/watch?v=UIw8UxGZCHA> |
+| 2 | - Watch Module 01-04 - Cost optimization on AWS: ways to optimize cost on AWS | 09/14/2026 | 09/14/2026 | <https://youtu.be/UIw8UxGZCHA> |
+| 3 | - Browse the Cloud Journey website: the lab system and the lab materials | 09/15/2026 | 09/15/2026 | <https://cloudjourney.awsfcaj.com/> |
+| 4 | - Start exploring AWS services through Module 1 - Explore on Cloud Journey <br> - Carry out the AWS Free Tier 2026 lab: the Free Tier plans and the AWS account | 09/16/2026 | 09/16/2026 | <https://cloudjourney.awsfcaj.com/1-explore/> <br> <https://000001.awsfcaj.com/> |
+| 5 | - Carry out the Cost Management with AWS Budget lab: budget types and setting cost alerts <br> - Carry out the AWS Support Request lab: support plans and opening a support request | 09/17/2026 | 09/17/2026 | <https://000007.awsfcaj.com/> <br> <https://000009.awsfcaj.com/> |
+| 6 | - Carry out the Access Management with AWS IAM lab: IAM Group, User, Role and switching roles | 09/18/2026 | 09/18/2026 | <https://000002.awsfcaj.com/> |
 
 
 ### Week 2 Achievements:
 
-* Watched all 5/5 videos of the FCAJ Workforce Bootcamp – 2026 series and took notes on each.
-* Understood the program direction, the AWS overview and how to work in the Management Console.
-* Learned about Kiro and the trend of Gen AI applications on AWS.
-* Learned cost optimization principles to apply in later labs.
+* Understood the principles of cost optimization on AWS.
+* Know the lab system and lab materials of Cloud Journey.
+* Understood the AWS Free Tier and how to set cost alerts with AWS Budget.
+* Know the AWS Support plans and how to open a support request.
+* Understood IAM Group, User, Role and the least-privilege principle.
