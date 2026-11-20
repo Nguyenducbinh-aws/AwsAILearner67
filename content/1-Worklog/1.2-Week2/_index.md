@@ -34,10 +34,10 @@ pre: " <b> 1.2. </b> "
 
 * Know how to access AWS Support, the support plans and how to open a support request.
 
-* Able to create and manage access with IAM:
+* Able to create and manage access for users and AWS services with IAM:
 
-  * IAM Group and IAM User
-  * IAM Role and switching roles
-  * The least-privilege principle
+  * Create IAM Groups and IAM Users and grant permissions through policies
+  * Use IAM Roles and switch roles for temporary access
+  * Apply the least-privilege principle (grant only the permissions needed)
 
-* Understood the principles of cost optimization on AWS and know the lab system of Cloud Journey.
+* Understood the principles of cost optimization on AWS and know the learning materials and hands-on labs of AWS Cloud Journey.

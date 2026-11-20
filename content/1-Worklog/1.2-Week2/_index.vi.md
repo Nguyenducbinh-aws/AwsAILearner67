@@ -34,10 +34,10 @@ pre: " <b> 1.2. </b> "
 
 * Biết cách truy cập AWS Support, các gói support và cách tạo support request.
 
-* Tạo và quản lý quyền truy cập bằng IAM:
+* Tạo và quản lý quyền truy cập cho người dùng và dịch vụ AWS bằng IAM:
 
-  * IAM Group và IAM User
-  * IAM Role và switch role
-  * Nguyên tắc least privilege
+  * Tạo IAM Group và IAM User, gán quyền thông qua policy
+  * Dùng IAM Role và switch role để truy cập tạm thời
+  * Áp dụng nguyên tắc least privilege (chỉ cấp quyền tối thiểu cần thiết)
 
-* Nắm được các nguyên tắc tối ưu chi phí trên AWS và biết hệ thống bài lab của Cloud Journey.
+* Nắm được các nguyên tắc tối ưu chi phí trên AWS và biết hệ thống tài liệu học tập, các bài hands-on của AWS Cloud Journey.
