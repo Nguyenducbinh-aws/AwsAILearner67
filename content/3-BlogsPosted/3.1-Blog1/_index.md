@@ -25,7 +25,7 @@ A company that runs hundreds of Windows Server machines on-premises and on AWS o
 
 **Conclusion and thoughts:**
 
-I see the core of this approach as giving each stage of the Windows Server lifecycle to its own service, all linked by Tags. EC2 Image Builder creates a standard AMI that already has the SSM Agent and the CloudWatch Agent, State Manager keeps the configuration with PowerShell DSC, Patch Manager applies patches on a maintenance schedule, and engineers connect through Fleet Manager, so port 3389 does not need to be open to the Internet and the attack surface gets smaller. The approach still has limits: old applications that use Kerberos or NTLM may still need Active Directory, and because one wrong configuration or patch can affect many machines at once, servers should be grouped into Dev, Staging and Production and changes tested before they reach Production.
+The core of this approach is that each stage of the Windows Server lifecycle goes to its own service, all linked by Tags. Because engineers connect through Fleet Manager, port 3389 does not need to be open to the Internet, and the attack surface gets smaller. The approach still has limits: old applications that use Kerberos or NTLM may still need Active Directory, and because one wrong configuration or patch can affect many machines at once, servers should be grouped into Dev, Staging and Production and changes tested before they reach Production.
 
 **References:**
 

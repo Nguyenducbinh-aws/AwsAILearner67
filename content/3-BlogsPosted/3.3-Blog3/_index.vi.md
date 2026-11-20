@@ -10,7 +10,7 @@ pre: " <b> 3.3. </b> "
 
 **Đăng tại:** AWS Study Group (Facebook)
 
-Triển khai ứng dụng lên Cloud mới chỉ là bước đầu. Câu hỏi khó hơn là hệ thống đang chạy khỏe hay sắp có sự cố, và bạn biết điều đó trước hay sau khi người dùng phàn nàn. Mình đang thực tập tại AWS và dành thời gian đọc tài liệu về Amazon CloudWatch. Bài này là bản tóm tắt để bạn nào mới học AWS nắm nhanh bức tranh tổng thể.
+Triển khai ứng dụng lên Cloud mới chỉ là bước đầu. Sau đó bạn cần biết hệ thống có đang chạy khỏe không, tốt nhất là trước khi người dùng phàn nàn. Mình đang thực tập tại AWS và dành thời gian đọc tài liệu về Amazon CloudWatch. Bài này là bản tóm tắt để bạn nào mới học AWS nắm nhanh bức tranh tổng thể.
 
 ![Amazon CloudWatch: nguồn dữ liệu (EC2, ECS, EKS, Lambda, RDS, ứng dụng OpenTelemetry) đi vào CloudWatch, và đầu ra là dashboard, alarm, SNS, Auto Scaling, Investigations, SLO](../../../images/3-BlogsPosted/3.3-Blog3/cloudwatch-overview.png)
 
@@ -26,7 +26,7 @@ Triển khai ứng dụng lên Cloud mới chỉ là bước đầu. Câu hỏi 
 
 **Kết luận và cảm nghĩ:**
 
-Mình thấy giá trị của CloudWatch nằm ở việc nối ba loại dữ liệu: metrics cho biết hệ thống hoạt động ra sao theo thời gian (CPU, độ trễ), logs cho biết vì sao (có thể truy vấn bằng Logs Insights), còn alarm so metric với ngưỡng rồi gửi cảnh báo qua SNS hoặc kích hoạt Auto Scaling. Composite alarm gộp nhiều alarm thành một nên bạn không bị ngập trong thông báo. Vì chi phí tăng theo lượng metrics và logs, nên bắt đầu từ vài chỉ số chính như CPU, lỗi và độ trễ rồi mở rộng dần.
+CloudWatch hữu ích vì nối được ba loại dữ liệu: metrics cho biết hệ thống hoạt động ra sao theo thời gian, logs cho biết vì sao, còn alarm báo khi nào cần xem. Chi phí tăng theo lượng metrics và logs, nên mình sẽ bắt đầu từ vài chỉ số như CPU, lỗi và độ trễ, rồi chỉ thêm khi cần.
 
 **Tài liệu tham khảo:**
 

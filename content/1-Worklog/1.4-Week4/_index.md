@@ -10,8 +10,8 @@ pre: " <b> 1.4. </b> "
 ### Week 4 Objectives:
 
 * Get familiar with AWS CloudShell and the AWS CLI.
-* Understand the basics of Amazon S3 and Amazon CloudFront.
-* Practice storing data, hosting a static website and managing objects on S3.
+* Learn the basics of Amazon S3 and Amazon CloudFront.
+* Store data, host a static website and manage objects on S3.
 
 ### Tasks to be carried out this week:
 | Day | Task | Start Date | Completion Date | Reference Material |
@@ -25,26 +25,26 @@ pre: " <b> 1.4. </b> "
 
 ### Week 4 Achievements:
 
-* Used AWS CloudShell to run commands right in the browser without installing anything:
+* Used AWS CloudShell to run commands in the browser without installing anything:
 
-  * Used basic Linux commands to create directories, create and edit files, and view file permissions
-  * Used the AWS CLI to check the version and list the S3 buckets and EC2 instances in the account
-  * Uploaded and downloaded files between the local machine and CloudShell
+  * Created directories, created and edited files, and checked file permissions with basic Linux commands
+  * Ran the AWS CLI to check the version and list the S3 buckets and EC2 instances in the account
+  * Moved files between the local machine and CloudShell
 
-* Understood Amazon S3 (buckets, objects, storage classes) and created a bucket to store the website source code.
+* Learned Amazon S3 (buckets, objects, storage classes) and created a bucket for the website source code.
 
 * Hosted a static website on S3:
 
-  * Enabled static website hosting and opened the website through the website endpoint (HTTP)
-  * Turned off Block public access and made objects public with ACLs so the website can be reached
+  * Turned on static website hosting and opened the site through the website endpoint over HTTP
+  * Turned off Block public access and made the objects public with ACLs so the site can be reached
 
-* Used CloudFront to serve the website without making the bucket public:
+* Served the website through CloudFront without keeping the bucket public:
 
   * Turned Block all public access back on and let CloudFront read the bucket through a bucket policy
-  * Saw the page load time drop and learned which PoP serves the content
+  * Saw the page load faster and learned which PoP serves the content
 
 * Managed objects in S3:
 
-  * Used versioning to keep multiple versions of an object and restore older content
+  * Used versioning to keep several versions of an object and restore older content
   * Moved objects to another bucket
-  * Used replication to copy objects automatically to a bucket in another Region for backup
+  * Used replication to copy objects automatically to a bucket in another Region as a backup

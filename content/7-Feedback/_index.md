@@ -12,15 +12,15 @@ pre: " <b> 7. </b> "
 
 **1. Working Environment**
 
-The working environment is friendly, open, and supportive. The workspace is professional and comfortable, which helps me focus and work effectively. Team members are always willing to help each other, creating a positive atmosphere throughout the internship.
+The working environment is friendly and supportive. The workspace is comfortable enough to focus in, and team members help each other.
 
 **2. Support from Mentor / Team Admin**
 
-The mentor provided detailed guidance and answered my questions thoroughly. The admin team created good working conditions and encouraged me to explore and find solutions independently rather than just giving direct answers — which helped me grow much faster.
+The mentor gave detailed guidance and answered my questions. The admin team encouraged me to find solutions myself instead of handing me the answer, and that helped me grow faster.
 
 **3. Relevance of Work to Academic Major**
 
-The tasks went beyond what I learned at university, introducing me to new knowledge and real-world cloud practices that are not covered in the academic curriculum. This allowed me to broaden my perspective and gain practical skills directly applicable to the industry.
+The tasks went beyond what I learned at university and introduced me to real-world cloud practices that the curriculum does not cover.
 
 **4. Learning & Skill Development Opportunities**
 
@@ -32,11 +32,11 @@ During the internship, I learned and improved several new skills including:
 
 **5. Company Culture & Team Spirit**
 
-The company culture is very positive. Everyone respects each other, actively contributes, and supports one another. The collaborative spirit made me feel genuinely included as part of the team, even as an intern.
+People respect each other and support one another. I felt included in the team even as an intern.
 
 **6. Internship Policies / Benefits**
 
-The working hours are flexible, and the internship benefits are sufficient and supportive of the learning process. Overall the conditions provided were well-suited for interns to focus on their projects.
+The working hours are flexible and the benefits are enough to support learning.
 
 ---
 
@@ -44,7 +44,7 @@ The working hours are flexible, and the internship benefits are sufficient and s
 
 - **What did you find most satisfying during your internship?**
 
-  The learning environment and the overall internship experience at AWS. The program is structured to help students grow, and being exposed to a real cloud ecosystem made the experience very valuable.
+  The learning environment at AWS. The program is structured to help students grow, and working with a real cloud ecosystem was the most useful part.
 
 - **What do you think the company should improve for future interns?**
 
@@ -52,10 +52,10 @@ The working hours are flexible, and the internship benefits are sufficient and s
 
 - **Would you recommend this internship to a friend? Why?**
 
-  Yes, definitely. The program's main purpose is to provide students with learning materials on cloud computing and hands-on experience working directly on real projects. Interns get to explore a massive cloud ecosystem (EC2, S3, IAM, AI/ML and more), and there are also opportunities to be referred to AWS Vietnam's partners for future jobs.
+  Yes. The program gives students learning materials on cloud computing and hands-on work on real projects. Interns get to explore a large cloud ecosystem (EC2, S3, IAM, AI/ML and more), and can be referred to AWS Vietnam's partners for future jobs.
 
 ---
 
 ### Suggestions & Expectations
 
-At this point, I have no further suggestions as everything has been well-organized and met my expectations. I hope the program continues to grow and help more students in the future.
+I have no further suggestions. The program was well organized and met my expectations, and I hope it keeps helping more students.

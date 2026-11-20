@@ -10,8 +10,8 @@ pre: " <b> 1.1. </b> "
 ### Week 1 Objectives:
 
 * Get to know the members, rules and FCAJ Portal of the First Cloud AI Journey (FCAJ) program.
-* Understand basic AWS services and how to use the Console.
-* Get familiar with the learning materials of the FCAJ Workforce Bootcamp - 2026 and the Kiro tool.
+* Learn the basic AWS services and how to use the Console.
+* Look through the learning materials of the FCAJ Workforce Bootcamp 2026 and try the Kiro tool.
 
 ### Tasks to be carried out this week:
 | Day | Task | Start Date | Completion Date | Reference Material |
@@ -25,21 +25,21 @@ pre: " <b> 1.1. </b> "
 
 ### Week 1 Achievements:
 
-* Understood the rules, regulations and working style at the AWS office.
+* Read the rules and regulations of the AWS office and learned how people work there.
 
-* Got familiar with the FCAJ Portal and created an account; know:
+* Got familiar with the FCAJ Portal and created an account, and found out:
 
-  * The ways to register to work at the office
+  * How to register to work at the office
   * How to register for the uniform
 
-* Understood what AWS is and the basics:
+* Covered the AWS basics:
 
   * Cloud computing and the pay-as-you-go model
-  * Global infrastructure: Region, AZ, Edge Location
-  * Root user and IAM user
-  * Ways to interact with AWS: Console, CLI, SDK
+  * The global infrastructure: Region, AZ and Edge Location
+  * The difference between the root user and an IAM user
+  * Three ways to work with AWS: Console, CLI and SDKs
 
-* Understood the basic concepts of Kiro:
+* Learned the basic ideas of Kiro:
 
   * Spec-driven development
   * Kiro IDE and Kiro CLI

@@ -109,73 +109,40 @@ Bài toán là cho AI Agent chạy 24/7 để hỗ trợ review code và kiểm 
 
 ---
 
-### 4. Những Gì Học Được
+### 4. Những gì học được
 
-**Tư Duy Thiết Kế**
+Session 1 cho mình cách tiếp cận một bài toán Voice AI: bắt đầu từ độ trễ và trải nghiệm của người nghe, rồi mới chọn công nghệ. Ba mô hình kiến trúc đánh đổi tốc độ, độ linh hoạt và khả năng kiểm soát theo những cách khác nhau, và ở mô hình Cascade độ trễ cộng dồn qua từng bước STT, LLM, TTS. Guardrails cần có ngay từ thiết kế.
 
-- **Bắt đầu từ người nghe:** Bài toán Voice AI bắt đầu từ **độ trễ** và **trải nghiệm của người nghe**, sau đó mới đến chọn công nghệ.
-- **Mỗi kiến trúc có đánh đổi:** Mỗi mô hình cân bằng giữa tốc độ, độ linh hoạt và khả năng kiểm soát.
-- **Guardrails là bắt buộc:** Đây là một tầng cần có ngay từ đầu, không phải thứ thêm vào sau.
+Về quản trị, mình hiểu AWS RAM cho phép các tài khoản dùng chung một tài nguyên thay vì sao chép, và SCP đặt trần quyền hạn cho cả tổ chức bên trên IAM policy. Phần review Terraform và Pull Request ở session 3 cho thấy lỗi hạ tầng có thể bị bắt trước khi deploy thay vì sau.
 
-**Kiến Trúc Kỹ Thuật**
+AgentCore tách phần chạy Agent (Runtime) khỏi phần nhớ ngữ cảnh (Memory ngắn hạn và dài hạn). Context window và memory cũ đều làm tăng lượng token, nên cần Auto Compact và dọn dẹp định kỳ. Ngoài kiểm duyệt nội dung, Agent còn cần lớp chặn để không xóa hạ tầng hay làm lộ credential.
 
-- **Độ trễ cộng dồn:** Mình hiểu luồng STT → LLM → TTS và vì sao độ trễ cộng dồn qua từng bước.
-- **Function calling / tool use:** Mình hiểu vai trò của nó khi AI agent cần làm việc với hệ thống thật.
-- **Đưa vào tổng đài:** Mình biết cần tính đến telephony, quản lý trạng thái hội thoại và chi phí khi đưa Voice AI vào tổng đài.
-
-**Quản Trị Và Bảo Mật**
-
-- **Chia sẻ thay vì sao chép:** Mình hiểu AWS RAM cho phép dùng chung tài nguyên giữa các tài khoản, và SCP đặt trần quyền hạn cho cả tổ chức bên trên IAM policy.
-- **Kiểm tra bảo mật sớm:** Mình thấy lỗi hạ tầng có thể bị bắt ngay ở bước review Terraform hoặc Pull Request, thay vì sau khi đã deploy.
-
-**Agent Trên Production**
-
-- **Agent cần runtime và memory riêng:** Mình biết AgentCore tách phần chạy Agent (Runtime) khỏi phần nhớ ngữ cảnh (Memory ngắn hạn và dài hạn).
-- **Ngữ cảnh và memory tốn chi phí:** Context window và memory cũ đều làm tăng lượng token, nên cần Auto Compact và dọn dẹp định kỳ.
-- **Guardrails ở tầng hạ tầng:** Ngoài kiểm duyệt nội dung, Agent còn cần lớp chặn để không xóa hạ tầng hay làm lộ credential.
-
-**Ứng Dụng Thực Tế**
-
-- **Tự động hóa từ đầu đến cuối:** Mình thấy một quy trình nghiệp vụ (sơ tuyển ứng viên) được AI agent làm trọn vẹn.
-- **Con người quyết định cuối cùng:** Kết quả cuộc gọi được lưu lại và báo cáo để con người ra quyết định.
+Mình cũng thấy function calling / tool use nối AI agent với hệ thống thật. Trong demo, trợ lý tuyển dụng làm trọn quy trình sơ tuyển từ đầu đến cuối, kết quả được lưu và báo cáo để con người ra quyết định cuối cùng. Khi đưa Voice AI vào tổng đài, cần tính đến telephony, quản lý trạng thái hội thoại và chi phí.
 
 ---
 
-### 5. Ứng Dụng Vào Công Việc
+### 5. Ứng dụng vào công việc
 
-- **Kiểm duyệt trước khi phản hồi:** Khi thiết kế ứng dụng có AI, mình sẽ cân nhắc Guardrails ngay từ đầu.
-- **Ước tính chi phí sớm:** Khi học thêm các dịch vụ AWS, mình sẽ ước tính **chi phí** của các thành phần AI (mô hình, chuyển đổi giọng nói) trước khi triển khai.
-- **Hiểu cách agent nối với hệ thống:** Mình sẽ tìm hiểu thêm về function calling / tool use để biết AI agent kết nối với hệ thống backend như thế nào.
-- **Giới hạn quyền cho từng thành phần:** Với Cost Guard, mình sẽ giữ nguyên tắc mỗi hàm Lambda một IAM role chỉ có quyền dừng đúng instance đích, giống ý tưởng đặt trần quyền hạn ở session 2 và lớp chặn không cho Agent xóa hạ tầng ở session 5.
+- Mình sẽ cân nhắc Guardrails ngay từ đầu khi thiết kế ứng dụng có AI.
+- Khi học thêm các dịch vụ AWS, mình sẽ ước tính chi phí của các thành phần AI (mô hình, chuyển đổi giọng nói) trước khi triển khai.
+- Mình sẽ tìm hiểu thêm về function calling / tool use để biết AI agent kết nối với hệ thống backend như thế nào.
+- Với Cost Guard, mình sẽ giữ nguyên tắc mỗi hàm Lambda một IAM role chỉ có quyền dừng đúng instance đích, giống ý tưởng đặt trần quyền hạn ở session 2 và lớp chặn không cho Agent xóa hạ tầng ở session 5.
 
 ---
 
-### 6. Trải Nghiệm Trong Event
+### 6. Trải nghiệm trong event
 
 Mình tham dự trực tiếp buổi Meet Up từ 9 giờ đến 12 giờ trưa ngày 24/10/2026 tại Tầng 26, tòa nhà Bitexco, do Amazon Web Services Viet Nam Company Limited tổ chức. Buổi gồm 5 session, mở đầu là Voice AI và Agentic AI trong Contact Center.
 
-**Học Từ Diễn Giả**
+Anh Kiệt Trần (Revve AI) giải thích các kiến trúc Voice AI và vì sao độ trễ quyết định trải nghiệm. Phần Guardrails cho mình thấy output của trợ lý AI cần được kiểm soát trước khi nói với người dùng. Hai anh của Styl Solution nói về chia sẻ tài nguyên và kiểm thử bảo mật, anh Xuân An giới thiệu AgentCore. Session cuối về Kiro Crew là phần mình quan tâm nhất, vì nó nói đến việc cho AI Agent chạy liên tục mà vẫn kiểm soát được chi phí và quyền hạn.
 
-Anh Kiệt Trần (Revve AI) giải thích rõ các kiến trúc Voice AI và vì sao độ trễ quyết định trải nghiệm. Phần Guardrails giúp mình hiểu rằng một trợ lý AI cần được kiểm soát nội dung trước khi nói với người dùng.
-
-Hai anh của Styl Solution nói về chia sẻ tài nguyên và kiểm thử bảo mật, anh Xuân An giới thiệu AgentCore. Session cuối về Kiro Crew là phần mình quan tâm nhất, vì nó nói đến việc cho AI Agent chạy liên tục mà vẫn kiểm soát được chi phí và quyền hạn.
-
-**Phần Demo Thực Tế**
-
-Mình được xem trợ lý tuyển dụng "Mai" gọi điện sơ tuyển ứng viên và thấy kết quả được ghi lại, chấm điểm sơ bộ. Phần thảo luận kỹ thuật cho mình biết thêm những vấn đề thật khi xây Voice AI, như chi phí, quản lý trạng thái hội thoại và kết nối hệ thống backend.
-
-**Kết Nối Và Trao Đổi**
-
-Phần hỏi đáp và mini-game cuối buổi giúp mình ôn lại kiến thức về dịch vụ AWS, mô hình ngôn ngữ và kiến trúc hội thoại.
+Mình được xem trợ lý tuyển dụng "Mai" gọi điện sơ tuyển ứng viên và thấy kết quả được ghi lại, chấm điểm sơ bộ. Phần thảo luận kỹ thuật nêu những vấn đề thật khi xây Voice AI: chi phí, quản lý trạng thái hội thoại và kết nối hệ thống backend. Phần hỏi đáp và mini-game cuối buổi giúp mình ôn lại kiến thức về dịch vụ AWS, mô hình ngôn ngữ và kiến trúc hội thoại.
 
 ---
 
-### 7. Bài Học Rút Ra
+### 7. Bài học rút ra
 
-- **AI có kiểm soát mới hữu ích:** AI agent chỉ có ích trong thực tế khi được kiểm soát (Guardrails) và nối được với hệ thống nghiệp vụ.
-- **Cân bằng là một phần của thiết kế:** Khi chọn kiến trúc Voice AI, cần cân bằng giữa độ trễ, chi phí và khả năng kiểm soát.
-- **Bắt đầu từ người dùng:** Chọn công nghệ xuất phát từ trải nghiệm của người nghe, không phải ngược lại.
-- **Quyền hạn và chi phí cần giới hạn từ đầu:** Từ SCP ở session 2 đến Guardrails và quản lý memory ở session 5, ý chung là đặt trần cho quyền hạn và chi phí trước khi hệ thống chạy.
+AI agent chỉ có ích trong thực tế khi được kiểm soát bằng Guardrails và nối được với hệ thống nghiệp vụ. Khi chọn kiến trúc Voice AI, cần cân bằng độ trễ, chi phí và khả năng kiểm soát, bắt đầu từ trải nghiệm của người nghe. Từ SCP ở session 2 đến Guardrails và quản lý memory ở session 5, ý chung là đặt trần cho quyền hạn và chi phí trước khi hệ thống chạy.
 
 ---
 

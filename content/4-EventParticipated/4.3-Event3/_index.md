@@ -111,42 +111,22 @@ The problem was running an AI agent 24/7 to help with code review and system che
 
 ### 4. What I Learned
 
-**Design Thinking**
+Session 1 gave me a way to approach a Voice AI problem: start from latency and the listener's experience, then choose the technology. The three architectures trade speed, flexibility and controllability differently, and in the cascade model latency adds up at each STT, LLM and TTS step. Guardrails belong in the design from the start.
 
-- **Start from the listener:** A Voice AI problem starts with **latency** and the **listener's experience**, then moves on to technology choices.
-- **Every architecture has trade-offs:** Each model balances speed, flexibility and controllability.
-- **Guardrails are required:** They are a layer to have from the start, not something to add later.
+On governance, I learned that AWS RAM lets accounts use the same resource instead of copying it, and that an SCP sets a permission ceiling for the whole organization above IAM policies. The Terraform and Pull Request review in session 3 showed that infrastructure errors can be caught before deployment instead of after.
 
-**Technical Architecture**
+AgentCore separates running the agent (Runtime) from remembering context (short-term and long-term Memory). Context windows and old memory both raise token use, so Auto Compact and regular cleanup are needed. Besides content moderation, an agent also needs a block that stops it from deleting infrastructure or leaking credentials.
 
-- **Latency adds up:** I understand the STT → LLM → TTS flow and why latency accumulates step by step.
-- **Function calling / tool use:** I understand its role when an AI agent has to work with real systems.
-- **Bringing it to a call center:** I know that telephony, conversation state and cost need to be considered when Voice AI goes into a call center.
-
-**Governance and Security**
-
-- **Share instead of copy:** I understand that AWS RAM lets accounts use the same resources, and that an SCP sets a permission ceiling for the whole organization above IAM policies.
-- **Check security early:** I saw that infrastructure errors can be caught at the Terraform or Pull Request review step instead of after deployment.
-
-**Agents in Production**
-
-- **Agents need their own runtime and memory:** I know AgentCore separates running the agent (Runtime) from remembering context (short-term and long-term Memory).
-- **Context and memory cost money:** Context windows and old memory both raise token use, so Auto Compact and regular cleanup are needed.
-- **Guardrails at the infrastructure layer:** Besides content moderation, an agent also needs a block that stops it from deleting infrastructure or leaking credentials.
-
-**Real-world Application**
-
-- **End-to-end automation:** I saw a business process (candidate screening) done from start to finish by an AI agent.
-- **A human decides at the end:** Call results are stored and reported so that people make the final decision.
+I also saw function calling / tool use connect an AI agent to real systems. In the demo, the recruiting assistant ran candidate screening from start to finish, and the results were stored and reported so that people make the final decision. Bringing Voice AI into a call center means taking telephony, conversation state and cost into account.
 
 ---
 
 ### 5. Application to Work
 
-- **Moderate before responding:** When I design AI applications, I will think about Guardrails from the start.
-- **Estimate cost early:** When I learn more AWS services, I will estimate the **cost** of AI components (models, speech conversion) before deploying.
-- **Understand how agents connect to systems:** I will learn more about function calling / tool use to see how AI agents connect to backend systems.
-- **Limit permissions per component:** In Cost Guard I will keep the rule that each Lambda function has one IAM role that can only stop the target instance, in line with the permission ceiling from session 2 and the block that stops agents from deleting infrastructure in session 5.
+- I will think about Guardrails from the start when I design AI applications.
+- When I learn more AWS services, I will estimate the cost of AI components (models, speech conversion) before deploying.
+- I will learn more about function calling / tool use to see how AI agents connect to backend systems.
+- In Cost Guard I will keep the rule that each Lambda function has one IAM role that can only stop the target instance, in line with the permission ceiling from session 2 and the block that stops agents from deleting infrastructure in session 5.
 
 ---
 
@@ -154,28 +134,15 @@ The problem was running an AI agent 24/7 to help with code review and system che
 
 I attended the Meet Up in person from 9:00 AM to 12:00 PM on October 24, 2026 at the 26th Floor, Bitexco Tower, organized by Amazon Web Services Viet Nam Company Limited. The day had five sessions, opening with Voice AI and Agentic AI in the Contact Center.
 
-**Learning from the Speakers**
+Mr. Kiet Tran (Revve AI) explained the Voice AI architectures and why latency decides the user experience. His Guardrails part showed me that an AI assistant's output has to be controlled before it speaks to users. The two speakers from Styl Solution covered resource sharing and security testing, and Mr. Xuan An introduced AgentCore. The last session, on Kiro Crew, interested me most, because it dealt with keeping an AI agent running continuously while still controlling cost and permissions.
 
-Mr. Kiet Tran (Revve AI) explained Voice AI architectures clearly, and why latency decides the user experience. The Guardrails part helped me understand that an AI assistant needs its content controlled before it speaks to users.
-
-The two speakers from Styl Solution covered resource sharing and security testing, and Mr. Xuan An introduced AgentCore. The last session, on Kiro Crew, interested me most, because it dealt with keeping an AI agent running continuously while still controlling cost and permissions.
-
-**The Live Demo**
-
-I watched the recruiting assistant "Mai" phone-screen a candidate and saw the results recorded and scored at a first level. The technical discussion showed me real problems in building Voice AI, such as cost, conversation state and backend integration.
-
-**Networking and Exchange**
-
-The Q&A and the closing mini-game helped me review AWS services, language models and conversational architectures.
+I watched the recruiting assistant "Mai" phone-screen a candidate and saw the results recorded and scored at a first level. The technical discussion covered real problems in building Voice AI: cost, conversation state and backend integration. The Q&A and the closing mini-game helped me review AWS services, language models and conversational architectures.
 
 ---
 
 ### 7. Key Takeaways
 
-- **Controlled AI is useful AI:** AI agents help in practice only when they are controlled (Guardrails) and connected to business systems.
-- **Balance is part of the design:** When choosing a Voice AI architecture, balance latency, cost and controllability.
-- **Start from the user:** Technology choices follow from the listener's experience, not the other way around.
-- **Limit permissions and cost from the start:** From SCPs in session 2 to Guardrails and memory management in session 5, the common idea is to set a ceiling on permissions and cost before the system runs.
+AI agents help in practice only when they are controlled with Guardrails and connected to business systems. Choosing a Voice AI architecture means balancing latency, cost and controllability, starting from the listener's experience. The common idea from SCPs in session 2 to Guardrails and memory management in session 5 is to set a ceiling on permissions and cost before the system runs.
 
 ---
 

@@ -18,16 +18,16 @@ Bắt đầu thực tập từ **07/09/2026**. Tuần 1–3 chủ yếu dành ch
 
 **Tuần 5:** [Lên ý tưởng proposal, tìm hiểu Amazon RDS và hands-on](1.5-week5/)
 
-**Tuần 6:** [Làm công việc C...](1.6-week6/)
+**Tuần 6:** [Tìm hiểu Amazon Lightsail, EC2 Auto Scaling và hands-on](1.6-week6/)
 
-**Tuần 7:** [Làm công việc D...](1.7-week7/)
+**Tuần 7:** [Tìm hiểu Amazon CloudWatch, hybrid DNS với Route 53 Resolver và hands-on](1.7-week7/)
 
-**Tuần 8:** [Làm công việc E...](1.8-week8/)
+**Tuần 8:** [Tìm hiểu AWS CLI, tiếp tục làm workshop và kiểm tra proposal](1.8-week8/)
 
-**Tuần 9:** [Làm công việc F...](1.9-week9/)
+**Tuần 9:** [Đọc blog nâng cấp Windows Server và triển khai WordPress trên AWS](1.9-week9/)
 
-**Tuần 10:** [Làm công việc G...](1.10-week10/)
+**Tuần 10:** [Tìm hiểu AWS WAF, Amazon GuardDuty và hands-on](1.10-week10/)
 
-**Tuần 11:** [Làm công việc H...](1.11-week11/)
+**Tuần 11:** [Triển khai và kiểm thử workshop, chạy demo và viết báo cáo](1.11-week11/)
 
-**Tuần 12:** [Làm công việc I...](1.12-week12/)
+**Tuần 12:** [Rà soát toàn bộ nội dung, viết tự đánh giá và nhận xét, nộp workshop](1.12-week12/)

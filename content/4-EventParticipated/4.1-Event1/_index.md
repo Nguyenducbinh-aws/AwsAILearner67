@@ -61,28 +61,19 @@ The analysis of real tests showed how to handle common technical problems.
 
 ### 4. What I Learned
 
-**Design Thinking**
+Before building a Bot, I should define the architecture and the overall processing flow, then build each feature. I understand better now why it goes in that order. An AI product has to solve a specific problem for its users.
 
-- **Architecture first, features later:** I understand better why the architecture and the overall processing flow should be defined before building the features of a Bot.
-- **Solve a real problem:** An AI product does not need the latest technology. What matters is that it solves a specific problem and meets the needs of its users.
+Complex requirements are easier to build, test and adjust when split into small parts. A Bot also needs error handling, edge cases and response time checked before it runs reliably.
 
-**Technical Architecture**
-
-- **Break problems down:** For complex requirements, split them into small parts that are easier to build, test and adjust.
-- **Care about stability:** Error handling, edge cases and response time need attention so that a Bot works better.
-
-**Personal Development**
-
-- **Hiring standards:** From the CMC Global HR talk, I know more clearly which skills and knowledge are needed when applying for technology roles.
-- **A profile built from real projects:** Joining real projects and challenges is a good way to gain experience and to have concrete work to add to a personal profile.
+From the CMC Global HR talk I know more clearly which skills and knowledge technology roles ask for. Joining real projects and challenges gives me experience and concrete work to put in my profile.
 
 ---
 
 ### 5. Application to Work
 
-- **Build Bots in a new order:** I will design the architecture and define the processing flow first, then build each function, instead of starting from separate functions.
-- **Prepare for FCAJ Buildrathon 2026:** I will break problems down to prepare better for the challenges, and to work with my teammates more easily.
-- **Improve my own productivity:** I will explore and try AI Agent tools that can automate repetitive daily tasks and save time.
+- I will design the architecture and define the processing flow first, then build each function, instead of starting from separate functions.
+- I will break problems down to prepare for the FCAJ Buildrathon 2026 challenges and to work with my teammates more easily.
+- I will try AI Agent tools that can automate repetitive daily tasks and save time.
 
 ---
 
@@ -90,25 +81,17 @@ The analysis of real tests showed how to handle common technical problems.
 
 I attended the Kickoff FCAJ Buildrathon 2026 (Season 01) and the talkshow by CMC Global and VietAWS. The atmosphere was lively, with many people interested in AI and Cloud.
 
-**Learning from the Speakers**
+Truong Bui (Tech Lead, CMC Global), Thien Lu and Phong Pham (Program Managers, FCAJ) spoke from different angles, from technical depth to how real projects are organized and delivered. The content was easy to follow and covered problems I may meet at work.
 
-Truong Bui (Tech Lead, CMC Global), Thien Lu and Phong Pham (Program Managers, FCAJ) shared from different angles, from technical depth to how real projects are organized and delivered. The content was easy to follow and covered problems I may meet at work.
+The analysis of the real tests stayed with me most. Watching the experts break a problem down and choose a solution showed me that the approach counts as much as the technical knowledge.
 
-**The Hands-on Technical Part**
-
-The analysis of the real tests left the strongest impression. Watching the experts break a problem down and pick a solution, I saw that technical knowledge alone is not enough. A good approach and a good way of thinking matter just as much.
-
-**Networking and Exchange**
-
-The 1-on-1 session with the CMC Global Recruitment team was very valuable. I learned more about real working environments and the skills that companies look for. The spirit of sharing and mutual support in the VietAWS and CMC Global community was the part I found most meaningful.
+The 1-on-1 session with the CMC Global Recruitment team told me more about real working environments and the skills companies look for. I also liked the sharing and mutual support in the VietAWS and CMC Global community.
 
 ---
 
 ### 7. Key Takeaways
 
-- **Architecture is the foundation:** Before building a product, look at the overall system structure and how the parts work together. A sound architecture makes development, maintenance and scaling easier later.
-- **Practice builds deeper understanding:** Theory only becomes meaningful when it is applied to a concrete problem. Doing it myself shows the difficulties and the gaps I still have.
-- **Connect proactively:** Talking with experts, colleagues and recruiters widens my view and gives me more direction for my career.
+Before building a product, look at the overall system structure and how the parts work together. A sound architecture makes development, maintenance and scaling easier later. Theory only means something once I apply it to a concrete problem, and doing it myself shows the gaps I still have. Talking with experts, colleagues and recruiters also widens my view and gives me more direction for my career.
 
 ---
 

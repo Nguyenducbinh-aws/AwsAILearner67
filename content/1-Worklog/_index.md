@@ -18,16 +18,16 @@ The internship started on **07/09/2026 (September 7, 2026)**. Weeks 1–3 are ma
 
 **Week 5:** [Planning the proposal, learning Amazon RDS and hands-on labs](1.5-week5/)
 
-**Week 6:** [Doing task C...](1.6-week6/)
+**Week 6:** [Learning Amazon Lightsail, EC2 Auto Scaling and hands-on labs](1.6-week6/)
 
-**Week 7:** [Doing task D...](1.7-week7/)
+**Week 7:** [Learning Amazon CloudWatch, hybrid DNS with Route 53 Resolver and hands-on labs](1.7-week7/)
 
-**Week 8:** [Doing task E...](1.8-week8/)
+**Week 8:** [Learning the AWS CLI, continuing the workshop and checking the proposal](1.8-week8/)
 
-**Week 9:** [Doing task F...](1.9-week9/)
+**Week 9:** [Reading about Windows Server upgrades and deploying WordPress on AWS](1.9-week9/)
 
-**Week 10:** [Doing task G...](1.10-week10/)
+**Week 10:** [Learning AWS WAF, Amazon GuardDuty and hands-on labs](1.10-week10/)
 
-**Week 11:** [Doing task H...](1.11-week11/)
+**Week 11:** [Deploying and testing the workshop, running the demo and writing the report](1.11-week11/)
 
-**Week 12:** [Doing task I...](1.12-week12/)
+**Week 12:** [Reviewing all sections, writing the self-evaluation and feedback, and submitting the workshop](1.12-week12/)

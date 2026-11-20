@@ -10,8 +10,8 @@ pre: " <b> 1.1. </b> "
 ### Mục tiêu tuần 1:
 
 * Làm quen với các thành viên, nội quy và FCAJ Portal của chương trình First Cloud AI Journey (FCAJ).
-* Hiểu dịch vụ AWS cơ bản, cách dùng Console.
-* Làm quen với tài liệu học tập của FCAJ Workforce Bootcamp - 2026 và công cụ Kiro.
+* Nắm các dịch vụ AWS cơ bản và cách dùng Console.
+* Xem qua tài liệu học của FCAJ Workforce Bootcamp 2026 và thử công cụ Kiro.
 
 ### Các công việc cần triển khai trong tuần này:
 | Thứ | Công việc | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu |
@@ -25,23 +25,23 @@ pre: " <b> 1.1. </b> "
 
 ### Kết quả đạt được tuần 1:
 
-* Nắm được nội quy, quy định và cách làm việc tại văn phòng của AWS.
+* Đọc nội quy và quy định ở văn phòng AWS, nắm được cách làm việc ở đó.
 
-* Đã làm quen và tạo tài khoản FCAJ Portal, biết:
+* Làm quen FCAJ Portal và tạo tài khoản, đồng thời biết:
 
-  * Các cách đăng ký lên văn phòng
+  * Cách đăng ký lên văn phòng
   * Cách đăng ký đồng phục
 
-* Hiểu AWS là gì và nắm được kiến thức cơ bản:
+* Học các kiến thức cơ bản về AWS:
 
   * Điện toán đám mây và mô hình pay-as-you-go
-  * Hạ tầng toàn cầu: Region, AZ, Edge Location
-  * Root user và IAM user
-  * Các cách tương tác với AWS: Console, CLI, SDK
+  * Hạ tầng toàn cầu: Region, AZ và Edge Location
+  * Sự khác nhau giữa root user và IAM user
+  * Ba cách làm việc với AWS: Console, CLI và SDK
 
-* Nắm được các khái niệm cơ bản của Kiro:
+* Biết những ý cơ bản của Kiro:
 
   * Spec-driven development
   * Kiro IDE và Kiro CLI
 
-* Đã cài đặt Kiro IDE và Kiro CLI.
+* Đã cài Kiro IDE và Kiro CLI.

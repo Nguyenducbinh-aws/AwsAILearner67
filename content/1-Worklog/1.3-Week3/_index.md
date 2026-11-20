@@ -9,9 +9,9 @@ pre: " <b> 1.3. </b> "
 
 ### Week 3 Objectives:
 
-* Understand the basics of networking on AWS with Amazon VPC.
+* Learn the basics of networking on AWS with Amazon VPC.
 * Get familiar with Amazon EC2 and its basic features.
-* Practice creating a VPC, running EC2 and deploying a sample application.
+* Create a VPC, run EC2 in it and deploy a sample application.
 
 ### Tasks to be carried out this week:
 | Day | Task | Start Date | Completion Date | Reference Material |
@@ -25,15 +25,19 @@ pre: " <b> 1.3. </b> "
 
 ### Week 3 Achievements:
 
-* Understood the basic networking components in Amazon VPC:
+* Learned the basic networking parts of Amazon VPC:
 
-  * Subnet, Route Table, Internet Gateway, NAT Gateway
-  * Security Group and Network ACL
+  * Subnets, route tables, internet gateways and NAT gateways
+  * Security groups and network ACLs
 
-* Able to create a VPC, run EC2 in the VPC and test the connection through a NAT Gateway.
+* Created a VPC, ran an EC2 instance inside it and tested the connection through a NAT gateway.
 
-* Understood Amazon EC2: instance type, AMI, EBS, key pair.
+* Learned Amazon EC2: instance types, AMIs, EBS and key pairs.
 
-* Able to launch and connect to Linux and Windows EC2 instances, change the instance type, and create snapshots and AMIs.
+* Worked with EC2 instances:
+
+  * Launched and connected to Linux and Windows instances
+  * Changed the instance type
+  * Created snapshots and AMIs
 
 * Deployed the AWS User Management application on EC2.

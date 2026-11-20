@@ -26,7 +26,7 @@ Moving an old .NET Framework and SQL Server system to the cloud with a lift-and-
 
 **Conclusion and thoughts:**
 
-My takeaway is that a lift-and-shift move does not solve license cost or scalability by itself. The 30% lower license cost and 70% lower storage cost came from analyzing the system first with tools such as CAST and Babelfish Compass, and then moving from .NET Framework to .NET 8 on Linux, from SQL Server to PostgreSQL and from Amazon FSx to Amazon S3. In other words, the saving is the result of restructuring the application and choosing new platforms, not only of changing where the system runs.
+The 30% lower license cost and 70% lower storage cost came from analyzing the system first with tools such as CAST and Babelfish Compass, and then moving from .NET Framework to .NET 8 on Linux, from SQL Server to PostgreSQL and from Amazon FSx to Amazon S3. A lift-and-shift move alone would have left both costs where they were.
 
 **References:**
 

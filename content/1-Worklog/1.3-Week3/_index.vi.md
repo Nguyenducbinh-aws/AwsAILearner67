@@ -11,7 +11,7 @@ pre: " <b> 1.3. </b> "
 
 * Hiểu cơ bản về mạng trên AWS với Amazon VPC.
 * Làm quen với Amazon EC2 và các tính năng cơ bản.
-* Thực hành tạo VPC, chạy EC2 và triển khai ứng dụng mẫu.
+* Tạo VPC, chạy EC2 trong đó và triển khai một ứng dụng mẫu.
 
 ### Các công việc cần triển khai trong tuần này:
 | Thứ | Công việc | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu |
@@ -25,15 +25,19 @@ pre: " <b> 1.3. </b> "
 
 ### Kết quả đạt được tuần 3:
 
-* Hiểu các thành phần mạng cơ bản trong Amazon VPC:
+* Nắm các thành phần mạng cơ bản của Amazon VPC:
 
-  * Subnet, Route Table, Internet Gateway, NAT Gateway
-  * Security Group và Network ACL
+  * Subnet, route table, internet gateway và NAT gateway
+  * Security group và network ACL
 
-* Tạo được VPC và chạy EC2 trong VPC, kiểm tra kết nối bằng NAT Gateway.
+* Tạo VPC, chạy EC2 bên trong và kiểm tra kết nối qua NAT gateway.
 
-* Hiểu Amazon EC2: instance type, AMI, EBS, key pair.
+* Học Amazon EC2: instance type, AMI, EBS và key pair.
 
-* Chạy và kết nối được EC2 Linux, Windows, đổi instance type, tạo snapshot và AMI.
+* Làm việc với EC2:
 
-* Triển khai được ứng dụng AWS User Management trên EC2.
+  * Chạy và kết nối EC2 Linux và Windows
+  * Đổi instance type
+  * Tạo snapshot và AMI
+
+* Triển khai ứng dụng AWS User Management trên EC2.

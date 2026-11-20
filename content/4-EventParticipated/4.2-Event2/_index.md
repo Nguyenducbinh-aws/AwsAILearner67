@@ -98,56 +98,34 @@ It also went into topics such as information security, automated testing, AI gov
 
 ### 4. What I Learned
 
-**Thinking About Cloud and AI**
+The Dynamo, Nitro, Lambda and Firecracker stories showed me that performance, security and scalability come from architecture design. The cloud lowers the burden of managing infrastructure and is the base for building systems that scale. Agentic AI was the other big idea: agents can work together on a complex process instead of answering one command at a time.
 
-- **The role of the cloud:** The cloud does more than lower the burden of managing infrastructure. It is also the base for building systems that can scale.
-- **AI must solve a specific problem:** The value of AI is the real result it delivers, not the model that is used.
-- **Agentic AI:** AI agents can work together on a complex process, instead of answering one command at a time.
+From the Katalon and AWS Security Agent sessions I took that testing and security have to run through the whole development process, not only the last step, because AI writes code faster than people can check it. Spec-Driven Development follows the same logic: write the requirements and a clear spec before working with AI.
 
-**Technical Knowledge**
-
-- **System architecture:** Through Dynamo, Nitro, Lambda and Firecracker, I saw that good architecture design is what produces performance, security and scalability.
-- **Spec-Driven Development:** Define the requirements and write a clear spec before working with AI.
-- **Testing and security:** They must run through the whole development process, not only the last step.
-- **AI governance:** Data, cost, access rights and the results that AI produces all need control.
-
-**Personal Development**
-
-- Cloud and AI change fast, so I need to keep learning and practicing.
-- Technical knowledge creates value only when it is applied to a specific problem.
-- AI can help with many tasks, but the user still has to evaluate, verify and take responsibility.
+The governance session listed what needs control when staff use AI: data, cost, access rights and the results the AI produces. The value of AI lies in the result it delivers, and the person using it still has to evaluate, verify and take responsibility for that result.
 
 ---
 
 ### 5. Application to Work
 
-- **Use AI in software development:** I will use AI agents to analyze requirements, set up the project structure, write code and create test cases.
-- **Focus on Spec-Driven Development:** I will describe the requirements and write a clear spec before implementing.
-- **Strengthen testing:** I will write unit tests, check edge cases and verify the results that AI produces.
-- **Care about security:** I will manage credentials and access rights and protect data.
-- **Learn more about AWS:** Amazon Bedrock, AWS Lambda, Amazon S3 and the tools for building AI agents.
+- I will use AI agents to analyze requirements, set up the project structure, write code and create test cases, starting from a clear written spec.
+- I will write unit tests, check edge cases and verify the results that AI produces.
+- I will manage credentials and access rights and protect data.
+- I will learn more about Amazon Bedrock, AWS Lambda, Amazon S3 and the tools for building AI agents.
 
 ---
 
 ### 6. Event Experience
 
-AWS Cloud and AI Day was a very useful day of learning. The program had a lot of in-depth content about cloud, AI and technology trends in business.
+I attended the whole day, from 08:30 to 17:00. The keynote by Dr. Werner Vogels on Invisible Engineering is the part I remember best. The stories about Dynamo, Nitro and serverless show how much continuous engineering sits behind a stable service. Dr. Jens Lottner described Agentic AI at Techcombank from a practical angle: AI amplifies what people can do and does not replace them.
 
-The keynote by **Dr. Werner Vogels** on Invisible Engineering left the deepest impression. The stories about Dynamo, Nitro and serverless show that behind a stable service there are many continuous technical improvements.
-
-**Dr. Jens Lottner** talked about Agentic AI at Techcombank from a practical angle: AI does not replace people, it amplifies what they can do.
-
-The case studies of Vinasoy, Agris and AMI Group helped me picture how cloud and AI are used in different fields. Each business has its own problem, and the choice of technology should start from real needs.
-
-The message **"Now go build"** from Dr. Werner Vogels reminded me not to stop at theory but to start building.
+The case studies of Vinasoy, Agris and AMI Group showed me cloud and AI used in different fields. Each business started from its own problem and chose the technology after that. The message "Now go build" from Dr. Werner Vogels reminded me not to stop at theory and to start building.
 
 ---
 
 ### 7. Key Takeaways
 
-- **Technology must connect to real value:** Cloud and AI matter only when they solve a specific problem and give a clear result.
-- **Do not take quality and security lightly:** AI can speed up development, but testing and data protection are still required.
-- **Humans stay in charge of direction:** AI can handle many complex tasks, but people must set the requirements, control the results and own the final product.
+Cloud and AI matter when they solve a specific problem and give a clear result. AI speeds up development, but testing and data protection are still required. People still set the requirements, control the results and own the final product.
 
 ---
 

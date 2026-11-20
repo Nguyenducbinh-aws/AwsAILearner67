@@ -9,9 +9,9 @@ pre: " <b> 1.5. </b> "
 
 ### Mục tiêu tuần 5:
 
-* Lên ý tưởng cho proposal và workshop cùng nhóm.
-* Hiểu cơ bản về Amazon RDS và thực hành triển khai database.
-* Tìm hiểu cách truy cập Windows instance bằng Fleet Manager và cách quan sát AI agent bằng CloudWatch Omni.
+* Cùng nhóm lên ý tưởng cho proposal và workshop.
+* Hiểu cơ bản về Amazon RDS và dựng một database.
+* Tìm hiểu cách vào Windows instance bằng Fleet Manager và cách theo dõi AI agent bằng CloudWatch Omni.
 
 ### Các công việc cần triển khai trong tuần này:
 | Thứ | Công việc | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu |
@@ -25,27 +25,27 @@ pre: " <b> 1.5. </b> "
 
 ### Kết quả đạt được tuần 5:
 
-* Có ý tưởng ban đầu cho proposal và workshop cùng nhóm.
+* Cùng nhóm có những ý tưởng đầu tiên cho proposal và workshop.
 
-* Hiểu Amazon RDS: các database engine, Multi-AZ, backup và snapshot, bảo mật.
+* Học Amazon RDS: các database engine, Multi-AZ, backup và snapshot, bảo mật.
 
-* Triển khai được database trên Amazon RDS:
+* Triển khai database trên Amazon RDS:
 
   * Tạo RDS MySQL trong VPC, đặt ở private subnet qua DB subnet group
   * Kết nối từ EC2 bằng MySQL client để tạo database, bảng và thêm dữ liệu
-  * Triển khai ứng dụng kết nối RDS
+  * Triển khai một ứng dụng kết nối RDS
   * Tạo snapshot và restore ra instance mới
 
-* Hiểu AWS Systems Manager Fleet Manager qua blog về truy cập Windows instance bằng console:
+* Học AWS Systems Manager Fleet Manager qua blog về truy cập Windows instance bằng console:
 
-  * Kết nối RDP vào Windows instance ngay trên trình duyệt qua Session Manager
-  * Không cần mở cổng RDP, không cần public IP và bastion host nên giảm bề mặt tấn công
-  * Dùng EC2 key pair hoặc Windows credentials, xem được tối đa 4 instance cùng lúc
-  * Cần SSM Agent, instance profile có quyền Systems Manager và truy cập được SSM endpoint
+  * Mở RDP vào Windows instance ngay trên trình duyệt qua Session Manager
+  * Không cần mở cổng RDP, dùng public IP hay chạy bastion host, nên bề mặt tấn công nhỏ hơn
+  * Dùng được key pair EC2 hoặc credential Windows, xem tối đa 4 instance cùng lúc
+  * Cần SSM Agent, instance profile có quyền Systems Manager và đường tới SSM endpoint
 
-* Hiểu Amazon CloudWatch Omni qua blog về quan sát AI agent:
+* Học Amazon CloudWatch Omni qua blog về theo dõi AI agent:
 
-  * Agent hoạt động không xác định trước nên cần trace ghi lại từng bước gọi LLM và tool để tìm chỗ agent đi sai
-  * Có 17 evaluator dựng sẵn (như coherence, helpfulness, faithfulness) để chấm chất lượng phản hồi, vì latency và tỷ lệ lỗi không cho biết câu trả lời có tốt không
-  * Dùng Playground, Experiments và Prompt Management để so sánh prompt, cấu hình và quay lại phiên bản cũ
-  * Dùng được trong VS Code, Kiro hoặc trên web, theo chuẩn mở OpenInference và ADOT, hỗ trợ nhiều framework như LangChain, CrewAI, Strands
+  * Agent không phải lần nào cũng chạy giống nhau, nên cần trace ghi từng lần gọi LLM và tool để tìm chỗ nó đi sai
+  * 17 evaluator dựng sẵn (coherence, helpfulness, faithfulness và các loại khác) chấm chất lượng câu trả lời, vì latency và tỷ lệ lỗi không cho biết câu trả lời có tốt không
+  * Playground, Experiments và Prompt Management dùng để so sánh prompt, cấu hình và quay lại bản cũ
+  * Dùng được trong VS Code, Kiro hoặc trên web, theo chuẩn mở OpenInference và ADOT, hỗ trợ các framework như LangChain, CrewAI và Strands

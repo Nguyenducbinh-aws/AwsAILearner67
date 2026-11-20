@@ -6,11 +6,11 @@ chapter: false
 pre: " <b> 6. </b> "
 ---
 
-Trong quá trình thực tập tại **Amazon Web Services Viet Nam Company Limited** từ ngày **07/09/2026** đến ngày **14/12/2026** ở vị trí **Cyber Security Intern**, mình đã có cơ hội học hỏi, thực hành và áp dụng kiến thức học tại trường vào môi trường làm việc thực tế.
+Trong quá trình thực tập tại **Amazon Web Services Viet Nam Company Limited** từ ngày **07/09/2026** đến ngày **14/12/2026** ở vị trí **Cyber Security Intern**, mình đã áp dụng kiến thức học ở trường vào công việc thực tế.
 
-Mình đã tham gia **xây dựng Cost Guard, một hệ thống serverless bảo vệ credit cho máy lab Windows trên AWS**, qua đó cải thiện kỹ năng **tối ưu chi phí và bảo mật cloud**.
+Mình tham gia xây dựng Cost Guard, một hệ thống serverless bảo vệ credit cho máy lab Windows trên AWS. Phần lớn những gì mình học được nằm ở kiểm soát chi phí và bảo mật cloud.
 
-Về thái độ làm việc, mình luôn cố gắng hoàn thành tốt nhiệm vụ, tuân thủ nội quy nơi làm việc và tích cực phối hợp với đồng nghiệp để nâng cao hiệu quả công việc.
+Mình tuân thủ nội quy nơi làm việc và phối hợp với đồng nghiệp để hoàn thành công việc.
 
 | STT | Tiêu chí                            | Mô tả                                                                                            | Tốt | Khá | Trung bình |
 | --- | ----------------------------------- | ------------------------------------------------------------------------------------------------ | --- | --- | ---------- |

@@ -10,7 +10,7 @@ pre: " <b> 3.3. </b> "
 
 **Published on:** AWS Study Group (Facebook)
 
-Deploying an application to the cloud is only the first step. The harder question is whether the system is healthy or about to fail, and whether you find out before or after users complain. I am an intern at AWS and spent time reading the documentation of Amazon CloudWatch. This post is a summary so that anyone new to AWS can get the big picture quickly.
+Deploying an application to the cloud is only the first step. After that you need to know whether the system is healthy, ideally before users complain. I am an intern at AWS and spent time reading the documentation of Amazon CloudWatch. This post is a summary so that anyone new to AWS can get the big picture quickly.
 
 ![Amazon CloudWatch: data sources (EC2, ECS, EKS, Lambda, RDS, OpenTelemetry applications) flow into CloudWatch, and the outputs are dashboards, alarms, SNS, Auto Scaling, investigations and SLOs](../../images/3-BlogsPosted/3.3-Blog3/cloudwatch-overview.png)
 
@@ -26,7 +26,7 @@ Deploying an application to the cloud is only the first step. The harder questio
 
 **Conclusion and thoughts:**
 
-I see the value of CloudWatch in connecting three kinds of data: metrics show how the system behaves over time (CPU, latency), logs show why (and can be queried with Logs Insights), and alarms compare a metric with a threshold, then send an alert through SNS or trigger Auto Scaling. A composite alarm combines several alarms into one, so you are not flooded with notifications. Since cost grows with the amount of metrics and logs, it is better to start with a few key indicators such as CPU, errors and latency, and expand from there.
+CloudWatch is useful because it connects three kinds of data: metrics show how the system behaves over time, logs show why, and alarms tell you when to look. Cost grows with the amount of metrics and logs, so I would start with a few indicators such as CPU, errors and latency, and add more only when they are needed.
 
 **References:**
 

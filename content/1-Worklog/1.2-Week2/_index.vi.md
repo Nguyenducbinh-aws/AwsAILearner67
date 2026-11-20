@@ -9,9 +9,9 @@ pre: " <b> 1.2. </b> "
 
 ### Mục tiêu tuần 2:
 
-* Làm quen với tài liệu và hệ thống các bài lab của Cloud Journey.
-* Hiểu cách tối ưu chi phí trên AWS và biết quản lý chi phí bằng AWS Budget.
-* Khám phá các dịch vụ AWS cơ bản: AWS Free Tier, AWS Support và IAM.
+* Làm quen với hệ thống bài lab và tài liệu của Cloud Journey.
+* Hiểu cách tối ưu chi phí trên AWS và quản lý chi phí bằng AWS Budget.
+* Tìm hiểu AWS Free Tier, AWS Support và IAM.
 
 ### Các công việc cần triển khai trong tuần này:
 | Thứ | Công việc | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu |
@@ -25,23 +25,23 @@ pre: " <b> 1.2. </b> "
 
 ### Kết quả đạt được tuần 2:
 
-* Hiểu AWS Free Tier (credit, Free plan và Paid plan) và biết cách đăng ký tài khoản AWS.
+* Hiểu cách AWS Free Tier hoạt động (credit, Free plan và Paid plan) và cách đăng ký tài khoản AWS.
 
-* Đã tạo và cấu hình AWS Free Tier account thành công.
+* Tạo và cấu hình xong một tài khoản Free Tier.
 
-* Làm quen với AWS Management Console và biết cách tìm, truy cập, sử dụng dịch vụ từ giao diện web.
+* Quen với AWS Management Console, biết tìm và mở dịch vụ từ giao diện web.
 
-* Tạo được budget và đặt cảnh báo chi phí bằng AWS Budget:
+* Tạo budget và đặt cảnh báo chi phí bằng AWS Budget:
 
-  * Các loại budget: Cost, Usage, RI, Savings Plans
-  * Ngưỡng cảnh báo
+  * Các loại budget: Cost, Usage, RI và Savings Plans
+  * Cách đặt ngưỡng cảnh báo
 
-* Biết cách truy cập AWS Support, các gói support và cách tạo support request.
+* Biết cách vào AWS Support, các gói support và cách tạo support request.
 
-* Tạo và quản lý quyền truy cập cho người dùng và dịch vụ AWS bằng IAM:
+* Quản lý quyền truy cập bằng IAM:
 
-  * Tạo IAM Group và IAM User, gán quyền thông qua policy
-  * Dùng IAM Role và switch role để truy cập tạm thời
-  * Áp dụng nguyên tắc least privilege (chỉ cấp quyền tối thiểu cần thiết)
+  * Tạo group và user, gán quyền thông qua policy
+  * Dùng role và switch role để truy cập tạm thời
+  * Chỉ cấp quyền tối thiểu cần thiết, theo nguyên tắc least privilege
 
-* Nắm được các nguyên tắc tối ưu chi phí trên AWS và biết hệ thống tài liệu học tập, các bài hands-on của AWS Cloud Journey.
+* Nắm các nguyên tắc tối ưu chi phí trên AWS và biết nơi tìm tài liệu học, bài hands-on của AWS Cloud Journey.

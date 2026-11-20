@@ -96,58 +96,36 @@ Sự kiện cũng đi vào những vấn đề như bảo mật thông tin, tự
 
 ---
 
-### 4. Những Gì Học Được
+### 4. Những gì học được
 
-**Cách Nghĩ Về Cloud Và AI**
+Qua Dynamo, Nitro, Lambda và Firecracker, mình thấy hiệu năng, bảo mật và khả năng mở rộng đến từ thiết kế kiến trúc. Cloud giảm gánh nặng quản lý hạ tầng và là nền để xây hệ thống có thể mở rộng. Agentic AI là ý lớn thứ hai: các AI Agent có thể phối hợp làm một quy trình phức tạp, thay vì chỉ trả lời từng lệnh riêng lẻ.
 
-- **Vai trò của Cloud:** Cloud không chỉ bớt gánh nặng quản lý hạ tầng mà còn là nền để xây hệ thống có thể mở rộng.
-- **AI phải giải một bài toán cụ thể:** Giá trị của AI nằm ở kết quả thật mà nó mang lại, không phải ở mô hình được dùng.
-- **Agentic AI:** Các AI Agent có thể phối hợp để làm một quy trình phức tạp, thay vì chỉ trả lời từng lệnh riêng lẻ.
+Từ các phiên của Katalon và AWS Security Agent, mình rút ra rằng kiểm thử và bảo mật phải chạy xuyên suốt quá trình phát triển, không chỉ ở bước cuối, vì AI viết code nhanh hơn khả năng kiểm tra của con người. Spec-Driven Development đi cùng ý đó: xác định yêu cầu và viết đặc tả rõ ràng trước khi làm việc với AI.
 
-**Kiến Thức Kỹ Thuật**
-
-- **Kiến trúc hệ thống:** Qua Dynamo, Nitro, Lambda và Firecracker, mình thấy thiết kế kiến trúc tốt là thứ tạo ra hiệu năng, bảo mật và khả năng mở rộng.
-- **Spec-Driven Development:** Xác định yêu cầu và viết đặc tả rõ ràng trước khi làm việc với AI.
-- **Kiểm thử và bảo mật:** Phải có xuyên suốt quá trình phát triển, không chỉ ở bước cuối.
-- **Quản trị AI:** Cần kiểm soát dữ liệu, chi phí, quyền truy cập và kết quả do AI tạo ra.
-
-**Phát Triển Bản Thân**
-
-- Cloud và AI thay đổi nhanh, nên mình cần chủ động học và thực hành liên tục.
-- Kiến thức kỹ thuật chỉ tạo ra giá trị khi áp dụng vào một bài toán cụ thể.
-- AI hỗ trợ được nhiều việc, nhưng người dùng vẫn phải đánh giá, kiểm chứng và chịu trách nhiệm.
+Phiên quản trị AI nêu những thứ cần kiểm soát khi nhân viên dùng AI: dữ liệu, chi phí, quyền truy cập và kết quả do AI tạo ra. Giá trị của AI nằm ở kết quả nó mang lại, và người dùng vẫn phải đánh giá, kiểm chứng và chịu trách nhiệm về kết quả đó.
 
 ---
 
-### 5. Ứng Dụng Vào Công Việc
+### 5. Ứng dụng vào công việc
 
-- **Dùng AI trong phát triển phần mềm:** Mình sẽ dùng AI Agent để phân tích yêu cầu, dựng cấu trúc dự án, viết code và tạo test case.
-- **Chú trọng Spec-Driven Development:** Mình sẽ mô tả yêu cầu và viết đặc tả rõ ràng trước khi triển khai.
-- **Tăng cường kiểm thử:** Mình sẽ viết unit test, kiểm tra các trường hợp ngoại lệ và xác thực kết quả do AI tạo ra.
-- **Chú ý bảo mật:** Mình sẽ quản lý thông tin xác thực, quyền truy cập và bảo vệ dữ liệu.
-- **Học thêm về AWS:** Amazon Bedrock, AWS Lambda, Amazon S3 và các công cụ xây AI Agent.
-
----
-
-### 6. Trải Nghiệm Trong Event
-
-AWS Cloud and AI Day là một buổi học rất bổ ích. Chương trình có nhiều nội dung chuyên sâu về Cloud, AI và xu hướng công nghệ trong doanh nghiệp.
-
-Phần keynote của **Dr. Werner Vogels** về Invisible Engineering để lại ấn tượng sâu nhất. Những câu chuyện về Dynamo, Nitro và Serverless cho thấy phía sau một dịch vụ ổn định là rất nhiều cải tiến kỹ thuật liên tục.
-
-**Dr. Jens Lottner** chia sẻ về Agentic AI tại Techcombank bằng một góc nhìn thực tế: AI không thay thế con người mà khuếch đại năng lực của con người.
-
-Các case study của Vinasoy, Agris và AMI Group giúp mình hình dung rõ hơn cách Cloud và AI được dùng ở nhiều lĩnh vực. Mỗi doanh nghiệp có một bài toán riêng, và việc chọn công nghệ nên bắt đầu từ nhu cầu thực tế.
-
-Thông điệp **"Now go build"** của Dr. Werner Vogels nhắc mình không dừng ở lý thuyết mà phải bắt tay vào làm.
+- Mình sẽ dùng AI Agent để phân tích yêu cầu, dựng cấu trúc dự án, viết code và tạo test case, bắt đầu từ một đặc tả viết rõ.
+- Mình sẽ viết unit test, kiểm tra các trường hợp ngoại lệ và xác thực kết quả do AI tạo ra.
+- Mình sẽ quản lý thông tin xác thực, quyền truy cập và bảo vệ dữ liệu.
+- Mình sẽ học thêm về Amazon Bedrock, AWS Lambda, Amazon S3 và các công cụ xây AI Agent.
 
 ---
 
-### 7. Bài Học Rút Ra
+### 6. Trải nghiệm trong event
 
-- **Công nghệ phải gắn với giá trị thực tế:** Cloud và AI chỉ có ý nghĩa khi giải quyết được một vấn đề cụ thể và mang lại hiệu quả rõ ràng.
-- **Không được xem nhẹ chất lượng và bảo mật:** AI có thể giúp phát triển nhanh hơn, nhưng kiểm thử và bảo vệ dữ liệu vẫn bắt buộc phải có.
-- **Con người giữ vai trò định hướng:** AI làm được nhiều tác vụ phức tạp, nhưng con người phải đặt yêu cầu, kiểm soát kết quả và chịu trách nhiệm về sản phẩm cuối cùng.
+Mình tham dự cả ngày, từ 08:30 đến 17:00. Phần keynote của Dr. Werner Vogels về Invisible Engineering là phần mình nhớ nhất. Những câu chuyện về Dynamo, Nitro và Serverless cho thấy phía sau một dịch vụ ổn định là rất nhiều cải tiến kỹ thuật liên tục. Dr. Jens Lottner nói về Agentic AI tại Techcombank như một cách khuếch đại năng lực của con người, chứ không có ý thay thế con người.
+
+Các case study của Vinasoy, Agris và AMI Group cho mình thấy Cloud và AI được dùng ở nhiều lĩnh vực. Mỗi doanh nghiệp bắt đầu từ bài toán riêng rồi mới chọn công nghệ. Câu "Now go build" của Dr. Werner Vogels nhắc mình đừng dừng ở lý thuyết mà bắt tay vào làm.
+
+---
+
+### 7. Bài học rút ra
+
+Cloud và AI chỉ có ý nghĩa khi giải được một vấn đề cụ thể và cho kết quả rõ ràng. AI giúp phát triển nhanh hơn, nhưng kiểm thử và bảo vệ dữ liệu vẫn bắt buộc. Con người vẫn đặt yêu cầu, kiểm soát kết quả và chịu trách nhiệm về sản phẩm cuối cùng.
 
 ---
 

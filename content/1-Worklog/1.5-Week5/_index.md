@@ -10,8 +10,8 @@ pre: " <b> 1.5. </b> "
 ### Week 5 Objectives:
 
 * Come up with ideas for the proposal and the workshop together with the team.
-* Understand the basics of Amazon RDS and practice deploying a database.
-* Learn how to access Windows instances with Fleet Manager and how to observe AI agents with CloudWatch Omni.
+* Learn the basics of Amazon RDS and deploy a database.
+* Find out how to reach Windows instances with Fleet Manager and how to observe AI agents with CloudWatch Omni.
 
 ### Tasks to be carried out this week:
 | Day | Task | Start Date | Completion Date | Reference Material |
@@ -25,27 +25,27 @@ pre: " <b> 1.5. </b> "
 
 ### Week 5 Achievements:
 
-* Came up with initial ideas for the proposal and the workshop together with the team.
+* Came up with the first ideas for the proposal and the workshop together with the team.
 
-* Understood Amazon RDS: database engines, Multi-AZ, backups and snapshots, security.
+* Learned Amazon RDS: database engines, Multi-AZ, backups and snapshots, and security.
 
 * Deployed a database on Amazon RDS:
 
-  * Created an RDS MySQL database in a VPC, placed in private subnets through a DB subnet group
+  * Created an RDS MySQL database in a VPC and placed it in private subnets through a DB subnet group
   * Connected from EC2 with the MySQL client to create a database and a table and insert data
   * Deployed an application that connects to RDS
   * Created a snapshot and restored it to a new instance
 
-* Understood AWS Systems Manager Fleet Manager from the blog about accessing Windows instances from the console:
+* Learned AWS Systems Manager Fleet Manager from the blog about reaching Windows instances from the console:
 
-  * Connect over RDP to a Windows instance right in the browser through Session Manager
-  * No need to open the RDP port, use a public IP or run a bastion host, which reduces the attack surface
-  * Use an EC2 key pair or Windows credentials, view up to 4 instances at once
+  * Open an RDP session to a Windows instance in the browser through Session Manager
+  * No need to open the RDP port, use a public IP or run a bastion host, so the attack surface is smaller
+  * Works with an EC2 key pair or Windows credentials and shows up to 4 instances at once
   * Needs the SSM Agent, an instance profile with Systems Manager permissions and access to the SSM endpoint
 
-* Understood Amazon CloudWatch Omni from the blog about observing AI agents:
+* Learned Amazon CloudWatch Omni from the blog about observing AI agents:
 
-  * Agent behavior is non-deterministic, so traces that record every LLM and tool call are needed to find where an agent went wrong
-  * 17 built-in evaluators (such as coherence, helpfulness, faithfulness) score response quality, because latency and error rate do not show whether an answer is good
+  * An agent does not behave the same way every time, so traces of every LLM and tool call are needed to find where it went wrong
+  * 17 built-in evaluators (coherence, helpfulness, faithfulness and others) score response quality, because latency and error rate do not say whether an answer is good
   * Playground, Experiments and Prompt Management compare prompts and configurations and roll back to older versions
-  * Works in VS Code, Kiro or on the web, built on open standards OpenInference and ADOT, and supports frameworks such as LangChain, CrewAI and Strands
+  * Works in VS Code, Kiro or on the web, is built on the open standards OpenInference and ADOT, and supports frameworks such as LangChain, CrewAI and Strands

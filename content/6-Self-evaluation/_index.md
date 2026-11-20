@@ -6,11 +6,11 @@ chapter: false
 pre: " <b> 6. </b> "
 ---
 
-During my internship at **Amazon Web Services Viet Nam Company Limited** from **07/09/2026** to **14/12/2026** as a **Cyber Security Intern**, I had the opportunity to learn, practice, and apply the knowledge acquired in school to a real-world working environment.
+During my internship at **Amazon Web Services Viet Nam Company Limited** from **07/09/2026** to **14/12/2026** as a **Cyber Security Intern**, I applied what I learned in school to real work.
 
-I participated in **building Cost Guard, a serverless system that protects the credit of a Windows lab on AWS**, through which I improved my skills in **cloud cost optimization and security**.
+I helped build Cost Guard, a serverless system that protects the credit of a Windows lab on AWS. Most of what I learned is about cloud cost control and security.
 
-In terms of work ethic, I always strived to complete tasks well, complied with workplace regulations, and actively engaged with colleagues to improve work efficiency.
+I followed workplace rules and worked with colleagues to get tasks done.
 
 | No. | Criteria                            | Description                                                                                      | Good | Fair | Average |
 | --- | ----------------------------------- | ------------------------------------------------------------------------------------------------ | ---- | ---- | ------- |

@@ -25,7 +25,7 @@ Một doanh nghiệp quản lý hàng trăm máy chủ Windows Server trên cả
 
 **Kết luận và cảm nghĩ:**
 
-Mình thấy cốt lõi của giải pháp là mỗi giai đoạn trong vòng đời Windows Server được giao cho một dịch vụ riêng, và các dịch vụ nối với nhau thông qua Tag. EC2 Image Builder tạo AMI chuẩn đã có sẵn SSM Agent và CloudWatch Agent, State Manager giữ cấu hình bằng PowerShell DSC, Patch Manager cập nhật bản vá theo lịch bảo trì, còn kỹ sư truy cập qua Fleet Manager nên không cần mở cổng 3389 ra Internet, nhờ đó bề mặt tấn công nhỏ hơn. Tuy vậy giải pháp vẫn có giới hạn: ứng dụng cũ dùng Kerberos hoặc NTLM có thể vẫn cần Active Directory, và vì một cấu hình hay bản vá lỗi có thể ảnh hưởng hàng loạt máy, nên cần chia nhóm Dev, Staging, Production và kiểm thử trước khi đưa lên Production.
+Cốt lõi của giải pháp là mỗi giai đoạn trong vòng đời Windows Server được giao cho một dịch vụ riêng, và các dịch vụ nối với nhau thông qua Tag. Vì kỹ sư truy cập qua Fleet Manager nên không cần mở cổng 3389 ra Internet, và bề mặt tấn công nhỏ hơn. Tuy vậy giải pháp vẫn có giới hạn: ứng dụng cũ dùng Kerberos hoặc NTLM có thể vẫn cần Active Directory, và vì một cấu hình hay bản vá lỗi có thể ảnh hưởng hàng loạt máy, nên cần chia nhóm Dev, Staging, Production và kiểm thử trước khi đưa lên Production.
 
 **Tài liệu tham khảo:**
 

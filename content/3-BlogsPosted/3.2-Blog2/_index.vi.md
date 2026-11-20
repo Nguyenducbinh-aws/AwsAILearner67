@@ -26,7 +26,7 @@ pre: " <b> 3.2. </b> "
 
 **Kết luận và cảm nghĩ:**
 
-Mình rút ra rằng chuyển nguyên trạng lên Cloud (lift-and-shift) chưa tự giải quyết được chi phí bản quyền và khả năng mở rộng. Mức giảm 30% chi phí bản quyền và 70% chi phí lưu trữ đến từ việc phân tích hệ thống trước bằng các công cụ như CAST và Babelfish Compass, rồi mới chuyển từ .NET Framework sang .NET 8 chạy trên Linux, từ SQL Server sang PostgreSQL và từ Amazon FSx sang Amazon S3. Nói cách khác, khoản tiết kiệm là kết quả của việc tái cấu trúc ứng dụng và chọn lại nền tảng, chứ không chỉ của việc đổi nơi chạy hệ thống.
+Mức giảm 30% chi phí bản quyền và 70% chi phí lưu trữ đến từ việc phân tích hệ thống trước bằng các công cụ như CAST và Babelfish Compass, rồi mới chuyển từ .NET Framework sang .NET 8 chạy trên Linux, từ SQL Server sang PostgreSQL và từ Amazon FSx sang Amazon S3. Chỉ lift-and-shift thì hai khoản chi phí này vẫn giữ nguyên.
 
 **Tài liệu tham khảo:**
 

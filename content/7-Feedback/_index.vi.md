@@ -12,15 +12,15 @@ pre: " <b> 7. </b> "
 
 **1. Môi trường làm việc**
 
-Môi trường làm việc rất thân thiện, cởi mở và hỗ trợ lẫn nhau. Không gian làm việc chuyên nghiệp và thoải mái, giúp mình tập trung và làm việc hiệu quả hơn. Các thành viên trong nhóm luôn sẵn sàng giúp đỡ nhau, tạo nên bầu không khí tích cực trong suốt quá trình thực tập.
+Môi trường làm việc thân thiện và hỗ trợ lẫn nhau. Không gian làm việc đủ thoải mái để tập trung, và các thành viên trong nhóm giúp đỡ nhau.
 
 **2. Sự hỗ trợ từ Mentor / Admin**
 
-Mentor hướng dẫn rất chi tiết và giải đáp thắc mắc một cách tận tình. Đội admin tạo điều kiện làm việc tốt và khuyến khích mình tự tìm hiểu, tự giải quyết vấn đề thay vì chỉ đưa ra đáp án trực tiếp — điều này giúp mình phát triển nhanh hơn rất nhiều.
+Mentor hướng dẫn chi tiết và giải đáp thắc mắc của mình. Đội admin khuyến khích mình tự tìm cách giải quyết thay vì đưa ngay đáp án, và điều đó giúp mình tiến bộ nhanh hơn.
 
 **3. Mức độ liên quan của công việc đến ngành học**
 
-Công việc được giao vượt ra ngoài những gì mình học ở trường, giúp mình tiếp cận kiến thức mới và các thực hành cloud thực tế mà chương trình học thuật chưa đề cập. Điều này giúp mình mở rộng góc nhìn và tích lũy kỹ năng thực tiễn trực tiếp áp dụng được trong ngành.
+Công việc được giao vượt ra ngoài những gì mình học ở trường và giúp mình tiếp cận các thực hành cloud thực tế mà chương trình học chưa đề cập.
 
 **4. Cơ hội học hỏi & phát triển kỹ năng**
 
@@ -32,11 +32,11 @@ Trong quá trình thực tập, mình đã học và cải thiện được nhi�
 
 **5. Văn hóa công ty & Tinh thần đồng đội**
 
-Văn hóa công ty rất tích cực. Mọi người tôn trọng nhau, tích cực xây dựng và giúp đỡ nhau. Tinh thần hợp tác khiến mình cảm thấy thực sự là một phần của nhóm, dù chỉ là thực tập sinh.
+Mọi người tôn trọng và giúp đỡ nhau. Mình cảm thấy mình là một phần của nhóm, dù chỉ là thực tập sinh.
 
 **6. Chính sách thực tập / Quyền lợi**
 
-Giờ làm việc linh hoạt và các quyền lợi đáp ứng đủ cho quá trình thực tập học tập. Điều kiện được cung cấp rất phù hợp để thực tập sinh tập trung vào dự án của mình.
+Giờ làm việc linh hoạt và các quyền lợi đủ để hỗ trợ việc học.
 
 ---
 
@@ -44,7 +44,7 @@ Giờ làm việc linh hoạt và các quyền lợi đáp ứng đủ cho quá 
 
 - **Điều gì bạn thấy hài lòng nhất trong quá trình thực tập?**
 
-  Môi trường thực tập và quá trình học tập tại AWS. Chương trình được xây dựng để giúp sinh viên phát triển, và việc được tiếp cận hệ sinh thái cloud thực tế làm cho trải nghiệm này rất có giá trị.
+  Môi trường học tập tại AWS. Chương trình được xây dựng để giúp sinh viên phát triển, và được làm việc với hệ sinh thái cloud thực tế là phần hữu ích nhất.
 
 - **Bạn nghĩ FCAJ/AWS nên cải thiện điều gì cho các thực tập sinh tiếp theo?**
 
@@ -52,11 +52,11 @@ Giờ làm việc linh hoạt và các quyền lợi đáp ứng đủ cho quá 
 
 - **Bạn có giới thiệu chương trình này cho bạn bè không? Tại sao?**
 
-  Có, chắc chắn rồi. Mục đích chính của chương trình là cung cấp tài liệu cho sinh viên nghiên cứu về cloud và được làm việc trực tiếp với các dự án thực tế của nhóm. Thực tập sinh được tiếp cận hệ sinh thái Cloud khổng lồ (EC2, S3, IAM, AI/ML và nhiều hơn nữa), đồng thời có cơ hội được giới thiệu việc làm cho các đối tác của AWS Việt Nam.
+  Có. Chương trình cung cấp tài liệu về cloud cho sinh viên và cho làm việc trực tiếp trên các dự án thực tế. Thực tập sinh được tiếp cận một hệ sinh thái cloud lớn (EC2, S3, IAM, AI/ML và nhiều hơn nữa), và có thể được giới thiệu việc làm cho các đối tác của AWS Việt Nam.
 
 ---
 
 ### Góp ý & Kỳ vọng
 
-Hiện tại mình không có ý kiến gì thêm vì mọi thứ đã được tổ chức tốt và đáp ứng được kỳ vọng của mình. Mong chương trình tiếp tục phát triển và giúp đỡ được nhiều sinh viên hơn trong tương lai.
+Mình không có ý kiến gì thêm. Chương trình được tổ chức tốt và đáp ứng kỳ vọng của mình, mong chương trình tiếp tục giúp được nhiều sinh viên hơn.
 

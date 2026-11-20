@@ -59,56 +59,39 @@ Phần phân tích các bài test thực tế cho thấy cách xử lý những 
 
 ---
 
-### 4. Những Gì Học Được
+### 4. Những gì học được
 
-**Tư Duy Thiết Kế**
+Trước khi làm Bot, cần xác định kiến trúc và luồng xử lý tổng thể, rồi mới đến từng tính năng. Mình hiểu rõ hơn vì sao phải làm theo thứ tự đó. Một sản phẩm AI cần giải được một vấn đề cụ thể của người dùng.
 
-- **Kiến trúc trước, tính năng sau:** Mình hiểu rõ hơn vì sao cần xác định kiến trúc và luồng xử lý tổng thể trước khi làm từng tính năng của Bot.
-- **Giải quyết vấn đề thật:** Một sản phẩm AI không cần dùng công nghệ mới nhất. Quan trọng là nó giải được một vấn đề cụ thể và đáp ứng nhu cầu của người dùng.
+Yêu cầu phức tạp nên chia thành các phần nhỏ để dễ làm, dễ kiểm tra và dễ chỉnh sửa. Bot cũng cần xử lý lỗi, các trường hợp ngoại lệ và thời gian phản hồi thì mới chạy ổn định.
 
-**Kiến Trúc Kỹ Thuật**
-
-- **Chia nhỏ bài toán:** Với yêu cầu phức tạp, nên chia thành các phần nhỏ để dễ làm, dễ kiểm tra và dễ chỉnh sửa.
-- **Chú ý đến độ ổn định:** Cần xử lý lỗi, các trường hợp ngoại lệ và tối ưu thời gian phản hồi để Bot chạy tốt hơn.
-
-**Phát Triển Bản Thân**
-
-- **Tiêu chuẩn tuyển dụng:** Qua chia sẻ của HR CMC Global, mình biết rõ hơn những kỹ năng và kiến thức cần có khi ứng tuyển vào vị trí công nghệ.
-- **Hồ sơ từ dự án thật:** Tham gia dự án và thử thách thực tế là cách tốt để tích lũy kinh nghiệm, đồng thời có sản phẩm cụ thể để đưa vào hồ sơ năng lực.
+Qua buổi chia sẻ của HR CMC Global, mình biết rõ hơn những kỹ năng và kiến thức cần có khi ứng tuyển vị trí công nghệ. Tham gia dự án và thử thách thực tế cho mình kinh nghiệm và sản phẩm cụ thể để đưa vào hồ sơ.
 
 ---
 
-### 5. Ứng Dụng Vào Công Việc
+### 5. Ứng dụng vào công việc
 
-- **Làm Bot theo thứ tự mới:** Mình sẽ thiết kế kiến trúc và xác định luồng xử lý trước, rồi mới làm từng chức năng, thay vì bắt đầu từ các chức năng rời rạc.
-- **Chuẩn bị cho FCAJ Buildrathon 2026:** Mình sẽ chia nhỏ bài toán để chuẩn bị tốt hơn cho các thử thách, và phối hợp với thành viên trong nhóm dễ hơn.
-- **Tăng năng suất cá nhân:** Mình sẽ tìm hiểu và thử các công cụ AI Agent có thể tự động hóa những việc lặp lại hằng ngày để tiết kiệm thời gian.
+- Mình sẽ thiết kế kiến trúc và xác định luồng xử lý trước, rồi mới làm từng chức năng, thay vì bắt đầu từ các chức năng rời rạc.
+- Mình sẽ chia nhỏ bài toán để chuẩn bị cho các thử thách của FCAJ Buildrathon 2026 và phối hợp với nhóm dễ hơn.
+- Mình sẽ thử các công cụ AI Agent có thể tự động hóa những việc lặp lại hằng ngày để tiết kiệm thời gian.
 
 ---
 
-### 6. Trải Nghiệm Trong Event
+### 6. Trải nghiệm trong event
 
 Mình tham dự buổi Kickoff FCAJ Buildrathon 2026 (Season 01) và talkshow của CMC Global cùng VietAWS. Không khí khá sôi nổi, có nhiều người quan tâm đến AI và Cloud.
 
-**Học Từ Các Diễn Giả**
-
 Anh Truong Bui (Tech Lead, CMC Global), anh Thien Lu và anh Phong Pham (Program Manager, FCAJ) chia sẻ từ nhiều góc nhìn, từ kỹ thuật đến cách tổ chức và triển khai dự án thực tế. Nội dung dễ hiểu và nói về những vấn đề mình có thể gặp khi đi làm.
 
-**Phần Kỹ Thuật Thực Tế**
+Phần phân tích bài test để lại cho mình ấn tượng nhất. Nhìn các chuyên gia tách vấn đề và chọn hướng giải, mình thấy cách tiếp cận cũng quan trọng ngang kiến thức kỹ thuật.
 
-Phần phân tích bài test để lại cho mình ấn tượng nhất. Nhìn các chuyên gia tách vấn đề và chọn hướng giải, mình thấy chỉ có kiến thức kỹ thuật là chưa đủ. Cách tiếp cận và tư duy xử lý cũng quan trọng không kém.
-
-**Kết Nối Và Trao Đổi**
-
-Buổi tư vấn 1-1 với Phòng Tuyển dụng CMC Global rất có giá trị. Mình biết thêm về môi trường làm việc thực tế và những kỹ năng doanh nghiệp đang tìm. Tinh thần chia sẻ và giúp đỡ nhau của cộng đồng VietAWS và CMC Global cũng là điều mình thấy ý nghĩa nhất.
+Buổi tư vấn 1-1 với Phòng Tuyển dụng CMC Global cho mình biết thêm về môi trường làm việc thực tế và những kỹ năng doanh nghiệp đang tìm. Mình cũng thích tinh thần chia sẻ và giúp đỡ nhau của cộng đồng VietAWS và CMC Global.
 
 ---
 
-### 7. Bài Học Rút Ra
+### 7. Bài học rút ra
 
-- **Kiến trúc là nền tảng:** Trước khi làm sản phẩm, nên nhìn tổng thể cấu trúc hệ thống và cách các thành phần phối hợp. Kiến trúc hợp lý giúp việc phát triển, bảo trì và mở rộng về sau dễ hơn.
-- **Thực hành giúp hiểu sâu:** Kiến thức lý thuyết chỉ thật sự có ý nghĩa khi áp dụng vào bài toán cụ thể. Phải tự làm mới thấy được khó khăn và chỗ mình còn thiếu.
-- **Chủ động kết nối:** Trao đổi với chuyên gia, đồng nghiệp và nhà tuyển dụng giúp mình mở rộng góc nhìn và có thêm định hướng cho nghề nghiệp.
+Trước khi làm sản phẩm, nên nhìn tổng thể cấu trúc hệ thống và cách các thành phần phối hợp. Kiến trúc hợp lý giúp phát triển, bảo trì và mở rộng về sau dễ hơn. Lý thuyết chỉ có ý nghĩa khi áp dụng vào bài toán cụ thể, và phải tự làm mới thấy khó khăn cùng chỗ mình còn thiếu. Trao đổi với chuyên gia, đồng nghiệp và nhà tuyển dụng cũng giúp mình mở rộng góc nhìn và có thêm định hướng nghề nghiệp.
 
 ---
 

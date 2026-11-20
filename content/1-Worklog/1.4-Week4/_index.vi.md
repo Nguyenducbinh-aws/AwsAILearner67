@@ -11,7 +11,7 @@ pre: " <b> 1.4. </b> "
 
 * Làm quen với AWS CloudShell và AWS CLI.
 * Hiểu cơ bản về Amazon S3 và Amazon CloudFront.
-* Thực hành lưu trữ, host static website và quản lý object trên S3.
+* Lưu trữ dữ liệu, host static website và quản lý object trên S3.
 
 ### Các công việc cần triển khai trong tuần này:
 | Thứ | Công việc | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu |
@@ -25,26 +25,26 @@ pre: " <b> 1.4. </b> "
 
 ### Kết quả đạt được tuần 4:
 
-* Dùng AWS CloudShell để chạy lệnh ngay trên trình duyệt mà không cần cài đặt:
+* Dùng AWS CloudShell chạy lệnh ngay trên trình duyệt mà không cần cài gì:
 
-  * Dùng lệnh Linux cơ bản để tạo thư mục, tạo và sửa file, xem quyền của file
-  * Dùng AWS CLI để kiểm tra phiên bản, liệt kê S3 bucket và EC2 instance trong tài khoản
-  * Tải file lên và tải file xuống giữa máy tính và CloudShell
+  * Dùng lệnh Linux cơ bản để tạo thư mục, tạo và sửa file, xem quyền file
+  * Chạy AWS CLI để kiểm tra phiên bản và liệt kê S3 bucket, EC2 instance trong tài khoản
+  * Chuyển file giữa máy tính và CloudShell
 
-* Hiểu Amazon S3 (bucket, object, storage class) và tạo được bucket để lưu source code website.
+* Học Amazon S3 (bucket, object, storage class) và tạo bucket chứa source code website.
 
-* Host được static website trên S3:
+* Host static website trên S3:
 
-  * Bật static website hosting và mở website bằng website endpoint (HTTP)
-  * Tắt Block public access và public object bằng ACL để website truy cập được
+  * Bật static website hosting và mở site qua website endpoint bằng HTTP
+  * Tắt Block public access và public object bằng ACL để truy cập được
 
-* Dùng CloudFront để phân phối website mà không cần public bucket:
+* Phân phối website qua CloudFront mà không phải public bucket:
 
-  * Bật lại Block all public access, cho CloudFront đọc bucket bằng bucket policy
-  * Thấy được thời gian tải trang giảm và biết được PoP phục vụ nội dung
+  * Bật lại Block all public access và cho CloudFront đọc bucket qua bucket policy
+  * Thấy trang tải nhanh hơn và biết PoP nào phục vụ nội dung
 
 * Quản lý object trong S3:
 
   * Dùng versioning để giữ nhiều phiên bản của object và khôi phục nội dung cũ
   * Move object sang bucket khác
-  * Dùng replication để tự động sao chép object sang bucket ở Region khác, phục vụ dự phòng
+  * Dùng replication để tự sao chép object sang bucket ở Region khác làm bản dự phòng

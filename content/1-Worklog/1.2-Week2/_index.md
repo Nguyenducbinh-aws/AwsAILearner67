@@ -10,8 +10,8 @@ pre: " <b> 1.2. </b> "
 ### Week 2 Objectives:
 
 * Get to know the lab system and materials of Cloud Journey.
-* Understand how to optimize cost on AWS and manage cost with AWS Budget.
-* Explore basic AWS services: AWS Free Tier, AWS Support and IAM.
+* Learn how to optimize cost on AWS and how to manage cost with AWS Budget.
+* Explore AWS Free Tier, AWS Support and IAM.
 
 ### Tasks to be carried out this week:
 | Day | Task | Start Date | Completion Date | Reference Material |
@@ -25,23 +25,23 @@ pre: " <b> 1.2. </b> "
 
 ### Week 2 Achievements:
 
-* Understood the AWS Free Tier (credits, Free plan and Paid plan) and how to sign up for an AWS account.
+* Learned how the AWS Free Tier works (credits, the Free plan and the Paid plan) and how to sign up for an AWS account.
 
-* Created and configured an AWS Free Tier account successfully.
+* Created and configured a Free Tier account.
 
-* Got familiar with the AWS Management Console and know how to find, access and use services from the web interface.
+* Got used to the AWS Management Console and can find and open services from the web interface.
 
-* Able to create a budget and set cost alerts with AWS Budget:
+* Created a budget and set cost alerts with AWS Budget:
 
-  * Budget types: Cost, Usage, RI, Savings Plans
-  * Alert thresholds
+  * The budget types: Cost, Usage, RI and Savings Plans
+  * How alert thresholds work
 
-* Know how to access AWS Support, the support plans and how to open a support request.
+* Found out how to reach AWS Support, what the support plans are, and how to open a support request.
 
-* Able to create and manage access for users and AWS services with IAM:
+* Managed access with IAM:
 
-  * Create IAM Groups and IAM Users and grant permissions through policies
-  * Use IAM Roles and switch roles for temporary access
-  * Apply the least-privilege principle (grant only the permissions needed)
+  * Created groups and users and granted permissions through policies
+  * Used roles and switching roles for temporary access
+  * Kept permissions to the minimum needed, following the least-privilege principle
 
-* Understood the principles of cost optimization on AWS and know the learning materials and hands-on labs of AWS Cloud Journey.
+* Learned the principles of cost optimization on AWS and where to find the learning materials and hands-on labs of AWS Cloud Journey.
