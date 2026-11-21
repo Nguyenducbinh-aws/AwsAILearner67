@@ -55,5 +55,3 @@ pre: " <b> 1.7. </b> "
   * Triển khai AWS Managed Microsoft AD với domain onprem.example.com để thay cho DNS on-premises
   * Tạo outbound endpoint, inbound endpoint và resolver rule
   * Kiểm tra từ Remote Desktop Gateway rằng tên miền phân giải được bằng nslookup và Resolve-DnsName
-
-* Dọn tài nguyên sau mỗi lab, vì mạng và instance của lab vẫn tốn tiền khi còn chạy.

@@ -38,7 +38,7 @@ pre: " <b> 1.6. </b> "
   * Restricted the SSH rule so that only the Lightsail browser SSH client can connect, instead of any address on the internet
   * Created snapshots and used one to move WordPress to a larger plan, since a Lightsail instance cannot change its plan in place
   * Moved the static IP to the new instance, and the blog kept all its content because the data is in the managed database
-  * Created a CPU alarm and deleted the resources after the lab, because Lightsail bills by the hour even when an instance is stopped
+  * Created a CPU alarm
 
 * Learned what an EC2 Auto Scaling group gives you: failing instances are replaced automatically, capacity follows demand, Elastic Load Balancing spreads the load, and cost drops when traffic is low.
 

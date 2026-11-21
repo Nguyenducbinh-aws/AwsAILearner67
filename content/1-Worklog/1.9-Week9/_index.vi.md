@@ -42,4 +42,3 @@ pre: " <b> 1.9. </b> "
   * Tạo AMI, launch template, target group, load balancer và Auto Scaling group để ứng dụng mở rộng và cân bằng tải
   * Tạo snapshot database và restore từ snapshot
   * Đặt CloudFront phía trước ứng dụng
-  * Dọn tài nguyên sau lab

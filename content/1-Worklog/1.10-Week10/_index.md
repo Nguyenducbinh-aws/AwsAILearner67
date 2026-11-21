@@ -46,4 +46,4 @@ pre: " <b> 1.10. </b> "
   * Compromised IAM credentials (findings Recon:IAMUser/MaliciousIPCaller.Custom and UnauthorizedAccess:IAMUser/MaliciousIPCaller.Custom), finding who was calling the API and fixing it manually
   * IAM role credential exfiltration (finding UnauthorizedAccess:IAMUser/InstanceCredentialExfiltration), handled with Lambda
 
-* Saw the whole detect, notify and respond flow in cloud security, and cleaned up the resources after each lab.
+* Saw the whole detect, notify and respond flow in cloud security.

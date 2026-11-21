@@ -55,5 +55,3 @@ pre: " <b> 1.7. </b> "
   * Deployed AWS Managed Microsoft AD with the domain onprem.example.com to stand in for the on-premises DNS
   * Created the outbound endpoint, the inbound endpoint and the resolver rule
   * Checked from the Remote Desktop Gateway that the domain name resolves with nslookup and Resolve-DnsName
-
-* Cleaned up after each lab, because the lab network and instances keep costing money while they run.

@@ -46,4 +46,4 @@ pre: " <b> 1.10. </b> "
   * IAM credential bị lộ (finding Recon:IAMUser/MaliciousIPCaller.Custom và UnauthorizedAccess:IAMUser/MaliciousIPCaller.Custom), tìm ra ai đang gọi API và xử lý thủ công
   * IAM role credential bị đánh cắp (finding UnauthorizedAccess:IAMUser/InstanceCredentialExfiltration), xử lý bằng Lambda
 
-* Thấy được toàn bộ luồng phát hiện, thông báo và phản ứng trong bảo mật cloud, và dọn tài nguyên sau mỗi lab.
+* Thấy được toàn bộ luồng phát hiện, thông báo và phản ứng trong bảo mật cloud.
