@@ -12,31 +12,30 @@ pre: " <b> 7. </b> "
 
 **1. Môi trường làm việc**
 
-Môi trường làm việc thân thiện và hỗ trợ lẫn nhau. Không gian làm việc đủ thoải mái để tập trung, và các thành viên trong nhóm giúp đỡ nhau.
+Môi trường làm việc thân thiện và hỗ trợ lẫn nhau. Các thành viên trong nhóm luôn sẵn sàng giúp khi mình gặp khó khăn, và không gian làm việc đủ thoải mái để tập trung.
 
 **2. Sự hỗ trợ từ Mentor / Admin**
 
-Mentor hướng dẫn chi tiết và giải đáp thắc mắc của mình. Đội admin khuyến khích mình tự tìm cách giải quyết thay vì đưa ngay đáp án, và điều đó giúp mình tiến bộ nhanh hơn.
+Mentor hướng dẫn chi tiết, giải thích rõ khi mình chưa hiểu và luôn khuyến khích mình đặt câu hỏi. Đội admin hỗ trợ các thủ tục và tài liệu, đồng thời khuyến khích mình tự tìm cách giải quyết thay vì đưa ngay đáp án, và điều đó giúp mình tiến bộ nhanh hơn.
 
 **3. Mức độ liên quan của công việc đến ngành học**
 
-Công việc được giao vượt ra ngoài những gì mình học ở trường và giúp mình tiếp cận các thực hành cloud thực tế mà chương trình học chưa đề cập.
+Công việc được giao vượt ra ngoài những gì mình học ở trường và giúp mình tiếp cận các thực hành cloud thực tế mà chương trình học chưa đề cập. Nhờ vậy mình vừa củng cố kiến thức nền tảng, vừa học thêm kỹ năng thực tế.
 
 **4. Cơ hội học hỏi & phát triển kỹ năng**
 
 Trong quá trình thực tập, mình đã học và cải thiện được nhiều kỹ năng mới, bao gồm:
-- Sử dụng các công cụ và dịch vụ AWS (EventBridge Scheduler, Lambda, DynamoDB, SNS, AWS Budgets, CloudWatch)
-- Ước tính và tối ưu chi phí cloud bằng AWS Pricing Calculator
+- Sử dụng được các công cụ và dịch vụ AWS cho công việc thực tập và dự án của mình
 - Thực hành bảo mật cloud
 - Làm việc nhóm và hợp tác chuyên nghiệp
 
 **5. Văn hóa công ty & Tinh thần đồng đội**
 
-Mọi người tôn trọng và giúp đỡ nhau. Mình cảm thấy mình là một phần của nhóm, dù chỉ là thực tập sinh.
+Mọi người tôn trọng và giúp đỡ nhau, làm việc nghiêm túc nhưng vẫn vui vẻ. Khi có việc gấp, mọi người cùng cố gắng và hỗ trợ nhau, không phân biệt vị trí. Mình cảm thấy mình là một phần của nhóm, dù chỉ là thực tập sinh.
 
 **6. Chính sách thực tập / Quyền lợi**
 
-Giờ làm việc linh hoạt và các quyền lợi đủ để hỗ trợ việc học.
+Giờ làm việc linh hoạt khi cần thiết và các quyền lợi đủ để hỗ trợ việc học. Việc được tham gia các buổi đào tạo nội bộ là một điểm cộng lớn.
 
 ---
 

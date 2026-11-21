@@ -12,31 +12,30 @@ pre: " <b> 7. </b> "
 
 **1. Working Environment**
 
-The working environment is friendly and supportive. The workspace is comfortable enough to focus in, and team members help each other.
+The working environment is friendly and supportive. Team members are always ready to help when I run into difficulties, and the workspace is comfortable enough to focus in.
 
 **2. Support from Mentor / Team Admin**
 
-The mentor gave detailed guidance and answered my questions. The admin team encouraged me to find solutions myself instead of handing me the answer, and that helped me grow faster.
+The mentor gave detailed guidance, explained things clearly when I did not understand, and always encouraged me to ask questions. The admin team helped with procedures and documents, and encouraged me to find solutions myself instead of handing me the answer, which helped me grow faster.
 
 **3. Relevance of Work to Academic Major**
 
-The tasks went beyond what I learned at university and introduced me to real-world cloud practices that the curriculum does not cover.
+The tasks went beyond what I learned at university and introduced me to real-world cloud practices that the curriculum does not cover. That let me strengthen my foundations and pick up practical skills at the same time.
 
 **4. Learning & Skill Development Opportunities**
 
 During the internship, I learned and improved several new skills including:
-- Using AWS services and tools (EventBridge Scheduler, Lambda, DynamoDB, SNS, AWS Budgets, CloudWatch)
-- Estimating and optimizing cloud cost with the AWS Pricing Calculator
+- Using AWS tools and services for my internship tasks and my project
 - Cloud security practices
 - Teamwork and professional collaboration
 
 **5. Company Culture & Team Spirit**
 
-People respect each other and support one another. I felt included in the team even as an intern.
+People respect each other and support one another, and work seriously but still have fun. When something urgent comes up, everyone pitches in regardless of position. I felt included in the team even as an intern.
 
 **6. Internship Policies / Benefits**
 
-The working hours are flexible and the benefits are enough to support learning.
+The working hours are flexible when needed and the benefits are enough to support learning. Being able to join internal training sessions is a big plus.
 
 ---
 
