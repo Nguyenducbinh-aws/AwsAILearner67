@@ -38,7 +38,7 @@ pre: " <b> 1.6. </b> "
   * Giới hạn rule SSH để chỉ Lightsail browser SSH client kết nối được, thay vì mọi địa chỉ trên internet
   * Tạo snapshot và dùng nó để chuyển WordPress sang gói lớn hơn, vì instance Lightsail không đổi gói tại chỗ được
   * Chuyển static IP sang instance mới, blog giữ nguyên nội dung vì dữ liệu nằm trong managed database
-  * Tạo alarm CPU và xóa tài nguyên sau lab, vì Lightsail tính tiền theo giờ kể cả khi instance đã dừng
+  * Tạo alarm CPU
 
 * Hiểu EC2 Auto Scaling group mang lại gì: tự thay instance lỗi, dung lượng đi theo nhu cầu, Elastic Load Balancing chia tải, và chi phí giảm khi ít truy cập.
 

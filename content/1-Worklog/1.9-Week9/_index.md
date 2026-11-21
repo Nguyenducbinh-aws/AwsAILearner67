@@ -42,4 +42,3 @@ pre: " <b> 1.9. </b> "
   * Created an AMI, a launch template, a target group, a load balancer and an Auto Scaling group so the application can scale and balance load
   * Created a database snapshot and restored from it
   * Put CloudFront in front of the application
-  * Cleaned up the resources after the lab

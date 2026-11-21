@@ -31,8 +31,6 @@ pre: " <b> 1.11. </b> "
 
 * Wrote the report.
 
-* Cleaned up the resources after the demo was done, so the lab does not keep costing money.
-
 * Learned from the blog how to bring AWS Transform into GitHub Copilot through MCP:
 
   * AWS Transform is an agentic AI service that analyzes and transforms whole applications, infrastructure and code, and the AWS Transform MCP server lets you call it in natural language from Copilot agent mode without switching to the console

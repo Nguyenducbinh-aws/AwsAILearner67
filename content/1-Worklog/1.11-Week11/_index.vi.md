@@ -31,8 +31,6 @@ pre: " <b> 1.11. </b> "
 
 * Viết báo cáo.
 
-* Dọn tài nguyên sau khi demo xong để lab không tiếp tục tốn tiền.
-
 * Học từ blog cách đưa AWS Transform vào GitHub Copilot qua MCP:
 
   * AWS Transform là dịch vụ AI dạng agent, phân tích và chuyển đổi cả ứng dụng, hạ tầng và mã nguồn, còn AWS Transform MCP server cho phép gọi nó bằng ngôn ngữ tự nhiên từ chế độ agent của Copilot mà không cần chuyển sang console
