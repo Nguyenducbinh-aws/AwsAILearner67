@@ -6,7 +6,7 @@ chapter: false
 pre: " <b> 1. </b> "
 ---
 
-The internship started on **07/09/2026 (September 7, 2026)**. Weeks 1–3 are mainly for learning: getting to know the program, AWS fundamentals, the bootcamp videos and labs on networking and servers. Weekly contents are as follows:
+This is what I learned and put together as notes during my internship at AWS, which started on **07/09/2026 (September 7, 2026)**. The content of each week is shown below:
 
 **Week 1:** [Getting familiar with AWS, AWS rules and the FCAJ Portal](1.1-week1/)
 
