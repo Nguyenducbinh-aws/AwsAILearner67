@@ -57,4 +57,4 @@ The working hours are flexible when needed and the benefits are enough to suppor
 
 ### Suggestions & Expectations
 
-I have no further suggestions. The program was well organized and met my expectations, and I hope it keeps helping more students.
+The program was well organized and met my expectations. I have one small suggestion: create more opportunities to hold events where interns can take part, learn from each other, and connect with experts in the industry. I hope the program keeps helping more students.
