@@ -57,5 +57,5 @@ Giờ làm việc linh hoạt khi cần thiết và các quyền lợi đủ đ�
 
 ### Góp ý & Kỳ vọng
 
-Mình không có ý kiến gì thêm. Chương trình được tổ chức tốt và đáp ứng kỳ vọng của mình, mong chương trình tiếp tục giúp được nhiều sinh viên hơn.
+Chương trình được tổ chức tốt và đáp ứng kỳ vọng của mình. Mình chỉ có một góp ý nhỏ là nên tạo thêm điều kiện tổ chức các sự kiện để thực tập sinh có thể tham gia, học hỏi lẫn nhau và kết nối với các chuyên gia trong ngành. Mình mong chương trình tiếp tục giúp được nhiều sinh viên hơn.
 
