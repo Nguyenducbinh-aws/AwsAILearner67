@@ -12,7 +12,7 @@ In this step you deploy one CloudFormation stack that creates the lab machine an
 
 ### What the stack creates
 
-- **Lab machine:** a Windows Server 2022 `t3.medium` instance with a 30 GB gp3 root volume, tagged `Project=CostGuard`. If you pass `ExistingInstanceId`, the stack protects that instance instead.
+- **Lab machine:** a Windows Server 2022 `t3.small` instance with a 30 GB gp3 root volume, tagged `Project=CostGuard`. If you pass `ExistingInstanceId`, the stack protects that instance instead.
 - **Parameter Store:** `/costguard/instance-id`, `/costguard/price-per-hour`, `/costguard/cost-threshold` and `/costguard/budget-limit`.
 - **DynamoDB:** table `CostGuardSessions` in on-demand mode, with `instance_id` as partition key and `timestamp` as sort key.
 - **SNS:** topics `costguard-alerts`, `costguard-errors` and `costguard-budgets`. Your email is subscribed to the first two.
@@ -23,10 +23,10 @@ In this step you deploy one CloudFormation stack that creates the lab machine an
 
 - `AlertEmail` (required): the mailbox that receives alerts.
 - `ExistingInstanceId`: leave empty to create a new lab instance.
-- `PricePerHour`: 0.06 by default. This is the hourly price of the instance in the Pricing Calculator.
+- `PricePerHour`: 0.0392 by default. This is the hourly price of the instance in the Pricing Calculator.
 - `CostThreshold`: 14 by default, about 70% of the budget.
 - `BudgetLimit`: 20 by default.
-- `StopSchedule` and `StopScheduleTimezone`: `cron(0 22 * * ? *)` and `Asia/Ho_Chi_Minh` by default.
+- `StopCron` and `StopScheduleTimezone`: `cron(0 22 * * ? *)` and `Asia/Ho_Chi_Minh` by default.
 - `CostMeterRateMinutes`: 5 by default.
 
 ### Step 1 – Create the stack
@@ -55,6 +55,8 @@ aws cloudformation deploy \
 1. Open the mailbox. You receive two messages from Amazon SNS, one for `costguard-alerts` and one for `costguard-errors`.
 2. Choose **Confirm subscription** in each one. Until you confirm, SNS sends nothing to that address.
 
+![SNS subscriptions of costguard-alerts and costguard-errors show Confirmed](../../images/5-Workshop/5.3-foundation/49-sns-subscriptions-confirmed.png)
+
 ### Step 3 – Check the result
 
 1. When the stack status is **CREATE_COMPLETE**, open the **Outputs** tab. `ProtectedInstanceId` is the instance that Cost Guard protects.
@@ -65,6 +67,10 @@ aws cloudformation deploy \
    - **SNS:** the three topics exist, and the subscriptions of the first two show **Confirmed**.
    - **Lambda:** `CostGuard-ScheduleHandler`, `CostGuard-CostMeter` and `CostGuard-BudgetBackstop` exist.
    - **EventBridge → Scheduler:** `costguard-daily-stop` and `costguard-cost-meter` are enabled.
+
+![Stack CostGuard: 29 resources in CREATE_COMPLETE](../../images/5-Workshop/5.3-foundation/28-cg-stack-create-complete.png)
+
+![Lab instance t3.small running in the EC2 console](../../images/5-Workshop/5.3-foundation/54-ec2-t3small-running.png)
 
 **Expected result:** all resources are present and the instance is running. The instance has now started to cost money, so continue to 5.4 without long pauses.
 

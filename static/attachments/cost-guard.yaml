@@ -11,7 +11,7 @@ Parameters:
   ExistingInstanceId:
     Type: String
     Default: ""
-    Description: Leave empty to create a new Windows t3.medium lab instance. Or enter the ID of an existing instance to protect.
+    Description: Leave empty to create a new Windows t3.small lab instance. Or enter the ID of an existing instance to protect.
     AllowedPattern: "^(i-[0-9a-f]{8,17})?$"
   WindowsAmiId:
     Type: AWS::SSM::Parameter::Value<AWS::EC2::Image::Id>
@@ -19,7 +19,7 @@ Parameters:
     Description: Windows AMI used only when a new instance is created.
   PricePerHour:
     Type: Number
-    Default: 0.06
+    Default: 0.0392
     Description: Hourly price of the instance in USD (from the AWS Pricing Calculator).
   CostThreshold:
     Type: Number
@@ -29,7 +29,7 @@ Parameters:
     Type: Number
     Default: 20
     Description: Monthly budget in USD for Layer 3.
-  StopSchedule:
+  StopCron:
     Type: String
     Default: cron(0 22 * * ? *)
     Description: Layer 1 daily stop time, evaluated in the time zone below.
@@ -52,7 +52,7 @@ Resources:
     Condition: CreateInstance
     Properties:
       ImageId: !Ref WindowsAmiId
-      InstanceType: t3.medium
+      InstanceType: t3.small
       BlockDeviceMappings:
         - DeviceName: /dev/sda1
           Ebs:
@@ -561,7 +561,7 @@ Resources:
     Properties:
       Name: costguard-daily-stop
       Description: Layer 1 - stop the lab instance every day.
-      ScheduleExpression: !Ref StopSchedule
+      ScheduleExpression: !Ref StopCron
       ScheduleExpressionTimezone: !Ref StopScheduleTimezone
       FlexibleTimeWindow:
         Mode: "OFF"

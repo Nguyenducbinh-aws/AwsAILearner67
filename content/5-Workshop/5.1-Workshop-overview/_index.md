@@ -12,7 +12,7 @@ pre: " <b> 5.1. </b> "
 
 ### Problem Statement
 
-A Windows EC2 instance is billed by the hour. A t3.medium left running 24/7 costs about $46.22 per month, more than the $20 credit budget of this project. AWS Budgets can warn about cost, but its billing data refreshes only a few times per day, so it cannot stop a forgotten machine in time.
+A Windows EC2 instance is billed by the hour. A t3.small left running 24/7 costs about $31.04 per month, more than the $20 credit budget of this project. AWS Budgets can warn about cost, but its billing data refreshes only a few times per day, so it cannot stop a forgotten machine in time.
 
 This workshop builds Cost Guard, which stops the machine automatically using only AWS-native serverless services.
 
@@ -20,7 +20,7 @@ This workshop builds Cost Guard, which stops the machine automatically using onl
 
 By the end of this workshop you will have:
 
-- A **Windows EC2 instance** (t3.medium) with a 30 GB gp3 volume as the protected lab machine
+- A **Windows EC2 instance** (t3.small) with a 30 GB gp3 volume as the protected lab machine
 - **Layer 1 – Schedule Guard:** EventBridge Scheduler and a Lambda function that stop the instance every day at 22:00
 - **Layer 2 – Cost Meter:** a Lambda function, run every 5 minutes by EventBridge, that estimates cost and stops the instance when the threshold is reached
 - **Layer 3 – Budget Backstop:** an AWS Budget that notifies SNS at 80% and 100% of $20 and triggers a Lambda function to stop the instance
@@ -37,7 +37,7 @@ The numbers in the diagram follow the order of the flow:
 2. Layer 1: EventBridge Scheduler invokes ScheduleHandler when lab hours end.
 3. Layer 2: an EventBridge Scheduler schedule invokes CostMeter every 5 minutes.
 4. Layer 3: AWS Budgets alerts go through SNS to BudgetBackstop.
-5. The Lambda functions read the price and threshold and read or write session records.
+5. The Lambda functions read their configuration from Parameter Store (all three read the instance ID; only CostMeter also reads the price and threshold) and read or write session records in DynamoDB.
 6. A Lambda function stops EC2 (schedule ended, cost over threshold, or budget reached).
 7. SNS emails the alert to the user.
 8. CloudWatch Alarms watch the Lambda errors and send them through SNS to the user.

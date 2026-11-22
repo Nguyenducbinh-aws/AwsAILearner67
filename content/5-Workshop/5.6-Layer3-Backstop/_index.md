@@ -42,6 +42,14 @@ You do not wait for the real bill to grow. You send a message to the topic yours
 
 **Expected result:** the instance goes to `stopping` and then `stopped`. You receive the email "CostGuard: budget notification handled". The table has an item with `event = budget_stop`.
 
+![Publishing a test message to costguard-budgets](../../images/5-Workshop/5.6-layer3/35-cg-l3-publish-budgets.png)
+
+![Log of CostGuard-BudgetBackstop](../../images/5-Workshop/5.6-layer3/36-cg-l3-backstop-logs.png)
+
+![CostGuardSessions with a budget_stop item](../../images/5-Workshop/5.6-layer3/37-cg-l3-dynamodb-budget-stop.png)
+
+![Email "CostGuard: budget notification handled" (from a repeat test while the instance was already stopped)](../../images/5-Workshop/5.6-layer3/44-gmail-alert-budget.png)
+
 ### Step 3 – Look at the alarms
 
 1. Open **CloudWatch → Alarms**.
@@ -58,6 +66,12 @@ This test makes `CostGuard-CostMeter` fail on purpose to check that the alarm an
 4. **Put the real instance ID back.**
 
 **Expected result:** the function fails, you receive an email from `costguard-errors`, and the alarm `CostGuard-CostMeter-Errors` changes to **In alarm**. After you restore the ID and the next run succeeds, the alarm returns to **OK**.
+
+![Alarm CostGuard-CostMeter-Errors in In alarm](../../images/5-Workshop/5.6-layer3/39-cg-alarm-costmeter-in-alarm.png)
+
+![Alarm back to OK after the real ID was restored](../../images/5-Workshop/5.6-layer3/40-cg-alarm-back-ok.png)
+
+![ALARM email sent through costguard-errors (from the same kind of test on ScheduleHandler)](../../images/5-Workshop/5.6-layer3/46-gmail-alarm.png)
 
 ### Things to check if something goes wrong
 

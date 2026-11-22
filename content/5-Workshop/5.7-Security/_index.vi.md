@@ -28,7 +28,7 @@ Bước này xem lại cách Cost Guard xử lý bảo mật, chi phí và mức
 
 **Các dịch vụ gọi nhau bằng role riêng.** EventBridge Scheduler dùng một role chỉ gọi được hai hàm. Topic policy của `costguard-budgets` chỉ cho dịch vụ Budgets của chính tài khoản bạn gửi tin.
 
-**Không mở cổng nào.** Template không thêm quy tắc inbound, và máy lab dùng security group mặc định của default VPC.
+**Không mở cổng nào.** Máy lab trong workshop này dùng security group riêng `costguard-lab-no-inbound`, không có quy tắc inbound nào, và bắt buộc IMDSv2. Nếu để template tự tạo máy, máy sẽ dùng security group mặc định của default VPC, chỉ cho phép lưu lượng từ các máy cùng group.
 
 **Cách kiểm tra:** mở **IAM → Roles**, chọn từng role `CostGuard` và đọc policy. Hành động duy nhất đụng tới trạng thái EC2 là `StopInstances` trên một instance.
 
@@ -36,7 +36,7 @@ Bước này xem lại cách Cost Guard xử lý bảo mật, chi phí và mức
 
 Dự toán được lập bằng AWS Pricing Calculator cho US East (N. Virginia), giá on-demand và 120 giờ lab mỗi tháng. Giá tính không có Free Tier.
 
-- Amazon EC2 Windows (t3.medium): 120 giờ × $0.06 = **$7.20**
+- Amazon EC2 Windows (t3.small): 120 giờ × $0.0392 = **$4.70**
 - Amazon EBS (gp3, 30 GB): **$2.40**, tính cả tháng kể cả khi máy tắt
 - Địa chỉ Public IPv4: 120 giờ × $0.005 = **$0.60**
 - AWS Lambda: khoảng **$0.02**
@@ -44,7 +44,7 @@ Dự toán được lập bằng AWS Pricing Calculator cho US East (N. Virginia
 - Amazon CloudWatch (3 alarm và log): khoảng **$0.31**
 - EventBridge Scheduler và Amazon SNS: mỗi dịch vụ dưới **$0.01**
 
-Các dịch vụ trong Calculator (EC2, EBS, Lambda và DynamoDB) cộng lại khoảng **$9.62 mỗi tháng**. Khi thêm các dịch vụ còn lại, tổng là khoảng **$10.54 mỗi tháng**, dưới ngân sách $20. Cũng máy đó chạy 24/7 sẽ tốn khoảng $46.22 mỗi tháng, nên Cost Guard giúp tránh khoảng $36.60 mỗi tháng.
+Các dịch vụ trong Calculator (EC2, EBS và Lambda) cộng lại **$7.12 mỗi tháng** ([bản ước tính](https://calculator.aws/#/estimate?id=641acc2f03b075415ec10d1ab0de1590ab659dd9)). Khi thêm các dịch vụ còn lại, tổng là khoảng **$8.05 mỗi tháng**, dưới ngân sách $20. Cũng máy đó chạy 24/7 sẽ tốn khoảng $31.04 mỗi tháng, nên Cost Guard giúp tránh khoảng $23.92 mỗi tháng.
 
 ### 3. Tối ưu chi phí
 
@@ -60,5 +60,5 @@ Các dịch vụ trong Calculator (EC2, EBS, Lambda và DynamoDB) cộng lại k
 - **Operational Excellence:** log Lambda, CloudWatch alarm và bản ghi phiên trong DynamoDB cho thấy hệ thống đã làm gì và vì sao.
 - **Security:** mỗi hàm một role, quyền dừng giới hạn cho một instance, không có thông tin xác thực trong code.
 - **Reliability:** ba lớp độc lập, và mọi hành động đều an toàn khi lặp lại.
-- **Performance Efficiency:** t3.medium cho một phiên lab, và hàm Lambda 128 MB chạy khoảng một giây.
+- **Performance Efficiency:** t3.small cho một phiên lab (loại lớn hơn trong hai cỡ t3 mà tài khoản Free Plan tạo được), và hàm Lambda 128 MB chạy khoảng một giây.
 - **Cost Optimization:** giới hạn giờ chạy, dịch vụ trả theo lượt dùng và dọn dẹp ở cuối.

@@ -12,7 +12,7 @@ pre: " <b> 5.1. </b> "
 
 ### Vấn đề cần giải quyết
 
-Máy Windows EC2 tính phí theo giờ. Một máy t3.medium chạy 24/7 tốn khoảng $46.22 mỗi tháng, vượt quá ngân sách credit $20 của dự án. AWS Budgets có cảnh báo chi phí, nhưng dữ liệu billing chỉ cập nhật vài lần mỗi ngày, nên không kịp dừng một máy bị quên.
+Máy Windows EC2 tính phí theo giờ. Một máy t3.small chạy 24/7 tốn khoảng $31.04 mỗi tháng, vượt quá ngân sách credit $20 của dự án. AWS Budgets có cảnh báo chi phí, nhưng dữ liệu billing chỉ cập nhật vài lần mỗi ngày, nên không kịp dừng một máy bị quên.
 
 Workshop này xây dựng Cost Guard, hệ thống tự động dừng máy chỉ bằng các dịch vụ serverless thuần AWS.
 
@@ -20,7 +20,7 @@ Workshop này xây dựng Cost Guard, hệ thống tự động dừng máy ch�
 
 Sau khi hoàn thành workshop, bạn sẽ có:
 
-- Một **EC2 Windows** (t3.medium) với ổ gp3 30 GB làm máy lab được bảo vệ
+- Một **EC2 Windows** (t3.small) với ổ gp3 30 GB làm máy lab được bảo vệ
 - **Lớp 1 – Schedule Guard:** EventBridge Scheduler và một hàm Lambda dừng máy mỗi ngày lúc 22:00
 - **Lớp 2 – Cost Meter:** một hàm Lambda, được EventBridge gọi mỗi 5 phút, ước tính chi phí và dừng máy khi đạt ngưỡng
 - **Lớp 3 – Budget Backstop:** một AWS Budget thông báo qua SNS ở mức 80% và 100% của $20 và kích hoạt Lambda để dừng máy
@@ -37,7 +37,7 @@ Các số trong sơ đồ theo đúng thứ tự luồng:
 2. Lớp 1: EventBridge Scheduler gọi ScheduleHandler khi hết giờ lab.
 3. Lớp 2: một lịch EventBridge Scheduler gọi CostMeter mỗi 5 phút.
 4. Lớp 3: cảnh báo của AWS Budgets đi qua SNS tới BudgetBackstop.
-5. Các hàm Lambda đọc đơn giá và ngưỡng, đọc hoặc ghi bản ghi phiên.
+5. Các hàm Lambda đọc cấu hình từ Parameter Store (cả ba đọc instance ID; riêng CostMeter đọc thêm đơn giá và ngưỡng), đọc hoặc ghi bản ghi phiên trong DynamoDB.
 6. Một hàm Lambda dừng EC2 (hết giờ lab, chi phí vượt ngưỡng, hoặc budget chạm hạn mức).
 7. SNS gửi email cảnh báo cho người dùng.
 8. CloudWatch Alarms theo dõi lỗi Lambda và gửi qua SNS cho người dùng.
