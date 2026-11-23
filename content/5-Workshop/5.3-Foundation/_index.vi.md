@@ -8,7 +8,7 @@ pre: " <b> 5.3. </b> "
 
 ## Triển khai nền tảng
 
-Ở bước này bạn deploy một CloudFormation stack để tạo máy lab và mọi thứ mà ba lớp dùng chung: cấu hình, dữ liệu, thông báo và IAM role. Chính ba lớp được giải thích và kiểm thử ở 5.4, 5.5 và 5.6.
+Ở bước này, bạn deploy một CloudFormation stack để tạo máy lab và những thành phần mà ba lớp dùng chung: cấu hình, dữ liệu, thông báo và IAM role. Phần giải thích và kiểm thử từng lớp nằm ở 5.4, 5.5 và 5.6.
 
 ### Stack tạo những gì
 
@@ -59,7 +59,7 @@ aws cloudformation deploy \
 ### Bước 2 – Xác nhận đăng ký email
 
 1. Mở hộp thư. Bạn nhận hai thư từ Amazon SNS, một cho `costguard-alerts` và một cho `costguard-errors`.
-2. Chọn **Confirm subscription** trong từng thư. Khi chưa xác nhận, SNS sẽ không gửi gì tới địa chỉ đó.
+2. Bấm **Confirm subscription** trong từng thư. Địa chỉ nào chưa xác nhận thì SNS không gửi gì tới.
 
 ![Hai đăng ký SNS của costguard-alerts và costguard-errors ở trạng thái Confirmed](../../../images/5-Workshop/5.3-foundation/49-sns-subscriptions-confirmed.png)
 
@@ -84,4 +84,4 @@ aws cloudformation deploy \
 
 **Kiểm tra:** Instance type là `t3.small` và Instance state là **Running**.
 
-**Kết quả trả về:** mọi tài nguyên đều có mặt và máy đang chạy. Máy đã bắt đầu tính tiền, nên hãy sang 5.4 ngay, không nghỉ lâu.
+**Kết quả trả về:** đủ mọi tài nguyên và máy đang chạy. Máy đã bắt đầu tính tiền, nên chuyển sang 5.4 luôn, đừng để lâu.

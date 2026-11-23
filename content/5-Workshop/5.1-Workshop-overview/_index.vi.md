@@ -12,6 +12,7 @@ Máy Windows EC2 tính phí theo giờ. Một máy t3.small chạy 24/7 tốn kh
 
 **Cost Guard** là hệ thống serverless tự động dừng máy lab. Hệ thống dùng ba lớp độc lập, mỗi lớp bù đắp điểm yếu của các lớp còn lại. Lớp nào cũng dừng được máy, không lớp nào bật được máy, và dừng một máy đã dừng thì không có tác dụng.
 
+<<<<<<< HEAD
 - **Lớp 1 – Schedule Guard:** dừng instance mỗi ngày lúc 22:00 (Asia/Ho_Chi_Minh), dù có ai nhớ hay không.
 - **Lớp 2 – Cost Meter:** chạy mỗi 5 phút, ước tính chi phí tháng từ thời gian chạy và đơn giá theo giờ, rồi dừng instance khi ước tính chạm ngưỡng khoảng $14 (70% của $20).
 - **Lớp 3 – Budget Backstop:** một AWS Budget theo dõi hóa đơn thực, và ở mức 80% và 100% của $20 sẽ kích hoạt một hàm Lambda dừng instance.
@@ -19,6 +20,24 @@ Máy Windows EC2 tính phí theo giờ. Một máy t3.small chạy 24/7 tốn kh
 #### Tổng quan về workshop
 
 Trong workshop này, bạn triển khai Cost Guard bằng một template CloudFormation, cố ý kiểm thử từng lớp, rà soát bảo mật và chi phí, rồi xóa toàn bộ ở cuối để không còn phát sinh phí.
+=======
+Máy Windows EC2 tính tiền theo giờ. Một máy t3.small chạy 24/7 tốn khoảng $31.04 mỗi tháng, vượt ngân sách credit $20 của dự án. AWS Budgets có cảnh báo chi phí, nhưng dữ liệu billing chỉ cập nhật vài lần mỗi ngày nên không kịp dừng một máy bị quên tắt.
+
+Workshop này xây dựng Cost Guard, hệ thống tự động dừng máy, chỉ dùng các dịch vụ serverless của AWS.
+
+### Những gì bạn sẽ xây dựng
+
+Sau khi hoàn thành workshop, bạn sẽ có:
+
+- Một **EC2 Windows** (t3.small) với ổ gp3 30 GB làm máy lab được bảo vệ
+- **Lớp 1 – Schedule Guard:** EventBridge Scheduler và một hàm Lambda dừng máy mỗi ngày lúc 22:00
+- **Lớp 2 – Cost Meter:** một hàm Lambda do EventBridge gọi 5 phút một lần, ước tính chi phí và dừng máy khi chạm ngưỡng
+- **Lớp 3 – Budget Backstop:** một AWS Budget thông báo qua SNS ở mức 80% và 100% của $20 và kích hoạt Lambda để dừng máy
+- **Nền tảng dùng chung:** Parameter Store cho cấu hình, bảng DynamoDB cho bản ghi phiên, hai SNS topic (cảnh báo và lỗi) và IAM role quyền tối thiểu cho từng hàm
+- **Giám sát:** CloudWatch Logs và CloudWatch Alarms cho lỗi của cả ba hàm
+
+### Kiến trúc
+>>>>>>> 5504c32a53a41190bcd9b8f102a8d2c4ccd98a22
 
 ![Sơ đồ kiến trúc](../../../images/2-Proposal/architecture.png)
 

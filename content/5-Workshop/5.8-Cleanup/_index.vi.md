@@ -22,9 +22,9 @@ Với CLI:
 aws cloudformation delete-stack --region us-east-1 --stack-name CostGuard
 ```
 
-Stack xóa instance và ổ đĩa của nó, bảng DynamoDB, các tham số Parameter Store, các hàm Lambda, các log group, các lịch, Budget, các SNS topic và các alarm.
+Khi xóa stack, CloudFormation sẽ xóa instance cùng ổ đĩa của nó, bảng DynamoDB, các tham số Parameter Store, các hàm Lambda, log group, các schedule, Budget, các SNS topic và các alarm.
 
-Nếu bạn truyền `ExistingInstanceId`, stack **không** tạo instance đó nên cũng không xóa nó. Hãy tự terminate instance.
+Nếu lúc deploy có truyền `ExistingInstanceId` thì instance đó **không** do stack tạo, nên stack cũng không xóa. Hãy tự terminate instance này.
 
 ### Bước 2 – Kiểm tra không còn gì sót
 

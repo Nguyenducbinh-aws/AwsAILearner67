@@ -8,7 +8,7 @@ pre: " <b> 5.6. </b> "
 
 ## Lớp 3 – Budget Backstop và giám sát
 
-Lớp 3 là lưới an toàn cuối cùng. Lớp này theo dõi **chi tiêu thực** của tài khoản, nên chậm theo thiết kế: dữ liệu billing chỉ cập nhật vài lần mỗi ngày. Bước này cũng nói về các CloudWatch alarm báo cho bạn khi một trong ba hàm bị lỗi.
+Lớp 3 là lưới an toàn cuối cùng. Lớp này bám theo **chi tiêu thực** của tài khoản nên phản ứng chậm, vì dữ liệu billing chỉ cập nhật vài lần mỗi ngày. Phần này cũng giới thiệu các CloudWatch alarm, dùng để báo khi một trong ba hàm bị lỗi.
 
 ![Lớp 3 – Budget Backstop và giám sát](../../../images/5-Workshop/layer3-backstop.png)
 
@@ -25,7 +25,7 @@ Lớp 3 là lưới an toàn cuối cùng. Lớp này theo dõi **chi tiêu th�
 - Lớp 2 dừng máy trong vài phút khi chi phí ước tính chạm ngưỡng.
 - Lớp 3 dừng máy khi hóa đơn thật tiến gần hạn mức.
 
-Lớp nào cũng dừng được máy, không lớp nào bật được máy, và dừng một máy đã dừng thì không có tác dụng. Vì vậy các lớp không xung đột, và một lớp lỗi không làm mất hai lớp còn lại.
+Lớp nào cũng dừng được máy nhưng không lớp nào bật máy lên, còn dừng một máy đã tắt thì chẳng ảnh hưởng gì. Nhờ vậy ba lớp không giẫm chân nhau, và nếu một lớp hỏng thì hai lớp kia vẫn chạy bình thường.
 
 ### Bước 1 – Xem budget
 
@@ -42,7 +42,7 @@ Lớp nào cũng dừng được máy, không lớp nào bật được máy, v�
 
 ### Bước 2 – Kiểm thử Budget Backstop
 
-Bạn không chờ hóa đơn thật tăng lên. Bạn tự gửi một tin nhắn tới topic.
+Không cần chờ hóa đơn thật tăng. Chỉ cần tự gửi một tin nhắn lên topic.
 
 1. Bật instance và chờ đến khi `running`.
 2. Mở **SNS → Topics → `costguard-budgets` → Publish message**. Dùng tiêu đề và nội dung bất kỳ, rồi chọn **Publish message**.
@@ -82,14 +82,14 @@ Bạn không chờ hóa đơn thật tăng lên. Bạn tự gửi một tin nh�
 
 ### Bước 4 – Kiểm thử kịch bản lỗi
 
-Bài kiểm thử này cố tình làm `CostGuard-CostMeter` lỗi để kiểm tra alarm và email hoạt động.
+Ở bài thử này, ta cố tình cho `CostGuard-CostMeter` lỗi để xem alarm và email có báo đúng không.
 
 1. Mở **Parameter Store → `/costguard/instance-id` → Edit**. Ghi lại instance ID thật trước, rồi thay giá trị bằng `i-00000000000000000`.
 2. Chờ tối đa 10 phút. Hàm chạy mỗi 5 phút và alarm dùng chu kỳ 5 phút.
 3. Kiểm tra log của `CostGuard-CostMeter`, trạng thái alarm và hộp thư.
 4. **Đặt lại instance ID thật.**
 
-**Kết quả trả về:** hàm bị lỗi, bạn nhận email từ `costguard-errors`, và alarm `CostGuard-CostMeter-Errors` chuyển sang **In alarm**. Sau khi bạn khôi phục ID và lần chạy kế tiếp thành công, alarm trở về **OK**.
+**Kết quả trả về:** hàm báo lỗi, email từ `costguard-errors` gửi về hộp thư, và alarm `CostGuard-CostMeter-Errors` chuyển sang **In alarm**. Khôi phục ID xong, đợi lần chạy kế tiếp thành công thì alarm về lại **OK**.
 
 ![Alarm CostGuard-CostMeter-Errors ở trạng thái In alarm](../../../images/5-Workshop/5.6-layer3/39-cg-alarm-costmeter-in-alarm.png)
 
