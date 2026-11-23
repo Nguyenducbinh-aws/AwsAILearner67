@@ -8,11 +8,11 @@ pre: " <b> 5.7. </b> "
 
 ## Rà soát bảo mật và chi phí
 
-Bước này xem lại cách Cost Guard xử lý bảo mật, chi phí và cách giữ chi phí ở mức thấp.
+Phần này xem lại cách Cost Guard lo phần bảo mật, chi phí dự kiến và các cách giữ chi phí thấp.
 
 ### 1. Bảo mật
 
-**Mỗi hàm một IAM role.** Ba hàm Lambda có role riêng, nên một lỗi ở hàm này không dùng được quyền của hàm khác. Quyền dừng instance bị giới hạn theo **ARN của instance được bảo vệ**:
+**Mỗi hàm một IAM role.** Ba hàm Lambda dùng ba role riêng, nên hàm này có lỗi cũng không mượn được quyền của hàm khác. Quyền dừng instance chỉ áp dụng cho **ARN của instance cần bảo vệ**:
 
 ```json
 {
@@ -22,19 +22,19 @@ Bước này xem lại cách Cost Guard xử lý bảo mật, chi phí và cách
 }
 ```
 
-`ec2:DescribeInstances` được cho phép trên mọi tài nguyên, vì hành động này không hỗ trợ giới hạn theo tài nguyên. Các quyền còn lại chỉ áp dụng cho tham số, bảng và topic mà hàm đó dùng.
+Riêng `ec2:DescribeInstances` phải cấp trên mọi tài nguyên, vì action này không hỗ trợ giới hạn theo tài nguyên. Các quyền còn lại chỉ áp dụng cho đúng tham số, bảng và topic mà từng hàm dùng.
 
 **Không có thông tin xác thực trong code.** Các hàm dùng execution role. Giá trị trong Parameter Store chỉ gồm đơn giá theo giờ, ngưỡng, hạn mức ngân sách và instance ID.
 
 **Các dịch vụ gọi nhau bằng role riêng.** EventBridge Scheduler dùng một role chỉ gọi được hai hàm. Topic policy của `costguard-budgets` chỉ cho dịch vụ Budgets của chính tài khoản bạn gửi tin.
 
-**Không mở cổng nào.** Máy lab trong workshop này dùng security group riêng `costguard-lab-no-inbound`, không có quy tắc inbound nào, và bắt buộc IMDSv2. Nếu để template tự tạo máy, máy sẽ dùng security group mặc định của default VPC, chỉ cho phép lưu lượng từ các máy cùng group.
+**Không mở cổng nào.** Máy lab trong workshop dùng security group riêng `costguard-lab-no-inbound`, không có inbound rule nào, và bắt buộc IMDSv2. Nếu để template tự tạo máy thì máy sẽ nhận security group mặc định của default VPC, group này chỉ cho các máy cùng group kết nối với nhau.
 
 ![Security group costguard-lab-no-inbound không có quy tắc inbound](../../../images/5-Workshop/5.7-security/67-sg-no-inbound.png)
 
 **Kiểm tra:** mở **EC2 → Security Groups → `costguard-lab-no-inbound`**. Inbound rules count là **0 Permission entries** và tab **Inbound rules** ghi "No security group rules found".
 
-**Cách kiểm tra:** mở **IAM → Roles**, chọn từng role `CostGuard` và đọc policy. Hành động duy nhất đụng tới trạng thái EC2 là `StopInstances` trên một instance.
+**Cách kiểm tra:** mở **IAM → Roles**, mở từng role `CostGuard` và đọc policy. Action duy nhất làm thay đổi trạng thái EC2 là `StopInstances`, và chỉ trên một instance.
 
 ![Policy của role CostGuard-ScheduleHandlerRole](../../../images/5-Workshop/5.7-security/68-iam-schedulehandler-policy.png)
 
@@ -52,7 +52,7 @@ Dự toán được lập bằng AWS Pricing Calculator cho US East (N. Virginia
 - Amazon CloudWatch (3 alarm và log): khoảng **$0.31**
 - EventBridge Scheduler và Amazon SNS: mỗi dịch vụ dưới **$0.01**
 
-Các dịch vụ trong Calculator (EC2, EBS và Lambda) cộng lại **$7.12 mỗi tháng** ([bản ước tính](https://calculator.aws/#/estimate?id=641acc2f03b075415ec10d1ab0de1590ab659dd9)). Khi thêm các dịch vụ còn lại, tổng là khoảng **$8.05 mỗi tháng**, dưới ngân sách $20. Cũng máy đó chạy 24/7 sẽ tốn khoảng $31.04 mỗi tháng, nên Cost Guard giúp tránh khoảng $23.92 mỗi tháng.
+Các dịch vụ có trong Calculator (EC2, EBS và Lambda) cộng lại **$7.12 mỗi tháng** ([bản ước tính](https://calculator.aws/#/estimate?id=641acc2f03b075415ec10d1ab0de1590ab659dd9)). Cộng thêm các dịch vụ còn lại thì tổng khoảng **$8.05 mỗi tháng**, vẫn dưới ngân sách $20. Nếu để máy đó chạy 24/7 thì tốn khoảng $31.04 mỗi tháng, tức Cost Guard tiết kiệm được khoảng $23.92 mỗi tháng.
 
 ![Bản ước tính trên AWS Pricing Calculator: $7.12 mỗi tháng](../../../images/5-Workshop/5.7-security/53-pricing-t3small.png)
 

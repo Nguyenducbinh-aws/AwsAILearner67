@@ -23,9 +23,9 @@ Credit AWS Free Plan có giới hạn. Một máy Windows EC2 (t3.small) chạy 
 
 Cost Guard dùng ba lớp bảo vệ bổ sung cho nhau:
 
-- **Lớp 1 — Lịch dừng (Schedule Guard):** EventBridge Scheduler tự dừng máy ngoài giờ lab. Lớp này không phụ thuộc dữ liệu billing nên đáng tin cậy nhất. Lịch chỉ dừng máy; việc bật máy vẫn làm thủ công để không tốn credit khi không có người dùng.
-- **Lớp 2 — Bộ đo chi phí (Cost Meter, đóng góp riêng):** Lambda chạy mỗi 5 phút, ước tính chi phí của máy đang chạy dựa trên thời gian chạy và đơn giá đã cấu hình, rồi cộng với chi phí ước tính của các phiên trước trong tháng. Khi tổng vượt ngưỡng nội bộ, máy bị dừng và cảnh báo được gửi qua SNS.
-- **Lớp 3 — Budget dự phòng (Budget Backstop):** AWS Budgets theo dõi chi tiêu thực của tài khoản. Khi chi tiêu tiến gần giới hạn, nó kích hoạt Lambda qua SNS để dừng máy như lưới an toàn cuối cùng.
+- **Lớp 1 — Lịch dừng (Schedule Guard):** EventBridge Scheduler tự dừng máy ngoài giờ lab. Lớp này không phụ thuộc dữ liệu billing nên đáng tin cậy nhất. Lịch chỉ dừng máy, còn bật máy thì vẫn làm tay để không tốn credit khi không ai dùng.
+- **Lớp 2 — Bộ đo chi phí (Cost Meter, đóng góp riêng):** Cứ 5 phút Lambda chạy một lần, ước tính chi phí máy đang chạy từ thời gian chạy và đơn giá đã cấu hình, rồi cộng thêm chi phí ước tính của các phiên trước trong tháng. Tổng vượt ngưỡng nội bộ thì Lambda dừng máy và gửi cảnh báo qua SNS.
+- **Lớp 3 — Budget dự phòng (Budget Backstop):** AWS Budgets theo dõi chi tiêu thực của tài khoản. Khi chi tiêu gần chạm giới hạn, Budgets gọi Lambda qua SNS để dừng máy, coi như lưới an toàn cuối cùng.
 
 ### Lợi ích và ROI
 
@@ -53,16 +53,16 @@ Ngoài phạm vi: quản lý nhiều instance hoặc nhiều tài khoản, tự 
 
 ### 3. Kiến trúc giải pháp
 
-Hệ thống chạy trong một AWS Region (US East, N. Virginia) và chỉ dùng dịch vụ serverless hoặc managed. EventBridge điều phối lịch dừng và việc kiểm tra chi phí định kỳ. Các hàm Lambda xử lý logic dừng máy và ước tính chi phí. DynamoDB ghi lại hoạt động từng phiên. SNS gửi thông báo. Parameter Store lưu cấu hình. Mỗi hàm Lambda có IAM role riêng với quyền tối thiểu.
+Hệ thống chạy trong một AWS Region (US East, N. Virginia) và chỉ dùng dịch vụ serverless hoặc managed. EventBridge điều phối lịch dừng và các lần kiểm tra chi phí định kỳ. Các hàm Lambda lo phần dừng máy và ước tính chi phí. DynamoDB ghi lại hoạt động từng phiên. SNS gửi thông báo. Parameter Store lưu cấu hình. Mỗi hàm Lambda có IAM role riêng với quyền tối thiểu.
 
 ![Sơ đồ kiến trúc](../../images/2-Proposal/architecture.png)
 
 ### Dịch vụ AWS sử dụng
 
 - **Amazon EC2 (Windows):** Máy lab được bảo vệ (t3.small, Windows Server). Tài khoản Free Plan chỉ cho chọn t3.micro, t3.small, t8i.micro và t8i.small; nhóm chọn t3.small (2 vCPU, 2 GiB), loại lớn hơn trong hai cỡ t3, vì 1 GiB quá ít cho Windows Server.
-- **Amazon EBS (gp3, 30 GB):** Ổ đĩa gốc của máy lab. Được tính phí cả tháng, kể cả khi máy đang tắt.
+- **Amazon EBS (gp3, 30 GB):** Ổ đĩa gốc của máy lab. Ổ này bị tính phí cả tháng, kể cả lúc máy tắt.
 - **Amazon EventBridge:** EventBridge Scheduler kích hoạt lịch dừng và chạy bộ đo chi phí mỗi 5 phút. Cả hai đều dùng lịch (schedule).
-- **AWS Lambda:** Thực thi logic của từng lớp bảo vệ.
+- **AWS Lambda:** Chạy logic của từng lớp bảo vệ.
 - **Amazon DynamoDB:** Lưu hoạt động từng phiên và ước tính chi phí.
 - **Amazon SNS:** Gửi email cảnh báo khi vượt ngưỡng hoặc khi có lỗi.
 - **AWS Budgets:** Theo dõi chi tiêu thực và kích hoạt lớp bảo vệ cuối cùng.
@@ -112,13 +112,13 @@ Hệ thống chạy trong một AWS Region (US East, N. Virginia) và chỉ dùn
 
 ### 6. Ước tính ngân sách
 
-Ước tính được lập bằng AWS Pricing Calculator cho US East (N. Virginia), giá on-demand, với kế hoạch dùng 120 giờ lab mỗi tháng (4 giờ mỗi ngày trong 30 ngày).
+Nhóm lập ước tính bằng AWS Pricing Calculator cho US East (N. Virginia), giá on-demand, theo kế hoạch dùng 120 giờ lab mỗi tháng (4 giờ mỗi ngày trong 30 ngày).
 
 Bản ước tính trên AWS Pricing Calculator: [link chia sẻ](https://calculator.aws/#/estimate?id=641acc2f03b075415ec10d1ab0de1590ab659dd9) và [file PDF](../../attachments/costguard-pricing-estimate.pdf).
 
 ### Chi phí hạ tầng
 
-- Amazon EC2 Windows (t3.small): 120 giờ × $0.0392 mỗi giờ = $4.70 mỗi tháng. Trong Calculator, mức dùng được nhập trực tiếp là 120 Hours / Month, và ổ đĩa được tách sang mục EBS riêng.
+- Amazon EC2 Windows (t3.small): 120 giờ × $0.0392 mỗi giờ = $4.70 mỗi tháng. Trong Calculator, nhóm nhập thẳng mức dùng 120 Hours / Month và tách ổ đĩa sang mục EBS riêng.
 - Amazon EBS (gp3, 30 GB): $2.40 mỗi tháng, tính cả tháng kể cả khi máy tắt.
 - Địa chỉ Public IPv4: $0.005 mỗi giờ cho địa chỉ đang dùng, nên 120 giờ × $0.005 = $0.60 mỗi tháng (không có trong estimate của Calculator).
 - AWS Lambda: khoảng $0.02 mỗi tháng (8,700 yêu cầu và 1,087.5 GB-giây với 128 MB và 1 giây mỗi lần chạy), tính không có Free Tier.
@@ -126,7 +126,7 @@ Bản ước tính trên AWS Pricing Calculator: [link chia sẻ](https://calcul
 - Amazon CloudWatch: 3 alarm tiêu chuẩn × $0.10 = $0.30 mỗi tháng, cộng khoảng 0.01 GB log Lambda với $0.50 mỗi GB nạp vào (khoảng $0.005), tính không có Free Tier.
 - Parameter Store (tham số standard) và AWS Budgets (budget theo dõi): $0.00 mỗi tháng.
 - EventBridge Scheduler tính phí theo số lần gọi, và 14 triệu lần gọi đầu tiên mỗi tháng là miễn phí. Dự án dùng khoảng 8,700 lần mỗi tháng (lịch 5 phút cộng một lần dừng mỗi ngày), tương đương khoảng $0.009 mỗi tháng nếu không tính Free Tier.
-- Amazon SNS (US East, topic tiêu chuẩn): 1 triệu yêu cầu API đầu tiên và 1,000 thông báo email đầu tiên mỗi tháng là miễn phí. Dự án dùng khoảng 100 mỗi loại, nên chi phí là $0, và dưới $0.01 mỗi tháng nếu không tính Free Tier. Việc gửi tới Lambda không tính phí theo từng tin.
+- Amazon SNS (US East, topic tiêu chuẩn): 1 triệu yêu cầu API đầu tiên và 1,000 thông báo email đầu tiên mỗi tháng là miễn phí. Dự án dùng khoảng 100 mỗi loại, nên chi phí là $0, và dưới $0.01 mỗi tháng nếu không tính Free Tier. Gửi tin tới Lambda thì không tính phí theo từng tin.
 
 **Tổng:** $7.12 mỗi tháng cho các dịch vụ trong Calculator (EC2, EBS và Lambda), và khoảng $8.05 khi thêm DynamoDB, địa chỉ Public IPv4, CloudWatch, EventBridge Scheduler và SNS, tất cả tính không có Free Tier. Cả hai đều dưới ngân sách $20.
 
@@ -136,7 +136,7 @@ Ngưỡng nội bộ của Lớp 2 đặt ở khoảng 70% ngân sách ($14). V�
 
 ### Tối ưu chi phí
 
-- Giới hạn giờ chạy: lịch dừng và việc bật máy thủ công giữ máy ở khoảng 120 giờ mỗi tháng thay vì 730.
+- Giới hạn giờ chạy: nhờ lịch dừng và bật máy thủ công, máy chỉ chạy khoảng 120 giờ mỗi tháng thay vì 730.
 - Dùng các dịch vụ tính phí theo lượt dùng và nằm trong Free Tier: Lambda, DynamoDB on-demand, SNS và EventBridge.
 - Dùng tham số standard của Parameter Store, không tốn phí.
 - Dùng ổ gp3 30 GB (kích thước mặc định của image Windows), không thêm IOPS hay throughput.
@@ -150,7 +150,7 @@ Ngưỡng nội bộ của Lớp 2 đặt ở khoảng 70% ngân sách ($14). V�
 
 - Hết credit giữa chừng vì một máy bị quên chạy hoặc một lớp bảo vệ lỗi: tác động cao, xác suất trung bình.
 - Ba người dùng chung một tài khoản AWS, nên một người có thể ghi đè cấu hình của người khác hoặc dừng máy đang được đồng đội dùng (ví dụ hạ ngưỡng để thử): tác động trung bình, xác suất trung bình.
-- Lịch đặt sai múi giờ, nên lệnh dừng chạy vào sai giờ. Biểu thức cron của một EventBridge rule được đọc theo UTC, nên rất dễ lệch vài giờ: tác động trung bình, xác suất trung bình.
+- Lịch đặt sai múi giờ khiến lệnh dừng chạy sai giờ. EventBridge rule đọc biểu thức cron theo UTC nên rất dễ lệch vài giờ: tác động trung bình, xác suất trung bình.
 - Lịch không bao giờ kích hoạt được hàm Lambda, vì biểu thức cron viết sai hoặc hàm không cấp quyền cho EventBridge gọi nó: tác động trung bình, xác suất trung bình.
 - Dữ liệu Budgets đến trễ hoặc bị hiểu sai, vì dữ liệu billing chỉ cập nhật vài lần mỗi ngày: tác động cao, xác suất cao (theo thiết kế).
 - Ước tính của Lớp 2 lệch so với hóa đơn thật: tác động trung bình, xác suất trung bình.
@@ -178,7 +178,7 @@ Ngưỡng nội bộ của Lớp 2 đặt ở khoảng 70% ngân sách ($14). V�
 
 - **Thời gian phản ứng:** Từ lúc chi phí ước tính đạt ngưỡng đến lúc máy bị dừng là dưới 5 phút, tức một chu kỳ của Cost Meter.
 - **Số lần dừng đúng:** Trong các bài kiểm thử, mỗi lớp dừng máy đúng mọi lần cần dừng, và không bao giờ dừng khi chi phí còn dưới ngưỡng. Workshop ghi lại số lần chạy thử và kết quả.
-- **Chi tiêu:** Tổng chi tiêu dự án dưới $20, được xác nhận bằng Cost Explorer sau khi dọn dẹp.
+- **Chi tiêu:** Tổng chi tiêu dự án dưới $20, xác nhận lại bằng Cost Explorer sau khi dọn dẹp.
 - **Khả năng quan sát:** Có thể theo dõi cả ba lớp qua log Lambda, email SNS và bản ghi phiên trong DynamoDB.
 
 #### Giá trị dài hạn

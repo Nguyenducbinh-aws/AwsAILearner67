@@ -8,7 +8,7 @@ pre: " <b> 5.4. </b> "
 
 ## Lớp 1 – Schedule Guard
 
-Lớp 1 dừng máy lab vào một giờ cố định mỗi ngày. Lớp này không đọc dữ liệu chi phí hay billing, nên là lớp đáng tin cậy nhất trong ba lớp.
+Lớp 1 tắt máy lab vào một giờ cố định mỗi ngày. Lớp này không phụ thuộc dữ liệu chi phí hay billing nên chạy ổn định nhất trong ba lớp.
 
 ![Lớp 1 – Schedule Guard](../../../images/5-Workshop/layer1-schedule.png)
 
@@ -16,15 +16,15 @@ Lớp 1 dừng máy lab vào một giờ cố định mỗi ngày. Lớp này kh
 
 1. **EventBridge Scheduler** gọi hàm Lambda `CostGuard-ScheduleHandler` mỗi ngày lúc 22:00 (múi giờ `Asia/Ho_Chi_Minh`), với sự kiện `{"action": "stop"}`.
 2. Hàm đọc instance ID từ `/costguard/instance-id`.
-3. Hàm gọi `DescribeInstances`. Nếu instance đang `running` thì gọi `StopInstances`. Ở các trạng thái khác, hàm không làm gì, nên gọi lặp lại vẫn an toàn.
+3. Hàm gọi `DescribeInstances`. Instance đang `running` thì gọi `StopInstances`, còn ở trạng thái khác thì bỏ qua. Nhờ vậy gọi lặp lại nhiều lần vẫn an toàn.
 4. Hàm ghi một bản ghi vào `CostGuardSessions` (`schedule_stop` hoặc `schedule_noop`).
-5. Nếu có lỗi, hàm gửi lỗi tới `costguard-errors` và ném lại lỗi, để CloudWatch alarm ở 5.6 nhìn thấy.
+5. Gặp lỗi thì hàm gửi lỗi tới `costguard-errors` rồi ném lại lỗi để CloudWatch alarm ở 5.6 bắt được.
 
-Lịch chỉ **dừng** máy. Việc bật máy vẫn làm thủ công, nên không tốn credit khi không ai dùng lab.
+Lịch chỉ **tắt** máy, còn bật máy vẫn làm tay. Không ai dùng lab thì không tốn credit.
 
 ### Vì sao dùng EventBridge Scheduler
 
-**Rule** của EventBridge đọc biểu thức cron theo UTC, nên giờ dừng 22:00 ở Việt Nam phải viết thành 15:00. EventBridge Scheduler nhận được múi giờ, nên biểu thức bên dưới nói đúng điều nó muốn nói. Scheduler cũng gọi hàm qua role riêng của nó, nên hàm không cần thêm resource-based permission.
+**Rule** của EventBridge hiểu biểu thức cron theo UTC, nên muốn dừng lúc 22:00 giờ Việt Nam phải viết thành 15:00. EventBridge Scheduler cho khai báo múi giờ, nên biểu thức bên dưới đọc sao hiểu vậy. Scheduler cũng gọi hàm qua role riêng, hàm không cần thêm resource-based permission.
 
 ```yaml
 StopSchedule:
@@ -52,9 +52,9 @@ StopSchedule:
 
 ### Bước 2 – Kiểm thử hàm
 
-1. Đảm bảo instance đang **running** (console EC2).
-2. Mở **Lambda → CostGuard-ScheduleHandler → Test**. Tạo test event với nội dung `{}` và chọn **Test**.
-3. Mở console **EC2** và làm mới.
+1. Kiểm tra instance đang **running** trên console EC2.
+2. Mở **Lambda → CostGuard-ScheduleHandler → Test**. Tạo test event `{}` rồi chọn **Test**.
+3. Mở console **EC2** và refresh.
 4. Mở **DynamoDB → Tables → CostGuardSessions → Explore table items**.
 
 **Kết quả trả về:** hàm trả về `schedule_stop` với `state_before` là `running`. Instance chuyển từ `stopping` sang `stopped`. Bảng có thêm một bản ghi với `event = schedule_stop`.
@@ -63,22 +63,22 @@ StopSchedule:
 
 **Kiểm tra:** lần test có trạng thái **Succeeded**, kết quả trả về có `schedule_stop` và `state_before` là `running`.
 
-Chạy test lần thứ hai khi instance đang tắt. **Kết quả trả về:** hàm trả về `schedule_noop` và không đụng tới instance.
+Chạy test thêm lần nữa khi instance đã tắt. **Kết quả trả về:** hàm trả về `schedule_noop` và không động tới instance.
 
 ![Test lần hai: schedule_noop với state_before là stopped](../../../images/5-Workshop/5.4-layer1/30-cg-l1-schedule-noop.png)
 
-**Kiểm tra:** lần này kết quả là `schedule_noop` và `state_before` là `stopped`, tức hàm không gọi `StopInstances` lần nữa.
+**Kiểm tra:** lần này kết quả là `schedule_noop`, `state_before` là `stopped`. Hàm không gọi lại `StopInstances`.
 
 ### Bước 3 – Kiểm thử lịch thật (tùy chọn)
 
 1. Bật lại instance.
-2. Mở **CloudFormation → CostGuard → Update**, giữ nguyên template và đổi `StopCron` thành một giờ sau đó vài phút, ví dụ `cron(25 15 * * ? *)` lúc 15:25 giờ Việt Nam.
-3. Chờ đến giờ đó và kiểm tra trạng thái instance.
-4. Cập nhật stack lần nữa và đặt lại `cron(0 22 * * ? *)`.
+2. Mở **CloudFormation → CostGuard → Update**, giữ template cũ, đổi `StopCron` sang vài phút sau giờ hiện tại, ví dụ `cron(25 15 * * ? *)` để chạy lúc 15:25 giờ Việt Nam.
+3. Đợi tới giờ đó rồi xem trạng thái instance.
+4. Update stack lần nữa để trả về `cron(0 22 * * ? *)`.
 
-**Kết quả trả về:** instance bị dừng đúng giờ đã chọn theo giờ Việt Nam, không lệch bảy tiếng.
+**Kết quả trả về:** instance dừng đúng giờ đã đặt theo giờ Việt Nam, không bị lệch bảy tiếng.
 
-Ở lần chạy của nhóm, chúng tôi không đổi `StopCron` mà kiểm tra lần chạy 22:00 thật ngày 22/11/2026. Lịch gọi hàm lúc 15:00:02 UTC (22:00 giờ Việt Nam). Máy đã tắt sẵn nên hàm chỉ ghi `schedule_noop`.
+Nhóm không đổi `StopCron` mà kiểm tra luôn lần chạy 22:00 thật ngày 22/11/2026. Lịch gọi hàm lúc 15:00:02 UTC (22:00 giờ Việt Nam). Lúc đó máy đã tắt sẵn nên hàm chỉ ghi `schedule_noop`.
 
 ![Log của lần chạy 22:00: schedule_noop](../../../images/5-Workshop/5.4-layer1/58-schedulehandler-22h-noop.png)
 

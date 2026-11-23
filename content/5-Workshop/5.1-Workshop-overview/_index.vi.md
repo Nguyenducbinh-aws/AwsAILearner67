@@ -12,9 +12,9 @@ pre: " <b> 5.1. </b> "
 
 ### Vấn đề cần giải quyết
 
-Máy Windows EC2 tính phí theo giờ. Một máy t3.small chạy 24/7 tốn khoảng $31.04 mỗi tháng, vượt quá ngân sách credit $20 của dự án. AWS Budgets có cảnh báo chi phí, nhưng dữ liệu billing chỉ cập nhật vài lần mỗi ngày, nên không kịp dừng một máy bị quên.
+Máy Windows EC2 tính tiền theo giờ. Một máy t3.small chạy 24/7 tốn khoảng $31.04 mỗi tháng, vượt ngân sách credit $20 của dự án. AWS Budgets có cảnh báo chi phí, nhưng dữ liệu billing chỉ cập nhật vài lần mỗi ngày nên không kịp dừng một máy bị quên tắt.
 
-Workshop này xây dựng Cost Guard, hệ thống tự động dừng máy chỉ bằng các dịch vụ serverless thuần AWS.
+Workshop này xây dựng Cost Guard, hệ thống tự động dừng máy, chỉ dùng các dịch vụ serverless của AWS.
 
 ### Những gì bạn sẽ xây dựng
 
@@ -22,7 +22,7 @@ Sau khi hoàn thành workshop, bạn sẽ có:
 
 - Một **EC2 Windows** (t3.small) với ổ gp3 30 GB làm máy lab được bảo vệ
 - **Lớp 1 – Schedule Guard:** EventBridge Scheduler và một hàm Lambda dừng máy mỗi ngày lúc 22:00
-- **Lớp 2 – Cost Meter:** một hàm Lambda, được EventBridge gọi mỗi 5 phút, ước tính chi phí và dừng máy khi đạt ngưỡng
+- **Lớp 2 – Cost Meter:** một hàm Lambda do EventBridge gọi 5 phút một lần, ước tính chi phí và dừng máy khi chạm ngưỡng
 - **Lớp 3 – Budget Backstop:** một AWS Budget thông báo qua SNS ở mức 80% và 100% của $20 và kích hoạt Lambda để dừng máy
 - **Nền tảng dùng chung:** Parameter Store cho cấu hình, bảng DynamoDB cho bản ghi phiên, hai SNS topic (cảnh báo và lỗi) và IAM role quyền tối thiểu cho từng hàm
 - **Giám sát:** CloudWatch Logs và CloudWatch Alarms cho lỗi của cả ba hàm
