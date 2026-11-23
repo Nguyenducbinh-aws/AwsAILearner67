@@ -39,6 +39,12 @@ In this step you deploy one CloudFormation stack that creates the lab machine an
 4. Enter your email in `AlertEmail`. Keep the other parameters at their defaults.
 5. On the last page, tick **I acknowledge that AWS CloudFormation might create IAM resources**, then choose **Submit**.
 
+After the stack is created, open its **Parameters** tab to compare the values you entered.
+
+![Parameters tab of the CostGuard stack](../../images/5-Workshop/5.3-foundation/62-cg-stack-parameters.png)
+
+**Check:** `PricePerHour` is `0.0392`, `CostThreshold` is `14`, `BudgetLimit` is `20`, `StopCron` is `cron(0 22 * * ? *)` and `StopScheduleTimezone` is `Asia/Ho_Chi_Minh`. `AlertEmail` is your email (hidden in the screenshot).
+
 **AWS CLI**
 
 ```bash
@@ -57,6 +63,8 @@ aws cloudformation deploy \
 
 ![SNS subscriptions of costguard-alerts and costguard-errors show Confirmed](../../images/5-Workshop/5.3-foundation/49-sns-subscriptions-confirmed.png)
 
+**Check:** both subscriptions of `costguard-alerts` and `costguard-errors` show Status **Confirmed**, not **Pending confirmation**.
+
 ### Step 3 – Check the result
 
 1. When the stack status is **CREATE_COMPLETE**, open the **Outputs** tab. `ProtectedInstanceId` is the instance that Cost Guard protects.
@@ -70,6 +78,10 @@ aws cloudformation deploy \
 
 ![Stack CostGuard: 29 resources in CREATE_COMPLETE](../../images/5-Workshop/5.3-foundation/28-cg-stack-create-complete.png)
 
+**Check:** the stack is in **CREATE_COMPLETE** and no resource is in `CREATE_FAILED`.
+
 ![Lab instance t3.small running in the EC2 console](../../images/5-Workshop/5.3-foundation/54-ec2-t3small-running.png)
+
+**Check:** the instance type is `t3.small` and the instance state is **Running**.
 
 **Result:** all resources are present and the instance is running. The instance has now started to cost money, so continue to 5.4 without long pauses.

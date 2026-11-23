@@ -48,6 +48,8 @@ StopSchedule:
 
 ![Schedules costguard-daily-stop and costguard-cost-meter are enabled](../../images/5-Workshop/5.4-layer1/41-cg-schedules.png)
 
+**Check:** `costguard-daily-stop` and `costguard-cost-meter` are both **Enabled**. Open `costguard-daily-stop` to see the expression `cron(0 22 * * ? *)`, the time zone `Asia/Ho_Chi_Minh` and the target `CostGuard-ScheduleHandler`.
+
 ### Step 2 – Test the function
 
 1. Make sure the instance is **running** (EC2 console).
@@ -59,9 +61,13 @@ StopSchedule:
 
 ![Test result: schedule_stop with state_before running](../../images/5-Workshop/5.4-layer1/29-cg-l1-schedule-stop.png)
 
+**Check:** the test status is **Succeeded** and the result contains `schedule_stop` with `state_before` set to `running`.
+
 Run the test a second time while the instance is stopped. **Result:** the function returns `schedule_noop` and the instance is not touched.
 
 ![Second test: schedule_noop with state_before stopped](../../images/5-Workshop/5.4-layer1/30-cg-l1-schedule-noop.png)
+
+**Check:** this time the result is `schedule_noop` with `state_before` set to `stopped`, so the function did not call `StopInstances` again.
 
 ### Step 3 – Test the real schedule (optional)
 
@@ -76,4 +82,8 @@ In our own run we did not change `StopCron`; we checked the real 22:00 run on 22
 
 ![Log of the 22:00 run: schedule_noop](../../images/5-Workshop/5.4-layer1/58-schedulehandler-22h-noop.png)
 
+**Check:** the log shows an invocation at 15:00 UTC (22:00 Vietnam time) and a `schedule_noop` line with the instance ID.
+
 ![DynamoDB item of the 22:00 run](../../images/5-Workshop/5.4-layer1/59-dynamodb-22h-noop-record.png)
+
+**Check:** there is a new item with `event = schedule_noop` and a `timestamp` that matches the schedule run.

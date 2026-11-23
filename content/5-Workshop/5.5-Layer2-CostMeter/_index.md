@@ -39,6 +39,18 @@ Layer 2 estimates how much the lab instance has cost this month and stops it whe
 1. Open **Systems Manager → Parameter Store** and read `/costguard/price-per-hour` (0.0392) and `/costguard/cost-threshold` (14).
 2. Open **EventBridge → Scheduler → Schedules** and check that `costguard-cost-meter` is enabled and uses `rate(5 minutes)`.
 
+![The four /costguard/ parameters in Parameter Store](../../images/5-Workshop/5.5-layer2/63-parameter-store-costguard.png)
+
+**Check:** all four parameters exist (`budget-limit`, `cost-threshold`, `instance-id` and `price-per-hour`) in the **Standard** tier, which has no charge.
+
+![Value of /costguard/price-per-hour](../../images/5-Workshop/5.5-layer2/64-param-price-per-hour.png)
+
+**Check:** the value is `0.0392`. Open `/costguard/cost-threshold` the same way; its value must be `14`.
+
+![Schedule costguard-cost-meter is enabled](../../images/5-Workshop/5.4-layer1/41-cg-schedules.png)
+
+**Check:** `costguard-cost-meter` is **Enabled**. Open it to see the expression `rate(5 minutes)` and the target `CostGuard-CostMeter`.
+
 ### Step 2 – Test the threshold
 
 You do not wait for the real threshold of $14. You lower it so that the next run crosses it.
@@ -53,9 +65,15 @@ You do not wait for the real threshold of $14. You lower it so that the next run
 
 ![Threshold set to 0.001 in Parameter Store](../../images/5-Workshop/5.5-layer2/31-cg-l2-threshold-0001.png)
 
+**Check:** the value is now `0.001`. Write down the time you saved it for Step 3.
+
 ![Email "CostGuard: instance stopped (cost threshold)"](../../images/5-Workshop/5.5-layer2/47-gmail-alert-costmeter.png)
 
+**Check:** the email subject is "CostGuard: instance stopped (cost threshold)" and it arrives in the mailbox you subscribed in 5.3.
+
 ![CostGuardSessions with sample and auto_stop items](../../images/5-Workshop/5.5-layer2/34-cg-dynamodb-events.png)
+
+**Check:** there are `event = sample` items (one per run) and one `event = auto_stop` item right after the threshold was crossed.
 
 ### Step 3 – Measure the reaction time
 
@@ -70,3 +88,5 @@ The goal of the project is a reaction time below 5 minutes, which is one interva
 In our run we saved the threshold at 17:22:53, and CloudTrail recorded `StopInstances` by `CostGuard-CostMeter` at 17:26:40: a reaction time of 3 minutes 47 seconds.
 
 ![CloudTrail StopInstances event from CostGuard-CostMeter](../../images/5-Workshop/5.5-layer2/33-cg-l2-cloudtrail-reaction.png)
+
+**Check:** the `StopInstances` event was called by `CostGuard-CostMeter`, and its event time is no more than 5 minutes after you saved the threshold.

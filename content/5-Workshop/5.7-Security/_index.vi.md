@@ -30,7 +30,15 @@ Bước này xem lại cách Cost Guard xử lý bảo mật, chi phí và cách
 
 **Không mở cổng nào.** Máy lab trong workshop này dùng security group riêng `costguard-lab-no-inbound`, không có quy tắc inbound nào, và bắt buộc IMDSv2. Nếu để template tự tạo máy, máy sẽ dùng security group mặc định của default VPC, chỉ cho phép lưu lượng từ các máy cùng group.
 
+![Security group costguard-lab-no-inbound không có quy tắc inbound](../../../images/5-Workshop/5.7-security/67-sg-no-inbound.png)
+
+**Kiểm tra:** mở **EC2 → Security Groups → `costguard-lab-no-inbound`**. Inbound rules count là **0 Permission entries** và tab **Inbound rules** ghi "No security group rules found".
+
 **Cách kiểm tra:** mở **IAM → Roles**, chọn từng role `CostGuard` và đọc policy. Hành động duy nhất đụng tới trạng thái EC2 là `StopInstances` trên một instance.
+
+![Policy của role CostGuard-ScheduleHandlerRole](../../../images/5-Workshop/5.7-security/68-iam-schedulehandler-policy.png)
+
+**Kiểm tra:** `ec2:StopInstances` có Resource là ARN của đúng một instance, `ec2:DescribeInstances` là `*`, và `ssm:GetParameter` chỉ trên `/costguard/instance-id`. Hai role còn lại đọc theo cách tương tự.
 
 ### 2. Dự toán chi phí
 
@@ -45,6 +53,10 @@ Dự toán được lập bằng AWS Pricing Calculator cho US East (N. Virginia
 - EventBridge Scheduler và Amazon SNS: mỗi dịch vụ dưới **$0.01**
 
 Các dịch vụ trong Calculator (EC2, EBS và Lambda) cộng lại **$7.12 mỗi tháng** ([bản ước tính](https://calculator.aws/#/estimate?id=641acc2f03b075415ec10d1ab0de1590ab659dd9)). Khi thêm các dịch vụ còn lại, tổng là khoảng **$8.05 mỗi tháng**, dưới ngân sách $20. Cũng máy đó chạy 24/7 sẽ tốn khoảng $31.04 mỗi tháng, nên Cost Guard giúp tránh khoảng $23.92 mỗi tháng.
+
+![Bản ước tính trên AWS Pricing Calculator: $7.12 mỗi tháng](../../../images/5-Workshop/5.7-security/53-pricing-t3small.png)
+
+**Kiểm tra:** Monthly cost là **7.12 USD**, gồm Amazon EC2 4.70 USD, Amazon EBS 2.40 USD và AWS Lambda 0.02 USD, Region US East (N. Virginia).
 
 ### 3. Tối ưu chi phí
 

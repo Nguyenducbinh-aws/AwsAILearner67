@@ -30,7 +30,15 @@ This step reviews how Cost Guard handles security, what it costs and how to keep
 
 **No open ports.** The lab instance in this workshop uses its own security group, `costguard-lab-no-inbound`, which has no inbound rule at all, and it requires IMDSv2. If you let the template create the instance instead, it uses the default security group of the default VPC, which only allows traffic from members of the same group.
 
+![Security group costguard-lab-no-inbound has no inbound rule](../../images/5-Workshop/5.7-security/67-sg-no-inbound.png)
+
+**Check:** open **EC2 → Security Groups → `costguard-lab-no-inbound`**. Inbound rules count is **0 Permission entries** and the **Inbound rules** tab says "No security group rules found".
+
 **To check:** open **IAM → Roles**, choose each `CostGuard` role and read its policy. The only action that touches EC2 state is `StopInstances` on one instance.
+
+![Policy of the CostGuard-ScheduleHandlerRole role](../../images/5-Workshop/5.7-security/68-iam-schedulehandler-policy.png)
+
+**Check:** `ec2:StopInstances` has the ARN of exactly one instance as its Resource, `ec2:DescribeInstances` is `*`, and `ssm:GetParameter` is limited to `/costguard/instance-id`. Read the other two roles the same way.
 
 ### 2. Cost estimation
 
@@ -45,6 +53,10 @@ The estimate was made with the AWS Pricing Calculator for US East (N. Virginia),
 - EventBridge Scheduler and Amazon SNS: under **$0.01** each
 
 The services in the Calculator (EC2, EBS and Lambda) add up to **$7.12 per month** ([estimate](https://calculator.aws/#/estimate?id=641acc2f03b075415ec10d1ab0de1590ab659dd9)). With the other services added, the total is about **$8.05 per month**, under the $20 budget. The same instance running 24/7 would cost about $31.04 per month, so Cost Guard avoids about $23.92 per month.
+
+![Estimate in the AWS Pricing Calculator: $7.12 per month](../../images/5-Workshop/5.7-security/53-pricing-t3small.png)
+
+**Check:** Monthly cost is **7.12 USD**, made of Amazon EC2 4.70 USD, Amazon EBS 2.40 USD and AWS Lambda 0.02 USD, in US East (N. Virginia).
 
 ### 3. Cost optimization
 

@@ -39,6 +39,18 @@ Lớp 2 ước tính máy lab đã tốn bao nhiêu tiền trong tháng và dừ
 1. Mở **Systems Manager → Parameter Store** và đọc `/costguard/price-per-hour` (0.0392) và `/costguard/cost-threshold` (14).
 2. Mở **EventBridge → Scheduler → Schedules** và kiểm tra `costguard-cost-meter` đang bật và dùng `rate(5 minutes)`.
 
+![Bốn tham số /costguard/ trong Parameter Store](../../../images/5-Workshop/5.5-layer2/63-parameter-store-costguard.png)
+
+**Kiểm tra:** có đủ bốn tham số `budget-limit`, `cost-threshold`, `instance-id` và `price-per-hour`, tier **Standard** (không tốn phí).
+
+![Giá trị của /costguard/price-per-hour](../../../images/5-Workshop/5.5-layer2/64-param-price-per-hour.png)
+
+**Kiểm tra:** Value là `0.0392`. Mở `/costguard/cost-threshold` theo cách tương tự, Value phải là `14`.
+
+![Lịch costguard-cost-meter đang bật](../../../images/5-Workshop/5.4-layer1/41-cg-schedules.png)
+
+**Kiểm tra:** `costguard-cost-meter` ở trạng thái **Enabled**. Mở lịch này để thấy biểu thức `rate(5 minutes)` và target `CostGuard-CostMeter`.
+
 ### Bước 2 – Kiểm thử ngưỡng
 
 Bạn không chờ đến ngưỡng thật $14. Bạn hạ ngưỡng xuống để lần chạy kế tiếp vượt qua nó.
@@ -53,9 +65,15 @@ Bạn không chờ đến ngưỡng thật $14. Bạn hạ ngưỡng xuống đ�
 
 ![Ngưỡng đặt thành 0.001 trong Parameter Store](../../../images/5-Workshop/5.5-layer2/31-cg-l2-threshold-0001.png)
 
+**Kiểm tra:** Value đã đổi thành `0.001`. Ghi lại giờ bạn lưu để dùng ở Bước 3.
+
 ![Email "CostGuard: instance stopped (cost threshold)"](../../../images/5-Workshop/5.5-layer2/47-gmail-alert-costmeter.png)
 
+**Kiểm tra:** thư có tiêu đề "CostGuard: instance stopped (cost threshold)" và đến hộp thư đã đăng ký ở 5.3.
+
 ![Bảng CostGuardSessions có bản ghi sample và auto_stop](../../../images/5-Workshop/5.5-layer2/34-cg-dynamodb-events.png)
+
+**Kiểm tra:** có các bản ghi `event = sample` (mỗi lần chạy một bản ghi) và một bản ghi `event = auto_stop` ngay sau lần vượt ngưỡng.
 
 ### Bước 3 – Đo thời gian phản ứng
 
@@ -70,3 +88,5 @@ Mục tiêu của dự án là thời gian phản ứng dưới 5 phút, tức m
 Ở lần chạy của nhóm, ngưỡng được lưu lúc 17:22:53 và CloudTrail ghi `StopInstances` bởi `CostGuard-CostMeter` lúc 17:26:40: thời gian phản ứng 3 phút 47 giây.
 
 ![Sự kiện StopInstances trong CloudTrail do CostGuard-CostMeter gọi](../../../images/5-Workshop/5.5-layer2/33-cg-l2-cloudtrail-reaction.png)
+
+**Kiểm tra:** sự kiện `StopInstances` do `CostGuard-CostMeter` gọi, và Event time cách giờ lưu ngưỡng không quá 5 phút.

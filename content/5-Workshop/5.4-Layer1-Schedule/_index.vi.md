@@ -48,6 +48,8 @@ StopSchedule:
 
 ![Hai lịch costguard-daily-stop và costguard-cost-meter đang bật](../../../images/5-Workshop/5.4-layer1/41-cg-schedules.png)
 
+**Kiểm tra:** `costguard-daily-stop` và `costguard-cost-meter` đều ở trạng thái **Enabled**. Mở `costguard-daily-stop` để thấy biểu thức `cron(0 22 * * ? *)`, múi giờ `Asia/Ho_Chi_Minh` và target `CostGuard-ScheduleHandler`.
+
 ### Bước 2 – Kiểm thử hàm
 
 1. Đảm bảo instance đang **running** (console EC2).
@@ -59,9 +61,13 @@ StopSchedule:
 
 ![Kết quả test: schedule_stop với state_before là running](../../../images/5-Workshop/5.4-layer1/29-cg-l1-schedule-stop.png)
 
+**Kiểm tra:** lần test có trạng thái **Succeeded**, kết quả trả về có `schedule_stop` và `state_before` là `running`.
+
 Chạy test lần thứ hai khi instance đang tắt. **Kết quả trả về:** hàm trả về `schedule_noop` và không đụng tới instance.
 
 ![Test lần hai: schedule_noop với state_before là stopped](../../../images/5-Workshop/5.4-layer1/30-cg-l1-schedule-noop.png)
+
+**Kiểm tra:** lần này kết quả là `schedule_noop` và `state_before` là `stopped`, tức hàm không gọi `StopInstances` lần nữa.
 
 ### Bước 3 – Kiểm thử lịch thật (tùy chọn)
 
@@ -76,4 +82,8 @@ Chạy test lần thứ hai khi instance đang tắt. **Kết quả trả về:*
 
 ![Log của lần chạy 22:00: schedule_noop](../../../images/5-Workshop/5.4-layer1/58-schedulehandler-22h-noop.png)
 
+**Kiểm tra:** log có lần gọi lúc 15:00 UTC (22:00 giờ Việt Nam) và dòng `schedule_noop` kèm instance ID.
+
 ![Bản ghi DynamoDB của lần chạy 22:00](../../../images/5-Workshop/5.4-layer1/59-dynamodb-22h-noop-record.png)
+
+**Kiểm tra:** có bản ghi mới với `event = schedule_noop` và `timestamp` trùng giờ chạy của lịch.

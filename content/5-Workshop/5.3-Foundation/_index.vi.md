@@ -39,6 +39,12 @@ pre: " <b> 5.3. </b> "
 4. Nhập email của bạn vào `AlertEmail`. Giữ nguyên các tham số khác.
 5. Ở trang cuối, tick **I acknowledge that AWS CloudFormation might create IAM resources**, rồi chọn **Submit**.
 
+Sau khi stack tạo xong, mở tab **Parameters** của stack để đối chiếu giá trị đã nhập.
+
+![Tab Parameters của stack CostGuard](../../../images/5-Workshop/5.3-foundation/62-cg-stack-parameters.png)
+
+**Kiểm tra:** `PricePerHour` là `0.0392`, `CostThreshold` là `14`, `BudgetLimit` là `20`, `StopCron` là `cron(0 22 * * ? *)` và `StopScheduleTimezone` là `Asia/Ho_Chi_Minh`. `AlertEmail` là email của bạn (đã che trong ảnh).
+
 **AWS CLI**
 
 ```bash
@@ -57,6 +63,8 @@ aws cloudformation deploy \
 
 ![Hai đăng ký SNS của costguard-alerts và costguard-errors ở trạng thái Confirmed](../../../images/5-Workshop/5.3-foundation/49-sns-subscriptions-confirmed.png)
 
+**Kiểm tra:** cả hai đăng ký của `costguard-alerts` và `costguard-errors` có Status **Confirmed**, không còn **Pending confirmation**.
+
 ### Bước 3 – Kiểm tra kết quả
 
 1. Khi trạng thái stack là **CREATE_COMPLETE**, mở tab **Outputs**. `ProtectedInstanceId` là instance mà Cost Guard bảo vệ.
@@ -70,6 +78,10 @@ aws cloudformation deploy \
 
 ![Stack CostGuard: 29 tài nguyên ở trạng thái CREATE_COMPLETE](../../../images/5-Workshop/5.3-foundation/28-cg-stack-create-complete.png)
 
+**Kiểm tra:** stack ở trạng thái **CREATE_COMPLETE** và không có tài nguyên nào ở trạng thái `CREATE_FAILED`.
+
 ![Máy lab t3.small đang chạy trong console EC2](../../../images/5-Workshop/5.3-foundation/54-ec2-t3small-running.png)
+
+**Kiểm tra:** Instance type là `t3.small` và Instance state là **Running**.
 
 **Kết quả trả về:** mọi tài nguyên đều có mặt và máy đang chạy. Máy đã bắt đầu tính tiền, nên hãy sang 5.4 ngay, không nghỉ lâu.

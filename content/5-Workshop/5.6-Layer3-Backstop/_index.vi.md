@@ -34,7 +34,11 @@ Lớp nào cũng dừng được máy, không lớp nào bật được máy, v�
 
 ![CostGuard-Budget: hạn mức $20/tháng, đã dùng $0.00, dự báo $1.68](../../../images/5-Workshop/5.6-layer3/60-budgets-costguard-detail.png)
 
+**Kiểm tra:** Budget amount là `$20.00`, Period là **Monthly** và Health status là **Healthy**.
+
 ![Hai cảnh báo của CostGuard-Budget: chi phí thực > 80% ($16) và > 100% ($20)](../../../images/5-Workshop/5.6-layer3/61-budgets-costguard-alerts.png)
+
+**Kiểm tra:** có đúng hai cảnh báo theo chi phí thực, ở mốc 80% ($16.00) và 100% ($20.00). Mục **Email verification** phải là đã xác minh; nếu email còn **Pending**, chọn **Resend verification** và xác nhận trong hộp thư, nếu không Budgets sẽ không gửi email.
 
 ### Bước 2 – Kiểm thử Budget Backstop
 
@@ -48,17 +52,33 @@ Bạn không chờ hóa đơn thật tăng lên. Bạn tự gửi một tin nh�
 
 ![Gửi tin thử lên costguard-budgets](../../../images/5-Workshop/5.6-layer3/35-cg-l3-publish-budgets.png)
 
+**Kiểm tra:** console báo tin đã được gửi thành công và hiện Message ID.
+
 ![Log của CostGuard-BudgetBackstop](../../../images/5-Workshop/5.6-layer3/36-cg-l3-backstop-logs.png)
+
+**Kiểm tra:** có một lần gọi hàm (dòng `START`, `END`, `REPORT`) ngay sau giờ gửi tin và không có dòng `ERROR`.
 
 ![Bảng CostGuardSessions có bản ghi budget_stop](../../../images/5-Workshop/5.6-layer3/37-cg-l3-dynamodb-budget-stop.png)
 
+**Kiểm tra:** có bản ghi mới với `event = budget_stop`.
+
 ![Email "CostGuard: budget notification handled" (từ lần thử lại khi máy đã tắt)](../../../images/5-Workshop/5.6-layer3/44-gmail-alert-budget.png)
+
+**Kiểm tra:** thư có tiêu đề "CostGuard: budget notification handled".
 
 ### Bước 3 – Xem các alarm
 
 1. Mở **CloudWatch → Alarms**.
 2. Bạn thấy ba alarm: `CostGuard-ScheduleHandler-Errors`, `CostGuard-CostMeter-Errors` và `CostGuard-BudgetBackstop-Errors`. Mỗi alarm theo dõi chỉ số `Errors` của hàm tương ứng và gửi tin tới `costguard-errors` khi chỉ số lớn hơn 0.
 3. Mở **CloudWatch → Log groups**. Ba log group `/aws/lambda/CostGuard-*` giữ log trong 14 ngày.
+
+![Ba alarm CostGuard-*-Errors ở trạng thái OK](../../../images/5-Workshop/5.6-layer3/65-cloudwatch-alarms-ok.png)
+
+**Kiểm tra:** có đủ ba alarm, State là **OK**, Actions là **Actions enabled** và điều kiện là `Errors > 0`.
+
+![Ba log group /aws/lambda/CostGuard-* giữ log 2 tuần](../../../images/5-Workshop/5.6-layer3/66-cloudwatch-log-groups-14d.png)
+
+**Kiểm tra:** cột Retention là **2 weeks** (14 ngày) cho cả ba log group.
 
 ### Bước 4 – Kiểm thử kịch bản lỗi
 
@@ -73,6 +93,12 @@ Bài kiểm thử này cố tình làm `CostGuard-CostMeter` lỗi để kiểm 
 
 ![Alarm CostGuard-CostMeter-Errors ở trạng thái In alarm](../../../images/5-Workshop/5.6-layer3/39-cg-alarm-costmeter-in-alarm.png)
 
+**Kiểm tra:** State là **In alarm** sau lần chạy lỗi của hàm.
+
 ![Alarm trở về OK sau khi đặt lại ID thật](../../../images/5-Workshop/5.6-layer3/40-cg-alarm-back-ok.png)
 
+**Kiểm tra:** State trở lại **OK** sau lần chạy thành công kế tiếp.
+
 ![Email ALARM gửi qua costguard-errors (từ lần thử tương tự với ScheduleHandler)](../../../images/5-Workshop/5.6-layer3/46-gmail-alarm.png)
+
+**Kiểm tra:** thư có tiêu đề bắt đầu bằng `ALARM:` và tên alarm bị kích hoạt.
