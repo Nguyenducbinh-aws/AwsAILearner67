@@ -10,9 +10,15 @@ pre: " <b> 5. </b> "
 
 #### Tổng quan
 
-Máy Windows EC2 tính phí theo giờ, và một máy bị quên có thể dùng hết một ngân sách credit nhỏ chỉ trong vài ngày. Workshop này xây dựng **Cost Guard**, một hệ thống serverless ba lớp tự động dừng máy lab: lịch dừng hằng ngày, bộ đo chi phí phản ứng trong vài phút, và cảnh báo budget theo hóa đơn thật.
+Máy Windows EC2 tính phí theo giờ. Một máy bị quên có thể dùng hết một ngân sách credit nhỏ chỉ trong vài ngày: máy t3.small chạy liên tục 24/7 tốn khoảng $31,04 mỗi tháng, nhiều hơn ngân sách credit $20 của dự án. AWS Budgets có thể cảnh báo chi phí, nhưng dữ liệu hóa đơn bị trễ nên tự nó không thể dừng máy kịp thời.
 
-Bạn deploy toàn bộ hệ thống bằng một template CloudFormation, cố ý kiểm thử từng lớp, rà soát bảo mật và chi phí, rồi xóa mọi thứ ở cuối.
+Trong workshop này, bạn xây dựng **Cost Guard**, một hệ thống serverless tự động dừng máy lab. Hệ thống gồm ba lớp độc lập, mỗi lớp bù cho điểm yếu của các lớp còn lại:
+
+- **Lớp 1 – Schedule Guard:** dừng máy mỗi ngày lúc 22:00 (Asia/Ho_Chi_Minh), dù có ai nhớ hay không.
+- **Lớp 2 – Cost Meter:** chạy mỗi 5 phút, ước tính chi phí tháng từ thời gian máy chạy và đơn giá theo giờ, rồi dừng máy khi ước tính chạm ngưỡng khoảng $14.
+- **Lớp 3 – Budget Backstop:** một AWS Budget theo dõi hóa đơn thật, và ở mức 80% và 100% của $20 sẽ kích hoạt một hàm Lambda dừng máy.
+
+Bạn deploy toàn bộ hệ thống bằng một template CloudFormation, cố ý kiểm thử từng lớp, rà soát bảo mật và chi phí, rồi xóa mọi thứ ở cuối để không còn khoản phí nào phát sinh.
 
 #### Các dịch vụ AWS sử dụng
 
@@ -27,10 +33,6 @@ Bạn deploy toàn bộ hệ thống bằng một template CloudFormation, cố 
 - **AWS IAM:** một role quyền tối thiểu cho từng hàm.
 - **AWS CloudFormation:** toàn bộ hệ thống trong một stack.
 - **AWS Cost Explorer:** so sánh chi phí thật với dự toán sau khi dọn dẹp.
-
-#### Kiến trúc
-
-![Kiến trúc Cost Guard](../../images/2-Proposal/architecture.png)
 
 #### Nội dung
 

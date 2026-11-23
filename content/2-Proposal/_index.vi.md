@@ -81,17 +81,6 @@ Hệ thống chạy trong một AWS Region (US East, N. Virginia) và chỉ dùn
 - **Dữ liệu:** Bảng DynamoDB ghi sự kiện bật/tắt máy và ước tính chi phí định kỳ của từng phiên.
 - **Bảo mật:** Mỗi hàm Lambda có IAM role riêng, quyền dừng máy chỉ giới hạn cho instance đích.
 
-<<<<<<< HEAD
-=======
-**Các cân nhắc theo Well-Architected**
-
-- **Operational Excellence:** Log Lambda, CloudWatch alarm cho lỗi hàm, email SNS và bản ghi phiên trong DynamoDB cho biết hệ thống đã làm gì và vì sao.
-- **Security:** Mỗi hàm có IAM role riêng, quyền dừng máy chỉ giới hạn cho instance đích. Không có access key hay mật khẩu nào viết trong code; Parameter Store chỉ chứa đơn giá, ngưỡng và hạn mức.
-- **Reliability:** Ba lớp độc lập cùng bảo vệ máy, nên một lớp lỗi không làm mất bảo vệ. Dừng một máy đã dừng thì không có tác dụng, nên chạy lặp lại vẫn an toàn.
-- **Performance Efficiency:** t3.small (2 vCPU, 2 GiB) có kích thước phù hợp cho một phiên lab và nằm trong danh sách loại máy của Free Plan. Lambda không có máy chủ nào cần chọn cỡ, và chu kỳ 5 phút (khoảng 8,640 lần chạy mỗi tháng) cân bằng giữa tốc độ phản ứng và số lần chạy.
-- **Cost Optimization:** Xem danh sách Tối ưu chi phí ở mục 6.
-
->>>>>>> 1fea9a9cb5c54f7484bf89a62f3d7a7817884f95
 ### 4. Triển khai kỹ thuật
 
 **Các giai đoạn triển khai**
@@ -104,7 +93,7 @@ Hệ thống chạy trong một AWS Region (US East, N. Virginia) và chỉ dùn
 **Yêu cầu kỹ thuật**
 
 - Tài khoản và quyền truy cập: Một tài khoản AWS có credit của Free Plan, một IAM user (không dùng root user) và Region US East (N. Virginia). Một địa chỉ email nhận cảnh báo chi phí và cảnh báo lỗi.
-- Tài nguyên được bảo vệ: Một máy lab Windows (t3.medium) với ổ gốc gp3 30 GB, dự kiến chạy khoảng 120 giờ mỗi tháng.
+- Tài nguyên được bảo vệ: Một máy lab Windows (t3.small) với ổ gốc gp3 30 GB, dự kiến chạy khoảng 120 giờ mỗi tháng.
 - Ba lớp bảo vệ: Dừng theo lịch (EventBridge Scheduler và Lambda), bộ đo chi phí mỗi 5 phút (EventBridge Scheduler, Lambda, DynamoDB và Parameter Store) và lớp dự phòng ngân sách (AWS Budgets, SNS và Lambda), mỗi hàm Lambda có IAM role riêng theo nguyên tắc quyền tối thiểu.
 - Giám sát và triển khai: Log và alarm CloudWatch cho lỗi của hàm, email SNS, và CloudFormation để triển khai lặp lại và xóa sạch khi kết thúc. Cuối dự án dùng Cost Explorer để so sánh chi phí ước tính với chi phí thực tế.
 

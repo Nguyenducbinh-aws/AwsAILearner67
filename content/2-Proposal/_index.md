@@ -81,17 +81,6 @@ The system runs in a single AWS Region (US East, N. Virginia) and uses only serv
 - **Data:** A DynamoDB table that logs instance start and stop events and the periodic cost estimate of each session.
 - **Security:** Each Lambda function has its own IAM role, and its stop permission is limited to the target instance.
 
-<<<<<<< HEAD
-=======
-**Well-Architected Considerations**
-
-- **Operational Excellence:** Lambda logs, CloudWatch alarms on function errors, SNS emails and the DynamoDB session record show what the system did and why.
-- **Security:** Each function has its own IAM role, and the stop permission is limited to the target instance. No access key or password is written in the code; Parameter Store holds only the price, the threshold and the limit.
-- **Reliability:** Three independent layers protect the machine, so one failing layer does not remove the protection. Stopping an already stopped machine does nothing, so repeated runs are safe.
-- **Performance Efficiency:** A t3.small (2 vCPU, 2 GiB) is sized for one lab session and is on the Free Plan instance list. Lambda needs no servers to size, and a 5-minute interval (about 8,640 runs per month) balances reaction time against the number of runs.
-- **Cost Optimization:** See the Cost Optimization list in section 6.
-
->>>>>>> 1fea9a9cb5c54f7484bf89a62f3d7a7817884f95
 ### 4. Technical Implementation
 
 **Implementation Phases**
@@ -104,7 +93,7 @@ The system runs in a single AWS Region (US East, N. Virginia) and uses only serv
 **Technical Requirements**
 
 - AWS account and access: An AWS account with Free Plan credits, an IAM user (not the root user) and the US East (N. Virginia) Region. One email address receives the cost and error alerts.
-- Protected resource: One Windows lab instance (t3.medium) with a 30 GB gp3 root volume, planned for about 120 running hours per month.
+- Protected resource: One Windows lab instance (t3.small) with a 30 GB gp3 root volume, planned for about 120 running hours per month.
 - Three protection layers: A scheduled stop (EventBridge Scheduler and Lambda), a cost meter every 5 minutes (EventBridge Scheduler, Lambda, DynamoDB and Parameter Store) and a budget backstop (AWS Budgets, SNS and Lambda), each Lambda function with its own least-privilege IAM role.
 - Monitoring and deployment: CloudWatch logs and alarms on function errors, SNS emails, and CloudFormation for repeatable deployment and clean teardown. Cost Explorer is used at the end to compare the estimated and the actual cost.
 
