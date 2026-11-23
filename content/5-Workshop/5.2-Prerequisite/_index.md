@@ -21,6 +21,8 @@ Prepare the items below before you start. The whole workshop runs in one region:
 - A **default VPC** in `us-east-1`. Open **VPC → Your VPCs** and check that one VPC is marked as default.
 - If there is no default VPC, choose **Actions → Create default VPC**. Another option is to launch the lab instance yourself and pass its ID to the template (see 5.3).
 
+![The default VPC in us-east-1 (Resource map)](../../images/5-Workshop/5.2-prerequisite/default-vpc.webp)
+
 ### 3. Tools
 
 - A web browser for the AWS Management Console.
@@ -36,10 +38,3 @@ Prepare the items below before you start. The whole workshop runs in one region:
 - **The lab instance starts as soon as the stack is created.** A Windows t3.small costs $0.0392 per hour in `us-east-1`, so test soon after the deployment and do not leave it running. On a Free Plan account only t3.micro, t3.small, t8i.micro and t8i.small can be launched.
 - **Plan about 45 minutes** for the deployment and the three layer tests, not counting the wait for the daily schedule.
 - Cost Guard **never starts the instance by itself**. You start it manually when you need it.
-
-### Checklist
-
-- [ ] I can sign in to the console with an IAM user, in `us-east-1`.
-- [ ] A default VPC exists.
-- [ ] I can open the mailbox I will use for alerts.
-- [ ] I downloaded `cost-guard.yaml`.
