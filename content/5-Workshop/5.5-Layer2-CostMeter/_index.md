@@ -49,7 +49,7 @@ You do not wait for the real threshold of $14. You lower it so that the next run
 4. Check the **EC2** console, your mailbox and the DynamoDB table.
 5. **Put the threshold back to `14`.** Do not update the CloudFormation stack during the test, because that would also reset the value.
 
-**Expected result:** the instance goes to `stopping` and then `stopped`. You receive the email "CostGuard: instance stopped (cost threshold)". The table has a `sample` item and an `auto_stop` item.
+**Result:** the instance goes to `stopping` and then `stopped`. You receive the email "CostGuard: instance stopped (cost threshold)". The table has a `sample` item and an `auto_stop` item.
 
 ![Threshold set to 0.001 in Parameter Store](../../images/5-Workshop/5.5-layer2/31-cg-l2-threshold-0001.png)
 
@@ -65,7 +65,7 @@ The goal of the project is a reaction time below 5 minutes, which is one interva
 2. Open **CloudTrail → Event history**, filter by event name `StopInstances` and read the event time.
 3. The difference is the reaction time of this test.
 
-**Expected result:** the difference is not larger than the interval of the meter. Keep the real numbers of your own run.
+**Result:** the difference is not larger than the interval of the meter. Keep the real numbers of your own run.
 
 In our run we saved the threshold at 17:22:53, and CloudTrail recorded `StopInstances` by `CostGuard-CostMeter` at 17:26:40: a reaction time of 3 minutes 47 seconds.
 

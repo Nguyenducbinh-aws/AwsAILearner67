@@ -72,7 +72,7 @@ aws cloudformation deploy \
 
 ![Máy lab t3.small đang chạy trong console EC2](../../../images/5-Workshop/5.3-foundation/54-ec2-t3small-running.png)
 
-**Kết quả kỳ vọng:** mọi tài nguyên đều có mặt và máy đang chạy. Máy đã bắt đầu tính tiền, nên hãy sang 5.4 ngay, không nghỉ lâu.
+**Kết quả trả về:** mọi tài nguyên đều có mặt và máy đang chạy. Máy đã bắt đầu tính tiền, nên hãy sang 5.4 ngay, không nghỉ lâu.
 
 ### Cần kiểm tra nếu gặp lỗi
 

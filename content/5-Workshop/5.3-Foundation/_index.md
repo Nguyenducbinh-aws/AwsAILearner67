@@ -72,7 +72,7 @@ aws cloudformation deploy \
 
 ![Lab instance t3.small running in the EC2 console](../../images/5-Workshop/5.3-foundation/54-ec2-t3small-running.png)
 
-**Expected result:** all resources are present and the instance is running. The instance has now started to cost money, so continue to 5.4 without long pauses.
+**Result:** all resources are present and the instance is running. The instance has now started to cost money, so continue to 5.4 without long pauses.
 
 ### Things to check if something goes wrong
 

@@ -44,7 +44,7 @@ Bạn không chờ hóa đơn thật tăng lên. Bạn tự gửi một tin nh�
 2. Mở **SNS → Topics → `costguard-budgets` → Publish message**. Dùng tiêu đề và nội dung bất kỳ, rồi chọn **Publish message**.
 3. Kiểm tra console **EC2**, hộp thư và bảng DynamoDB.
 
-**Kết quả kỳ vọng:** instance chuyển sang `stopping` rồi `stopped`. Bạn nhận email "CostGuard: budget notification handled". Bảng có một bản ghi với `event = budget_stop`.
+**Kết quả trả về:** instance chuyển sang `stopping` rồi `stopped`. Bạn nhận email "CostGuard: budget notification handled". Bảng có một bản ghi với `event = budget_stop`.
 
 ![Gửi tin thử lên costguard-budgets](../../../images/5-Workshop/5.6-layer3/35-cg-l3-publish-budgets.png)
 
@@ -69,7 +69,7 @@ Bài kiểm thử này cố tình làm `CostGuard-CostMeter` lỗi để kiểm 
 3. Kiểm tra log của `CostGuard-CostMeter`, trạng thái alarm và hộp thư.
 4. **Đặt lại instance ID thật.**
 
-**Kết quả kỳ vọng:** hàm bị lỗi, bạn nhận email từ `costguard-errors`, và alarm `CostGuard-CostMeter-Errors` chuyển sang **In alarm**. Sau khi bạn khôi phục ID và lần chạy kế tiếp thành công, alarm trở về **OK**.
+**Kết quả trả về:** hàm bị lỗi, bạn nhận email từ `costguard-errors`, và alarm `CostGuard-CostMeter-Errors` chuyển sang **In alarm**. Sau khi bạn khôi phục ID và lần chạy kế tiếp thành công, alarm trở về **OK**.
 
 ![Alarm CostGuard-CostMeter-Errors ở trạng thái In alarm](../../../images/5-Workshop/5.6-layer3/39-cg-alarm-costmeter-in-alarm.png)
 
