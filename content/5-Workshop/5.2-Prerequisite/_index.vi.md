@@ -1,12 +1,12 @@
 ---
-title: "Yêu cầu tiên quyết"
+title: "Các bước chuẩn bị"
 date: 2026-11-18
 weight: 2
 chapter: false
 pre: " <b> 5.2. </b> "
 ---
 
-## Yêu cầu tiên quyết
+## Các bước chuẩn bị
 
 Chuẩn bị các mục dưới đây trước khi bắt đầu. Toàn bộ workshop chạy trong một region: **US East (N. Virginia), `us-east-1`**.
 

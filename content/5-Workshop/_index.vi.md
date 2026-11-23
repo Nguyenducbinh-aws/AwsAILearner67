@@ -37,7 +37,7 @@ Toàn bộ hệ thống deploy bằng một template CloudFormation. Sau đó b�
 #### Nội dung
 
 1. [Giới thiệu](5.1-Workshop-overview/)
-2. [Yêu cầu tiên quyết](5.2-Prerequisite/)
+2. [Các bước chuẩn bị](5.2-Prerequisite/)
 3. [Triển khai nền tảng](5.3-Foundation/)
 4. [Lớp 1 – Schedule Guard](5.4-Layer1-Schedule/)
 5. [Lớp 2 – Cost Meter](5.5-Layer2-CostMeter/)
