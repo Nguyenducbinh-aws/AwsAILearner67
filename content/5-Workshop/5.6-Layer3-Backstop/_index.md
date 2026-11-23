@@ -32,6 +32,10 @@ Any layer can stop the machine, no layer can start it, and stopping a stopped ma
 1. Open **Billing and Cost Management → Budgets** and choose `CostGuard-Budget`.
 2. Check the monthly limit and the two alerts (80% and 100%, actual cost).
 
+![CostGuard-Budget: $20 monthly limit, $0.00 spent, $1.68 forecast](../../../images/5-Workshop/5.6-layer3/60-budgets-costguard-detail.png)
+
+![The two CostGuard-Budget alerts: actual cost > 80% ($16) and > 100% ($20)](../../../images/5-Workshop/5.6-layer3/61-budgets-costguard-alerts.png)
+
 ### Step 2 – Test the Budget Backstop
 
 You do not wait for the real bill to grow. You send a message to the topic yourself.
