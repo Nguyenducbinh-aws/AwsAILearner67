@@ -28,7 +28,7 @@ This step reviews how Cost Guard handles security, what it costs and how it fits
 
 **Services call each other with their own roles.** EventBridge Scheduler uses a role that can invoke only the two functions. The topic policy of `costguard-budgets` lets only the Budgets service in your own account publish.
 
-**No open ports.** The template adds no inbound rule, and the lab instance uses the default security group of the default VPC.
+**No open ports.** The lab instance in this workshop uses its own security group, `costguard-lab-no-inbound`, which has no inbound rule at all, and it requires IMDSv2. If you let the template create the instance instead, it uses the default security group of the default VPC, which only allows traffic from members of the same group.
 
 **To check:** open **IAM → Roles**, choose each `CostGuard` role and read its policy. The only action that touches EC2 state is `StopInstances` on one instance.
 
@@ -36,7 +36,7 @@ This step reviews how Cost Guard handles security, what it costs and how it fits
 
 The estimate was made with the AWS Pricing Calculator for US East (N. Virginia), using on-demand prices and 120 lab hours per month. Prices are without the Free Tier.
 
-- Amazon EC2 Windows (t3.medium): 120 hours × $0.06 = **$7.20**
+- Amazon EC2 Windows (t3.small): 120 hours × $0.0392 = **$4.70**
 - Amazon EBS (gp3, 30 GB): **$2.40**, billed for the whole month even while the instance is stopped
 - Public IPv4 address: 120 hours × $0.005 = **$0.60**
 - AWS Lambda: about **$0.02**
@@ -44,7 +44,7 @@ The estimate was made with the AWS Pricing Calculator for US East (N. Virginia),
 - Amazon CloudWatch (3 alarms and logs): about **$0.31**
 - EventBridge Scheduler and Amazon SNS: under **$0.01** each
 
-The services in the Calculator (EC2, EBS, Lambda and DynamoDB) add up to about **$9.62 per month**. With the other services added, the total is about **$10.54 per month**, under the $20 budget. The same instance running 24/7 would cost about $46.22 per month, so Cost Guard avoids about $36.60 per month.
+The services in the Calculator (EC2, EBS and Lambda) add up to **$7.12 per month** ([estimate](https://calculator.aws/#/estimate?id=641acc2f03b075415ec10d1ab0de1590ab659dd9)). With the other services added, the total is about **$8.05 per month**, under the $20 budget. The same instance running 24/7 would cost about $31.04 per month, so Cost Guard avoids about $23.92 per month.
 
 ### 3. Cost optimization
 
@@ -60,5 +60,5 @@ The services in the Calculator (EC2, EBS, Lambda and DynamoDB) add up to about *
 - **Operational Excellence:** Lambda logs, CloudWatch alarms and the session records in DynamoDB show what the system did and why.
 - **Security:** one role for each function, a stop permission limited to one instance, no credentials in code.
 - **Reliability:** three independent layers, and every action is safe to repeat.
-- **Performance Efficiency:** a t3.medium for one lab session, and Lambda functions of 128 MB that run for about a second.
+- **Performance Efficiency:** a t3.small for one lab session (the larger of the two t3 sizes a Free Plan account can launch), and Lambda functions of 128 MB that run for about a second.
 - **Cost Optimization:** limited running hours, pay-per-use services and a cleanup at the end.

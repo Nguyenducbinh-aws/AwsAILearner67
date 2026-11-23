@@ -12,7 +12,7 @@ Prepare the items below before you start. The whole workshop runs in one region:
 
 ### 1. AWS account and permissions
 
-- An AWS account with enough credit. The estimated cost of this workshop is about **$10.54** (see section 5.7), so keep at least $20 of credit free.
+- An AWS account with enough credit. The estimated cost of this workshop is about **$8.05** (see section 5.7), so keep at least $20 of credit free.
 - An **IAM user** to sign in. Do not use the root user. In a dedicated lab account, attaching the `AdministratorAccess` policy to this user is the simplest way. The user must be able to create CloudFormation stacks, IAM roles, EC2 instances, Lambda functions, DynamoDB tables, SNS topics, Parameter Store parameters, EventBridge Scheduler schedules, Budgets and CloudWatch alarms.
 - **MFA** turned on for the root user and for the IAM user.
 
@@ -33,7 +33,7 @@ Prepare the items below before you start. The whole workshop runs in one region:
 
 ### 5. Know before you start
 
-- **The lab instance starts as soon as the stack is created.** A Windows t3.medium costs about $0.06 per hour in `us-east-1`, so test soon after the deployment and do not leave it running.
+- **The lab instance starts as soon as the stack is created.** A Windows t3.small costs $0.0392 per hour in `us-east-1`, so test soon after the deployment and do not leave it running. On a Free Plan account only t3.micro, t3.small, t8i.micro and t8i.small can be launched.
 - **Plan about 45 minutes** for the deployment and the three layer tests, not counting the wait for the daily schedule.
 - Cost Guard **never starts the instance by itself**. You start it manually when you need it.
 

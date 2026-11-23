@@ -31,8 +31,8 @@ StopSchedule:
   Type: AWS::Scheduler::Schedule
   Properties:
     Name: costguard-daily-stop
-    ScheduleExpression: cron(0 22 * * ? *)
-    ScheduleExpressionTimezone: Asia/Ho_Chi_Minh
+    ScheduleExpression: !Ref StopCron                       # mặc định cron(0 22 * * ? *)
+    ScheduleExpressionTimezone: !Ref StopScheduleTimezone   # mặc định Asia/Ho_Chi_Minh
     FlexibleTimeWindow:
       Mode: "OFF"
     Target:
@@ -46,6 +46,8 @@ StopSchedule:
 1. Mở **EventBridge → Scheduler → Schedules** và chọn `costguard-daily-stop`.
 2. Kiểm tra biểu thức cron, múi giờ và target `CostGuard-ScheduleHandler`.
 
+![Hai lịch costguard-daily-stop và costguard-cost-meter đang bật](../../../images/5-Workshop/5.4-layer1/41-cg-schedules.png)
+
 ### Bước 2 – Kiểm thử hàm
 
 1. Đảm bảo instance đang **running** (console EC2).
@@ -55,16 +57,26 @@ StopSchedule:
 
 **Kết quả kỳ vọng:** hàm trả về `schedule_stop` với `state_before` là `running`. Instance chuyển từ `stopping` sang `stopped`. Bảng có thêm một bản ghi với `event = schedule_stop`.
 
+![Kết quả test: schedule_stop với state_before là running](../../../images/5-Workshop/5.4-layer1/29-cg-l1-schedule-stop.png)
+
 Chạy test lần thứ hai khi instance đang tắt. **Kết quả kỳ vọng:** hàm trả về `schedule_noop` và không đụng tới instance.
+
+![Test lần hai: schedule_noop với state_before là stopped](../../../images/5-Workshop/5.4-layer1/30-cg-l1-schedule-noop.png)
 
 ### Bước 3 – Kiểm thử lịch thật (tùy chọn)
 
 1. Bật lại instance.
-2. Mở **CloudFormation → CostGuard → Update**, giữ nguyên template và đổi `StopSchedule` thành một giờ sau đó vài phút, ví dụ `cron(25 15 * * ? *)` lúc 15:20 giờ Việt Nam.
+2. Mở **CloudFormation → CostGuard → Update**, giữ nguyên template và đổi `StopCron` thành một giờ sau đó vài phút, ví dụ `cron(25 15 * * ? *)` lúc 15:25 giờ Việt Nam.
 3. Chờ đến giờ đó và kiểm tra trạng thái instance.
 4. Cập nhật stack lần nữa và đặt lại `cron(0 22 * * ? *)`.
 
 **Kết quả kỳ vọng:** instance bị dừng đúng giờ đã chọn theo giờ Việt Nam, không lệch bảy tiếng.
+
+Ở lần chạy của nhóm, chúng tôi không đổi `StopCron` mà kiểm tra lần chạy 22:00 thật ngày 22/11/2026. Lịch gọi hàm lúc 15:00:02 UTC (22:00 giờ Việt Nam). Máy đã tắt sẵn nên hàm chỉ ghi `schedule_noop`.
+
+![Log của lần chạy 22:00: schedule_noop](../../../images/5-Workshop/5.4-layer1/58-schedulehandler-22h-noop.png)
+
+![Bản ghi DynamoDB của lần chạy 22:00](../../../images/5-Workshop/5.4-layer1/59-dynamodb-22h-noop-record.png)
 
 ### Cần kiểm tra nếu gặp lỗi
 

@@ -12,7 +12,7 @@ pre: " <b> 5.3. </b> "
 
 ### Stack tạo những gì
 
-- **Máy lab:** một instance Windows Server 2022 `t3.medium` với ổ gốc gp3 30 GB, gắn tag `Project=CostGuard`. Nếu bạn truyền `ExistingInstanceId`, stack sẽ bảo vệ instance đó thay vì tạo máy mới.
+- **Máy lab:** một instance Windows Server 2022 `t3.small` với ổ gốc gp3 30 GB, gắn tag `Project=CostGuard`. Nếu bạn truyền `ExistingInstanceId`, stack sẽ bảo vệ instance đó thay vì tạo máy mới.
 - **Parameter Store:** `/costguard/instance-id`, `/costguard/price-per-hour`, `/costguard/cost-threshold` và `/costguard/budget-limit`.
 - **DynamoDB:** bảng `CostGuardSessions` ở chế độ on-demand, khóa phân vùng `instance_id` và khóa sắp xếp `timestamp`.
 - **SNS:** các topic `costguard-alerts`, `costguard-errors` và `costguard-budgets`. Email của bạn đăng ký hai topic đầu.
@@ -23,10 +23,10 @@ pre: " <b> 5.3. </b> "
 
 - `AlertEmail` (bắt buộc): hộp thư nhận cảnh báo.
 - `ExistingInstanceId`: để trống để tạo máy lab mới.
-- `PricePerHour`: mặc định 0.06. Đây là đơn giá theo giờ của instance trong Pricing Calculator.
+- `PricePerHour`: mặc định 0.0392. Đây là đơn giá theo giờ của instance trong Pricing Calculator.
 - `CostThreshold`: mặc định 14, khoảng 70% ngân sách.
 - `BudgetLimit`: mặc định 20.
-- `StopSchedule` và `StopScheduleTimezone`: mặc định `cron(0 22 * * ? *)` và `Asia/Ho_Chi_Minh`.
+- `StopCron` và `StopScheduleTimezone`: mặc định `cron(0 22 * * ? *)` và `Asia/Ho_Chi_Minh`.
 - `CostMeterRateMinutes`: mặc định 5.
 
 ### Bước 1 – Tạo stack
@@ -55,6 +55,8 @@ aws cloudformation deploy \
 1. Mở hộp thư. Bạn nhận hai thư từ Amazon SNS, một cho `costguard-alerts` và một cho `costguard-errors`.
 2. Chọn **Confirm subscription** trong từng thư. Khi chưa xác nhận, SNS sẽ không gửi gì tới địa chỉ đó.
 
+![Hai đăng ký SNS của costguard-alerts và costguard-errors ở trạng thái Confirmed](../../../images/5-Workshop/5.3-foundation/49-sns-subscriptions-confirmed.png)
+
 ### Bước 3 – Kiểm tra kết quả
 
 1. Khi trạng thái stack là **CREATE_COMPLETE**, mở tab **Outputs**. `ProtectedInstanceId` là instance mà Cost Guard bảo vệ.
@@ -65,6 +67,10 @@ aws cloudformation deploy \
    - **SNS:** có ba topic, và hai đăng ký đầu hiện **Confirmed**.
    - **Lambda:** có `CostGuard-ScheduleHandler`, `CostGuard-CostMeter` và `CostGuard-BudgetBackstop`.
    - **EventBridge → Scheduler:** `costguard-daily-stop` và `costguard-cost-meter` đang bật.
+
+![Stack CostGuard: 29 tài nguyên ở trạng thái CREATE_COMPLETE](../../../images/5-Workshop/5.3-foundation/28-cg-stack-create-complete.png)
+
+![Máy lab t3.small đang chạy trong console EC2](../../../images/5-Workshop/5.3-foundation/54-ec2-t3small-running.png)
 
 **Kết quả kỳ vọng:** mọi tài nguyên đều có mặt và máy đang chạy. Máy đã bắt đầu tính tiền, nên hãy sang 5.4 ngay, không nghỉ lâu.
 

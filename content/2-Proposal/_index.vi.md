@@ -17,7 +17,7 @@ Cost Guard là hệ thống tự động hóa serverless dành cho sinh viên v�
 
 ### Vấn đề hiện tại
 
-Credit AWS Free Plan có giới hạn. Một máy Windows EC2 (t3.medium) chạy liên tục 24/7 tốn khoảng $46.22 mỗi tháng, vượt quá ngân sách credit $20. AWS Budgets có cảnh báo chi phí, nhưng dữ liệu billing chỉ cập nhật vài lần mỗi ngày, nên không đủ nhanh để làm cơ chế bảo vệ thời gian thực.
+Credit AWS Free Plan có giới hạn. Một máy Windows EC2 (t3.small) chạy liên tục 24/7 tốn khoảng $31.04 mỗi tháng, vượt quá ngân sách credit $20. AWS Budgets có cảnh báo chi phí, nhưng dữ liệu billing chỉ cập nhật vài lần mỗi ngày, nên không đủ nhanh để làm cơ chế bảo vệ thời gian thực.
 
 ### Giải pháp
 
@@ -29,7 +29,7 @@ Cost Guard dùng ba lớp bảo vệ bổ sung cho nhau:
 
 ### Lợi ích và ROI
 
-Với kế hoạch dùng 120 giờ lab mỗi tháng, chi phí ước tính khoảng $9.62 mỗi tháng. Cũng máy đó chạy 24/7 sẽ tốn $46.22 mỗi tháng. Cost Guard giúp tránh khoảng $36.60 mỗi tháng, tương đương khoảng 79%, và giữ dự án dưới ngân sách $20. Lớp 2 cho biết chi phí trong vài phút sau khi máy khởi động, không cần chờ billing cập nhật. Đơn giá và ngưỡng chi phí lưu trong Parameter Store thay vì viết cứng trong code, nên hệ thống dùng lại được cho loại instance hoặc tài khoản khác.
+Với kế hoạch dùng 120 giờ lab mỗi tháng, chi phí ước tính khoảng $7.12 mỗi tháng. Cũng máy đó chạy 24/7 sẽ tốn $31.04 mỗi tháng. Cost Guard giúp tránh khoảng $23.92 mỗi tháng, tương đương khoảng 77%, và giữ dự án dưới ngân sách $20. Lớp 2 cho biết chi phí trong vài phút sau khi máy khởi động, không cần chờ billing cập nhật. Đơn giá và ngưỡng chi phí lưu trong Parameter Store thay vì viết cứng trong code, nên hệ thống dùng lại được cho loại instance hoặc tài khoản khác.
 
 ### Mục tiêu và phạm vi
 
@@ -59,7 +59,7 @@ Hệ thống chạy trong một AWS Region (US East, N. Virginia) và chỉ dùn
 
 ### Dịch vụ AWS sử dụng
 
-- **Amazon EC2 (Windows):** Máy lab được bảo vệ (t3.medium, Windows Server).
+- **Amazon EC2 (Windows):** Máy lab được bảo vệ (t3.small, Windows Server). Tài khoản Free Plan chỉ cho chọn t3.micro, t3.small, t8i.micro và t8i.small; nhóm chọn t3.small (2 vCPU, 2 GiB), loại lớn hơn trong hai cỡ t3, vì 1 GiB quá ít cho Windows Server.
 - **Amazon EBS (gp3, 30 GB):** Ổ đĩa gốc của máy lab. Được tính phí cả tháng, kể cả khi máy đang tắt.
 - **Amazon EventBridge:** EventBridge Scheduler kích hoạt lịch dừng và chạy bộ đo chi phí mỗi 5 phút. Cả hai đều dùng lịch (schedule).
 - **AWS Lambda:** Thực thi logic của từng lớp bảo vệ.
@@ -81,6 +81,17 @@ Hệ thống chạy trong một AWS Region (US East, N. Virginia) và chỉ dùn
 - **Dữ liệu:** Bảng DynamoDB ghi sự kiện bật/tắt máy và ước tính chi phí định kỳ của từng phiên.
 - **Bảo mật:** Mỗi hàm Lambda có IAM role riêng, quyền dừng máy chỉ giới hạn cho instance đích.
 
+<<<<<<< HEAD
+=======
+**Các cân nhắc theo Well-Architected**
+
+- **Operational Excellence:** Log Lambda, CloudWatch alarm cho lỗi hàm, email SNS và bản ghi phiên trong DynamoDB cho biết hệ thống đã làm gì và vì sao.
+- **Security:** Mỗi hàm có IAM role riêng, quyền dừng máy chỉ giới hạn cho instance đích. Không có access key hay mật khẩu nào viết trong code; Parameter Store chỉ chứa đơn giá, ngưỡng và hạn mức.
+- **Reliability:** Ba lớp độc lập cùng bảo vệ máy, nên một lớp lỗi không làm mất bảo vệ. Dừng một máy đã dừng thì không có tác dụng, nên chạy lặp lại vẫn an toàn.
+- **Performance Efficiency:** t3.small (2 vCPU, 2 GiB) có kích thước phù hợp cho một phiên lab và nằm trong danh sách loại máy của Free Plan. Lambda không có máy chủ nào cần chọn cỡ, và chu kỳ 5 phút (khoảng 8,640 lần chạy mỗi tháng) cân bằng giữa tốc độ phản ứng và số lần chạy.
+- **Cost Optimization:** Xem danh sách Tối ưu chi phí ở mục 6.
+
+>>>>>>> 1fea9a9cb5c54f7484bf89a62f3d7a7817884f95
 ### 4. Triển khai kỹ thuật
 
 **Các giai đoạn triển khai**
@@ -114,25 +125,25 @@ Hệ thống chạy trong một AWS Region (US East, N. Virginia) và chỉ dùn
 
 Ước tính được lập bằng AWS Pricing Calculator cho US East (N. Virginia), giá on-demand, với kế hoạch dùng 120 giờ lab mỗi tháng (4 giờ mỗi ngày trong 30 ngày).
 
-<!-- TODO: thêm link chia sẻ AWS Pricing Calculator và file PDF xuất ra (static/attachments/budget_estimation.pdf), rồi tham chiếu ở đây. -->
+Bản ước tính trên AWS Pricing Calculator: [link chia sẻ](https://calculator.aws/#/estimate?id=641acc2f03b075415ec10d1ab0de1590ab659dd9) và [file PDF](../../attachments/costguard-pricing-estimate.pdf).
 
 ### Chi phí hạ tầng
 
-- Amazon EC2 Windows (t3.medium): 120 giờ × $0.06 mỗi giờ = $7.20 mỗi tháng. Chế độ Guided của Calculator cố định mức dùng ở 730 giờ cho mỗi instance, nên 120 giờ được nhập bằng 0.1644 instance (120 ÷ 730), cho ra 120.012 giờ.
+- Amazon EC2 Windows (t3.small): 120 giờ × $0.0392 mỗi giờ = $4.70 mỗi tháng. Trong Calculator, mức dùng được nhập trực tiếp là 120 Hours / Month, và ổ đĩa được tách sang mục EBS riêng.
 - Amazon EBS (gp3, 30 GB): $2.40 mỗi tháng, tính cả tháng kể cả khi máy tắt.
-- Địa chỉ Public IPv4: $0.005 mỗi giờ cho địa chỉ đang dùng, nên 120 giờ × $0.005 = $0.60 mỗi tháng (cần thêm vào estimate của Calculator).
+- Địa chỉ Public IPv4: $0.005 mỗi giờ cho địa chỉ đang dùng, nên 120 giờ × $0.005 = $0.60 mỗi tháng (không có trong estimate của Calculator).
 - AWS Lambda: khoảng $0.02 mỗi tháng (8,700 yêu cầu và 1,087.5 GB-giây với 128 MB và 1 giây mỗi lần chạy), tính không có Free Tier.
-- Amazon DynamoDB (on-demand): khoảng $0.002 mỗi tháng (2,000 lần ghi, 7,500 đơn vị đọc và 0.001 GB lưu trữ).
+- Amazon DynamoDB (on-demand): khoảng $0.002 mỗi tháng (2,000 lần ghi, 7,500 đơn vị đọc và 0.001 GB lưu trữ), không đưa vào Calculator vì quá nhỏ.
 - Amazon CloudWatch: 3 alarm tiêu chuẩn × $0.10 = $0.30 mỗi tháng, cộng khoảng 0.01 GB log Lambda với $0.50 mỗi GB nạp vào (khoảng $0.005), tính không có Free Tier.
 - Parameter Store (tham số standard) và AWS Budgets (budget theo dõi): $0.00 mỗi tháng.
 - EventBridge Scheduler tính phí theo số lần gọi, và 14 triệu lần gọi đầu tiên mỗi tháng là miễn phí. Dự án dùng khoảng 8,700 lần mỗi tháng (lịch 5 phút cộng một lần dừng mỗi ngày), tương đương khoảng $0.009 mỗi tháng nếu không tính Free Tier.
 - Amazon SNS (US East, topic tiêu chuẩn): 1 triệu yêu cầu API đầu tiên và 1,000 thông báo email đầu tiên mỗi tháng là miễn phí. Dự án dùng khoảng 100 mỗi loại, nên chi phí là $0, và dưới $0.01 mỗi tháng nếu không tính Free Tier. Việc gửi tới Lambda không tính phí theo từng tin.
 
-**Tổng:** khoảng $9.62 mỗi tháng cho các dịch vụ trong Calculator (EC2, EBS, Lambda và DynamoDB), và khoảng $10.54 khi thêm địa chỉ Public IPv4, CloudWatch, EventBridge Scheduler và SNS, tất cả tính không có Free Tier. Cả hai đều dưới ngân sách $20.
+**Tổng:** $7.12 mỗi tháng cho các dịch vụ trong Calculator (EC2, EBS và Lambda), và khoảng $8.05 khi thêm DynamoDB, địa chỉ Public IPv4, CloudWatch, EventBridge Scheduler và SNS, tất cả tính không có Free Tier. Cả hai đều dưới ngân sách $20.
 
-Để so sánh, cùng máy đó chạy 24/7 (730 giờ) tốn $46.22 mỗi tháng: $43.80 cho EC2, $2.40 cho EBS và khoảng $0.02 cho Lambda và DynamoDB.
+Để so sánh, cùng máy đó chạy 24/7 (730 giờ) tốn $31.04 mỗi tháng: $28.62 cho EC2, $2.40 cho EBS và khoảng $0.02 cho Lambda và DynamoDB.
 
-Ngưỡng nội bộ của Lớp 2 đặt ở khoảng 70% ngân sách ($14). Với đơn giá $0.06 mỗi giờ, con số này tương đương khoảng 233 giờ chạy, cao hơn nhiều so với kế hoạch 120 giờ. Khoảng chênh này chừa chỗ cho độ trễ billing của Lớp 3.
+Ngưỡng nội bộ của Lớp 2 đặt ở khoảng 70% ngân sách ($14). Với đơn giá $0.0392 mỗi giờ, con số này tương đương khoảng 357 giờ chạy, cao hơn nhiều so với kế hoạch 120 giờ. Khoảng chênh này chừa chỗ cho độ trễ billing của Lớp 3.
 
 ### Tối ưu chi phí
 

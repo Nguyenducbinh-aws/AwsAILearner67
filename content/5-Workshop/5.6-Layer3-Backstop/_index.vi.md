@@ -42,6 +42,14 @@ Bạn không chờ hóa đơn thật tăng lên. Bạn tự gửi một tin nh�
 
 **Kết quả kỳ vọng:** instance chuyển sang `stopping` rồi `stopped`. Bạn nhận email "CostGuard: budget notification handled". Bảng có một bản ghi với `event = budget_stop`.
 
+![Gửi tin thử lên costguard-budgets](../../../images/5-Workshop/5.6-layer3/35-cg-l3-publish-budgets.png)
+
+![Log của CostGuard-BudgetBackstop](../../../images/5-Workshop/5.6-layer3/36-cg-l3-backstop-logs.png)
+
+![Bảng CostGuardSessions có bản ghi budget_stop](../../../images/5-Workshop/5.6-layer3/37-cg-l3-dynamodb-budget-stop.png)
+
+![Email "CostGuard: budget notification handled" (từ lần thử lại khi máy đã tắt)](../../../images/5-Workshop/5.6-layer3/44-gmail-alert-budget.png)
+
 ### Bước 3 – Xem các alarm
 
 1. Mở **CloudWatch → Alarms**.
@@ -58,6 +66,12 @@ Bài kiểm thử này cố tình làm `CostGuard-CostMeter` lỗi để kiểm 
 4. **Đặt lại instance ID thật.**
 
 **Kết quả kỳ vọng:** hàm bị lỗi, bạn nhận email từ `costguard-errors`, và alarm `CostGuard-CostMeter-Errors` chuyển sang **In alarm**. Sau khi bạn khôi phục ID và lần chạy kế tiếp thành công, alarm trở về **OK**.
+
+![Alarm CostGuard-CostMeter-Errors ở trạng thái In alarm](../../../images/5-Workshop/5.6-layer3/39-cg-alarm-costmeter-in-alarm.png)
+
+![Alarm trở về OK sau khi đặt lại ID thật](../../../images/5-Workshop/5.6-layer3/40-cg-alarm-back-ok.png)
+
+![Email ALARM gửi qua costguard-errors (từ lần thử tương tự với ScheduleHandler)](../../../images/5-Workshop/5.6-layer3/46-gmail-alarm.png)
 
 ### Cần kiểm tra nếu gặp lỗi
 

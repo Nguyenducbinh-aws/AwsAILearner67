@@ -17,7 +17,7 @@ Cost Guard is a serverless automation system for students and small teams who ru
 
 ### What's the Problem?
 
-AWS Free Plan credits are limited. A Windows EC2 instance (t3.medium) running 24/7 costs about $46.22 per month, which is more than a $20 credit budget. AWS Budgets can send cost alerts, but its billing data refreshes only a few times per day, so it is too slow to act as a real-time safeguard.
+AWS Free Plan credits are limited. A Windows EC2 instance (t3.small) running 24/7 costs about $31.04 per month, which is more than a $20 credit budget. AWS Budgets can send cost alerts, but its billing data refreshes only a few times per day, so it is too slow to act as a real-time safeguard.
 
 ### The Solution
 
@@ -29,7 +29,7 @@ Cost Guard uses three complementary layers:
 
 ### Benefits and Return on Investment
 
-Under the planned usage of 120 lab hours per month, the estimated cost is about $9.62 per month. The same instance left running 24/7 would cost $46.22 per month. Cost Guard therefore avoids roughly $36.60 per month, about 79%, and keeps the project under the $20 budget. Layer 2 gives cost awareness within minutes of the machine starting, without waiting for billing data. The hourly price and the cost threshold are stored in Parameter Store instead of being hardcoded, so the system can be reused for other instance types or accounts.
+Under the planned usage of 120 lab hours per month, the estimated cost is about $7.12 per month. The same instance left running 24/7 would cost $31.04 per month. Cost Guard therefore avoids roughly $23.92 per month, about 77%, and keeps the project under the $20 budget. Layer 2 gives cost awareness within minutes of the machine starting, without waiting for billing data. The hourly price and the cost threshold are stored in Parameter Store instead of being hardcoded, so the system can be reused for other instance types or accounts.
 
 ### Goals and Scope
 
@@ -59,7 +59,7 @@ The system runs in a single AWS Region (US East, N. Virginia) and uses only serv
 
 ### AWS Services Used
 
-- **Amazon EC2 (Windows):** The lab machine being protected (t3.medium, Windows Server).
+- **Amazon EC2 (Windows):** The lab machine being protected (t3.small, Windows Server). A Free Plan account can only choose t3.micro, t3.small, t8i.micro and t8i.small; the team chose t3.small (2 vCPU, 2 GiB), the larger of the two t3 sizes, because 1 GiB is too little for Windows Server.
 - **Amazon EBS (gp3, 30 GB):** The root volume of the lab machine. It is billed for the whole month, even while the instance is stopped.
 - **Amazon EventBridge:** EventBridge Scheduler triggers the scheduled stop and runs the cost meter every 5 minutes. Both use schedules.
 - **AWS Lambda:** Runs the logic of each protection layer.
@@ -81,6 +81,17 @@ The system runs in a single AWS Region (US East, N. Virginia) and uses only serv
 - **Data:** A DynamoDB table that logs instance start and stop events and the periodic cost estimate of each session.
 - **Security:** Each Lambda function has its own IAM role, and its stop permission is limited to the target instance.
 
+<<<<<<< HEAD
+=======
+**Well-Architected Considerations**
+
+- **Operational Excellence:** Lambda logs, CloudWatch alarms on function errors, SNS emails and the DynamoDB session record show what the system did and why.
+- **Security:** Each function has its own IAM role, and the stop permission is limited to the target instance. No access key or password is written in the code; Parameter Store holds only the price, the threshold and the limit.
+- **Reliability:** Three independent layers protect the machine, so one failing layer does not remove the protection. Stopping an already stopped machine does nothing, so repeated runs are safe.
+- **Performance Efficiency:** A t3.small (2 vCPU, 2 GiB) is sized for one lab session and is on the Free Plan instance list. Lambda needs no servers to size, and a 5-minute interval (about 8,640 runs per month) balances reaction time against the number of runs.
+- **Cost Optimization:** See the Cost Optimization list in section 6.
+
+>>>>>>> 1fea9a9cb5c54f7484bf89a62f3d7a7817884f95
 ### 4. Technical Implementation
 
 **Implementation Phases**
@@ -114,25 +125,25 @@ The system runs in a single AWS Region (US East, N. Virginia) and uses only serv
 
 The estimate was built with the AWS Pricing Calculator for US East (N. Virginia), using on-demand pricing and a planned usage of 120 lab hours per month (4 hours per day for 30 days).
 
-<!-- TODO: add the AWS Pricing Calculator share link and the exported PDF (static/attachments/budget_estimation.pdf), then reference them here. -->
+AWS Pricing Calculator estimate: [share link](https://calculator.aws/#/estimate?id=641acc2f03b075415ec10d1ab0de1590ab659dd9) and [PDF export](../attachments/costguard-pricing-estimate.pdf).
 
 ### Infrastructure Costs
 
-- Amazon EC2 Windows (t3.medium): 120 hours × $0.06 per hour = $7.20 per month. The guided mode of the Calculator fixes usage at 730 hours per instance, so the 120 hours are entered as 0.1644 instance (120 ÷ 730), which gives 120.012 hours.
+- Amazon EC2 Windows (t3.small): 120 hours × $0.0392 per hour = $4.70 per month. In the Calculator the usage is entered directly as 120 Hours / Month, and the volume is priced in a separate EBS entry.
 - Amazon EBS (gp3, 30 GB): $2.40 per month, billed for the whole month even when the instance is stopped.
-- Public IPv4 address: $0.005 per hour for an in-use address, so 120 hours × $0.005 = $0.60 per month (to be added to the Calculator estimate).
+- Public IPv4 address: $0.005 per hour for an in-use address, so 120 hours × $0.005 = $0.60 per month (not part of the Calculator estimate).
 - AWS Lambda: about $0.02 per month (8,700 requests and 1,087.5 GB-seconds at 128 MB and 1 second per run), calculated without the Free Tier.
-- Amazon DynamoDB (on-demand): about $0.002 per month (2,000 writes, 7,500 read request units and 0.001 GB of storage).
+- Amazon DynamoDB (on-demand): about $0.002 per month (2,000 writes, 7,500 read request units and 0.001 GB of storage), left out of the Calculator because it is so small.
 - Amazon CloudWatch: 3 standard alarms × $0.10 = $0.30 per month, plus about 0.01 GB of Lambda logs at $0.50 per GB ingested (about $0.005), calculated without the Free Tier.
 - Parameter Store (standard parameters) and AWS Budgets (a tracking budget): $0.00 per month.
 - EventBridge Scheduler is charged per invocation, and the first 14 million invocations per month are free. The project uses about 8,700 per month (the 5-minute schedule plus one daily stop), which is about $0.009 per month if the Free Tier is not counted.
 - Amazon SNS (US East, standard topics): the first 1 million API requests and the first 1,000 email notifications per month are free. The project uses about 100 of each, so the cost is $0, and under $0.01 per month if the Free Tier is not counted. Delivery to Lambda has no per-message fee.
 
-**Total:** about $9.62 per month for the services in the Calculator (EC2, EBS, Lambda and DynamoDB), and about $10.54 when the public IPv4 address, CloudWatch, EventBridge Scheduler and SNS are added, all calculated without the Free Tier. Both are under the $20 budget.
+**Total:** $7.12 per month for the services in the Calculator (EC2, EBS and Lambda), and about $8.05 when DynamoDB, the public IPv4 address, CloudWatch, EventBridge Scheduler and SNS are added, all calculated without the Free Tier. Both are under the $20 budget.
 
-For comparison, the same instance running 24/7 (730 hours) costs $46.22 per month: $43.80 for EC2, $2.40 for EBS and about $0.02 for Lambda and DynamoDB.
+For comparison, the same instance running 24/7 (730 hours) costs $31.04 per month: $28.62 for EC2, $2.40 for EBS and about $0.02 for Lambda and DynamoDB.
 
-The internal threshold of Layer 2 is set at about 70% of the budget ($14). At $0.06 per hour this equals about 233 running hours, well above the planned 120 hours. The gap leaves room for the billing delay of Layer 3.
+The internal threshold of Layer 2 is set at about 70% of the budget ($14). At $0.0392 per hour this equals about 357 running hours, well above the planned 120 hours. The gap leaves room for the billing delay of Layer 3.
 
 ### Cost Optimization
 
