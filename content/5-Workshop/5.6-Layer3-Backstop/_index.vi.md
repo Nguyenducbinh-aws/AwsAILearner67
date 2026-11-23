@@ -32,6 +32,10 @@ Lớp nào cũng dừng được máy, không lớp nào bật được máy, v�
 1. Mở **Billing and Cost Management → Budgets** và chọn `CostGuard-Budget`.
 2. Kiểm tra hạn mức hằng tháng và hai cảnh báo (80% và 100%, chi phí thực).
 
+![CostGuard-Budget: hạn mức $20/tháng, đã dùng $0.00, dự báo $1.68](../../../images/5-Workshop/5.6-layer3/60-budgets-costguard-detail.png)
+
+![Hai cảnh báo của CostGuard-Budget: chi phí thực > 80% ($16) và > 100% ($20)](../../../images/5-Workshop/5.6-layer3/61-budgets-costguard-alerts.png)
+
 ### Bước 2 – Kiểm thử Budget Backstop
 
 Bạn không chờ hóa đơn thật tăng lên. Bạn tự gửi một tin nhắn tới topic.
