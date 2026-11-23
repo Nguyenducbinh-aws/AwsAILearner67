@@ -36,7 +36,7 @@ You deploy the whole system with one CloudFormation template, test each layer on
 
 #### Content
 
-1. [Workshop Overview](5.1-Workshop-overview/)
+1. [Introduction](5.1-Workshop-overview/)
 2. [Prerequisites](5.2-Prerequisite/)
 3. [Deploy the Foundation](5.3-Foundation/)
 4. [Layer 1 – Schedule Guard](5.4-Layer1-Schedule/)

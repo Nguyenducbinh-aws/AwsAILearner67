@@ -36,7 +36,7 @@ Bạn deploy toàn bộ hệ thống bằng một template CloudFormation, cố 
 
 #### Nội dung
 
-1. [Tổng quan Workshop](5.1-Workshop-overview/)
+1. [Giới thiệu](5.1-Workshop-overview/)
 2. [Yêu cầu tiên quyết](5.2-Prerequisite/)
 3. [Triển khai nền tảng](5.3-Foundation/)
 4. [Lớp 1 – Schedule Guard](5.4-Layer1-Schedule/)
