@@ -55,11 +55,11 @@ StopSchedule:
 3. Open the **EC2** console and refresh.
 4. Open **DynamoDB → Tables → CostGuardSessions → Explore table items**.
 
-**Expected result:** the function returns `schedule_stop` with `state_before` set to `running`. The instance goes from `stopping` to `stopped`. The table has a new item with `event = schedule_stop`.
+**Result:** the function returns `schedule_stop` with `state_before` set to `running`. The instance goes from `stopping` to `stopped`. The table has a new item with `event = schedule_stop`.
 
 ![Test result: schedule_stop with state_before running](../../images/5-Workshop/5.4-layer1/29-cg-l1-schedule-stop.png)
 
-Run the test a second time while the instance is stopped. **Expected result:** the function returns `schedule_noop` and the instance is not touched.
+Run the test a second time while the instance is stopped. **Result:** the function returns `schedule_noop` and the instance is not touched.
 
 ![Second test: schedule_noop with state_before stopped](../../images/5-Workshop/5.4-layer1/30-cg-l1-schedule-noop.png)
 
@@ -70,7 +70,7 @@ Run the test a second time while the instance is stopped. **Expected result:** t
 3. Wait until that time and check the instance state.
 4. Update the stack again and put `cron(0 22 * * ? *)` back.
 
-**Expected result:** the instance is stopped at the chosen time in Vietnam time, not seven hours earlier or later.
+**Result:** the instance is stopped at the chosen time in Vietnam time, not seven hours earlier or later.
 
 In our own run we did not change `StopCron`; we checked the real 22:00 run on 22/11/2026 instead. The schedule invoked the function at 15:00:02 UTC (22:00 Vietnam time). The instance was already stopped, so the function only wrote `schedule_noop`.
 

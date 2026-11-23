@@ -55,11 +55,11 @@ StopSchedule:
 3. Mở console **EC2** và làm mới.
 4. Mở **DynamoDB → Tables → CostGuardSessions → Explore table items**.
 
-**Kết quả kỳ vọng:** hàm trả về `schedule_stop` với `state_before` là `running`. Instance chuyển từ `stopping` sang `stopped`. Bảng có thêm một bản ghi với `event = schedule_stop`.
+**Kết quả trả về:** hàm trả về `schedule_stop` với `state_before` là `running`. Instance chuyển từ `stopping` sang `stopped`. Bảng có thêm một bản ghi với `event = schedule_stop`.
 
 ![Kết quả test: schedule_stop với state_before là running](../../../images/5-Workshop/5.4-layer1/29-cg-l1-schedule-stop.png)
 
-Chạy test lần thứ hai khi instance đang tắt. **Kết quả kỳ vọng:** hàm trả về `schedule_noop` và không đụng tới instance.
+Chạy test lần thứ hai khi instance đang tắt. **Kết quả trả về:** hàm trả về `schedule_noop` và không đụng tới instance.
 
 ![Test lần hai: schedule_noop với state_before là stopped](../../../images/5-Workshop/5.4-layer1/30-cg-l1-schedule-noop.png)
 
@@ -70,7 +70,7 @@ Chạy test lần thứ hai khi instance đang tắt. **Kết quả kỳ vọng:
 3. Chờ đến giờ đó và kiểm tra trạng thái instance.
 4. Cập nhật stack lần nữa và đặt lại `cron(0 22 * * ? *)`.
 
-**Kết quả kỳ vọng:** instance bị dừng đúng giờ đã chọn theo giờ Việt Nam, không lệch bảy tiếng.
+**Kết quả trả về:** instance bị dừng đúng giờ đã chọn theo giờ Việt Nam, không lệch bảy tiếng.
 
 Ở lần chạy của nhóm, chúng tôi không đổi `StopCron` mà kiểm tra lần chạy 22:00 thật ngày 22/11/2026. Lịch gọi hàm lúc 15:00:02 UTC (22:00 giờ Việt Nam). Máy đã tắt sẵn nên hàm chỉ ghi `schedule_noop`.
 

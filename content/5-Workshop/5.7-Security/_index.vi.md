@@ -8,7 +8,7 @@ pre: " <b> 5.7. </b> "
 
 ## Rà soát bảo mật và chi phí
 
-Bước này xem lại cách Cost Guard xử lý bảo mật, chi phí và mức độ phù hợp với các trụ cột AWS Well-Architected.
+Bước này xem lại cách Cost Guard xử lý bảo mật, chi phí và cách giữ chi phí ở mức thấp.
 
 ### 1. Bảo mật
 
@@ -54,11 +54,3 @@ Các dịch vụ trong Calculator (EC2, EBS và Lambda) cộng lại **$7.12 m�
 - Giữ ổ gp3 30 GB và không thêm IOPS hay throughput.
 - Không gắn Elastic IP, vì bị tính phí khi đang được cấp phát.
 - Xóa toàn bộ tài nguyên sau workshop (xem 5.8).
-
-### 4. Các trụ cột Well-Architected
-
-- **Operational Excellence:** log Lambda, CloudWatch alarm và bản ghi phiên trong DynamoDB cho thấy hệ thống đã làm gì và vì sao.
-- **Security:** mỗi hàm một role, quyền dừng giới hạn cho một instance, không có thông tin xác thực trong code.
-- **Reliability:** ba lớp độc lập, và mọi hành động đều an toàn khi lặp lại.
-- **Performance Efficiency:** t3.small cho một phiên lab (loại lớn hơn trong hai cỡ t3 mà tài khoản Free Plan tạo được), và hàm Lambda 128 MB chạy khoảng một giây.
-- **Cost Optimization:** giới hạn giờ chạy, dịch vụ trả theo lượt dùng và dọn dẹp ở cuối.

@@ -8,7 +8,7 @@ pre: " <b> 5.7. </b> "
 
 ## Security and Cost Review
 
-This step reviews how Cost Guard handles security, what it costs and how it fits the AWS Well-Architected pillars.
+This step reviews how Cost Guard handles security, what it costs and how to keep the cost low.
 
 ### 1. Security
 
@@ -54,11 +54,3 @@ The services in the Calculator (EC2, EBS and Lambda) add up to **$7.12 per month
 - Keep the 30 GB gp3 volume and add no extra IOPS or throughput.
 - Do not attach an Elastic IP, which is billed while it is allocated.
 - Delete all resources after the workshop (see 5.8).
-
-### 4. Well-Architected pillars
-
-- **Operational Excellence:** Lambda logs, CloudWatch alarms and the session records in DynamoDB show what the system did and why.
-- **Security:** one role for each function, a stop permission limited to one instance, no credentials in code.
-- **Reliability:** three independent layers, and every action is safe to repeat.
-- **Performance Efficiency:** a t3.small for one lab session (the larger of the two t3 sizes a Free Plan account can launch), and Lambda functions of 128 MB that run for about a second.
-- **Cost Optimization:** limited running hours, pay-per-use services and a cleanup at the end.

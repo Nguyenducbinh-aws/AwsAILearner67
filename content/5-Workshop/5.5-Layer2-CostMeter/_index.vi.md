@@ -49,7 +49,7 @@ Bạn không chờ đến ngưỡng thật $14. Bạn hạ ngưỡng xuống đ�
 4. Kiểm tra console **EC2**, hộp thư và bảng DynamoDB.
 5. **Đặt lại ngưỡng về `14`.** Đừng cập nhật CloudFormation stack trong lúc kiểm thử, vì như vậy giá trị cũng bị đặt lại.
 
-**Kết quả kỳ vọng:** instance chuyển sang `stopping` rồi `stopped`. Bạn nhận email "CostGuard: instance stopped (cost threshold)". Bảng có một bản ghi `sample` và một bản ghi `auto_stop`.
+**Kết quả trả về:** instance chuyển sang `stopping` rồi `stopped`. Bạn nhận email "CostGuard: instance stopped (cost threshold)". Bảng có một bản ghi `sample` và một bản ghi `auto_stop`.
 
 ![Ngưỡng đặt thành 0.001 trong Parameter Store](../../../images/5-Workshop/5.5-layer2/31-cg-l2-threshold-0001.png)
 
@@ -65,7 +65,7 @@ Mục tiêu của dự án là thời gian phản ứng dưới 5 phút, tức m
 2. Mở **CloudTrail → Event history**, lọc theo tên sự kiện `StopInstances` và đọc giờ của sự kiện.
 3. Hiệu của hai mốc là thời gian phản ứng của lần kiểm thử này.
 
-**Kết quả kỳ vọng:** hiệu số không lớn hơn chu kỳ của bộ đo. Hãy giữ số thật của lần chạy của bạn.
+**Kết quả trả về:** hiệu số không lớn hơn chu kỳ của bộ đo. Hãy giữ số thật của lần chạy của bạn.
 
 Ở lần chạy của nhóm, ngưỡng được lưu lúc 17:22:53 và CloudTrail ghi `StopInstances` bởi `CostGuard-CostMeter` lúc 17:26:40: thời gian phản ứng 3 phút 47 giây.
 

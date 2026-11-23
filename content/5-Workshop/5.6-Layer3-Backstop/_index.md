@@ -40,7 +40,7 @@ You do not wait for the real bill to grow. You send a message to the topic yours
 2. Open **SNS → Topics → `costguard-budgets` → Publish message**. Use any subject and message, and choose **Publish message**.
 3. Check the **EC2** console, your mailbox and the DynamoDB table.
 
-**Expected result:** the instance goes to `stopping` and then `stopped`. You receive the email "CostGuard: budget notification handled". The table has an item with `event = budget_stop`.
+**Result:** the instance goes to `stopping` and then `stopped`. You receive the email "CostGuard: budget notification handled". The table has an item with `event = budget_stop`.
 
 ![Publishing a test message to costguard-budgets](../../images/5-Workshop/5.6-layer3/35-cg-l3-publish-budgets.png)
 
@@ -65,7 +65,7 @@ This test makes `CostGuard-CostMeter` fail on purpose to check that the alarm an
 3. Check the log of `CostGuard-CostMeter`, the alarm state and your mailbox.
 4. **Put the real instance ID back.**
 
-**Expected result:** the function fails, you receive an email from `costguard-errors`, and the alarm `CostGuard-CostMeter-Errors` changes to **In alarm**. After you restore the ID and the next run succeeds, the alarm returns to **OK**.
+**Result:** the function fails, you receive an email from `costguard-errors`, and the alarm `CostGuard-CostMeter-Errors` changes to **In alarm**. After you restore the ID and the next run succeeds, the alarm returns to **OK**.
 
 ![Alarm CostGuard-CostMeter-Errors in In alarm](../../images/5-Workshop/5.6-layer3/39-cg-alarm-costmeter-in-alarm.png)
 
