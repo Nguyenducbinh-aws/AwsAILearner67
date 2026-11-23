@@ -15,11 +15,11 @@ Cost Guard is a serverless automation system for students and small teams who ru
 
 ### 2. Problem Statement
 
-***What's the Problem?***
+### What's the Problem?
 
 AWS Free Plan credits are limited. A Windows EC2 instance (t3.medium) running 24/7 costs about $46.22 per month, which is more than a $20 credit budget. AWS Budgets can send cost alerts, but its billing data refreshes only a few times per day, so it is too slow to act as a real-time safeguard.
 
-***The Solution***
+### The Solution
 
 Cost Guard uses three complementary layers:
 
@@ -27,11 +27,11 @@ Cost Guard uses three complementary layers:
 - **Layer 2 — Cost Meter (original contribution):** A Lambda function runs every 5 minutes. It estimates the cost of the running instance from its running time and a configured hourly price, and adds it to the estimated cost of earlier sessions in the current month. When the total crosses an internal threshold, the instance is stopped and an alert is sent through SNS.
 - **Layer 3 — Budget Backstop:** AWS Budgets monitors the actual account spend. As spend approaches the limit, it triggers a Lambda function through SNS to stop the instance as the final safety net.
 
-***Benefits and Return on Investment***
+### Benefits and Return on Investment
 
 Under the planned usage of 120 lab hours per month, the estimated cost is about $9.62 per month. The same instance left running 24/7 would cost $46.22 per month. Cost Guard therefore avoids roughly $36.60 per month, about 79%, and keeps the project under the $20 budget. Layer 2 gives cost awareness within minutes of the machine starting, without waiting for billing data. The hourly price and the cost threshold are stored in Parameter Store instead of being hardcoded, so the system can be reused for other instance types or accounts.
 
-***Goals and Scope***
+### Goals and Scope
 
 Cost Guard is built for students and small teams that run one Windows lab instance on an AWS account with limited credit.
 
@@ -57,7 +57,7 @@ The system runs in a single AWS Region (US East, N. Virginia) and uses only serv
 
 ![Architecture Diagram](../images/2-Proposal/architecture.png)
 
-**AWS Services Used**
+### AWS Services Used
 
 - **Amazon EC2 (Windows):** The lab machine being protected (t3.medium, Windows Server).
 - **Amazon EBS (gp3, 30 GB):** The root volume of the lab machine. It is billed for the whole month, even while the instance is stopped.
@@ -72,7 +72,7 @@ The system runs in a single AWS Region (US East, N. Virginia) and uses only serv
 - **AWS CloudFormation:** Packages the stack for repeatable deployment and clean teardown.
 - **AWS Cost Explorer:** Compares the estimated cost with the actual cost at the end of the project.
 
-**Component Design**
+### Component Design
 
 - **Scheduler Layer:** EventBridge Scheduler → ScheduleHandler Lambda → stops the EC2 instance on a fixed schedule and writes the event to DynamoDB.
 - **Cost Meter:** EventBridge Scheduler (every 5 minutes) → CostMeter Lambda → reads price and threshold from Parameter Store → calculates the estimated cost from session records in DynamoDB → if the threshold is exceeded, stops the instance and publishes an SNS alert. The threshold applies to the EC2 running cost only; the EBS volume is accounted for separately in the budget.
@@ -80,14 +80,6 @@ The system runs in a single AWS Region (US East, N. Virginia) and uses only serv
 - **Notifications:** One SNS topic for cost alerts to the user; one SNS topic for operational errors.
 - **Data:** A DynamoDB table that logs instance start and stop events and the periodic cost estimate of each session.
 - **Security:** Each Lambda function has its own IAM role, and its stop permission is limited to the target instance.
-
-**Well-Architected Considerations**
-
-- **Operational Excellence:** Lambda logs, CloudWatch alarms on function errors, SNS emails and the DynamoDB session record show what the system did and why.
-- **Security:** Each function has its own IAM role, and the stop permission is limited to the target instance. No access key or password is written in the code; Parameter Store holds only the price, the threshold and the limit.
-- **Reliability:** Three independent layers protect the machine, so one failing layer does not remove the protection. Stopping an already stopped machine does nothing, so repeated runs are safe.
-- **Performance Efficiency:** A t3.medium (2 vCPU, 4 GiB) is sized for one lab session. Lambda needs no servers to size, and a 5-minute interval (about 8,640 runs per month) balances reaction time against the number of runs.
-- **Cost Optimization:** See the Cost Optimization list in section 6.
 
 ### 4. Technical Implementation
 
@@ -97,6 +89,13 @@ The system runs in a single AWS Region (US East, N. Virginia) and uses only serv
 2. *Estimate the cost and check feasibility*: Use the AWS Pricing Calculator to estimate the Windows instance and the supporting services, and check that the total stays under $20 (Month 2).
 3. *Adjust the design to optimize cost and logic*: Settle the Layer 2 cost rule, the threshold and the schedule, and keep the running hours to the plan of 120 hours per month (Month 2–3).
 4. *Build, test and validate*: Create the foundation (IAM roles, SNS topics, DynamoDB table, Parameter Store entries, AWS Budget), then deploy and test each layer: the scheduled stop, the threshold with simulated cost data, and the Budgets backstop with the CloudWatch alarms. Finish with an end-to-end validation and a comparison of the estimated and the actual cost in Cost Explorer (Month 3).
+
+**Technical Requirements**
+
+- AWS account and access: An AWS account with Free Plan credits, an IAM user (not the root user) and the US East (N. Virginia) Region. One email address receives the cost and error alerts.
+- Protected resource: One Windows lab instance (t3.medium) with a 30 GB gp3 root volume, planned for about 120 running hours per month.
+- Three protection layers: A scheduled stop (EventBridge Scheduler and Lambda), a cost meter every 5 minutes (EventBridge Scheduler, Lambda, DynamoDB and Parameter Store) and a budget backstop (AWS Budgets, SNS and Lambda), each Lambda function with its own least-privilege IAM role.
+- Monitoring and deployment: CloudWatch logs and alarms on function errors, SNS emails, and CloudFormation for repeatable deployment and clean teardown. Cost Explorer is used at the end to compare the estimated and the actual cost.
 
 ### 5. Timeline & Milestones
 
@@ -117,7 +116,7 @@ The estimate was built with the AWS Pricing Calculator for US East (N. Virginia)
 
 <!-- TODO: add the AWS Pricing Calculator share link and the exported PDF (static/attachments/budget_estimation.pdf), then reference them here. -->
 
-**Infrastructure Costs**
+### Infrastructure Costs
 
 - Amazon EC2 Windows (t3.medium): 120 hours × $0.06 per hour = $7.20 per month. The guided mode of the Calculator fixes usage at 730 hours per instance, so the 120 hours are entered as 0.1644 instance (120 ÷ 730), which gives 120.012 hours.
 - Amazon EBS (gp3, 30 GB): $2.40 per month, billed for the whole month even when the instance is stopped.
@@ -135,7 +134,7 @@ For comparison, the same instance running 24/7 (730 hours) costs $46.22 per mont
 
 The internal threshold of Layer 2 is set at about 70% of the budget ($14). At $0.06 per hour this equals about 233 running hours, well above the planned 120 hours. The gap leaves room for the billing delay of Layer 3.
 
-**Cost Optimization**
+### Cost Optimization
 
 - Limit the running hours: the scheduled stop and the manual start keep the machine at about 120 hours per month instead of 730.
 - Use services that charge per use and stay within the Free Tier: Lambda, DynamoDB on-demand, SNS and EventBridge.
@@ -147,7 +146,7 @@ The internal threshold of Layer 2 is set at about 70% of the budget ($14). At $0
 
 ### 7. Risk Assessment
 
-**Risk Matrix**
+#### Risk Matrix
 
 - Running out of credit midway because a machine is left running or a layer fails: high impact, medium probability.
 - Three people sharing one AWS account, so one person can overwrite the settings of another or stop a machine that a teammate is using (for example, lowering the threshold for a test): medium impact, medium probability.
@@ -157,7 +156,7 @@ The internal threshold of Layer 2 is set at about 70% of the budget ($14). At $0
 - Layer 2 estimate diverging from the actual bill: medium impact, medium probability.
 - A Lambda function stopping the wrong instance because of a misconfigured IAM role: high impact, low probability.
 
-**Mitigation Strategies**
+#### Mitigation Strategies
 
 - Credit running out: Layer 1 stops the instance every day at a fixed hour, and Layer 2 and Layer 3 stop it when the cost rises. One failing layer does not remove the other two.
 - Shared account: each person uses their own IAM user, only one person launches the instance, and any change to the threshold, the price or the schedule is announced to the team and put back after the test.
@@ -167,7 +166,7 @@ The internal threshold of Layer 2 is set at about 70% of the budget ($14). At $0
 - Estimate drift: set the threshold below the budget and compare the estimate with Cost Explorer at the end of the project.
 - Wrong instance: each Lambda role can stop only the target instance.
 
-**Contingency Plans**
+#### Contingency Plans
 
 - If a Lambda layer fails, stop the instance manually from the AWS Console and disable the EventBridge schedules.
 - If the credit runs out during the project, terminate the Windows instance immediately.
@@ -175,13 +174,13 @@ The internal threshold of Layer 2 is set at about 70% of the budget ($14). At $0
 
 ### 8. Expected Outcomes
 
-**Technical Improvements**
+#### Technical Improvements
 
 - **Reaction time:** From the moment the estimated cost reaches the threshold to the moment the instance is stopped is under 5 minutes, which is one Cost Meter interval.
 - **Correct stops:** In the tests, each layer stops the instance every time it should, and never stops it when the cost is below the threshold. The workshop records the number of test runs and their results.
 - **Spend:** The total project spend stays under $20, confirmed by Cost Explorer after cleanup.
 - **Observability:** All three layers can be followed through Lambda logs, SNS emails and the DynamoDB session record.
 
-**Long-term Value**
+#### Long-term Value
 
 Because the instance ID, hourly price and threshold are stored in Parameter Store, the same system can protect another Windows lab account by changing those values, without changing code.

@@ -15,11 +15,11 @@ Cost Guard là hệ thống tự động hóa serverless dành cho sinh viên v�
 
 ### 2. Tuyên bố vấn đề
 
-***Vấn đề hiện tại***
+### Vấn đề hiện tại
 
 Credit AWS Free Plan có giới hạn. Một máy Windows EC2 (t3.medium) chạy liên tục 24/7 tốn khoảng $46.22 mỗi tháng, vượt quá ngân sách credit $20. AWS Budgets có cảnh báo chi phí, nhưng dữ liệu billing chỉ cập nhật vài lần mỗi ngày, nên không đủ nhanh để làm cơ chế bảo vệ thời gian thực.
 
-***Giải pháp***
+### Giải pháp
 
 Cost Guard dùng ba lớp bảo vệ bổ sung cho nhau:
 
@@ -27,11 +27,11 @@ Cost Guard dùng ba lớp bảo vệ bổ sung cho nhau:
 - **Lớp 2 — Bộ đo chi phí (Cost Meter, đóng góp riêng):** Lambda chạy mỗi 5 phút, ước tính chi phí của máy đang chạy dựa trên thời gian chạy và đơn giá đã cấu hình, rồi cộng với chi phí ước tính của các phiên trước trong tháng. Khi tổng vượt ngưỡng nội bộ, máy bị dừng và cảnh báo được gửi qua SNS.
 - **Lớp 3 — Budget dự phòng (Budget Backstop):** AWS Budgets theo dõi chi tiêu thực của tài khoản. Khi chi tiêu tiến gần giới hạn, nó kích hoạt Lambda qua SNS để dừng máy như lưới an toàn cuối cùng.
 
-***Lợi ích và ROI***
+### Lợi ích và ROI
 
 Với kế hoạch dùng 120 giờ lab mỗi tháng, chi phí ước tính khoảng $9.62 mỗi tháng. Cũng máy đó chạy 24/7 sẽ tốn $46.22 mỗi tháng. Cost Guard giúp tránh khoảng $36.60 mỗi tháng, tương đương khoảng 79%, và giữ dự án dưới ngân sách $20. Lớp 2 cho biết chi phí trong vài phút sau khi máy khởi động, không cần chờ billing cập nhật. Đơn giá và ngưỡng chi phí lưu trong Parameter Store thay vì viết cứng trong code, nên hệ thống dùng lại được cho loại instance hoặc tài khoản khác.
 
-***Mục tiêu và phạm vi***
+### Mục tiêu và phạm vi
 
 Cost Guard dành cho sinh viên và nhóm nhỏ chạy một máy lab Windows trên tài khoản AWS có credit hạn chế.
 
@@ -57,7 +57,7 @@ Hệ thống chạy trong một AWS Region (US East, N. Virginia) và chỉ dùn
 
 ![Sơ đồ kiến trúc](../../images/2-Proposal/architecture.png)
 
-**Dịch vụ AWS sử dụng**
+### Dịch vụ AWS sử dụng
 
 - **Amazon EC2 (Windows):** Máy lab được bảo vệ (t3.medium, Windows Server).
 - **Amazon EBS (gp3, 30 GB):** Ổ đĩa gốc của máy lab. Được tính phí cả tháng, kể cả khi máy đang tắt.
@@ -72,7 +72,7 @@ Hệ thống chạy trong một AWS Region (US East, N. Virginia) và chỉ dùn
 - **AWS CloudFormation:** Đóng gói stack để triển khai lặp lại và dọn dẹp sạch sẽ.
 - **AWS Cost Explorer:** Đối chiếu chi phí ước tính với chi phí thực tế cuối dự án.
 
-**Thiết kế thành phần**
+### Thiết kế thành phần
 
 - **Lớp lịch dừng:** EventBridge Scheduler → Lambda ScheduleHandler → dừng EC2 theo lịch cố định và ghi sự kiện vào DynamoDB.
 - **Bộ đo chi phí:** EventBridge Scheduler (mỗi 5 phút) → Lambda CostMeter → đọc đơn giá và ngưỡng từ Parameter Store → tính chi phí ước tính từ bản ghi phiên trong DynamoDB → nếu vượt ngưỡng thì dừng máy và gửi cảnh báo SNS. Ngưỡng chỉ áp dụng cho chi phí chạy EC2; ổ EBS được tính riêng trong ngân sách.
@@ -80,14 +80,6 @@ Hệ thống chạy trong một AWS Region (US East, N. Virginia) và chỉ dùn
 - **Thông báo:** Một SNS topic cho cảnh báo chi phí gửi người dùng; một SNS topic cho lỗi vận hành.
 - **Dữ liệu:** Bảng DynamoDB ghi sự kiện bật/tắt máy và ước tính chi phí định kỳ của từng phiên.
 - **Bảo mật:** Mỗi hàm Lambda có IAM role riêng, quyền dừng máy chỉ giới hạn cho instance đích.
-
-**Các cân nhắc theo Well-Architected**
-
-- **Operational Excellence:** Log Lambda, CloudWatch alarm cho lỗi hàm, email SNS và bản ghi phiên trong DynamoDB cho biết hệ thống đã làm gì và vì sao.
-- **Security:** Mỗi hàm có IAM role riêng, quyền dừng máy chỉ giới hạn cho instance đích. Không có access key hay mật khẩu nào viết trong code; Parameter Store chỉ chứa đơn giá, ngưỡng và hạn mức.
-- **Reliability:** Ba lớp độc lập cùng bảo vệ máy, nên một lớp lỗi không làm mất bảo vệ. Dừng một máy đã dừng thì không có tác dụng, nên chạy lặp lại vẫn an toàn.
-- **Performance Efficiency:** t3.medium (2 vCPU, 4 GiB) có kích thước phù hợp cho một phiên lab. Lambda không có máy chủ nào cần chọn cỡ, và chu kỳ 5 phút (khoảng 8,640 lần chạy mỗi tháng) cân bằng giữa tốc độ phản ứng và số lần chạy.
-- **Cost Optimization:** Xem danh sách Tối ưu chi phí ở mục 6.
 
 ### 4. Triển khai kỹ thuật
 
@@ -97,6 +89,13 @@ Hệ thống chạy trong một AWS Region (US East, N. Virginia) và chỉ dùn
 2. *Ước tính chi phí và kiểm tra tính khả thi*: Dùng AWS Pricing Calculator để ước tính máy Windows và các dịch vụ hỗ trợ, và kiểm tra tổng chi phí vẫn dưới $20 (Tháng 2).
 3. *Điều chỉnh thiết kế để tối ưu chi phí và logic*: Chốt quy tắc chi phí của Lớp 2, ngưỡng và lịch, và giữ số giờ chạy theo kế hoạch 120 giờ mỗi tháng (Tháng 2–3).
 4. *Xây dựng, kiểm thử và xác thực*: Tạo nền tảng (IAM role, SNS topic, bảng DynamoDB, tham số Parameter Store, AWS Budget), sau đó triển khai và kiểm thử từng lớp: lịch dừng, ngưỡng với dữ liệu chi phí giả lập, và Budget dự phòng cùng các CloudWatch alarm. Kết thúc bằng bước xác thực end-to-end và đối chiếu chi phí ước tính với chi phí thực trong Cost Explorer (Tháng 3).
+
+**Yêu cầu kỹ thuật**
+
+- Tài khoản và quyền truy cập: Một tài khoản AWS có credit của Free Plan, một IAM user (không dùng root user) và Region US East (N. Virginia). Một địa chỉ email nhận cảnh báo chi phí và cảnh báo lỗi.
+- Tài nguyên được bảo vệ: Một máy lab Windows (t3.medium) với ổ gốc gp3 30 GB, dự kiến chạy khoảng 120 giờ mỗi tháng.
+- Ba lớp bảo vệ: Dừng theo lịch (EventBridge Scheduler và Lambda), bộ đo chi phí mỗi 5 phút (EventBridge Scheduler, Lambda, DynamoDB và Parameter Store) và lớp dự phòng ngân sách (AWS Budgets, SNS và Lambda), mỗi hàm Lambda có IAM role riêng theo nguyên tắc quyền tối thiểu.
+- Giám sát và triển khai: Log và alarm CloudWatch cho lỗi của hàm, email SNS, và CloudFormation để triển khai lặp lại và xóa sạch khi kết thúc. Cuối dự án dùng Cost Explorer để so sánh chi phí ước tính với chi phí thực tế.
 
 ### 5. Lộ trình & Mốc triển khai
 
@@ -117,7 +116,7 @@ Hệ thống chạy trong một AWS Region (US East, N. Virginia) và chỉ dùn
 
 <!-- TODO: thêm link chia sẻ AWS Pricing Calculator và file PDF xuất ra (static/attachments/budget_estimation.pdf), rồi tham chiếu ở đây. -->
 
-**Chi phí hạ tầng**
+### Chi phí hạ tầng
 
 - Amazon EC2 Windows (t3.medium): 120 giờ × $0.06 mỗi giờ = $7.20 mỗi tháng. Chế độ Guided của Calculator cố định mức dùng ở 730 giờ cho mỗi instance, nên 120 giờ được nhập bằng 0.1644 instance (120 ÷ 730), cho ra 120.012 giờ.
 - Amazon EBS (gp3, 30 GB): $2.40 mỗi tháng, tính cả tháng kể cả khi máy tắt.
@@ -135,7 +134,7 @@ Hệ thống chạy trong một AWS Region (US East, N. Virginia) và chỉ dùn
 
 Ngưỡng nội bộ của Lớp 2 đặt ở khoảng 70% ngân sách ($14). Với đơn giá $0.06 mỗi giờ, con số này tương đương khoảng 233 giờ chạy, cao hơn nhiều so với kế hoạch 120 giờ. Khoảng chênh này chừa chỗ cho độ trễ billing của Lớp 3.
 
-**Tối ưu chi phí**
+### Tối ưu chi phí
 
 - Giới hạn giờ chạy: lịch dừng và việc bật máy thủ công giữ máy ở khoảng 120 giờ mỗi tháng thay vì 730.
 - Dùng các dịch vụ tính phí theo lượt dùng và nằm trong Free Tier: Lambda, DynamoDB on-demand, SNS và EventBridge.
@@ -147,7 +146,7 @@ Ngưỡng nội bộ của Lớp 2 đặt ở khoảng 70% ngân sách ($14). V�
 
 ### 7. Đánh giá rủi ro
 
-**Ma trận rủi ro**
+#### Ma trận rủi ro
 
 - Hết credit giữa chừng vì một máy bị quên chạy hoặc một lớp bảo vệ lỗi: tác động cao, xác suất trung bình.
 - Ba người dùng chung một tài khoản AWS, nên một người có thể ghi đè cấu hình của người khác hoặc dừng máy đang được đồng đội dùng (ví dụ hạ ngưỡng để thử): tác động trung bình, xác suất trung bình.
@@ -157,7 +156,7 @@ Ngưỡng nội bộ của Lớp 2 đặt ở khoảng 70% ngân sách ($14). V�
 - Ước tính của Lớp 2 lệch so với hóa đơn thật: tác động trung bình, xác suất trung bình.
 - Một hàm Lambda dừng nhầm instance do cấu hình IAM role sai: tác động cao, xác suất thấp.
 
-**Chiến lược giảm thiểu**
+#### Chiến lược giảm thiểu
 
 - Hết credit: Lớp 1 dừng máy mỗi ngày vào giờ cố định, Lớp 2 và Lớp 3 dừng máy khi chi phí tăng. Một lớp lỗi không làm mất hai lớp còn lại.
 - Dùng chung tài khoản: mỗi người dùng IAM user riêng, chỉ một người khởi chạy instance, và mọi thay đổi ngưỡng, đơn giá hay lịch phải báo cho cả nhóm và đặt lại sau khi thử.
@@ -167,7 +166,7 @@ Ngưỡng nội bộ của Lớp 2 đặt ở khoảng 70% ngân sách ($14). V�
 - Ước tính lệch: đặt ngưỡng thấp hơn ngân sách và đối chiếu ước tính với Cost Explorer cuối dự án.
 - Dừng nhầm máy: mỗi role Lambda chỉ có quyền dừng instance đích.
 
-**Kế hoạch dự phòng**
+#### Kế hoạch dự phòng
 
 - Nếu một lớp Lambda lỗi: dừng máy thủ công trên AWS Console và tắt các lịch EventBridge Scheduler.
 - Nếu hết credit giữa chừng: terminate máy Windows ngay.
@@ -175,13 +174,13 @@ Ngưỡng nội bộ của Lớp 2 đặt ở khoảng 70% ngân sách ($14). V�
 
 ### 8. Kết quả kỳ vọng
 
-**Cải tiến kỹ thuật**
+#### Cải tiến kỹ thuật
 
 - **Thời gian phản ứng:** Từ lúc chi phí ước tính đạt ngưỡng đến lúc máy bị dừng là dưới 5 phút, tức một chu kỳ của Cost Meter.
 - **Số lần dừng đúng:** Trong các bài kiểm thử, mỗi lớp dừng máy đúng mọi lần cần dừng, và không bao giờ dừng khi chi phí còn dưới ngưỡng. Workshop ghi lại số lần chạy thử và kết quả.
 - **Chi tiêu:** Tổng chi tiêu dự án dưới $20, được xác nhận bằng Cost Explorer sau khi dọn dẹp.
 - **Khả năng quan sát:** Có thể theo dõi cả ba lớp qua log Lambda, email SNS và bản ghi phiên trong DynamoDB.
 
-**Giá trị dài hạn**
+#### Giá trị dài hạn
 
 Vì instance ID, đơn giá theo giờ và ngưỡng đều lưu trong Parameter Store, cùng một hệ thống có thể bảo vệ một tài khoản lab Windows khác chỉ bằng cách đổi các giá trị đó, không cần sửa code.
