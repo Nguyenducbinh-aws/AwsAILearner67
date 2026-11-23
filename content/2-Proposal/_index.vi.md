@@ -11,13 +11,13 @@ pre: " <b> 2. </b> "
 
 ### 1. Tóm tắt điều hành
 
-Cost Guard là hệ thống tự động hóa serverless dành cho sinh viên và nhóm nhỏ chạy máy lab Windows trên tài khoản AWS Free Plan. Máy Windows EC2 tính phí theo giờ, nên chỉ cần quên tắt vài ngày là có thể mất phần lớn credit. Dự án giải quyết vấn đề này bằng ba lớp bảo vệ tự động: lịch dừng theo giờ, bộ đo chi phí gần thời gian thực và một lớp dự phòng dùng AWS Budgets. Các dịch vụ hỗ trợ đều nằm trong AWS Free Tier; chi phí đáng kể duy nhất là máy Windows EC2.
+Cost Guard được thiết kế dành cho sinh viên và nhóm nhỏ thực hành AWS trên tài khoản Free Plan, nhằm ngăn máy lab Windows dùng hết credit của tài khoản. Hệ thống bảo vệ một máy Windows EC2 (t3.small) và giữ tổng chi phí dự án dưới ngân sách $20. Hệ thống chạy bằng các dịch vụ AWS serverless tại US East (N. Virginia) và có ba lớp bảo vệ: lịch dừng với EventBridge Scheduler và Lambda, bộ đo chi phí gần thời gian thực với Lambda, DynamoDB và Parameter Store, và lớp dự phòng với AWS Budgets và SNS. Cảnh báo được gửi qua email, và các dịch vụ hỗ trợ đều nằm trong AWS Free Tier; chi phí đáng kể duy nhất là máy Windows EC2.
 
 ### 2. Tuyên bố vấn đề
 
 ### Vấn đề hiện tại
 
-Credit AWS Free Plan có giới hạn. Một máy Windows EC2 (t3.small) chạy liên tục 24/7 tốn khoảng $31.04 mỗi tháng, vượt quá ngân sách credit $20. AWS Budgets có cảnh báo chi phí, nhưng dữ liệu billing chỉ cập nhật vài lần mỗi ngày, nên không đủ nhanh để làm cơ chế bảo vệ thời gian thực.
+Credit AWS Free Plan có giới hạn, và máy Windows EC2 tính phí theo giờ trong suốt thời gian chạy. Một máy t3.small chạy liên tục 24/7 tốn khoảng $31,04 mỗi tháng, vượt quá ngân sách credit $20, và một máy bị quên sau buổi lab vẫn tiếp tục tiêu credit. AWS Budgets có cảnh báo chi phí, nhưng dữ liệu billing chỉ cập nhật vài lần mỗi ngày và nó không tự dừng máy, nên không có cơ chế bảo vệ thời gian thực.
 
 ### Giải pháp
 

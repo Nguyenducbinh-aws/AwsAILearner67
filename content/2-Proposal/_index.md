@@ -11,13 +11,13 @@ pre: " <b> 2. </b> "
 
 ### 1. Executive Summary
 
-Cost Guard is a serverless automation system for students and small teams who run Windows lab machines on an AWS Free Plan account. Windows EC2 instances are billed by the hour, so a machine left running for a few days can consume a large part of a small credit budget. The project addresses this with three automated protection layers: a scheduled stop, a near-real-time cost meter, and an AWS Budgets backstop. The supporting services all fit within the AWS Free Tier; the Windows EC2 instance is the only meaningful cost.
+Cost Guard is designed for students and small teams who practice on AWS with a Free Plan account, to stop a Windows lab machine from using up the account credit. It protects one Windows EC2 instance (t3.small) and keeps the total project spend under a $20 budget. The system runs on AWS serverless services in US East (N. Virginia) and uses three protection layers: a scheduled stop with EventBridge Scheduler and Lambda, a near-real-time cost meter with Lambda, DynamoDB and Parameter Store, and a backstop with AWS Budgets and SNS. Alerts are sent by email, and all supporting services fit within the AWS Free Tier; the Windows EC2 instance is the only meaningful cost.
 
 ### 2. Problem Statement
 
 ### What's the Problem?
 
-AWS Free Plan credits are limited. A Windows EC2 instance (t3.small) running 24/7 costs about $31.04 per month, which is more than a $20 credit budget. AWS Budgets can send cost alerts, but its billing data refreshes only a few times per day, so it is too slow to act as a real-time safeguard.
+AWS Free Plan credits are limited, and a Windows EC2 instance is billed by the hour for as long as it runs. A t3.small left running 24/7 costs about $31.04 per month, which is more than a $20 credit budget, and a machine forgotten after a lab session keeps spending credit. AWS Budgets can send cost alerts, but its billing data refreshes only a few times per day and it cannot stop the machine, so there is no real-time safeguard.
 
 ### The Solution
 
