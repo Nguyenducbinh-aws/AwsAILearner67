@@ -70,10 +70,3 @@ Mục tiêu của dự án là thời gian phản ứng dưới 5 phút, tức m
 Ở lần chạy của nhóm, ngưỡng được lưu lúc 17:22:53 và CloudTrail ghi `StopInstances` bởi `CostGuard-CostMeter` lúc 17:26:40: thời gian phản ứng 3 phút 47 giây.
 
 ![Sự kiện StopInstances trong CloudTrail do CostGuard-CostMeter gọi](../../../images/5-Workshop/5.5-layer2/33-cg-l2-cloudtrail-reaction.png)
-
-### Cần kiểm tra nếu gặp lỗi
-
-- **Instance không dừng:** xem log group `/aws/lambda/CostGuard-CostMeter`. Hàm trả về `{"state": "stopped"}` ngay nếu thấy instance không chạy.
-- **Không có bản ghi `sample`:** lịch `costguard-cost-meter` có thể đang tắt, hoặc instance không chạy lúc hàm chạy.
-- **Không nhận được email:** kiểm tra đăng ký của `costguard-alerts` đã **Confirmed** chưa (xem 5.3).
-- **Ngưỡng tự về 14 sau một lúc:** cập nhật stack sẽ đặt lại tham số về giá trị trong template. Hãy sửa tham số sau lần cập nhật cuối.

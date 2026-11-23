@@ -77,9 +77,3 @@ Chạy test lần thứ hai khi instance đang tắt. **Kết quả trả về:*
 ![Log của lần chạy 22:00: schedule_noop](../../../images/5-Workshop/5.4-layer1/58-schedulehandler-22h-noop.png)
 
 ![Bản ghi DynamoDB của lần chạy 22:00](../../../images/5-Workshop/5.4-layer1/59-dynamodb-22h-noop-record.png)
-
-### Cần kiểm tra nếu gặp lỗi
-
-- **Instance không dừng:** xem tab **Monitor** của hàm để biết có lần gọi nào không, và log group `/aws/lambda/CostGuard-ScheduleHandler` để đọc thông báo lỗi.
-- **Lệnh dừng chạy sai giờ:** đọc trường múi giờ của lịch. Lịch không có múi giờ sẽ được đọc theo UTC.
-- **`AccessDenied` trong log:** role của hàm chỉ dừng được đúng instance ID đã đưa vào stack. Nếu bạn thay instance, hãy cập nhật stack với `ExistingInstanceId` mới.

@@ -72,10 +72,3 @@ Bài kiểm thử này cố tình làm `CostGuard-CostMeter` lỗi để kiểm 
 ![Alarm trở về OK sau khi đặt lại ID thật](../../../images/5-Workshop/5.6-layer3/40-cg-alarm-back-ok.png)
 
 ![Email ALARM gửi qua costguard-errors (từ lần thử tương tự với ScheduleHandler)](../../../images/5-Workshop/5.6-layer3/46-gmail-alarm.png)
-
-### Cần kiểm tra nếu gặp lỗi
-
-- **Instance không dừng sau khi bạn gửi tin:** xem log group `/aws/lambda/CostGuard-BudgetBackstop`, và kiểm tra topic có đăng ký Lambda không.
-- **Không có email từ `costguard-errors`:** đăng ký phải ở trạng thái **Confirmed**, và alarm cần trọn một chu kỳ để phản ứng.
-- **Alarm vẫn ở OK:** mở biểu đồ metric của hàm và xem khoảng thời gian. Một lần chạy lỗi là một điểm dữ liệu 5 phút.
-- **Budgets có vẻ không phản ứng với hóa đơn thật:** dữ liệu billing trễ hàng giờ, nên lớp này chỉ là lưới an toàn cuối.

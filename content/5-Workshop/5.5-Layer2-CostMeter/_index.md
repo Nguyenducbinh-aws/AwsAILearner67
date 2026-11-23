@@ -70,10 +70,3 @@ The goal of the project is a reaction time below 5 minutes, which is one interva
 In our run we saved the threshold at 17:22:53, and CloudTrail recorded `StopInstances` by `CostGuard-CostMeter` at 17:26:40: a reaction time of 3 minutes 47 seconds.
 
 ![CloudTrail StopInstances event from CostGuard-CostMeter](../../images/5-Workshop/5.5-layer2/33-cg-l2-cloudtrail-reaction.png)
-
-### Things to check if something goes wrong
-
-- **The instance does not stop:** check the log group `/aws/lambda/CostGuard-CostMeter`. The function returns `{"state": "stopped"}` right away if it sees the instance as not running.
-- **No `sample` items appear:** the schedule `costguard-cost-meter` may be disabled, or the instance was not running when the function ran.
-- **The email does not arrive:** check that the subscription of `costguard-alerts` is **Confirmed** (see 5.3).
-- **The threshold is back to 14 after a while:** a stack update resets the parameters to the template values. Edit the parameter after the last update.

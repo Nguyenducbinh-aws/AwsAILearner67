@@ -72,10 +72,3 @@ This test makes `CostGuard-CostMeter` fail on purpose to check that the alarm an
 ![Alarm back to OK after the real ID was restored](../../images/5-Workshop/5.6-layer3/40-cg-alarm-back-ok.png)
 
 ![ALARM email sent through costguard-errors (from the same kind of test on ScheduleHandler)](../../images/5-Workshop/5.6-layer3/46-gmail-alarm.png)
-
-### Things to check if something goes wrong
-
-- **The instance does not stop after you publish the message:** check the log group `/aws/lambda/CostGuard-BudgetBackstop`, and check that the topic has a Lambda subscription.
-- **No email from `costguard-errors`:** the subscription must be **Confirmed**, and the alarm needs a full period to react.
-- **The alarm stays in OK:** open the metric graph of the function and look at the time range. A single failed run is a 5-minute data point.
-- **Budgets does not seem to react to the real bill:** billing data is delayed by hours, which is why this layer is only the last safety net.

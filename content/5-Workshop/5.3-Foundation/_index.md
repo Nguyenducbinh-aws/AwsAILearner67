@@ -73,10 +73,3 @@ aws cloudformation deploy \
 ![Lab instance t3.small running in the EC2 console](../../images/5-Workshop/5.3-foundation/54-ec2-t3small-running.png)
 
 **Result:** all resources are present and the instance is running. The instance has now started to cost money, so continue to 5.4 without long pauses.
-
-### Things to check if something goes wrong
-
-- **`ROLLBACK_COMPLETE`:** open the **Events** tab, find the first `CREATE_FAILED` row and read its status reason. A stack in this state cannot be updated, so delete it and create it again.
-- **Capability error:** the stack needs `CAPABILITY_IAM`. On the console, tick the acknowledgement box. With the CLI, keep `--capabilities CAPABILITY_IAM`.
-- **Instance creation fails:** a missing default VPC is the most likely cause (see 5.2). Launch an instance yourself and pass its ID in `ExistingInstanceId`.
-- **No email arrives:** look in the spam folder and check that the address in `AlertEmail` has no typo.

@@ -77,9 +77,3 @@ In our own run we did not change `StopCron`; we checked the real 22:00 run on 22
 ![Log of the 22:00 run: schedule_noop](../../images/5-Workshop/5.4-layer1/58-schedulehandler-22h-noop.png)
 
 ![DynamoDB item of the 22:00 run](../../images/5-Workshop/5.4-layer1/59-dynamodb-22h-noop-record.png)
-
-### Things to check if something goes wrong
-
-- **The instance does not stop:** check the **Monitor** tab of the function for invocations, and the log group `/aws/lambda/CostGuard-ScheduleHandler` for the error message.
-- **The stop runs at the wrong hour:** read the time zone field of the schedule. A schedule without a time zone is read in UTC.
-- **`AccessDenied` in the log:** the role of the function can stop only the instance ID that was given to the stack. If you replaced the instance, update the stack with the new `ExistingInstanceId`.

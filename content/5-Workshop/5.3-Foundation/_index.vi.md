@@ -73,10 +73,3 @@ aws cloudformation deploy \
 ![Máy lab t3.small đang chạy trong console EC2](../../../images/5-Workshop/5.3-foundation/54-ec2-t3small-running.png)
 
 **Kết quả trả về:** mọi tài nguyên đều có mặt và máy đang chạy. Máy đã bắt đầu tính tiền, nên hãy sang 5.4 ngay, không nghỉ lâu.
-
-### Cần kiểm tra nếu gặp lỗi
-
-- **`ROLLBACK_COMPLETE`:** mở tab **Events**, tìm dòng `CREATE_FAILED` đầu tiên và đọc lý do. Stack ở trạng thái này không cập nhật được, nên hãy xóa rồi tạo lại.
-- **Lỗi capability:** stack cần `CAPABILITY_IAM`. Trên console, tick ô xác nhận. Với CLI, giữ `--capabilities CAPABILITY_IAM`.
-- **Tạo instance thất bại:** nguyên nhân dễ gặp nhất là thiếu default VPC (xem 5.2). Hãy tự tạo một instance rồi truyền ID vào `ExistingInstanceId`.
-- **Không nhận được email:** kiểm tra thư rác và xem địa chỉ trong `AlertEmail` có gõ sai không.
