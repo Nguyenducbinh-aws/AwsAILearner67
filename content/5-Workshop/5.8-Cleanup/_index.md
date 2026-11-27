@@ -8,7 +8,7 @@ pre: " <b> 5.8. </b> "
 
 ## Clean Up
 
-Delete everything you created so that nothing is billed after the workshop. The screenshots below come from our own clean-up on 26/11/2026 in `us-east-1`, done with an IAM user, not the root user.
+You have now completed the whole Cost Guard workshop: the lab machine is protected by three layers, and all three have been tested. Only the final step is left, which is to clean up and delete everything you created so that nothing is billed afterwards. The screenshots below come from our own clean-up on 26/11/2026 in `us-east-1`, done with an IAM user, not the root user.
 
 Order matters: delete the `CostGuard` stack first, then the lab instance, then the few resources that were created outside the stacks.
 

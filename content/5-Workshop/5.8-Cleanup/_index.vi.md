@@ -8,7 +8,7 @@ pre: " <b> 5.8. </b> "
 
 ## Dọn dẹp tài nguyên
 
-Xóa mọi thứ bạn đã tạo để không bị tính phí sau workshop. Ảnh bên dưới chụp từ lần dọn thật của nhóm ngày 26/11/2026 ở `us-east-1`, làm bằng IAM user, không dùng root user.
+Bạn đã hoàn thành toàn bộ workshop Cost Guard: máy lab được bảo vệ bởi ba lớp và cả ba lớp đều đã được kiểm thử. Giờ chỉ còn bước cuối cùng là dọn dẹp, xóa mọi thứ đã tạo để không bị tính phí về sau. Ảnh bên dưới chụp từ lần dọn thật của nhóm ngày 26/11/2026 ở `us-east-1`, làm bằng IAM user, không dùng root user.
 
 Thứ tự quan trọng: xóa stack `CostGuard` trước, sau đó tới máy lab, cuối cùng là vài tài nguyên được tạo ngoài stack.
 
