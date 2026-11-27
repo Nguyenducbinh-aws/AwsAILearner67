@@ -12,7 +12,7 @@ pre: " <b> 5. </b> "
 
 **Team name:** AwsAILearner67
 
-Members who built this workshop:
+Members who took part in the project:
 
 | Name | Student ID | Email |
 | --- | --- | --- |

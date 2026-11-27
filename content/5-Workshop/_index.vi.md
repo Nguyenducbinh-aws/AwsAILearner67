@@ -12,7 +12,7 @@ pre: " <b> 5. </b> "
 
 **Tên nhóm:** AwsAILearner67
 
-Các thành viên đã tham gia xây dựng workshop:
+Các thành viên đã tham gia dự án:
 
 | Họ và tên | MSSV | Email |
 | --- | --- | --- |
