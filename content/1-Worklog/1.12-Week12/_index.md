@@ -25,15 +25,14 @@ pre: " <b> 1.12. </b> "
 
 ### Week 12 Achievements:
 
-* Summed up the results of the internship, study and practice at AWS:
+* Gained a foundation in AWS services and practiced them through labs.
 
-  * Gained a foundation in AWS services and practiced them through labs
-  * Learned how to design, deploy, test and clean up a solution on AWS through the workshop project
-  * Learned new things from AWS blogs and events
-  * Improved self-study, teamwork and report-writing skills
+* Learned how to design, deploy, test and clean up a solution on AWS through the workshop project.
 
-* Completed the self-evaluation.
+* Learned new things from AWS blogs and events.
 
-* Wrote the feedback, comments and suggestions for the internship at AWS.
+* Improved self-study, teamwork and report-writing skills.
 
-* Checked the workshop again and submitted it.
+* Completed the workshop.
+
+* Wrote the feedback, comments and suggestions for the internship at AWS, a real and useful internship environment with many new and valuable things to learn.

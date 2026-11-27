@@ -25,15 +25,14 @@ pre: " <b> 1.12. </b> "
 
 ### Kết quả đạt được tuần 12:
 
-* Tổng kết thành quả sau quá trình thực tập, học tập và thực hành tại AWS:
+* Nắm được kiến thức nền tảng về các dịch vụ AWS và thực hành qua các bài lab.
 
-  * Nắm được kiến thức nền tảng về các dịch vụ AWS và thực hành qua các bài lab
-  * Biết cách thiết kế, triển khai, kiểm thử và dọn dẹp một giải pháp trên AWS qua dự án workshop
-  * Học thêm kiến thức mới từ các bài blog và sự kiện của AWS
-  * Rèn luyện kỹ năng tự học, làm việc nhóm và viết báo cáo
+* Biết cách thiết kế, triển khai, kiểm thử và dọn dẹp một giải pháp trên AWS qua dự án workshop.
 
-* Hoàn thành phần tự đánh giá.
+* Học thêm kiến thức mới từ các bài blog và sự kiện của AWS.
 
-* Viết nhận xét, chia sẻ và đóng góp ý kiến về nơi thực tập tại AWS.
+* Rèn luyện kỹ năng tự học, làm việc nhóm và viết báo cáo.
 
-* Kiểm tra lại workshop và nộp bài.
+* Hoàn thành workshop.
+
+* Viết nhận xét, chia sẻ và đóng góp ý kiến về nơi thực tập tại AWS, một môi trường thực tập thực tế, bổ ích, với nhiều kiến thức mới lạ và đáng giá.
