@@ -1,15 +1,3 @@
 public/*
 
-# Ghi chú cá nhân: kế hoạch, tổng hợp (không đưa lên repo)
-notes/
 
-# Claude: bộ nhớ, skill, cấu hình cục bộ
-.claude/
-CLAUDE.md
-CLAUDE.local.md
-memory/
-MEMORY.md
-skills/
-/.claude
-/.claude
-/notes
